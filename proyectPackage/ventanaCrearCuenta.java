@@ -10,7 +10,7 @@ public class ventanaCrearCuenta extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	JLabel label1, label2, label3, label4;
-	JTextField txtNombre, txtEmail, txtEdad, txtContraseña;
+	JTextField txtNombre, txtEmail, txtEdad, txtContrasena;
 	JSpinner edadSpinner;
 	JLabel blank1, blank2, blank3, blank4, blank5, blank6, blank7;
 	JButton botonSiguiente;
@@ -42,7 +42,7 @@ public class ventanaCrearCuenta extends JFrame {
 		
 		label3 = new JLabel("   Edad: ");
 		cp.add(label3);
-		//Recordar que la edad no puede ser menor de 12años!
+		//Recordar que la edad no puede ser menor de 12aï¿½os!
 		edadSpinner = new JSpinner();
 		edadSpinner.setValue(12);
 		cp.add(edadSpinner);
@@ -52,10 +52,10 @@ public class ventanaCrearCuenta extends JFrame {
 		cp.add(blank5);
 		cp.add(blank6);
 		
-		label4 = new JLabel("   Contraseña: ");
+		label4 = new JLabel("   Contraseï¿½a: ");
 		cp.add(label4);
-		txtContraseña = new JTextField();
-		cp.add(txtContraseña);
+		txtContrasena = new JTextField();
+		cp.add(txtContrasena);
 		
 		blank7 = new JLabel(" ");
 		cp.add(blank7);

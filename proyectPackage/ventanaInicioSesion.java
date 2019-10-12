@@ -16,7 +16,7 @@ public class ventanaInicioSesion extends JFrame {
 	//Declarando componentes de la ventana
 	JLabel label1, label2, label3, label4, label5, label6;
 	JLabel blank1, blank2, blank3; //Utilizadas solo para meter espacios en blanco y estructurar ventana
-	JTextField txtEmail, txtContraseña;
+	JTextField txtEmail, txtContrasena;
 	JButton botonCrear, botonInicio;
 	
 	
@@ -27,7 +27,7 @@ public class ventanaInicioSesion extends JFrame {
 		
 		blank1 = new JLabel(" ");
 		cp.add(blank1);
-		label2 = new JLabel("Iniciar Sesión: ");
+		label2 = new JLabel("Iniciar Sesiï¿½n: ");
 		cp.add(label2);
 		blank2 = new JLabel(" ");
 		cp.add(blank2);
@@ -39,11 +39,11 @@ public class ventanaInicioSesion extends JFrame {
 		blank3 = new JLabel(" ");
 		cp.add(blank3);
 		
-		label4 = new JLabel("         Contraseña ");
+		label4 = new JLabel("         Contraseï¿½a ");
 		cp.add(label4);
-		txtContraseña = new JTextField("******");
-		cp.add(txtContraseña);
-		botonInicio = new JButton("Iniciar Sesión");
+		txtContrasena = new JTextField("******");
+		cp.add(txtContrasena);
+		botonInicio = new JButton("Iniciar Sesiï¿½n");
 		cp.add(botonInicio);
 		
 	
