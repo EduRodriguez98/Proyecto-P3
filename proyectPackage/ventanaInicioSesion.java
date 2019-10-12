@@ -27,7 +27,7 @@ public class ventanaInicioSesion extends JFrame {
 		
 		blank1 = new JLabel(" ");
 		cp.add(blank1);
-		label2 = new JLabel("Iniciar Sesi�n: ");
+		label2 = new JLabel("Iniciar Sesion: ");
 		cp.add(label2);
 		blank2 = new JLabel(" ");
 		cp.add(blank2);
@@ -39,11 +39,11 @@ public class ventanaInicioSesion extends JFrame {
 		blank3 = new JLabel(" ");
 		cp.add(blank3);
 		
-		label4 = new JLabel("         Contrase�a ");
+		label4 = new JLabel("         Contrasena ");
 		cp.add(label4);
 		txtContrasena = new JTextField("******");
 		cp.add(txtContrasena);
-		botonInicio = new JButton("Iniciar Sesi�n");
+		botonInicio = new JButton("Iniciar Sesion");
 		cp.add(botonInicio);
 		
 	
@@ -55,7 +55,7 @@ public class ventanaInicioSesion extends JFrame {
 		cp.add(botonCrear);
 		
 		this.setVisible(true);
-		this.setTitle("Wlecome to MODISE");
+		this.setTitle("Welcome to MODISE");
 		this.setSize(450, 200);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
