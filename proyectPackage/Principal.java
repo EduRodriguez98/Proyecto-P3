@@ -1,5 +1,7 @@
 package proyectPackage;
 import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -38,70 +40,49 @@ public class Principal {
 		g.setLayout(null);
 		g.setVisible(false);
 		g.setEnabled(false);
-		g.setBounds(0, 0, 1000, 500);
+		g.setBounds(0, 0, 720, 480);
 	}
 	
 	public Principal() {
 		
 		JFrame frame = new JFrame();
 		frame.setVisible(true);	
-		frame.setSize(1000, 500);
+		frame.setSize(720, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Principal.java");
 		
 		JPanel ventanaInicioSesion = new JPanel();
-		JPanel panelB = new JPanel();
+		ventanaInicioSesion.setName("ventanaInicioSesion"); //no va??
+		JPanel ventanaCrearCuenta = new JPanel();
+		ventanaCrearCuenta.setName("ventanaCrearCuenta"); //no va??
 		
 		CrearPanel(ventanaInicioSesion);
-		CrearPanel(panelB);
+		CrearPanel(ventanaCrearCuenta);
 		
 		frame.getContentPane().add(ventanaInicioSesion);
-		frame.getContentPane().add(panelB);	
+		frame.getContentPane().add(ventanaCrearCuenta);	
 		
-		ventanaInicioSesion.setVisible(true);
+		ventanaInicioSesion.setVisible(true); //la primera ventana??
 		
-		blank1 = new JLabel(" ");
-		ventanaInicioSesion.add(blank1);
-		label2 = new JLabel("Iniciar Sesion: ");
-		ventanaInicioSesion.add(label2);
-		blank2 = new JLabel(" ");
-		ventanaInicioSesion.add(blank2);
-		
-		label3 = new JLabel("         Email ");
-		ventanaInicioSesion.add(label3);
-		txtEmail = new JTextField("example@gmail.com");
-		ventanaInicioSesion.add(txtEmail);
-		blank3 = new JLabel(" ");
-		ventanaInicioSesion.add(blank3);
-		
-		label4 = new JLabel("         Contrasena ");
-		ventanaInicioSesion.add(label4);
-		txtContrasena = new JTextField("******");
-		ventanaInicioSesion.add(txtContrasena);
-		botonInicio = new JButton("Iniciar Sesion");
-		ventanaInicioSesion.add(botonInicio);
-		
-	
-		label5 = new JLabel("        Es tu primera vez?");
-		ventanaInicioSesion.add(label5);
-		label6 = new JLabel("Pulse este boton ->");
-		ventanaInicioSesion.add(label6);
+		//componentes ventanaInicioSesion
 		botonCrear = new JButton("Crear Cuenta");
 		ventanaInicioSesion.add(botonCrear);
+		botonCrear.setBounds(100, 100, 100, 50);
 		
-		labelB = new JLabel();
-		labelB.setText("labelB");
+		
+		//componentes ventanaCrearCuenta
+		labelB = new JLabel("labelB");
+		ventanaCrearCuenta.add(labelB);
 		labelB.setBounds(100, 100, 100, 50);
-				
 		
-		panelB.add(labelB);
 		
+		//Action listeners
 		botonCrear.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CambiarPanel(ventanaInicioSesion, panelB);
+				CambiarPanel(ventanaInicioSesion, ventanaCrearCuenta);
 			}
 		});
 		
@@ -114,7 +95,7 @@ public class Principal {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				new EjemploPrincipal();
+				new Principal();
 
 			}
 

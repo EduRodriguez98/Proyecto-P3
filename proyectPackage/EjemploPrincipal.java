@@ -1,4 +1,5 @@
 package proyectPackage;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -62,7 +63,7 @@ public class EjemploPrincipal {
 		
 		botonA = new JButton();
 		botonA.setText("botonA");
-		botonA.setBounds(500, 300, 50, 50);
+		botonA.setBounds(500, 300, 100, 50);
 		
 		labelB = new JLabel();
 		labelB.setText("labelB");
