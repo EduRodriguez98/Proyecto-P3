@@ -77,7 +77,6 @@ public class EjemploPrincipal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				CambiarPanel(panelA, panelB);
 			}
 		});
@@ -85,12 +84,10 @@ public class EjemploPrincipal {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				new EjemploPrincipal();
 
 			}

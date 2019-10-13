@@ -1,7 +1,5 @@
 package proyectPackage;
 import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -89,7 +87,6 @@ public class Principal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				CambiarPanel(ventanaInicioSesion, ventanaCrearCuenta);
 			}
 		});
@@ -97,12 +94,10 @@ public class Principal {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				new Principal();
 			}
 		});
