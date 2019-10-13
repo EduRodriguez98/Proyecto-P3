@@ -22,10 +22,7 @@ public class Principal {
 	JButton botonSiguiente;
 	
 	//ventanaInicioSesion
-	JLabel label5, label6, label7, label8, label9, label10;
-	JLabel blank8, blank9, blank10; //Utilizadas solo para meter espacios en blanco y estructurar ventana
-	JTextField txtEmail2, txtContrasena2;
-	JButton botonCrear, botonInicio;
+	
 	
 	public void CambiarPanel(JPanel g, JPanel h) {
 		g.setVisible(false);
@@ -117,7 +114,7 @@ public class Principal {
 		
 		//componentes ventanaInicioSesion
 		
-		
+		/*
 		botonSiguiente.addActionListener(new ActionListener() {
 			
 			@Override
@@ -125,8 +122,8 @@ public class Principal {
 				// TODO Auto-generated method stub
 				CambiarPanel(ventanaCrearCuenta, ventanaInicioSesion);	//por probar
 			}
-		});
-		
+		});*/
+				
 	}
 	
 	public static void main(String[] args) {
