@@ -55,12 +55,16 @@ public class Principal {
 		ventanaInicioSesion.setName("ventanaInicioSesion"); //no va??
 		JPanel ventanaCrearCuenta = new JPanel();
 		ventanaCrearCuenta.setName("ventanaCrearCuenta"); //no va??
+		JPanel ventanaPerfilGustosUno = new JPanel();
+		ventanaPerfilGustosUno.setName("ventanaPerfilGustosUno"); //no va??
 		
 		CrearPanel(ventanaInicioSesion);
 		CrearPanel(ventanaCrearCuenta);
+		CrearPanel(ventanaPerfilGustosUno);
 		
 		frame.getContentPane().add(ventanaInicioSesion);
-		frame.getContentPane().add(ventanaCrearCuenta);	
+		frame.getContentPane().add(ventanaCrearCuenta);
+		frame.getContentPane().add(ventanaPerfilGustosUno);
 		
 		ventanaInicioSesion.setVisible(true); //la primera ventana??
 		
@@ -75,6 +79,8 @@ public class Principal {
 		ventanaCrearCuenta.add(labelB);
 		labelB.setBounds(100, 100, 100, 50);
 		
+		//componentes ventanaPerfilGustosUno
+				
 		
 		//Action listeners
 		botonCrear.addActionListener(new ActionListener() {
