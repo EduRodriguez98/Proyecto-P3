@@ -10,12 +10,12 @@ public class hora {
 	}
 	
 	
-
+	/*
 	public static void main(String[] args) {
 
 		Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         System.out.println( sdf.format(cal.getTime()) );
 	}
-
+	*/
 }

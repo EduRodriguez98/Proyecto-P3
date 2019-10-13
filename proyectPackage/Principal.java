@@ -4,6 +4,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -80,7 +82,7 @@ public class Principal {
 		labelB.setBounds(100, 100, 100, 50);
 		
 		//componentes ventanaPerfilGustosUno
-				
+			
 		
 		//Action listeners
 		botonCrear.addActionListener(new ActionListener() {
@@ -102,10 +104,12 @@ public class Principal {
 			public void run() {
 				// TODO Auto-generated method stub
 				new Principal();
-
 			}
-
 		});
+		//lo de hora.java (para quitarnos el main de esa clase)
+		Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        System.out.println( sdf.format(cal.getTime()) );
 	}
 
 }
