@@ -1,23 +1,33 @@
 package proyectPackage;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 
 public class Principal {
 
-	JLabel labelA, labelB;
-	JButton botonA;
+	//ventanaCrearCuenta
+	JLabel label1, label2, label3, label4;
+	JTextField txtNombre, txtEmail, txtEdad, txtContrasena;
+	JSpinner edadSpinner;
+	JLabel blank1, blank2, blank3, blank4, blank5, blank6, blank7;
+	JButton botonSiguiente;
+	
+	//ventanaInicioSesion
+	JLabel label5, label6, label7, label8, label9, label10;
+	JLabel blank8, blank9, blank10; //Utilizadas solo para meter espacios en blanco y estructurar ventana
+	JTextField txtEmail2, txtContrasena2;
+	JButton botonCrear, botonInicio;
 	
 	public void CambiarPanel(JPanel g, JPanel h) {
 		g.setVisible(false);
 		g.setEnabled(false);
 		h.setVisible(true);
 		h.setEnabled(true);
-		for (Component cp : g.getComponents() ){
-			cp.setEnabled(false);
-			cp.setVisible(false);
+		for (Component ventanaCrearCuenta : g.getComponents() ){
+			ventanaCrearCuenta.setEnabled(false);
+			ventanaCrearCuenta.setVisible(false);
 		}
 		for (Component sp : h.getComponents() ){
 	        sp.setEnabled(true);
@@ -39,40 +49,74 @@ public class Principal {
 		frame.setSize(1000, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel panelA = new JPanel();
-		JPanel panelB = new JPanel();
+		JPanel ventanaCrearCuenta = new JPanel();
+		ventanaCrearCuenta.setLayout(new GridLayout(8,2));
+		ventanaCrearCuenta.setName("Crear Cuenta en MODISE");
 		
-		CrearPanel(panelA);
-		CrearPanel(panelB);
-		
-		frame.getContentPane().add(panelA);
-		frame.getContentPane().add(panelB);	
-		
-		panelA.setVisible(true);
-		
-		
-		labelA = new JLabel();
-		labelA.setText("labelA");
-		labelA.setBounds(100, 100, 100, 50);
-		
-		botonA = new JButton();
-		botonA.setText("botonA");
-		botonA.setBounds(500, 300, 50, 50);
-		
-		labelB = new JLabel();
-		labelB.setText("labelB");
-		labelB.setBounds(100, 100, 100, 50);
+		JPanel ventanaInicioSesion = new JPanel();
+		ventanaInicioSesion.setLayout(new GridLayout(4, 3));
+		ventanaInicioSesion.setName("Welcome to MODISE");
 				
-		panelA.add(labelA);
-		panelA.add(botonA);
-		panelB.add(labelB);
+		CrearPanel(ventanaCrearCuenta);
+		CrearPanel(ventanaInicioSesion);
+				
+		frame.getContentPane().add(ventanaCrearCuenta);
+		frame.getContentPane().add(ventanaInicioSesion);		
 		
-		botonA.addActionListener(new ActionListener() {
+		ventanaCrearCuenta.setVisible(true); //primera ventana que aparece??
+		
+		//componentes ventanaCrearCuenta
+		label1 = new JLabel("   Nombre: ");
+		ventanaCrearCuenta.add(label1);
+		txtNombre = new JTextField();
+		ventanaCrearCuenta.add(txtNombre);
+		
+		blank1 = new JLabel(" ");
+		blank2 = new JLabel(" ");
+		ventanaCrearCuenta.add(blank1);
+		ventanaCrearCuenta.add(blank2);
+		
+		label2 = new JLabel("   Email: ");
+		ventanaCrearCuenta.add(label2);
+		txtEmail = new JTextField();
+		ventanaCrearCuenta.add(txtEmail);
+		
+		blank3 = new JLabel(" ");
+		blank4 = new JLabel(" ");
+		ventanaCrearCuenta.add(blank3);
+		ventanaCrearCuenta.add(blank4);
+		
+		label3 = new JLabel("   Edad: ");
+		ventanaCrearCuenta.add(label3);
+			//Recordar que la edad no puede ser menor de 12a�os!
+		edadSpinner = new JSpinner();
+		edadSpinner.setValue(12);
+		ventanaCrearCuenta.add(edadSpinner);
+		
+		blank5 = new JLabel(" ");
+		blank6 = new JLabel(" ");
+		ventanaCrearCuenta.add(blank5);
+		ventanaCrearCuenta.add(blank6);
+		
+		label4 = new JLabel("   Contrase�a: ");
+		ventanaCrearCuenta.add(label4);
+		txtContrasena = new JTextField();
+		ventanaCrearCuenta.add(txtContrasena);
+		
+		blank7 = new JLabel(" ");
+		ventanaCrearCuenta.add(blank7);
+		botonSiguiente = new JButton("Siguiente");
+		ventanaCrearCuenta.add(botonSiguiente);
+		
+		//componentes ventanaInicioSesion
+		
+		
+		botonSiguiente.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				CambiarPanel(panelA, panelB);
+				CambiarPanel(ventanaCrearCuenta, ventanaInicioSesion);	//por probar
 			}
 		});
 		
