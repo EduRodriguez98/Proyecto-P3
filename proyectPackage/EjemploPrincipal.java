@@ -42,6 +42,7 @@ public class EjemploPrincipal {
 		frame.setVisible(true);	
 		frame.setSize(1000, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("EjemploPrincipal.java");
 		
 		JPanel panelA = new JPanel();
 		JPanel panelB = new JPanel();
