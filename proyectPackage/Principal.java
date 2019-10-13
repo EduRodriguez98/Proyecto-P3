@@ -15,8 +15,7 @@ public class Principal {
 	JButton botonSiguiente;
 	
 	//ventanaInicioSesion
-	
-	
+		
 	public void CambiarPanel(JPanel g, JPanel h) {
 		g.setVisible(false);
 		g.setEnabled(false);
