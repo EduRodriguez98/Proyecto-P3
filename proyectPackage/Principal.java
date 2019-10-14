@@ -43,6 +43,12 @@ public class Principal {
 		g.setBounds(0, 0, 720, 480);
 	}
 	
+	public static void hora() {				//lo de hora.java (para quitarnos el main de esa clase)
+		Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        System.out.println( sdf.format(cal.getTime()) );
+	}
+	
 	public Principal() {
 		
 		JFrame frame = new JFrame();
@@ -101,10 +107,6 @@ public class Principal {
 				new Principal();
 			}
 		});
-		//lo de hora.java (para quitarnos el main de esa clase)
-		Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        System.out.println( sdf.format(cal.getTime()) );
 	}
 
 }
