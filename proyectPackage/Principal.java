@@ -11,6 +11,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -44,8 +45,8 @@ public class Principal {
 	
 		
 	//ORDENES DE LAS VENTANAS!!!!!
-		//(CASO DE PRIMERA VEZ EN MODISE) 1.Ventana Inicio Sesion || 2.Ventana Crear Cuenta || 3.Ventana Genero || 4.Ventana Perfil Gustos 1 || 5.Ventana Perfil Gustos 2 || 6.Ventana Menu Principal
-		//(CASO USUARIO YA REGISTRADO) 1.Ventana Inicio Sesion || 2.Ventana Menu Principal
+		//(CASO DE PRIMERA VEZ EN MODISE) 1.Ventana Inicio Sesion || 2.Ventana Crear Cuenta || 3.Ventana Genero || 4.Ventana Perfil Gustos 1 || 5.Ventana Perfil Gustos 2 || || 6.Ventana de Carga || 7.Ventana Menu Principal
+		//(CASO USUARIO YA REGISTRADO) 1.Ventana Inicio Sesion || 2.Ventana de Carga  || 3.Ventana Menu Principal
 		
 	
 	//Declarando componentes
@@ -61,14 +62,24 @@ public class Principal {
 			JSpinner spinCrearEdad;
 			JButton botonCrearSiguiente;
 			
-			//VentanaGenero
+			// VentanaGenero
 			JRadioButton radioMasculino, radioFemenino;
 			JLabel labelEscogerGenero;
 			JButton botonGeneroSiguiente;
 			
-			//VentanaPerfilGustosUno
+			// VentanaPerfilGustosUno
 			JButton botonPerfilGustosUnoSiguiente, botonPerfilGustosUnoAtras;
 			JCheckBox clasicoF, clasicoM, urbanaF, urbanaM, rockF, rockM, bohoF, smartM, formalF, formalM, sportyChickF, casualChickM;
+			
+			// VentanaPerfilGustos2
+			JLabel labelEscoge;
+			JButton botonPerfilGustosDosAtras, botonPerfilGustosDosSiguiente;
+			JRadioButton radioPrendaIzq, radioPrendaDer;
+			
+			// VentanaCarga
+			JProgressBar progressCargando;
+			JLabel labelCargando;
+				
 			
 	public Principal() {
 		
@@ -94,6 +105,8 @@ public class Principal {
 		ventanaPerfilGustosDos.setName("ventanaPerfilGustosDos"); //no va??
 		JPanel ventanaMenuPrincipal = new JPanel();
 		ventanaMenuPrincipal.setName("ventanaMenuPrincipal"); //No va??
+		JPanel ventanaCarga = new JPanel();
+		ventanaCarga.setName("ventana de Carga"); //No va?
 		
 		CrearPanel(ventanaInicioSesion);
 		CrearPanel(ventanaCrearCuenta);
@@ -101,6 +114,7 @@ public class Principal {
 		CrearPanel(ventanaPerfilGustosUno);
 		CrearPanel(ventanaPerfilGustosDos);
 		CrearPanel(ventanaMenuPrincipal);
+		CrearPanel(ventanaCarga);
 		
 		
 		frame.getContentPane().add(ventanaInicioSesion);
@@ -109,12 +123,13 @@ public class Principal {
 		frame.getContentPane().add(ventanaPerfilGustosUno);
 		frame.getContentPane().add(ventanaPerfilGustosDos);
 		frame.getContentPane().add(ventanaMenuPrincipal);
+		frame.getContentPane().add(ventanaCarga);
 		
 		ventanaInicioSesion.setVisible(true); //la primera ventana visible
 		
 		
 		
-		//Anyadiendo los componentes ventanaInicioSesion
+		//Anyadiendo los componentes de ventanaInicioSesion
 			botonCrear = new JButton("Crear Cuenta");
 			ventanaInicioSesion.add(botonCrear);
 			botonCrear.setBounds(500, 350, 200, 50);
@@ -167,7 +182,7 @@ public class Principal {
 			});
 			
 			
-		//Anyadiendo los componentes ventanaCrearCuenta
+		//Anyadiendo los componentes de ventanaCrearCuenta
 			labelCrearNombre = new JLabel("Introduzca su nombre: ");
 			ventanaCrearCuenta.add(labelCrearNombre);
 			labelCrearNombre.setBounds(80, 50, 200, 50);
@@ -215,7 +230,7 @@ public class Principal {
 			});
 			
 			
-		//Anyadiendo los componentes ventanaGenero
+		//Anyadiendo los componentes de ventanaGenero
 			labelEscogerGenero = new JLabel("Seleccione su genero: ");
 			ventanaGenero.add(labelEscogerGenero);
 			labelEscogerGenero.setBounds(100, 150, 200, 50);
@@ -290,7 +305,7 @@ public class Principal {
 				}
 			});
 			
-		//Anyadiendo los componentes ventanaPerfilGustosUno
+		//Anyadiendo los componentes de ventanaPerfilGustosUno
 			
 			botonPerfilGustosUnoAtras = new JButton("Atras");
 			ventanaPerfilGustosUno.add(botonPerfilGustosUnoAtras);
@@ -335,10 +350,67 @@ public class Principal {
 				}
 			});
 			
-		//Anyadiendo los componentes ventanaPerfilGustosDos
+		//Anyadiendo los componentes de ventanaPerfilGustosDos
+			labelEscoge = new JLabel("Cual de las siguientes prendas te gusta más para tí?");
+			ventanaPerfilGustosDos.add(labelEscoge);
+			labelEscoge.setBounds(200, 30, 350, 50);
+			
+			radioPrendaIzq = new JRadioButton("Opcion 1");
+			ventanaPerfilGustosDos.add(radioPrendaIzq);
+			radioPrendaIzq.setBounds(200, 300, 100, 50);
+			
+			radioPrendaDer = new JRadioButton("Opcion 2");
+			ventanaPerfilGustosDos.add(radioPrendaDer);
+			radioPrendaDer.setBounds(420, 300, 100, 50);
 			
 			
-		//Anyadiendo los componentes ventanaMenuPrincipal
+			ButtonGroup bgPerfilGustosDos = new ButtonGroup();
+			bgPerfilGustosDos.add(radioPrendaIzq);
+			bgPerfilGustosDos.add(radioPrendaDer);
+			
+			botonPerfilGustosDosAtras = new JButton("Atras");
+			ventanaPerfilGustosDos.add(botonPerfilGustosDosAtras);
+			botonPerfilGustosDosAtras.setBounds(10, 380, 200, 40);
+			
+			botonPerfilGustosDosSiguiente = new JButton("Siguiente");
+			ventanaPerfilGustosDos.add(botonPerfilGustosDosSiguiente);
+			botonPerfilGustosDosSiguiente.setBounds(500, 380, 200, 40);				
+			
+			
+			//Action Listeners
+			botonPerfilGustosDosSiguiente.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+						
+					CambiarPanel(ventanaPerfilGustosDos, ventanaCarga);
+					//Hacer que se empieze a llenar la progressBar cuando se cambia a la ventanaCarga
+				}
+			});
+			
+			botonPerfilGustosDosAtras.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					CambiarPanel(ventanaPerfilGustosDos, ventanaPerfilGustosUno);
+					
+				}
+			});
+			
+		//Anyadiendo los componentes de ventanaCarga
+			labelCargando = new JLabel("Cargando");
+			ventanaCarga.add(labelCargando);
+			labelCargando.setBounds(320, 170, 200, 50);
+			
+			progressCargando = new JProgressBar();
+			ventanaCarga.add(progressCargando);
+			progressCargando.setBounds(200, 220, 300, 40);
+			
+			if (progressCargando.getValue() == progressCargando.getMaximum()) {
+				CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+			}
+			
+		//Anyadiendo los componentes de ventanaMenuPrincipal
 		
 
 			
