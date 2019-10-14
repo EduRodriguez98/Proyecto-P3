@@ -1,4 +1,5 @@
 package proyectPackage;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,6 +43,7 @@ public class EjemploPrincipal {
 		frame.setVisible(true);	
 		frame.setSize(1000, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("EjemploPrincipal.java");
 		
 		JPanel panelA = new JPanel();
 		JPanel panelB = new JPanel();
@@ -61,7 +63,7 @@ public class EjemploPrincipal {
 		
 		botonA = new JButton();
 		botonA.setText("botonA");
-		botonA.setBounds(500, 300, 50, 50);
+		botonA.setBounds(500, 300, 100, 50);
 		
 		labelB = new JLabel();
 		labelB.setText("labelB");
@@ -75,7 +77,6 @@ public class EjemploPrincipal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				CambiarPanel(panelA, panelB);
 			}
 		});
@@ -83,12 +84,10 @@ public class EjemploPrincipal {
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				new EjemploPrincipal();
 
 			}
