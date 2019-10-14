@@ -11,6 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
@@ -78,15 +81,33 @@ public class Principal {
 		// VentanaCarga
 		JProgressBar progressCargando;
 		JLabel labelCargando;
+		
+		//ventanaMenuPrincipal
+		JMenuBar mb;
+		JMenu menu1;
+		JMenuItem mi1, mi2, mi3;
 			
 	public Principal() {
 		
-		//Propiedades del Frame
+		//Propiedades y componentes del Frame
 		JFrame frame = new JFrame();
 		frame.setVisible(true);	
 		frame.setSize(720, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Principal.java");
+		
+		mb = new JMenuBar();
+		menu1 = new JMenu("Menu");	
+		mi1 = new JMenuItem("Cerrar sesion");
+		mi2 = new JMenuItem("mi2");
+		mi3 = new JMenuItem("mi3");
+		menu1.add(mi1);
+		menu1.add(mi2);
+		menu1.add(mi3);
+		mb.add(menu1);
+		mb.setVisible(false);
+		mb.setEnabled(false);
+		frame.setJMenuBar(mb);
 		
 		//Creando y Anyadiendo Paneles al Frame
 		JPanel ventanaInicioSesion = new JPanel();
@@ -170,7 +191,8 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
-				
+				mb.setVisible(true);
+				mb.setEnabled(true);
 			}
 		});
 			
@@ -369,6 +391,25 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaPerfilGustosDos, ventanaCarga);
 				//Hacer que se empieze a llenar la progressBar cuando se cambia a la ventanaCarga
+		
+				//IGUAL SOBRA	sigue sin ir asi
+				progressCargando.setMaximum(100);
+				progressCargando.setValue(100);
+				
+				/* NO TIRA :(
+				 * progressCargando.setValue(0);
+				progressCargando.setMaximum(100);
+				for (int i = progressCargando.getValue(); i < progressCargando.getMaximum()+1; i++) {
+					try {
+						Thread.sleep(100);
+						progressCargando.setValue(i);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						System.out.println("progressCargando no va");
+					}
+					
+				}*/
 			}
 		});
 			
@@ -389,13 +430,16 @@ public class Principal {
 		progressCargando = new JProgressBar();
 		ventanaCarga.add(progressCargando);
 		progressCargando.setBounds(200, 220, 300, 40);
+				
 		if (progressCargando.getValue() == progressCargando.getMaximum()) {
 			CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+			mb.setVisible(true);
+			mb.setEnabled(true);
 		}
 			
 		//Anyadiendo los componentes de ventanaMenuPrincipal
-		//aqui	
-			
+		//aqui
+		
 	}
 	
 	public static void main(String[] args) {
