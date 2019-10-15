@@ -441,7 +441,7 @@ public class Principal {
 
 						if(stop = true) {
 							CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
-							//se cambia? SI
+							//se cambia? SI GUD JOB
 							mb.setVisible(true);
 							mb.setEnabled(true);
 						}
