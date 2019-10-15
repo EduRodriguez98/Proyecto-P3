@@ -81,6 +81,10 @@ public class Principal {
 		// VentanaCarga
 		JProgressBar progressCargando;
 		JLabel labelCargando;
+		private int counter = 0;
+		private boolean stop = false;
+		private final int MAX_STEPS = 100000;
+		
 		
 		//ventanaMenuPrincipal
 		JMenuBar mb;
@@ -105,8 +109,8 @@ public class Principal {
 		menu1.add(mi2);
 		menu1.add(mi3);
 		mb.add(menu1);
-		mb.setVisible(false);
-		mb.setEnabled(false);
+		mb.setVisible(true);
+		mb.setEnabled(true);
 		frame.setJMenuBar(mb);
 		
 		//Creando y Anyadiendo Paneles al Frame
@@ -176,6 +180,9 @@ public class Principal {
 		labelPregunta = new JLabel("Es tu primera vez en Modise? Pulsa el boton Crear Cuenta para empezar!");
 		ventanaInicioSesion.add(labelPregunta);
 		labelPregunta.setBounds(60, 350, 450, 50);
+		
+		mb.setVisible(false);
+		mb.setEnabled(false);
 			
 		//Action listeners
 		botonCrear.addActionListener(new ActionListener() {
@@ -234,6 +241,9 @@ public class Principal {
 		ventanaCrearCuenta.add(botonCrearSiguiente);
 		botonCrearSiguiente.setBounds(500, 380, 200, 40);
 		
+		mb.setVisible(false);
+		mb.setEnabled(false);
+		
 		//Action Listeners
 		botonCrearSiguiente.addActionListener(new ActionListener() {
 				
@@ -261,6 +271,9 @@ public class Principal {
 		botonGeneroSiguiente = new JButton("Siguiente");
 		ventanaGenero.add(botonGeneroSiguiente);
 		botonGeneroSiguiente.setBounds(500, 380, 200, 40);
+		
+		mb.setVisible(false);
+		mb.setEnabled(false);
 		
 		//Action Listeners
 		botonGeneroSiguiente.addActionListener(new ActionListener() {
@@ -324,7 +337,10 @@ public class Principal {
 			
 		botonPerfilGustosUnoSiguiente = new JButton("Siguiente");
 		ventanaPerfilGustosUno.add(botonPerfilGustosUnoSiguiente);
-		botonPerfilGustosUnoSiguiente.setBounds(500, 380, 200, 40);			
+		botonPerfilGustosUnoSiguiente.setBounds(500, 380, 200, 40);	
+		
+		mb.setVisible(false);
+		mb.setEnabled(false);
 			
 		//Action Listeners
 		botonPerfilGustosUnoSiguiente.addActionListener(new ActionListener() {
@@ -360,7 +376,7 @@ public class Principal {
 		});
 			
 		//Anyadiendo los componentes de ventanaPerfilGustosDos
-		labelEscoge = new JLabel("Cual de las siguientes prendas te gusta más para tí?");
+		labelEscoge = new JLabel("Cual de las siguientes prendas te gusta mï¿½s para tï¿½?");
 		ventanaPerfilGustosDos.add(labelEscoge);
 		labelEscoge.setBounds(200, 30, 350, 50);
 			
@@ -382,7 +398,10 @@ public class Principal {
 		
 		botonPerfilGustosDosSiguiente = new JButton("Siguiente");
 		ventanaPerfilGustosDos.add(botonPerfilGustosDosSiguiente);
-		botonPerfilGustosDosSiguiente.setBounds(500, 380, 200, 40);				
+		botonPerfilGustosDosSiguiente.setBounds(500, 380, 200, 40);		
+		
+		mb.setVisible(false);
+		mb.setEnabled(false);
 		
 		//Action Listeners
 		botonPerfilGustosDosSiguiente.addActionListener(new ActionListener() {
@@ -390,28 +409,38 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaPerfilGustosDos, ventanaCarga);
-				//Hacer que se empieze a llenar la progressBar cuando se cambia a la ventanaCarga
-		
-				//IGUAL SOBRA	sigue sin ir asi
-				progressCargando.setMaximum(100);
-				progressCargando.setValue(100);
 				
-				/* NO TIRA :(
-				 * progressCargando.setValue(0);
-				progressCargando.setMaximum(100);
-				for (int i = progressCargando.getValue(); i < progressCargando.getMaximum()+1; i++) {
-					try {
-						Thread.sleep(100);
-						progressCargando.setValue(i);
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-						System.out.println("progressCargando no va");
-					}
+				//JProgressBar
+				
+				Thread t = new Thread(new Runnable() {
 					
-				}*/
+					@Override
+					public void run() {
+					
+						for (counter = 0; !stop && counter <= MAX_STEPS ; counter++) {
+							System.out.println(counter);
+							
+							SwingUtilities.invokeLater(new Runnable() {
+								
+								@Override
+								public void run() {
+									progressCargando.setValue(counter);
+									
+								}
+							});
+						}
+
+						if(stop = true) {
+							CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+						}
+					}
+				});
+				
+				t.start();
+				
+				
 			}
-		});
+		});  
 			
 		botonPerfilGustosDosAtras.addActionListener(new ActionListener() {
 				
@@ -426,21 +455,23 @@ public class Principal {
 		labelCargando = new JLabel("Cargando");
 		ventanaCarga.add(labelCargando);
 		labelCargando.setBounds(320, 170, 200, 50);
+		
 			
-		progressCargando = new JProgressBar();
+		progressCargando = new JProgressBar(0, MAX_STEPS);
+		progressCargando.setValue(75);
 		ventanaCarga.add(progressCargando);
 		progressCargando.setBounds(200, 220, 300, 40);
 				
-		if (progressCargando.getValue() == progressCargando.getMaximum()) {
-			CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
-			mb.setVisible(true);
-			mb.setEnabled(true);
-		}
+			mb.setVisible(false);
+			mb.setEnabled(false);
 			
 		//Anyadiendo los componentes de ventanaMenuPrincipal
-		//aqui
+			
+		}
+			
 		
-	}
+	
+			
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
