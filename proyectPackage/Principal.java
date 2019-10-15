@@ -376,7 +376,7 @@ public class Principal {
 		});
 			
 		//Anyadiendo los componentes de ventanaPerfilGustosDos
-		labelEscoge = new JLabel("Cual de las siguientes prendas te gusta m�s para t�?");
+		labelEscoge = new JLabel("Cual de las siguientes prendas te gusta mas para ti?");
 		ventanaPerfilGustosDos.add(labelEscoge);
 		labelEscoge.setBounds(200, 30, 350, 50);
 			
