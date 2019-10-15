@@ -113,6 +113,15 @@ public class Principal {
 		mb.setEnabled(true);
 		frame.setJMenuBar(mb);
 		
+		mi1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
 		//Creando y Anyadiendo Paneles al Frame
 		JPanel ventanaInicioSesion = new JPanel();
 		ventanaInicioSesion.setName("ventanaInicioSesion"); //no va??
@@ -432,6 +441,9 @@ public class Principal {
 
 						if(stop = true) {
 							CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+							//se cambia?
+							mb.setVisible(true);
+							mb.setEnabled(true);
 						}
 					}
 				});
