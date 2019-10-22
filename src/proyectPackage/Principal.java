@@ -1,6 +1,7 @@
 package proyectPackage;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -14,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
@@ -97,6 +99,9 @@ public class Principal {
 		//ventanaPideOutfit
 		
 		//ventanaFeedback
+		
+		//Ajustes
+		JButton cambiarContrasenya, cambiarX, reiniciarPerfil;
 			
 	public Principal() {
 		
@@ -110,7 +115,7 @@ public class Principal {
 		mb = new JMenuBar();
 		menu1 = new JMenu("Menu");	
 		mi1 = new JMenuItem("Cerrar sesion");
-		mi2 = new JMenuItem("mi2");
+		mi2 = new JMenuItem("Ajustes");
 		mi3 = new JMenuItem("mi3");
 		menu1.add(mi1);
 		menu1.add(mi2);
@@ -120,14 +125,7 @@ public class Principal {
 		mb.setEnabled(true);
 		frame.setJMenuBar(mb);
 		
-		mi1.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});
+		//action listeners del menu DEBAJO del todo, ANTES del main!!!
 		
 		//Creando y Anyadiendo Paneles al Frame
 		JPanel ventanaInicioSesion = new JPanel();
@@ -147,6 +145,9 @@ public class Principal {
 		JPanel ventanaAnyadirVestimenta = new JPanel();
 		JPanel ventanaPideOutfit = new JPanel();
 		JPanel ventanaFeedback = new JPanel();
+		
+		//ventanaEmergente
+		JPanel ajustes = new JPanel(new GridLayout(3, 1));		
 		
 		CrearPanel(ventanaInicioSesion);
 		CrearPanel(ventanaCrearCuenta);
@@ -215,6 +216,7 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaInicioSesion, ventanaCrearCuenta);
+				
 			}
 		});
 			
@@ -538,12 +540,65 @@ public class Principal {
 		//Anyadiendo los componentes de ventanaAnyadirVestimenta
 		
 		//Action Listeners
+		
+		//Anyadiendo los componentes de ajustes
+		cambiarContrasenya = new JButton("Cambiar contraseña");
+			//cambiarContrasenya.setBounds(250, 150, 200, 50);
+		ajustes.add(cambiarContrasenya);
+		
+		cambiarX = new JButton("CambiarX");
+			//cambiarX.setBounds(250, 150, 200, 50);
+		ajustes.add(cambiarX);
+		
+		reiniciarPerfil = new JButton("Reiniciar Perfil");
+			//reiniciarPerfil.setBounds(250, 150, 200, 50);
+		ajustes.add(reiniciarPerfil);
+		
+		//Action listeners	OJO ESTO SOLO PARA PROBAR
+		cambiarContrasenya.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Cambiar contraseña");				
+			}
+		});
+		
+		cambiarX.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("CambiarX");				
+			}
+		});
+		
+		reiniciarPerfil.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Reiniciar perfil");				
+			}
+		});
+		
+		mi1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		
+		mi2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, ajustes, "Ajustes", JOptionPane.OK_CANCEL_OPTION);
+				
+			}
+		});
+		
 		}
 			
-		
-	
-			
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable() {
