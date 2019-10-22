@@ -99,7 +99,10 @@ public class Principal {
 		//ventanaAnyadirVestimenta
 		
 		//ventanaPideOutfit
-		
+		JButton botonAtrasPideOutfit, botonBuscar;
+		JRadioButton radioSol, radioLluvia, radioNublado, radioNo;
+		JLabel preguntaEstilo, preguntaTiempo;
+		JTextField txtEstilo;
 		//ventanaFeedback
 		
 		//Ajustes
@@ -538,10 +541,68 @@ public class Principal {
 				
 			}
 		});
-		
+	
 		
 		//Anyadiendo los compenentes de ventanaPideOutfit
+		preguntaTiempo = new JLabel("Que tiempo hace hoy?");
+		ventanaPideOutfit.add(preguntaTiempo);
+		preguntaTiempo.setBounds(50, 0, 300, 100);
 		
+		radioSol = new JRadioButton("Soleado");
+		ventanaPideOutfit.add(radioSol);
+		radioSol.setBounds(50, 80, 100, 40);
+		radioLluvia = new JRadioButton("Llueve");
+		ventanaPideOutfit.add(radioLluvia);
+		radioLluvia.setBounds(50, 120, 100, 40);
+		radioNublado = new JRadioButton("Nublado");
+		ventanaPideOutfit.add(radioNublado);
+		radioNublado.setBounds(50, 160, 100, 40);
+		
+		ButtonGroup bgPideOutfit = new ButtonGroup();
+		bgPideOutfit.add(radioSol);
+		bgPideOutfit.add(radioLluvia);
+		bgPideOutfit.add(radioNublado);
+		
+		preguntaEstilo = new JLabel("Tienes algun estilo en mente para tu outfit?");
+		ventanaPideOutfit.add(preguntaEstilo);
+		preguntaEstilo.setBounds(50, 210, 300, 60);
+		
+		radioNo = new JRadioButton("No");
+		ventanaPideOutfit.add(radioNo);
+		radioNo.setBounds(50, 260, 50, 30);
+		
+		txtEstilo = new JTextField("ej: Clasico");
+		ventanaPideOutfit.add(txtEstilo);
+		txtEstilo.setBounds(150, 260, 200, 30);
+		
+		botonAtrasPideOutfit = new JButton("Atras");
+		ventanaPideOutfit.add(botonAtrasPideOutfit);
+		botonAtrasPideOutfit.setBounds(50, 350, 80, 30);
+		
+		botonBuscar = new JButton("Buscar!");
+		ventanaPideOutfit.add(botonBuscar);
+		botonBuscar.setBounds(550, 350, 80, 30);
+		
+		
+		//Action Listeners
+		
+		botonBuscar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//CambiarPanel(ventanaPideOutfit, ventanaCarga);
+				
+			}
+		});
+		
+		botonAtrasPideOutfit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaPideOutfit, ventanaMenuPrincipal);
+				
+			}
+		});
 		//Action Listeners
 		
 		//Anyadiendo los componentes de ventanaAnyadirVestimenta
