@@ -553,11 +553,11 @@ public class Principal {
 		cambiarContrasenya.setBounds(50, 20, 50, 50);
 		ajustes.add(cambiarContrasenya);
 		
-		cambiarFecha = new JButton("CambiarX");
+		cambiarFecha = new JButton("Cambiar fecha");
 		cambiarFecha.setBounds(50, 100, 50, 50);
 		ajustes.add(cambiarFecha);
 		
-		reiniciarPerfil = new JButton("Reiniciar Perfil");
+		reiniciarPerfil = new JButton("Reiniciar perfil");
 		reiniciarPerfil.setBounds(50, 180, 50, 50);
 		ajustes.add(reiniciarPerfil);
 		
