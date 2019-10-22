@@ -90,6 +90,13 @@ public class Principal {
 		JMenuBar mb;
 		JMenu menu1;
 		JMenuItem mi1, mi2, mi3;
+		JButton botonPideOutfit, botonAnyadirVestimenta, botonMasMenosAdmin;
+		
+		//ventanaAnyadirVestimenta
+		
+		//ventanaPideOutfit
+		
+		//ventanaFeedback
 			
 	public Principal() {
 		
@@ -137,6 +144,9 @@ public class Principal {
 		ventanaMenuPrincipal.setName("ventanaMenuPrincipal"); //No va??
 		JPanel ventanaCarga = new JPanel();
 		ventanaCarga.setName("ventana de Carga"); //No va?
+		JPanel ventanaAnyadirVestimenta = new JPanel();
+		JPanel ventanaPideOutfit = new JPanel();
+		JPanel ventanaFeedback = new JPanel();
 		
 		CrearPanel(ventanaInicioSesion);
 		CrearPanel(ventanaCrearCuenta);
@@ -145,6 +155,9 @@ public class Principal {
 		CrearPanel(ventanaPerfilGustosDos);
 		CrearPanel(ventanaMenuPrincipal);
 		CrearPanel(ventanaCarga);
+		CrearPanel(ventanaAnyadirVestimenta);
+		CrearPanel(ventanaPideOutfit);
+		CrearPanel(ventanaFeedback);
 		
 		
 		frame.getContentPane().add(ventanaInicioSesion);
@@ -154,6 +167,9 @@ public class Principal {
 		frame.getContentPane().add(ventanaPerfilGustosDos);
 		frame.getContentPane().add(ventanaMenuPrincipal);
 		frame.getContentPane().add(ventanaCarga);
+		frame.getContentPane().add(ventanaAnyadirVestimenta);
+		frame.getContentPane().add(ventanaPideOutfit);
+		frame.getContentPane().add(ventanaFeedback);
 		
 		ventanaInicioSesion.setVisible(true); //la primera ventana visible
 		
@@ -478,7 +494,50 @@ public class Principal {
 			mb.setEnabled(false);
 			
 		//Anyadiendo los componentes de ventanaMenuPrincipal
+		botonPideOutfit = new JButton("Pide un Outfit!");
+		botonPideOutfit.setBounds(250, 150, 200, 50);
+		ventanaMenuPrincipal.add(botonPideOutfit);
+		
+		botonAnyadirVestimenta = new JButton("Anyade tu propia Vestimenta");
+		botonAnyadirVestimenta.setBounds(250,250, 200, 50);
+		ventanaMenuPrincipal.add(botonAnyadirVestimenta);
+		
+		
+		//Este botón solo puede ser visible cuando se hace log in con una cuenta administradora, para que solo los
+		//administradores puedan gestionar a los administradores.
+		//De momento la dejamos ahí y ya le haremos el if admin = true .setvisible luego
+		botonMasMenosAdmin = new JButton("Admin +/-");
+		botonMasMenosAdmin.setBounds(550,40, 110, 30);
+		ventanaMenuPrincipal.add(botonMasMenosAdmin);
+		
+		//ActionListeners
+		
+		botonPideOutfit.addActionListener(new ActionListener() {
 			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaMenuPrincipal, ventanaPideOutfit);
+				
+			}
+		});
+		
+		botonAnyadirVestimenta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaMenuPrincipal, ventanaAnyadirVestimenta);
+				
+			}
+		});
+		
+		
+		//Anyadiendo los compenentes de ventanaPideOutfit
+		
+		//Action Listeners
+		
+		//Anyadiendo los componentes de ventanaAnyadirVestimenta
+		
+		//Action Listeners
 		}
 			
 		
