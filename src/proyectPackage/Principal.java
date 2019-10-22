@@ -592,7 +592,7 @@ public class Principal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, ajustes, "Ajustes", JOptionPane.OK_CANCEL_OPTION);
+				JOptionPane.showMessageDialog(null, ajustes, "Ajustes", JOptionPane.DEFAULT_OPTION);
 				
 			}
 		});
