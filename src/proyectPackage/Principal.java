@@ -1,6 +1,7 @@
 package proyectPackage;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +23,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 public class Principal {
 
@@ -102,6 +104,8 @@ public class Principal {
 		
 		//Ajustes
 		JButton cambiarContrasenya, cambiarFecha, reiniciarPerfil;
+		
+		//ventanaEmergenteOutfit
 			
 	public Principal() {
 		
@@ -146,8 +150,9 @@ public class Principal {
 		JPanel ventanaPideOutfit = new JPanel();
 		JPanel ventanaFeedback = new JPanel();
 		
-		//ventanaEmergente
-		JPanel ajustes = new JPanel(new GridLayout(3, 1));		
+		//ventanas	Emergentes
+		JPanel ajustes = new JPanel(new GridLayout(3, 1));	
+		JPanel ventanaEmergenteOutfit = new JPanel();
 		
 		CrearPanel(ventanaInicioSesion);
 		CrearPanel(ventanaCrearCuenta);
@@ -462,6 +467,8 @@ public class Principal {
 							//se cambia? SI GUD JOB
 							mb.setVisible(true);
 							mb.setEnabled(true);
+							UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
+							JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
 						}
 					}
 				});
@@ -543,15 +550,15 @@ public class Principal {
 		
 		//Anyadiendo los componentes de ajustes
 		cambiarContrasenya = new JButton("Cambiar contraseña");
-			//cambiarContrasenya.setBounds(250, 150, 200, 50);
+		cambiarContrasenya.setBounds(50, 20, 50, 50);
 		ajustes.add(cambiarContrasenya);
 		
 		cambiarFecha = new JButton("CambiarX");
-			//cambiarX.setBounds(250, 150, 200, 50);
+		cambiarFecha.setBounds(50, 100, 50, 50);
 		ajustes.add(cambiarFecha);
 		
 		reiniciarPerfil = new JButton("Reiniciar Perfil");
-			//reiniciarPerfil.setBounds(250, 150, 200, 50);
+		reiniciarPerfil.setBounds(50, 180, 50, 50);
 		ajustes.add(reiniciarPerfil);
 		
 		//Action listeners	OJO ESTO SOLO PARA PROBAR
@@ -592,6 +599,7 @@ public class Principal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				UIManager.put("OptionPane.minimumSize",new Dimension(200, 200)); //este tamaño es solo para esta ventana emergente
 				JOptionPane.showMessageDialog(null, ajustes, "Ajustes", JOptionPane.DEFAULT_OPTION);
 				
 			}
