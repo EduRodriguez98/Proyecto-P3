@@ -101,7 +101,7 @@ public class Principal {
 		//ventanaFeedback
 		
 		//Ajustes
-		JButton cambiarContrasenya, cambiarX, reiniciarPerfil;
+		JButton cambiarContrasenya, cambiarFecha, reiniciarPerfil;
 			
 	public Principal() {
 		
@@ -546,9 +546,9 @@ public class Principal {
 			//cambiarContrasenya.setBounds(250, 150, 200, 50);
 		ajustes.add(cambiarContrasenya);
 		
-		cambiarX = new JButton("CambiarX");
+		cambiarFecha = new JButton("CambiarX");
 			//cambiarX.setBounds(250, 150, 200, 50);
-		ajustes.add(cambiarX);
+		ajustes.add(cambiarFecha);
 		
 		reiniciarPerfil = new JButton("Reiniciar Perfil");
 			//reiniciarPerfil.setBounds(250, 150, 200, 50);
@@ -563,11 +563,11 @@ public class Principal {
 			}
 		});
 		
-		cambiarX.addActionListener(new ActionListener() {
+		cambiarFecha.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("CambiarX");				
+				System.out.println("Cambiar fecha");				
 			}
 		});
 		
@@ -575,7 +575,7 @@ public class Principal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Reiniciar perfil");				
+				System.out.println("Reiniciar perfil de gustos");				
 			}
 		});
 		
