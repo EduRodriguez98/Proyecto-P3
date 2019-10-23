@@ -105,6 +105,12 @@ public class Principal {
 		JTextField txtEstilo;
 		//ventanaFeedback
 		
+		//ventanaFeedback
+				JLabel nivelSatisfaccion;
+				JLabel gustoColores;
+				JRadioButton estrella1, estrella2, estrella3, estrella4,estrella5, si, no;
+				JButton botonInicioFeedback;
+		
 		//Ajustes
 		JButton cambiarContrasenya, cambiarFecha, reiniciarPerfil;
 		
@@ -471,7 +477,7 @@ public class Principal {
 							mb.setVisible(true);
 							mb.setEnabled(true);
 							UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
-							JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
+							JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "ï¿½Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
 						}
 					}
 				});
@@ -515,9 +521,9 @@ public class Principal {
 		ventanaMenuPrincipal.add(botonAnyadirVestimenta);
 		
 		
-		//Este botón solo puede ser visible cuando se hace log in con una cuenta administradora, para que solo los
+		//Este botï¿½n solo puede ser visible cuando se hace log in con una cuenta administradora, para que solo los
 		//administradores puedan gestionar a los administradores.
-		//De momento la dejamos ahí y ya le haremos el if admin = true .setvisible luego
+		//De momento la dejamos ahï¿½ y ya le haremos el if admin = true .setvisible luego
 		botonMasMenosAdmin = new JButton("Admin +/-");
 		botonMasMenosAdmin.setBounds(550,40, 110, 30);
 		ventanaMenuPrincipal.add(botonMasMenosAdmin);
@@ -591,6 +597,7 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//CambiarPanel(ventanaPideOutfit, ventanaCarga);
+				CambiarPanel(ventanaPideOutfit, ventanaFeedback);
 				
 			}
 		});
@@ -607,10 +614,66 @@ public class Principal {
 		
 		//Anyadiendo los componentes de ventanaAnyadirVestimenta
 		
+		//Anyadiendo los componentes de ventanaFeedback
+		nivelSatisfaccion = new JLabel("Nivel de satisfacciÃ³n: ");
+		ventanaFeedback.add(nivelSatisfaccion);
+		gustoColores = new JLabel("Â¿Te han gustado los colores?");
+		ventanaFeedback.add(gustoColores);
+		
+		//eclipse es una puta mierda, no me deja poner un dibujito de una estrella bien, yo lo intente gente
+	
+		estrella1 = new JRadioButton("*");
+		estrella2 = new JRadioButton("**");
+		estrella3 = new JRadioButton("***");
+		estrella4 = new JRadioButton("****");
+		estrella5 = new JRadioButton("*****");
+		si = new JRadioButton("Si");
+		no = new JRadioButton("No");
+		
+		ButtonGroup radioButtonsEstrellas = new ButtonGroup();
+		radioButtonsEstrellas.add(estrella1);
+		radioButtonsEstrellas.add(estrella2);
+		radioButtonsEstrellas.add(estrella3);
+		radioButtonsEstrellas.add(estrella4);
+		radioButtonsEstrellas.add(estrella5);
+		ButtonGroup radioButtonsSiNo = new ButtonGroup();
+		radioButtonsSiNo.add(si);
+		radioButtonsSiNo.add(no);
+		
+		ventanaFeedback.add(estrella1);
+		ventanaFeedback.add(estrella2);
+		ventanaFeedback.add(estrella3);
+		ventanaFeedback.add(estrella4);
+		ventanaFeedback.add(estrella5);
+		ventanaFeedback.add(si);
+		ventanaFeedback.add(no);
+		
+		nivelSatisfaccion.setBounds(100,50,200,50);
+		gustoColores.setBounds(100,170,200,50);
+		
+		estrella1.setBounds(100,100,70,50);
+		estrella2.setBounds(200,100,70,50);
+		estrella3.setBounds(300,100,70,50);
+		estrella4.setBounds(400,100,70,50);
+		estrella5.setBounds(500,100,70,50);
+		si.setBounds(100,220,100,50);
+		no.setBounds(200,220,100,50);
+		
+		botonInicioFeedback = new JButton("Inicio");
+		ventanaFeedback.add(botonInicioFeedback);
+		botonInicioFeedback.setBounds(310, 350, 100, 50);
+		
 		//Action Listeners
+		botonInicioFeedback.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaFeedback, ventanaMenuPrincipal);
+			}
+		});
 		
 		//Anyadiendo los componentes de ajustes
-		cambiarContrasenya = new JButton("Cambiar contraseña");
+		cambiarContrasenya = new JButton("Cambiar contrasenya");
 		cambiarContrasenya.setBounds(50, 20, 50, 50);
 		ajustes.add(cambiarContrasenya);
 		
@@ -627,7 +690,7 @@ public class Principal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Cambiar contraseña");				
+				System.out.println("Cambiar contrasenya");				
 			}
 		});
 		
@@ -660,7 +723,7 @@ public class Principal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				UIManager.put("OptionPane.minimumSize",new Dimension(200, 200)); //este tamaño es solo para esta ventana emergente
+				UIManager.put("OptionPane.minimumSize",new Dimension(200, 200)); //este tamanyo es solo para esta ventana emergente
 				JOptionPane.showMessageDialog(null, ajustes, "Ajustes", JOptionPane.DEFAULT_OPTION);
 				
 			}
