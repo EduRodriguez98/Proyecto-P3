@@ -648,6 +648,7 @@ public class Principal {
 		ventanaFeedback.add(si);
 		ventanaFeedback.add(no);
 		
+		//probando si funciona el pito git
 		nivelSatisfaccion.setBounds(100,50,200,50);
 		gustoColores.setBounds(100,170,200,50);
 		
