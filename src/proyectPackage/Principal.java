@@ -641,9 +641,9 @@ public class Principal {
 		//Anyadiendo los componentes de ventanaAnyadirVestimenta
 		
 		//Anyadiendo los componentes de ventanaFeedback
-		nivelSatisfaccion = new JLabel("Nivel de satisfacciÃ³n: ");
+		nivelSatisfaccion = new JLabel("Nivel de satisfaccion: ");
 		ventanaFeedback.add(nivelSatisfaccion);
-		gustoColores = new JLabel("Â¿Te han gustado los colores?");
+		gustoColores = new JLabel("¿Te han gustado los colores?");
 		ventanaFeedback.add(gustoColores);
 		
 		//eclipse es una puta mierda, no me deja poner un dibujito de una estrella bien, yo lo intente gente
@@ -700,8 +700,8 @@ public class Principal {
 					Thread.sleep(2000);
 					System.out.println("Mandando feedback... (?)");
 				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					System.out.println("Error feedback... (?)");
 				}
 				
 			}
@@ -749,7 +749,18 @@ public class Principal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+					Thread.sleep(3000);
+					//Escribir aqui lo que pasa
+					mb.setVisible(false);
+					mb.setEnabled(false);
+					
+					//Hasta aqui
+					System.out.println("Sesion cerrada.");
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+					System.out.println("ERROR al cerrar sesion.");
+				}
 				
 			}
 		});
@@ -767,12 +778,10 @@ public class Principal {
 		}
 			
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				new Principal();
 			}
 		});
