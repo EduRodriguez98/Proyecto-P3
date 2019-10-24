@@ -151,7 +151,7 @@ public class Principal {
 		ventanaInicioSesion.setName("ventanaInicioSesion"); //no va??
 		JPanel ventanaCrearCuenta = new JPanel();
 		ventanaCrearCuenta.setName("ventanaCrearCuenta"); //no va??
-		JPanel ventanaGenero = new JPanel();
+		JPanel ventanaGenero = new JPanel(); 
 		ventanaGenero.setName("VentanaGenero");  //No va??
 		JPanel ventanaPerfilGustosUno = new JPanel();
 		ventanaPerfilGustosUno.setName("ventanaPerfilGustosUno"); //no va??
