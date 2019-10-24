@@ -20,6 +20,9 @@ public class FileChooser {
             System.out.println("You chose to open this file: " +
                     chooser.getSelectedFile().getName());
         }
+        
+        
+        
     }
     
 }												//　　　　　　　　　　　　
