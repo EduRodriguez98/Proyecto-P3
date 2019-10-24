@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -131,6 +132,7 @@ public class Principal {
 		frame.setResizable(false);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
+		frame.setIconImage (new ImageIcon(getClass().getResource("jorge.jpg")).getImage());		
 		
 		mb = new JMenuBar();
 		menu1 = new JMenu("Menu");	
