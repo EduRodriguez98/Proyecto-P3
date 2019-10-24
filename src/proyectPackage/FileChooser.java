@@ -11,7 +11,9 @@ public class FileChooser {
     	String userDir = System.getProperty("user.home");
     	JFileChooser chooser = new JFileChooser(userDir +"/Pictures");
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "JPG & GIF Images", "jpg", "gif");
+                "JPG & GIF Images", "jpg", "gif");	/*La opcion "JPG & GIF Images" seLecciona jpg y gif,
+        											IGUAL hay que poner tambien png y mas archivos...
+        											TAMBIEN hay una opcion que es "Todos los archivos*/
         chooser.setFileFilter(filter);
         int returnVal = chooser.showOpenDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
