@@ -64,6 +64,7 @@ public class Principal {
 		JTextField txtEmail, txtContrasenya;
 		JButton botonCrear, botonInicio;
 		JPasswordField contrasenya;
+		JCheckBox view;
 		
 		// VentanaCrearCuenta
 		JLabel labelCrearNombre, labelCrearEmail, labelCrearContrasenya, labelCrearEdad;
@@ -219,11 +220,15 @@ public class Principal {
 		ventanaInicioSesion.add(txtEmail);
 		txtEmail.setBounds(160, 150, 300, 50);
 		
-		contrasenya = new JPasswordField("*******");	//cambiado
-		contrasenya.setEchoChar('*');					//hacer checkbox isSelected para ver contraseña
+		contrasenya = new JPasswordField("12345");	//cambiado
+		contrasenya.setEchoChar('*');					//hacer checkbox isSelected para ver contraseña, HECHO
 		ventanaInicioSesion.add(contrasenya);
 		contrasenya.setBounds(160, 225, 300, 50);
 		
+		view = new JCheckBox("Visualizar contraseña");
+		ventanaInicioSesion.add(view);
+		view.setBounds(160, 280, 150, 30);
+				
 		labelPregunta = new JLabel("Es tu primera vez en Modise? Pulsa el boton Crear Cuenta para empezar!");
 		ventanaInicioSesion.add(labelPregunta);
 		labelPregunta.setBounds(60, 350, 450, 50);
@@ -248,6 +253,18 @@ public class Principal {
 				CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
 				mb.setVisible(true);
 				mb.setEnabled(true);
+			}
+		});
+		
+		view.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {				
+				if (view.isSelected() == true) {
+					contrasenya.setEchoChar((char)0);
+				} else {
+					contrasenya.setEchoChar('*');
+				}
 			}
 		});
 			
