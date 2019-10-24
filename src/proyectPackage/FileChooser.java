@@ -1,11 +1,15 @@
 package proyectPackage;
 
+import java.io.File;
+
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-public class FileChooserDemo {
-    public static void main(String[] args){
-        JFileChooser chooser = new JFileChooser();
+public class FileChooser {
+    public static void main(String[] args){		//　　　　　　　　　　　　
+    	
+    	String userDir = System.getProperty("user.home");
+    	JFileChooser chooser = new JFileChooser(userDir +"/Pictures");
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG & GIF Images", "jpg", "gif");
         chooser.setFileFilter(filter);
@@ -15,4 +19,5 @@ public class FileChooserDemo {
                     chooser.getSelectedFile().getName());
         }
     }
+    
 }
