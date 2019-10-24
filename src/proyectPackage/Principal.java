@@ -138,7 +138,7 @@ public class Principal {
 		menu1 = new JMenu("Menu");	
 		mi1 = new JMenuItem("Cerrar sesion");
 		mi2 = new JMenuItem("Ajustes");
-		mi3 = new JMenuItem("mi3");
+		mi3 = new JMenuItem("mi3 - ¿Algo mas?");
 		menu1.add(mi1);
 		menu1.add(mi2);
 		menu1.add(mi3);
@@ -696,6 +696,14 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaFeedback, ventanaMenuPrincipal);
+				try {
+					Thread.sleep(2000);
+					System.out.println("Mandando feedback... (?)");
+				} catch (InterruptedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		
