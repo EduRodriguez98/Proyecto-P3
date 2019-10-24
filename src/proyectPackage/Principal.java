@@ -11,6 +11,7 @@ import java.util.Calendar;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -97,6 +98,11 @@ public class Principal {
 		JButton botonPideOutfit, botonAnyadirVestimenta, botonMasMenosAdmin;
 		
 		//ventanaAnyadirVestimenta
+		JRadioButton sol, lluvia, nublado;
+		JLabel estilosLabelAnyadirVestimenta, colorLabelAnyadirVestimenta, tiempoLabelAnyadirvestimenta;
+		JComboBox estilosComboBoxAnyadirVestimenta;
+		JComboBox coloresComboBoxAnyadirVestimenta;
+		
 		
 		//ventanaPideOutfit
 		JButton botonAtrasPideOutfit, botonBuscar;
@@ -158,6 +164,7 @@ public class Principal {
 		JPanel ventanaAnyadirVestimenta = new JPanel();
 		JPanel ventanaPideOutfit = new JPanel();
 		JPanel ventanaFeedback = new JPanel();
+		
 		
 		//ventanas	Emergentes
 		JPanel ajustes = new JPanel(new GridLayout(3, 1));	
@@ -613,11 +620,65 @@ public class Principal {
 		//Action Listeners
 		
 		//Anyadiendo los componentes de ventanaAnyadirVestimenta
+		estilosLabelAnyadirVestimenta = new JLabel("Selecciona un estilo: (F para Femenino y M para masculino)");
+		colorLabelAnyadirVestimenta = new JLabel("Selecciona un color: ");
+		tiempoLabelAnyadirvestimenta = new JLabel("Selecciona el tiempo: ");
+		
+		sol = new JRadioButton("sol");
+		lluvia = new JRadioButton("lluvia");
+		nublado = new JRadioButton("nublado");
+		
+		estilosComboBoxAnyadirVestimenta = new JComboBox();
+		coloresComboBoxAnyadirVestimenta = new JComboBox();
+		
+		estilosComboBoxAnyadirVestimenta.addItem("ClasicoF");
+		estilosComboBoxAnyadirVestimenta.addItem("ClasicoM");
+		estilosComboBoxAnyadirVestimenta.addItem("UrbanaF");
+		estilosComboBoxAnyadirVestimenta.addItem("UrbanaM");
+		estilosComboBoxAnyadirVestimenta.addItem("RockF");
+		estilosComboBoxAnyadirVestimenta.addItem("RockM");
+		estilosComboBoxAnyadirVestimenta.addItem("BohoF");
+		estilosComboBoxAnyadirVestimenta.addItem("SmartM");
+		estilosComboBoxAnyadirVestimenta.addItem("FormalF");
+		estilosComboBoxAnyadirVestimenta.addItem("FormalM");
+		estilosComboBoxAnyadirVestimenta.addItem("SportyChickF");
+		estilosComboBoxAnyadirVestimenta.addItem("CasualChickM");
+		
+		coloresComboBoxAnyadirVestimenta.addItem("Rojo");
+		coloresComboBoxAnyadirVestimenta.addItem("Azul");
+		coloresComboBoxAnyadirVestimenta.addItem("Amarillo");
+		coloresComboBoxAnyadirVestimenta.addItem("Verde");
+		coloresComboBoxAnyadirVestimenta.addItem("Negro");
+		
+		estilosLabelAnyadirVestimenta.setBounds(40,200,400,40);
+		colorLabelAnyadirVestimenta.setBounds(400,200,200,40);
+		tiempoLabelAnyadirvestimenta.setBounds(40,50,200,40);
+		
+		sol.setBounds(40,100,100,40);
+		lluvia.setBounds(160,100,100,40);
+		nublado.setBounds(280,100,100,40);
+		
+		estilosComboBoxAnyadirVestimenta.setBounds(40,250,100,40);
+		coloresComboBoxAnyadirVestimenta.setBounds(400,250,100,40);
+		
+		ButtonGroup radioButtonsTiempo = new ButtonGroup();
+		radioButtonsTiempo.add(sol);
+		radioButtonsTiempo.add(lluvia);
+		radioButtonsTiempo.add(nublado);
+		
+		ventanaAnyadirVestimenta.add(sol);
+		ventanaAnyadirVestimenta.add(lluvia);
+		ventanaAnyadirVestimenta.add(nublado);
+		ventanaAnyadirVestimenta.add(estilosComboBoxAnyadirVestimenta);
+		ventanaAnyadirVestimenta.add(coloresComboBoxAnyadirVestimenta);
+		ventanaAnyadirVestimenta.add(estilosLabelAnyadirVestimenta);
+		ventanaAnyadirVestimenta.add(colorLabelAnyadirVestimenta);
+		ventanaAnyadirVestimenta.add(tiempoLabelAnyadirvestimenta);
 		
 		//Anyadiendo los componentes de ventanaFeedback
-		nivelSatisfaccion = new JLabel("Nivel de satisfacción: ");
+		nivelSatisfaccion = new JLabel("Nivel de satisfaccion: ");
 		ventanaFeedback.add(nivelSatisfaccion);
-		gustoColores = new JLabel("¿Te han gustado los colores?");
+		gustoColores = new JLabel("Te han gustado los colores?");
 		ventanaFeedback.add(gustoColores);
 		
 		//eclipse es una puta mierda, no me deja poner un dibujito de una estrella bien, yo lo intente gente
