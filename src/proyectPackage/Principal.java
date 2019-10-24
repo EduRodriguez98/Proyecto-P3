@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -18,6 +19,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
@@ -61,7 +63,8 @@ public class Principal {
 		JLabel labelBrand, labelEmail, labelContrasenya, labelPregunta;
 		JTextField txtEmail, txtContrasenya;
 		JButton botonCrear, botonInicio;
-	
+		JPasswordField contrasenya;
+		
 		// VentanaCrearCuenta
 		JLabel labelCrearNombre, labelCrearEmail, labelCrearContrasenya, labelCrearEdad;
 		JTextField txtCrearNombre, txtCrearEmail, txtCrearContrasenya;
@@ -124,6 +127,9 @@ public class Principal {
 		frame.setSize(720, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Principal.java");
+		frame.setResizable(false);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
 		
 		mb = new JMenuBar();
 		menu1 = new JMenu("Menu");	
@@ -213,9 +219,10 @@ public class Principal {
 		ventanaInicioSesion.add(txtEmail);
 		txtEmail.setBounds(160, 150, 300, 50);
 		
-		txtContrasenya = new JTextField("*******");
-		ventanaInicioSesion.add(txtContrasenya);
-		txtContrasenya.setBounds(160, 225, 300, 50);
+		contrasenya = new JPasswordField("*******");	//cambiado
+		contrasenya.setEchoChar('*');					//hacer checkbox isSelected para ver contraseña
+		ventanaInicioSesion.add(contrasenya);
+		contrasenya.setBounds(160, 225, 300, 50);
 		
 		labelPregunta = new JLabel("Es tu primera vez en Modise? Pulsa el boton Crear Cuenta para empezar!");
 		ventanaInicioSesion.add(labelPregunta);
@@ -477,7 +484,7 @@ public class Principal {
 							mb.setVisible(true);
 							mb.setEnabled(true);
 							UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
-							JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "�Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
+							JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "ï¿½Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
 						}
 					}
 				});
@@ -521,9 +528,9 @@ public class Principal {
 		ventanaMenuPrincipal.add(botonAnyadirVestimenta);
 		
 		
-		//Este bot�n solo puede ser visible cuando se hace log in con una cuenta administradora, para que solo los
+		//Este botï¿½n solo puede ser visible cuando se hace log in con una cuenta administradora, para que solo los
 		//administradores puedan gestionar a los administradores.
-		//De momento la dejamos ah� y ya le haremos el if admin = true .setvisible luego
+		//De momento la dejamos ahï¿½ y ya le haremos el if admin = true .setvisible luego
 		botonMasMenosAdmin = new JButton("Admin +/-");
 		botonMasMenosAdmin.setBounds(550,40, 110, 30);
 		ventanaMenuPrincipal.add(botonMasMenosAdmin);
@@ -615,18 +622,18 @@ public class Principal {
 		//Anyadiendo los componentes de ventanaAnyadirVestimenta
 		
 		//Anyadiendo los componentes de ventanaFeedback
-		nivelSatisfaccion = new JLabel("Nivel de satisfacción: ");
+		nivelSatisfaccion = new JLabel("Nivel de satisfacciÃ³n: ");
 		ventanaFeedback.add(nivelSatisfaccion);
-		gustoColores = new JLabel("¿Te han gustado los colores?");
+		gustoColores = new JLabel("Â¿Te han gustado los colores?");
 		ventanaFeedback.add(gustoColores);
 		
 		//eclipse es una puta mierda, no me deja poner un dibujito de una estrella bien, yo lo intente gente
 	
-		estrella1 = new JRadioButton("*");
-		estrella2 = new JRadioButton("**");
-		estrella3 = new JRadioButton("***");
-		estrella4 = new JRadioButton("****");
-		estrella5 = new JRadioButton("*****");
+		estrella1 = new JRadioButton("⭐");
+		estrella2 = new JRadioButton("⭐⭐");
+		estrella3 = new JRadioButton("⭐⭐⭐");
+		estrella4 = new JRadioButton("⭐⭐⭐⭐");
+		estrella5 = new JRadioButton("⭐⭐⭐⭐⭐");
 		si = new JRadioButton("Si");
 		no = new JRadioButton("No");
 		
@@ -652,11 +659,11 @@ public class Principal {
 		nivelSatisfaccion.setBounds(100,50,200,50);
 		gustoColores.setBounds(100,170,200,50);
 		
-		estrella1.setBounds(100,100,70,50);
-		estrella2.setBounds(200,100,70,50);
-		estrella3.setBounds(300,100,70,50);
-		estrella4.setBounds(400,100,70,50);
-		estrella5.setBounds(500,100,70,50);
+		estrella1.setBounds(100,100,80,50);
+		estrella2.setBounds(200,100,80,50);
+		estrella3.setBounds(300,100,80,50);
+		estrella4.setBounds(400,100,80,50);
+		estrella5.setBounds(500,100,80,50);
 		si.setBounds(100,220,100,50);
 		no.setBounds(200,220,100,50);
 		
