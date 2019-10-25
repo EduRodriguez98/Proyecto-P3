@@ -526,7 +526,7 @@ public class Principal {
 							mb.setVisible(true);
 							mb.setEnabled(true);
 							UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
-							JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "ï¿½Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
+							JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
 						}
 					}
 				});
@@ -657,7 +657,13 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 				//CambiarPanel(ventanaPideOutfit, ventanaCarga);
 				CambiarPanel(ventanaPideOutfit, ventanaFeedback);
-				
+				try {
+					Thread.sleep(2000);
+					UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
+					JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -666,7 +672,8 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaPideOutfit, ventanaMenuPrincipal);
-				
+				mb.setVisible(true);
+				mb.setEnabled(true);
 			}
 		});
 		//Action Listeners
@@ -731,6 +738,8 @@ public class Principal {
 				CambiarPanel(ventanaFeedback, ventanaMenuPrincipal);
 				try {
 					Thread.sleep(2000);
+					mb.setVisible(true);
+					mb.setEnabled(true);
 					System.out.println("Mandando feedback... (?)");
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
@@ -788,9 +797,37 @@ public class Principal {
 					mb.setVisible(false);
 					mb.setEnabled(false);
 					
+					txtEmail.setText("ejemplo@gmail.com");
+					contrasenya.setText("12345");
+					view.setSelected(false);
+					bgPideOutfit.clearSelection();
+					radioNo.setSelected(false);
+					txtEstilo.setText("ej: Clasico");
+					radioButtonsEstrellas.clearSelection();
+					radioButtonsSiNo.clearSelection();
+					
+					txtCrearNombre.setText("");
+					txtCrearEmail.setText("");
+					txtCrearContrasenya.setText("");
+					spinCrearEdad.setValue(12);
+					radioButtonsGenero.clearSelection();
+					
+					clasicoM.setSelected(false);
+					urbanaM.setSelected(false);
+					rockM.setSelected(false);
+					smartM.setSelected(false);
+					formalM.setSelected(false);
+					casualChickM.setSelected(false);
+					clasicoF.setSelected(false);
+					urbanaF.setSelected(false);
+					rockF.setSelected(false);
+					bohoF.setSelected(false);
+					formalF.setSelected(false);
+					sportyChickF.setSelected(false);
 					
 					
 					//Hasta aqui
+					CambiarPanel(ventanaMenuPrincipal, ventanaInicioSesion);
 					System.out.println("Sesion cerrada.");
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
