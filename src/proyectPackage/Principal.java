@@ -812,19 +812,21 @@ public class Principal {
 					spinCrearEdad.setValue(12);
 					radioButtonsGenero.clearSelection();
 					
-					clasicoM.setSelected(false);
-					urbanaM.setSelected(false);
-					rockM.setSelected(false);
-					smartM.setSelected(false);
-					formalM.setSelected(false);
-					casualChickM.setSelected(false);
-					clasicoF.setSelected(false);
-					urbanaF.setSelected(false);
-					rockF.setSelected(false);
-					bohoF.setSelected(false);
-					formalF.setSelected(false);
-					sportyChickF.setSelected(false);
-					
+					if (radioMasculino.isSelected() == true ) {
+						clasicoM.setSelected(false);
+						urbanaM.setSelected(false);
+						rockM.setSelected(false);
+						smartM.setSelected(false);
+						formalM.setSelected(false);
+						casualChickM.setSelected(false);
+					} else if (radioFemenino.isSelected() == true) {
+						clasicoF.setSelected(false);
+						urbanaF.setSelected(false);
+						rockF.setSelected(false);
+						bohoF.setSelected(false);
+						formalF.setSelected(false);
+						sportyChickF.setSelected(false);
+					}
 					
 					//Hasta aqui
 					CambiarPanel(ventanaMenuPrincipal, ventanaInicioSesion);
