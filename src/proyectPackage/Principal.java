@@ -108,8 +108,10 @@ public class Principal {
 		//ventanaAnyadirVestimenta
 		JRadioButton sol, lluvia, nublado;
 		JLabel estilosLabelAnyadirVestimenta, colorLabelAnyadirVestimenta, tiempoLabelAnyadirvestimenta;
-		JComboBox estilosComboBoxAnyadirVestimenta;
-		JComboBox coloresComboBoxAnyadirVestimenta;
+		
+		JComboBox<String> estilosComboBoxAnyadirVestimenta;
+		
+		JComboBox<String> coloresComboBoxAnyadirVestimenta;
 		
 		
 		//ventanaPideOutfit
@@ -696,8 +698,8 @@ public class Principal {
 		lluvia = new JRadioButton("lluvia");
 		nublado = new JRadioButton("nublado");
 		
-		estilosComboBoxAnyadirVestimenta = new JComboBox();
-		coloresComboBoxAnyadirVestimenta = new JComboBox();
+		estilosComboBoxAnyadirVestimenta = new JComboBox<String>();
+		coloresComboBoxAnyadirVestimenta = new JComboBox<String>();
 		
 		estilosComboBoxAnyadirVestimenta.addItem("ClasicoF");
 		estilosComboBoxAnyadirVestimenta.addItem("ClasicoM");
