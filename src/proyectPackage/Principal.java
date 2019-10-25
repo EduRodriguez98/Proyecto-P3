@@ -749,11 +749,11 @@ public class Principal {
 		
 		//eclipse es una puta mierda, no me deja poner un dibujito de una estrella bien, yo lo intente gente
 	
-		estrella1 = new JRadioButton("⭐");
-		estrella2 = new JRadioButton("⭐⭐");
-		estrella3 = new JRadioButton("⭐⭐⭐");
-		estrella4 = new JRadioButton("⭐⭐⭐⭐");
-		estrella5 = new JRadioButton("⭐⭐⭐⭐⭐");
+		estrella1 = new JRadioButton("*");
+		estrella2 = new JRadioButton("**");
+		estrella3 = new JRadioButton("***");
+		estrella4 = new JRadioButton("****");
+		estrella5 = new JRadioButton("*****");
 		si = new JRadioButton("Si");
 		no = new JRadioButton("No");
 		
