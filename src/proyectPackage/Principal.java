@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -66,6 +68,7 @@ public class Principal {
 		JButton botonCrear, botonInicio;
 		JPasswordField contrasenya;
 		JCheckBox view;
+		boolean escrito1, escrito2;
 		
 		// VentanaCrearCuenta
 		JLabel labelCrearNombre, labelCrearEmail, labelCrearContrasenya, labelCrearEdad;
@@ -143,8 +146,8 @@ public class Principal {
 		menu1.add(mi2);
 		menu1.add(mi3);
 		mb.add(menu1);
-		mb.setVisible(true);
-		mb.setEnabled(true);
+		//mb.setVisible(true);
+		//mb.setEnabled(true);
 		frame.setJMenuBar(mb);
 		
 		//action listeners del menu DEBAJO del todo, ANTES del main!!!
@@ -221,11 +224,31 @@ public class Principal {
 		txtEmail = new JTextField("ejemplo@gmail.com");
 		ventanaInicioSesion.add(txtEmail);
 		txtEmail.setBounds(160, 150, 300, 50);
+		escrito1 = false;
+		txtEmail.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                if (escrito1 == false) {
+                	txtEmail.setText("");
+                	escrito1 = true;
+                }
+            }
+        });
 		
 		contrasenya = new JPasswordField("12345");	//cambiado
 		contrasenya.setEchoChar('*');					//hacer checkbox isSelected para ver contraseña, HECHO
 		ventanaInicioSesion.add(contrasenya);
 		contrasenya.setBounds(160, 225, 300, 50);
+		escrito2 = false;
+		contrasenya.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                if (escrito2 == false) {
+                	contrasenya.setText("");
+                	escrito2 = true;
+                }
+            }
+        });
 		
 		view = new JCheckBox("Visualizar contraseña");
 		ventanaInicioSesion.add(view);
@@ -308,8 +331,8 @@ public class Principal {
 		ventanaCrearCuenta.add(botonCrearSiguiente);
 		botonCrearSiguiente.setBounds(500, 380, 200, 40);
 		
-		mb.setVisible(false);
-		mb.setEnabled(false);
+		//mb.setVisible(false);
+		//mb.setEnabled(false);
 		
 		//Action Listeners
 		botonCrearSiguiente.addActionListener(new ActionListener() {
@@ -339,8 +362,8 @@ public class Principal {
 		ventanaGenero.add(botonGeneroSiguiente);
 		botonGeneroSiguiente.setBounds(500, 380, 200, 40);
 		
-		mb.setVisible(false);
-		mb.setEnabled(false);
+		//mb.setVisible(false);
+		//mb.setEnabled(false);
 		
 		//Action Listeners
 		botonGeneroSiguiente.addActionListener(new ActionListener() {
@@ -406,8 +429,8 @@ public class Principal {
 		ventanaPerfilGustosUno.add(botonPerfilGustosUnoSiguiente);
 		botonPerfilGustosUnoSiguiente.setBounds(500, 380, 200, 40);	
 		
-		mb.setVisible(false);
-		mb.setEnabled(false);
+		//mb.setVisible(false);
+		//mb.setEnabled(false);
 			
 		//Action Listeners
 		botonPerfilGustosUnoSiguiente.addActionListener(new ActionListener() {
@@ -467,8 +490,8 @@ public class Principal {
 		ventanaPerfilGustosDos.add(botonPerfilGustosDosSiguiente);
 		botonPerfilGustosDosSiguiente.setBounds(500, 380, 200, 40);		
 		
-		mb.setVisible(false);
-		mb.setEnabled(false);
+		//mb.setVisible(false);
+		//mb.setEnabled(false);
 		
 		//Action Listeners
 		botonPerfilGustosDosSiguiente.addActionListener(new ActionListener() {
@@ -534,8 +557,8 @@ public class Principal {
 		ventanaCarga.add(progressCargando);
 		progressCargando.setBounds(200, 220, 300, 40);
 				
-			mb.setVisible(false);
-			mb.setEnabled(false);
+		//mb.setVisible(false);
+		//mb.setEnabled(false);
 			
 		//Anyadiendo los componentes de ventanaMenuPrincipal
 		botonPideOutfit = new JButton("Pide un Outfit!");
@@ -561,7 +584,8 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaMenuPrincipal, ventanaPideOutfit);
-				
+				mb.setVisible(false);
+				mb.setEnabled(false);
 			}
 		});
 		
@@ -570,10 +594,19 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaMenuPrincipal, ventanaAnyadirVestimenta);
-				
+				mb.setVisible(false);
+				mb.setEnabled(false);
 			}
 		});
 	
+		botonMasMenosAdmin.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mb.setVisible(false);
+				mb.setEnabled(false);
+			}
+		});
 		
 		//Anyadiendo los compenentes de ventanaPideOutfit
 		preguntaTiempo = new JLabel("Que tiempo hace hoy?");
@@ -755,13 +788,14 @@ public class Principal {
 					mb.setVisible(false);
 					mb.setEnabled(false);
 					
+					
+					
 					//Hasta aqui
 					System.out.println("Sesion cerrada.");
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 					System.out.println("ERROR al cerrar sesion.");
 				}
-				
 			}
 		});
 		
