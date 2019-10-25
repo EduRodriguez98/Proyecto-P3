@@ -3,12 +3,16 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -19,6 +23,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
@@ -62,7 +67,10 @@ public class Principal {
 		JLabel labelBrand, labelEmail, labelContrasenya, labelPregunta;
 		JTextField txtEmail, txtContrasenya;
 		JButton botonCrear, botonInicio;
-	
+		JPasswordField contrasenya;
+		JCheckBox view;
+		boolean escrito1, escrito2;
+		
 		// VentanaCrearCuenta
 		JLabel labelCrearNombre, labelCrearEmail, labelCrearContrasenya, labelCrearEdad;
 		JTextField txtCrearNombre, txtCrearEmail, txtCrearContrasenya;
@@ -130,18 +138,22 @@ public class Principal {
 		frame.setSize(720, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Principal.java");
+		frame.setResizable(false);
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
+		frame.setIconImage (new ImageIcon(getClass().getResource("jorge.jpg")).getImage());		
 		
 		mb = new JMenuBar();
 		menu1 = new JMenu("Menu");	
 		mi1 = new JMenuItem("Cerrar sesion");
 		mi2 = new JMenuItem("Ajustes");
-		mi3 = new JMenuItem("mi3");
+		mi3 = new JMenuItem("mi3 - ¿Algo mas?");
 		menu1.add(mi1);
 		menu1.add(mi2);
 		menu1.add(mi3);
 		mb.add(menu1);
-		mb.setVisible(true);
-		mb.setEnabled(true);
+		//mb.setVisible(true);
+		//mb.setEnabled(true);
 		frame.setJMenuBar(mb);
 		
 		//action listeners del menu DEBAJO del todo, ANTES del main!!!
@@ -151,7 +163,7 @@ public class Principal {
 		ventanaInicioSesion.setName("ventanaInicioSesion"); //no va??
 		JPanel ventanaCrearCuenta = new JPanel();
 		ventanaCrearCuenta.setName("ventanaCrearCuenta"); //no va??
-		JPanel ventanaGenero = new JPanel();
+		JPanel ventanaGenero = new JPanel(); 
 		ventanaGenero.setName("VentanaGenero");  //No va??
 		JPanel ventanaPerfilGustosUno = new JPanel();
 		ventanaPerfilGustosUno.setName("ventanaPerfilGustosUno"); //no va??
@@ -219,11 +231,36 @@ public class Principal {
 		txtEmail = new JTextField("ejemplo@gmail.com");
 		ventanaInicioSesion.add(txtEmail);
 		txtEmail.setBounds(160, 150, 300, 50);
+		escrito1 = false;
+		txtEmail.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                if (escrito1 == false) {
+                	txtEmail.setText("");
+                	escrito1 = true;
+                }
+            }
+        });
 		
-		txtContrasenya = new JTextField("*******");
-		ventanaInicioSesion.add(txtContrasenya);
-		txtContrasenya.setBounds(160, 225, 300, 50);
+		contrasenya = new JPasswordField("12345");	//cambiado
+		contrasenya.setEchoChar('*');					//hacer checkbox isSelected para ver contraseña, HECHO
+		ventanaInicioSesion.add(contrasenya);
+		contrasenya.setBounds(160, 225, 300, 50);
+		escrito2 = false;
+		contrasenya.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                if (escrito2 == false) {
+                	contrasenya.setText("");
+                	escrito2 = true;
+                }
+            }
+        });
 		
+		view = new JCheckBox("Visualizar contraseña");
+		ventanaInicioSesion.add(view);
+		view.setBounds(160, 280, 150, 30);
+				
 		labelPregunta = new JLabel("Es tu primera vez en Modise? Pulsa el boton Crear Cuenta para empezar!");
 		ventanaInicioSesion.add(labelPregunta);
 		labelPregunta.setBounds(60, 350, 450, 50);
@@ -248,6 +285,18 @@ public class Principal {
 				CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
 				mb.setVisible(true);
 				mb.setEnabled(true);
+			}
+		});
+		
+		view.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {				
+				if (view.isSelected() == true) {
+					contrasenya.setEchoChar((char)0);
+				} else {
+					contrasenya.setEchoChar('*');
+				}
 			}
 		});
 			
@@ -289,8 +338,8 @@ public class Principal {
 		ventanaCrearCuenta.add(botonCrearSiguiente);
 		botonCrearSiguiente.setBounds(500, 380, 200, 40);
 		
-		mb.setVisible(false);
-		mb.setEnabled(false);
+		//mb.setVisible(false);
+		//mb.setEnabled(false);
 		
 		//Action Listeners
 		botonCrearSiguiente.addActionListener(new ActionListener() {
@@ -320,8 +369,8 @@ public class Principal {
 		ventanaGenero.add(botonGeneroSiguiente);
 		botonGeneroSiguiente.setBounds(500, 380, 200, 40);
 		
-		mb.setVisible(false);
-		mb.setEnabled(false);
+		//mb.setVisible(false);
+		//mb.setEnabled(false);
 		
 		//Action Listeners
 		botonGeneroSiguiente.addActionListener(new ActionListener() {
@@ -387,8 +436,8 @@ public class Principal {
 		ventanaPerfilGustosUno.add(botonPerfilGustosUnoSiguiente);
 		botonPerfilGustosUnoSiguiente.setBounds(500, 380, 200, 40);	
 		
-		mb.setVisible(false);
-		mb.setEnabled(false);
+		//mb.setVisible(false);
+		//mb.setEnabled(false);
 			
 		//Action Listeners
 		botonPerfilGustosUnoSiguiente.addActionListener(new ActionListener() {
@@ -448,8 +497,8 @@ public class Principal {
 		ventanaPerfilGustosDos.add(botonPerfilGustosDosSiguiente);
 		botonPerfilGustosDosSiguiente.setBounds(500, 380, 200, 40);		
 		
-		mb.setVisible(false);
-		mb.setEnabled(false);
+		//mb.setVisible(false);
+		//mb.setEnabled(false);
 		
 		//Action Listeners
 		botonPerfilGustosDosSiguiente.addActionListener(new ActionListener() {
@@ -484,7 +533,7 @@ public class Principal {
 							mb.setVisible(true);
 							mb.setEnabled(true);
 							UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
-							JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "�Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
+							JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
 						}
 					}
 				});
@@ -515,8 +564,8 @@ public class Principal {
 		ventanaCarga.add(progressCargando);
 		progressCargando.setBounds(200, 220, 300, 40);
 				
-			mb.setVisible(false);
-			mb.setEnabled(false);
+		//mb.setVisible(false);
+		//mb.setEnabled(false);
 			
 		//Anyadiendo los componentes de ventanaMenuPrincipal
 		botonPideOutfit = new JButton("Pide un Outfit!");
@@ -528,9 +577,9 @@ public class Principal {
 		ventanaMenuPrincipal.add(botonAnyadirVestimenta);
 		
 		
-		//Este bot�n solo puede ser visible cuando se hace log in con una cuenta administradora, para que solo los
+		//Este botï¿½n solo puede ser visible cuando se hace log in con una cuenta administradora, para que solo los
 		//administradores puedan gestionar a los administradores.
-		//De momento la dejamos ah� y ya le haremos el if admin = true .setvisible luego
+		//De momento la dejamos ahï¿½ y ya le haremos el if admin = true .setvisible luego
 		botonMasMenosAdmin = new JButton("Admin +/-");
 		botonMasMenosAdmin.setBounds(550,40, 110, 30);
 		ventanaMenuPrincipal.add(botonMasMenosAdmin);
@@ -542,7 +591,8 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaMenuPrincipal, ventanaPideOutfit);
-				
+				mb.setVisible(false);
+				mb.setEnabled(false);
 			}
 		});
 		
@@ -551,10 +601,19 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaMenuPrincipal, ventanaAnyadirVestimenta);
-				
+				mb.setVisible(false);
+				mb.setEnabled(false);
 			}
 		});
 	
+		botonMasMenosAdmin.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mb.setVisible(false);
+				mb.setEnabled(false);
+			}
+		});
 		
 		//Anyadiendo los compenentes de ventanaPideOutfit
 		preguntaTiempo = new JLabel("Que tiempo hace hoy?");
@@ -605,7 +664,13 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 				//CambiarPanel(ventanaPideOutfit, ventanaCarga);
 				CambiarPanel(ventanaPideOutfit, ventanaFeedback);
-				
+				try {
+					Thread.sleep(2000);
+					UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
+					JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -614,7 +679,8 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaPideOutfit, ventanaMenuPrincipal);
-				
+				mb.setVisible(true);
+				mb.setEnabled(true);
 			}
 		});
 		//Action Listeners
@@ -683,11 +749,11 @@ public class Principal {
 		
 		//eclipse es una puta mierda, no me deja poner un dibujito de una estrella bien, yo lo intente gente
 	
-		estrella1 = new JRadioButton("*");
-		estrella2 = new JRadioButton("**");
-		estrella3 = new JRadioButton("***");
-		estrella4 = new JRadioButton("****");
-		estrella5 = new JRadioButton("*****");
+		estrella1 = new JRadioButton("⭐");
+		estrella2 = new JRadioButton("⭐⭐");
+		estrella3 = new JRadioButton("⭐⭐⭐");
+		estrella4 = new JRadioButton("⭐⭐⭐⭐");
+		estrella5 = new JRadioButton("⭐⭐⭐⭐⭐");
 		si = new JRadioButton("Si");
 		no = new JRadioButton("No");
 		
@@ -713,11 +779,11 @@ public class Principal {
 		nivelSatisfaccion.setBounds(100,50,200,50);
 		gustoColores.setBounds(100,170,200,50);
 		
-		estrella1.setBounds(100,100,70,50);
-		estrella2.setBounds(200,100,70,50);
-		estrella3.setBounds(300,100,70,50);
-		estrella4.setBounds(400,100,70,50);
-		estrella5.setBounds(500,100,70,50);
+		estrella1.setBounds(100,100,80,50);
+		estrella2.setBounds(200,100,80,50);
+		estrella3.setBounds(300,100,80,50);
+		estrella4.setBounds(400,100,80,50);
+		estrella5.setBounds(500,100,80,50);
 		si.setBounds(100,220,100,50);
 		no.setBounds(200,220,100,50);
 		
@@ -731,6 +797,16 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaFeedback, ventanaMenuPrincipal);
+				try {
+					Thread.sleep(2000);
+					mb.setVisible(true);
+					mb.setEnabled(true);
+					System.out.println("Mandando feedback... (?)");
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+					System.out.println("Error feedback... (?)");
+				}
+				
 			}
 		});
 		
@@ -776,8 +852,50 @@ public class Principal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				try {
+					Thread.sleep(3000);
+					//Escribir aqui lo que pasa
+					mb.setVisible(false);
+					mb.setEnabled(false);
+					
+					txtEmail.setText("ejemplo@gmail.com");
+					contrasenya.setText("12345");
+					view.setSelected(false);
+					bgPideOutfit.clearSelection();
+					radioNo.setSelected(false);
+					txtEstilo.setText("ej: Clasico");
+					radioButtonsEstrellas.clearSelection();
+					radioButtonsSiNo.clearSelection();
+					
+					txtCrearNombre.setText("");
+					txtCrearEmail.setText("");
+					txtCrearContrasenya.setText("");
+					spinCrearEdad.setValue(12);
+					radioButtonsGenero.clearSelection();
+					
+					if (radioMasculino.isSelected() == true ) {
+						clasicoM.setSelected(false);
+						urbanaM.setSelected(false);
+						rockM.setSelected(false);
+						smartM.setSelected(false);
+						formalM.setSelected(false);
+						casualChickM.setSelected(false);
+					} else if (radioFemenino.isSelected() == true) {
+						clasicoF.setSelected(false);
+						urbanaF.setSelected(false);
+						rockF.setSelected(false);
+						bohoF.setSelected(false);
+						formalF.setSelected(false);
+						sportyChickF.setSelected(false);
+					}
+					
+					//Hasta aqui
+					CambiarPanel(ventanaMenuPrincipal, ventanaInicioSesion);
+					System.out.println("Sesion cerrada.");
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+					System.out.println("ERROR al cerrar sesion.");
+				}
 			}
 		});
 		
@@ -794,12 +912,10 @@ public class Principal {
 		}
 			
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				new Principal();
 			}
 		});
