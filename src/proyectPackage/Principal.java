@@ -158,6 +158,8 @@ public class Principal {
 		
 		//action listeners del menu DEBAJO del todo, ANTES del main!!!
 		
+		
+		
 		//Creando y Anyadiendo Paneles al Frame
 		JPanel ventanaInicioSesion = new JPanel();
 		ventanaInicioSesion.setName("ventanaInicioSesion"); //no va??
@@ -330,7 +332,7 @@ public class Principal {
 		labelCrearEdad.setBounds(80, 275, 200, 50);
 		
 		spinCrearEdad = new JSpinner();
-		spinCrearEdad.setValue(12);
+		spinCrearEdad.setValue(18);
 		ventanaCrearCuenta.add(spinCrearEdad);
 		spinCrearEdad.setBounds(250, 275, 80, 50);
 		
@@ -802,6 +804,8 @@ public class Principal {
 					mb.setVisible(true);
 					mb.setEnabled(true);
 					System.out.println("Mandando feedback... (?)");
+					radioButtonsEstrellas.clearSelection();
+					radioButtonsSiNo.clearSelection();
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 					System.out.println("Error feedback... (?)");
@@ -870,7 +874,7 @@ public class Principal {
 					txtCrearNombre.setText("");
 					txtCrearEmail.setText("");
 					txtCrearContrasenya.setText("");
-					spinCrearEdad.setValue(12);
+					spinCrearEdad.setValue(18);
 					radioButtonsGenero.clearSelection();
 					
 					if (radioMasculino.isSelected() == true ) {
@@ -888,6 +892,8 @@ public class Principal {
 						formalF.setSelected(false);
 						sportyChickF.setSelected(false);
 					}
+					
+					bgPerfilGustosDos.clearSelection();
 					
 					//Hasta aqui
 					CambiarPanel(ventanaMenuPrincipal, ventanaInicioSesion);
