@@ -16,7 +16,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -29,9 +28,10 @@ import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Principal {
 
@@ -74,22 +74,24 @@ public class Principal {
 		boolean escrito1, escrito2;
 		
 		// VentanaCrearCuenta
-		JLabel labelCrearNombre, labelCrearEmail, labelCrearContrasenya, labelCrearEdad;
+		JLabel labelCrearNombre, labelCrearEmail, labelCrearContrasenya, labelCrearEdad, errorCrearCuenta;
 		JTextField txtCrearNombre, txtCrearEmail, txtCrearContrasenya;
 		JSpinner spinCrearEdad;
+		SpinnerModel model;
 		JButton botonCrearSiguiente;
 		
 		// VentanaGenero
 		JRadioButton radioMasculino, radioFemenino;
-		JLabel labelEscogerGenero;
+		JLabel labelEscogerGenero, errorGenero;
 		JButton botonGeneroSiguiente;
 		
 		// VentanaPerfilGustosUno
 		JButton botonPerfilGustosUnoSiguiente, botonPerfilGustosUnoAtras;
 		JCheckBox clasicoF, clasicoM, urbanaF, urbanaM, rockF, rockM, bohoF, smartM, formalF, formalM, sportyChickF, casualChickM;
+		JLabel errorPerfilGustosUno;
 		
 		// VentanaPerfilGustos2
-		JLabel labelEscoge;
+		JLabel labelEscoge, errorPerfilGustosDos;
 		JButton botonPerfilGustosDosAtras, botonPerfilGustosDosSiguiente;
 		JRadioButton radioPrendaIzq, radioPrendaDer;
 		
@@ -109,10 +111,11 @@ public class Principal {
 		
 		//ventanaAnyadirVestimenta
 		JRadioButton sol, lluvia, nublado;
-		JLabel estilosLabelAnyadirVestimenta, colorLabelAnyadirVestimenta, tiempoLabelAnyadirvestimenta, labelFileChooser;
+		JLabel estilosLabelAnyadirVestimenta, colorLabelAnyadirVestimenta, tiempoLabelAnyadirvestimenta;
+		
 		JComboBox<String> estilosComboBoxAnyadirVestimenta;
+		
 		JComboBox<String> coloresComboBoxAnyadirVestimenta;
-		JButton botonAtrasAnyadirVestimenta, botonAnyadirAnyadirVestimenta, botonFileChooser;
 		
 		
 		//ventanaPideOutfit
@@ -334,14 +337,20 @@ public class Principal {
 		ventanaCrearCuenta.add(labelCrearEdad);
 		labelCrearEdad.setBounds(80, 275, 200, 50);
 		
-		spinCrearEdad = new JSpinner();
-		spinCrearEdad.setValue(18);
+				SpinnerModel model = new SpinnerNumberModel(18, 0, 99, 1); //default 18, min 0, max 99, +-1
+		//spinCrearEdad.setValue(18);
+		spinCrearEdad = new JSpinner(model);
 		ventanaCrearCuenta.add(spinCrearEdad);
 		spinCrearEdad.setBounds(250, 275, 80, 50);
 		
 		botonCrearSiguiente = new JButton("Siguiente");
 		ventanaCrearCuenta.add(botonCrearSiguiente);
 		botonCrearSiguiente.setBounds(500, 380, 200, 40);
+		
+		errorCrearCuenta = new JLabel();
+		ventanaCrearCuenta.add(errorCrearCuenta);
+		errorCrearCuenta.setBounds(80, 380, 150, 40);
+		errorCrearCuenta.setForeground(Color.RED);
 		
 		//mb.setVisible(false);
 		//mb.setEnabled(false);
@@ -351,7 +360,23 @@ public class Principal {
 				
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaCrearCuenta, ventanaGenero);
+				//CambiarPanel(ventanaCrearCuenta, ventanaGenero);			En el IF de abajo
+				
+				String CrearNombre = txtCrearNombre.getText();
+				String CrearEmail = txtCrearEmail.getText();				
+				String CrearContrasenya = txtCrearContrasenya.getText();
+				String CrearEdad = spinCrearEdad.getValue().toString();
+				int EdadSeleccionada = (int) spinCrearEdad.getValue();
+				
+				if (CrearNombre.matches("^[a-zA-Z]*$") && !CrearNombre.isEmpty() 
+				&& !CrearEmail.isEmpty() && !CrearContrasenya.isEmpty() && CrearEdad.matches("^[0-9]*$")) {
+					CambiarPanel(ventanaCrearCuenta, ventanaGenero);
+					System.out.println(CrearEdad);
+				} else {
+					errorCrearCuenta.setText("Error al insertar datos.");
+					spinCrearEdad.setValue(EdadSeleccionada);
+					System.out.println(CrearEdad);
+				}
 			}
 		});
 			
@@ -373,6 +398,11 @@ public class Principal {
 		botonGeneroSiguiente = new JButton("Siguiente");
 		ventanaGenero.add(botonGeneroSiguiente);
 		botonGeneroSiguiente.setBounds(500, 380, 200, 40);
+		
+		errorGenero = new JLabel();
+		ventanaGenero.add(errorGenero);
+		errorGenero.setBounds(80, 380, 400, 40);
+		errorGenero.setForeground(Color.RED);
 		
 		//mb.setVisible(false);
 		//mb.setEnabled(false);
@@ -426,7 +456,8 @@ public class Principal {
 						
 					CambiarPanel(ventanaGenero, ventanaPerfilGustosUno);
 				} else {
-					System.out.println("Se necesita seleccionar al menos 1 genero para continuar");   //Hacer dialogo mas adelante
+					errorGenero.setText("Se necesita seleccionar 1 genero para continuar.");
+					System.out.println("Se necesita seleccionar 1 genero para continuar.");   //Hacer dialogo mas adelante
 				}
 					//CambiarPanel(ventanaGenero, ventanaPerfilGustosUno);
 			}
@@ -439,7 +470,12 @@ public class Principal {
 			
 		botonPerfilGustosUnoSiguiente = new JButton("Siguiente");
 		ventanaPerfilGustosUno.add(botonPerfilGustosUnoSiguiente);
-		botonPerfilGustosUnoSiguiente.setBounds(500, 380, 200, 40);	
+		botonPerfilGustosUnoSiguiente.setBounds(500, 380, 200, 40);
+		
+		errorPerfilGustosUno = new JLabel();
+		ventanaPerfilGustosUno.add(errorPerfilGustosUno);
+		errorPerfilGustosUno.setBounds(300, 380, 400, 40);
+		errorPerfilGustosUno.setForeground(Color.RED);
 		
 		//mb.setVisible(false);
 		//mb.setEnabled(false);
@@ -449,7 +485,24 @@ public class Principal {
 				
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaPerfilGustosUno, ventanaPerfilGustosDos);
+				
+				if (radioMasculino.isSelected()) {
+					if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() ||
+					smartM.isSelected() || formalM.isSelected() || casualChickM.isSelected()) {
+						CambiarPanel(ventanaPerfilGustosUno, ventanaPerfilGustosDos);
+					} else {
+						errorPerfilGustosUno.setText("Selecciona al menos 1.");
+					}
+				} else if (radioFemenino.isSelected()) {
+					if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() ||
+					bohoF.isSelected() || formalF.isSelected() || sportyChickF.isSelected()) {
+						CambiarPanel(ventanaPerfilGustosUno, ventanaPerfilGustosDos);
+					} else {
+						errorPerfilGustosUno.setText("Selecciona al menos 1.");
+					}
+				}
+				
+				//CambiarPanel(ventanaPerfilGustosUno, ventanaPerfilGustosDos);
 			}
 		});
 			
@@ -473,6 +526,7 @@ public class Principal {
 					ventanaPerfilGustosUno.remove(formalF);
 					ventanaPerfilGustosUno.remove(sportyChickF);
 				}	
+						
 			CambiarPanel(ventanaPerfilGustosUno, ventanaGenero);
 			}
 		});
@@ -500,7 +554,12 @@ public class Principal {
 		
 		botonPerfilGustosDosSiguiente = new JButton("Siguiente");
 		ventanaPerfilGustosDos.add(botonPerfilGustosDosSiguiente);
-		botonPerfilGustosDosSiguiente.setBounds(500, 380, 200, 40);		
+		botonPerfilGustosDosSiguiente.setBounds(500, 380, 200, 40);	
+		
+		errorPerfilGustosDos = new JLabel();
+		ventanaPerfilGustosDos.add(errorPerfilGustosDos);
+		errorPerfilGustosDos.setBounds(300, 380, 400, 40);
+		errorPerfilGustosDos.setForeground(Color.RED);
 		
 		//mb.setVisible(false);
 		//mb.setEnabled(false);
@@ -510,41 +569,47 @@ public class Principal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaPerfilGustosDos, ventanaCarga);
 				
-				//JProgressBar
-				
-				Thread t = new Thread(new Runnable() {
+				if (bgPerfilGustosDos.getSelection() != null) {
 					
-					@Override
-					public void run() {
+					CambiarPanel(ventanaPerfilGustosDos, ventanaCarga);
 					
-						for (counter = 0; !stop && counter <= MAX_STEPS ; counter++) {
-							System.out.println(counter);
-							
-							SwingUtilities.invokeLater(new Runnable() {
+					//JProgressBar
+					
+					Thread t = new Thread(new Runnable() {
+						
+						@Override
+						public void run() {
+						
+							for (counter = 0; !stop && counter <= MAX_STEPS ; counter++) {
+								System.out.println(counter);
 								
-								@Override
-								public void run() {
-									progressCargando.setValue(counter);
+								SwingUtilities.invokeLater(new Runnable() {
 									
-								}
-							});
-						}
+									@Override
+									public void run() {
+										progressCargando.setValue(counter);
+										
+									}
+								});
+							}
 
-						if(stop = true) {
-							CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
-							//se cambia? SI GUD JOB
-							mb.setVisible(true);
-							mb.setEnabled(true);
-							UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
-							JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
+							if(stop = true) {
+								CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+								//se cambia? SI GUD JOB
+								mb.setVisible(true);
+								mb.setEnabled(true);
+								UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
+								JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
+							}
 						}
-					}
-				});
-				
-				t.start();
-				
+					});
+					
+					t.start();
+					
+				} else {
+					errorPerfilGustosDos.setText("Selecciona al menos 1.");
+				}
 				
 			}
 		});  
@@ -721,16 +786,16 @@ public class Principal {
 		coloresComboBoxAnyadirVestimenta.addItem("Verde");
 		coloresComboBoxAnyadirVestimenta.addItem("Negro");
 		
-		estilosLabelAnyadirVestimenta.setBounds(40, 200, 400, 40);
-		colorLabelAnyadirVestimenta.setBounds(400, 200, 200, 40);
-		tiempoLabelAnyadirvestimenta.setBounds(40, 50, 200, 40);
+		estilosLabelAnyadirVestimenta.setBounds(40,200,400,40);
+		colorLabelAnyadirVestimenta.setBounds(400,200,200,40);
+		tiempoLabelAnyadirvestimenta.setBounds(40,50,200,40);
 		
-		sol.setBounds(40, 100, 100, 40);
-		lluvia.setBounds(160, 100, 100, 40);
-		nublado.setBounds(280, 100, 100, 40);
+		sol.setBounds(40,100,100,40);
+		lluvia.setBounds(160,100,100,40);
+		nublado.setBounds(280,100,100,40);
 		
-		estilosComboBoxAnyadirVestimenta.setBounds(40, 250, 100, 40);
-		coloresComboBoxAnyadirVestimenta.setBounds(400, 250, 100, 40);
+		estilosComboBoxAnyadirVestimenta.setBounds(40,250,100,40);
+		coloresComboBoxAnyadirVestimenta.setBounds(400,250,100,40);
 		
 		ButtonGroup radioButtonsTiempo = new ButtonGroup();
 		radioButtonsTiempo.add(sol);
@@ -745,64 +810,6 @@ public class Principal {
 		ventanaAnyadirVestimenta.add(estilosLabelAnyadirVestimenta);
 		ventanaAnyadirVestimenta.add(colorLabelAnyadirVestimenta);
 		ventanaAnyadirVestimenta.add(tiempoLabelAnyadirvestimenta);
-		
-		botonAtrasAnyadirVestimenta = new JButton("Atras");
-		ventanaAnyadirVestimenta.add(botonAtrasAnyadirVestimenta);
-		botonAtrasAnyadirVestimenta.setBounds(40, 380, 150, 40);
-		botonAnyadirAnyadirVestimenta = new JButton("Anyadir");
-		ventanaAnyadirVestimenta.add(botonAnyadirAnyadirVestimenta);
-		botonAnyadirAnyadirVestimenta.setBounds(520, 380, 150, 40);
-		
-		labelFileChooser = new JLabel("Seleccione la foto para subir");
-		ventanaAnyadirVestimenta.add(labelFileChooser);
-		labelFileChooser.setBounds(400, 50, 400, 30);
-		botonFileChooser = new JButton("Seleccionar Archivo:");
-		ventanaAnyadirVestimenta.add(botonFileChooser);
-		botonFileChooser.setBounds(400, 100, 200, 40);
-		
-		//ActionListeners
-		
-		botonFileChooser.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String userDir = System.getProperty("user.home");
-		    	JFileChooser chooser = new JFileChooser(userDir +"/Pictures");
-		        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-		                "JPG, GIF, PNG, JPEG, TIFF Images", "jpg", "gif", "PNG", "JPEG", "TIFF");
-		        											
-		        											
-		        chooser.setFileFilter(filter);
-		        int returnVal = chooser.showOpenDialog(null);
-		        if(returnVal == JFileChooser.APPROVE_OPTION) {
-		            System.out.println("You chose to open this file: " +
-		                    chooser.getSelectedFile().getName());
-		        }
-				
-			}
-		});
-		
-		botonAtrasAnyadirVestimenta.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaAnyadirVestimenta, ventanaMenuPrincipal);
-				
-			}
-		});
-
-		botonAnyadirAnyadirVestimenta.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				UIManager.put("OptionPane.minimumSize",new Dimension(300, 100));
-				JOptionPane.showMessageDialog(ventanaAnyadirVestimenta, "Vestimenta Anyadida con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
-				CambiarPanel(ventanaAnyadirVestimenta, ventanaMenuPrincipal);
-				
-			}
-		});
-		
-		
 		
 		//Anyadiendo los componentes de ventanaFeedback
 		nivelSatisfaccion = new JLabel("Nivel de satisfaccion: ");
