@@ -108,10 +108,9 @@ public class Principal {
 		//ventanaAnyadirVestimenta
 		JRadioButton sol, lluvia, nublado;
 		JLabel estilosLabelAnyadirVestimenta, colorLabelAnyadirVestimenta, tiempoLabelAnyadirvestimenta;
-		
 		JComboBox<String> estilosComboBoxAnyadirVestimenta;
-		
 		JComboBox<String> coloresComboBoxAnyadirVestimenta;
+		JButton botonAtrasAnyadirVestimenta, botonAnyadirAnyadirVestimenta;		
 		
 		
 		//ventanaPideOutfit
@@ -744,6 +743,36 @@ public class Principal {
 		ventanaAnyadirVestimenta.add(estilosLabelAnyadirVestimenta);
 		ventanaAnyadirVestimenta.add(colorLabelAnyadirVestimenta);
 		ventanaAnyadirVestimenta.add(tiempoLabelAnyadirvestimenta);
+		
+		botonAtrasAnyadirVestimenta = new JButton("Atras");
+		ventanaAnyadirVestimenta.add(botonAtrasAnyadirVestimenta);
+		botonAtrasAnyadirVestimenta.setBounds(40, 380, 150, 40);
+		botonAnyadirAnyadirVestimenta = new JButton("Anyadir");
+		ventanaAnyadirVestimenta.add(botonAnyadirAnyadirVestimenta);
+		botonAnyadirAnyadirVestimenta.setBounds(520, 380, 150, 40);
+		
+		//ActionListeners
+		botonAtrasAnyadirVestimenta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaAnyadirVestimenta, ventanaMenuPrincipal);
+				
+			}
+		});
+
+		botonAnyadirAnyadirVestimenta.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				UIManager.put("OptionPane.minimumSize",new Dimension(300, 100));
+				JOptionPane.showMessageDialog(ventanaAnyadirVestimenta, "Vestimenta Anyadida con exito", "Exito", JOptionPane.INFORMATION_MESSAGE);
+				CambiarPanel(ventanaAnyadirVestimenta, ventanaMenuPrincipal);
+				
+			}
+		});
+		
+		
 		
 		//Anyadiendo los componentes de ventanaFeedback
 		nivelSatisfaccion = new JLabel("Nivel de satisfaccion: ");
