@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -30,6 +31,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Principal {
 
@@ -107,10 +109,10 @@ public class Principal {
 		
 		//ventanaAnyadirVestimenta
 		JRadioButton sol, lluvia, nublado;
-		JLabel estilosLabelAnyadirVestimenta, colorLabelAnyadirVestimenta, tiempoLabelAnyadirvestimenta;
+		JLabel estilosLabelAnyadirVestimenta, colorLabelAnyadirVestimenta, tiempoLabelAnyadirvestimenta, labelFileChooser;
 		JComboBox<String> estilosComboBoxAnyadirVestimenta;
 		JComboBox<String> coloresComboBoxAnyadirVestimenta;
-		JButton botonAtrasAnyadirVestimenta, botonAnyadirAnyadirVestimenta;		
+		JButton botonAtrasAnyadirVestimenta, botonAnyadirAnyadirVestimenta, botonFileChooser;
 		
 		
 		//ventanaPideOutfit
@@ -719,16 +721,16 @@ public class Principal {
 		coloresComboBoxAnyadirVestimenta.addItem("Verde");
 		coloresComboBoxAnyadirVestimenta.addItem("Negro");
 		
-		estilosLabelAnyadirVestimenta.setBounds(40,200,400,40);
-		colorLabelAnyadirVestimenta.setBounds(400,200,200,40);
-		tiempoLabelAnyadirvestimenta.setBounds(40,50,200,40);
+		estilosLabelAnyadirVestimenta.setBounds(40, 200, 400, 40);
+		colorLabelAnyadirVestimenta.setBounds(400, 200, 200, 40);
+		tiempoLabelAnyadirvestimenta.setBounds(40, 50, 200, 40);
 		
-		sol.setBounds(40,100,100,40);
-		lluvia.setBounds(160,100,100,40);
-		nublado.setBounds(280,100,100,40);
+		sol.setBounds(40, 100, 100, 40);
+		lluvia.setBounds(160, 100, 100, 40);
+		nublado.setBounds(280, 100, 100, 40);
 		
-		estilosComboBoxAnyadirVestimenta.setBounds(40,250,100,40);
-		coloresComboBoxAnyadirVestimenta.setBounds(400,250,100,40);
+		estilosComboBoxAnyadirVestimenta.setBounds(40, 250, 100, 40);
+		coloresComboBoxAnyadirVestimenta.setBounds(400, 250, 100, 40);
 		
 		ButtonGroup radioButtonsTiempo = new ButtonGroup();
 		radioButtonsTiempo.add(sol);
@@ -751,7 +753,35 @@ public class Principal {
 		ventanaAnyadirVestimenta.add(botonAnyadirAnyadirVestimenta);
 		botonAnyadirAnyadirVestimenta.setBounds(520, 380, 150, 40);
 		
+		labelFileChooser = new JLabel("Seleccione la foto para subir");
+		ventanaAnyadirVestimenta.add(labelFileChooser);
+		labelFileChooser.setBounds(400, 50, 400, 30);
+		botonFileChooser = new JButton("Seleccionar Archivo:");
+		ventanaAnyadirVestimenta.add(botonFileChooser);
+		botonFileChooser.setBounds(400, 100, 200, 40);
+		
 		//ActionListeners
+		
+		botonFileChooser.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String userDir = System.getProperty("user.home");
+		    	JFileChooser chooser = new JFileChooser(userDir +"/Pictures");
+		        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+		                "JPG & GIF Images", "jpg", "gif");	/*La opcion "JPG & GIF Images" seLecciona jpg y gif,
+		        											IGUAL hay que poner tambien png y mas archivos...
+		        											TAMBIEN hay una opcion que es "Todos los archivos*/
+		        chooser.setFileFilter(filter);
+		        int returnVal = chooser.showOpenDialog(null);
+		        if(returnVal == JFileChooser.APPROVE_OPTION) {
+		            System.out.println("You chose to open this file: " +
+		                    chooser.getSelectedFile().getName());
+		        }
+				
+			}
+		});
+		
 		botonAtrasAnyadirVestimenta.addActionListener(new ActionListener() {
 			
 			@Override
