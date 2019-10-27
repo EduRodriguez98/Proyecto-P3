@@ -371,6 +371,7 @@ public class Principal {
 				if (CrearNombre.matches("^[a-zA-Z]*$") && !CrearNombre.isEmpty() 
 				&& !CrearEmail.isEmpty() && !CrearContrasenya.isEmpty() && CrearEdad.matches("^[0-9]*$")) {
 					CambiarPanel(ventanaCrearCuenta, ventanaGenero);
+					errorCrearCuenta.setText("");
 					System.out.println(CrearEdad);
 				} else {
 					errorCrearCuenta.setText("Error al insertar datos.");
@@ -455,6 +456,7 @@ public class Principal {
 					sportyChickF.setBounds(400, 270, 150, 50);
 						
 					CambiarPanel(ventanaGenero, ventanaPerfilGustosUno);
+					errorGenero.setText("");
 				} else {
 					errorGenero.setText("Se necesita seleccionar 1 genero para continuar.");
 					System.out.println("Se necesita seleccionar 1 genero para continuar.");   //Hacer dialogo mas adelante
@@ -490,6 +492,7 @@ public class Principal {
 					if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() ||
 					smartM.isSelected() || formalM.isSelected() || casualChickM.isSelected()) {
 						CambiarPanel(ventanaPerfilGustosUno, ventanaPerfilGustosDos);
+						errorPerfilGustosUno.setText("");
 					} else {
 						errorPerfilGustosUno.setText("Selecciona al menos 1.");
 					}
@@ -497,6 +500,7 @@ public class Principal {
 					if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() ||
 					bohoF.isSelected() || formalF.isSelected() || sportyChickF.isSelected()) {
 						CambiarPanel(ventanaPerfilGustosUno, ventanaPerfilGustosDos);
+						errorPerfilGustosUno.setText("");
 					} else {
 						errorPerfilGustosUno.setText("Selecciona al menos 1.");
 					}
@@ -573,6 +577,7 @@ public class Principal {
 				if (bgPerfilGustosDos.getSelection() != null) {
 					
 					CambiarPanel(ventanaPerfilGustosDos, ventanaCarga);
+					errorPerfilGustosDos.setText("");
 					
 					//JProgressBar
 					
@@ -760,9 +765,9 @@ public class Principal {
 		colorLabelAnyadirVestimenta = new JLabel("Selecciona un color: ");
 		tiempoLabelAnyadirvestimenta = new JLabel("Selecciona el tiempo: ");
 		
-		sol = new JRadioButton("sol");
-		lluvia = new JRadioButton("lluvia");
-		nublado = new JRadioButton("nublado");
+		sol = new JRadioButton("Sol");
+		lluvia = new JRadioButton("Lluvia");
+		nublado = new JRadioButton("Nublado");
 		
 		estilosComboBoxAnyadirVestimenta = new JComboBox<String>();
 		coloresComboBoxAnyadirVestimenta = new JComboBox<String>();
