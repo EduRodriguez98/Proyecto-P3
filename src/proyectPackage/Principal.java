@@ -169,39 +169,37 @@ public class Principal {
 		//action listeners del menu DEBAJO del todo, ANTES del main!!!
 		
 		
-		
+		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/jorge.jpg"));
 		//Creando y Anyadiendo Paneles al Frame
-		//JPanel ventanaInicioSesion = new JPanel();
+		JPanel ventanaInicioSesion = new JPanel() {
+			public void paintComponent(Graphics g) {
+		        Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
+		        Graphics bufferGraphics = bufferImage.getGraphics();
+		        bufferGraphics.drawImage(imagenInicio.getImage(), 0, 0, 720, 480, null);
+		        g.drawImage(bufferImage, 0, 0, this);
+		       
+		    }
+		};
 		//ventanaInicioSesion.setName("ventanaInicioSesion"); //no va??
 		PanelFondo ventanaCrearCuenta = new PanelFondo();
 		ventanaCrearCuenta.setName("ventanaCrearCuenta"); //no va??
-		JPanel ventanaGenero = new JPanel(); 
+		PanelFondo ventanaGenero = new PanelFondo(); 
 		ventanaGenero.setName("VentanaGenero");  //No va??
-		JPanel ventanaPerfilGustosUno = new JPanel();
+		PanelFondo ventanaPerfilGustosUno = new PanelFondo();
 		ventanaPerfilGustosUno.setName("ventanaPerfilGustosUno"); //no va??
-		JPanel ventanaPerfilGustosDos = new JPanel();
+		PanelFondo ventanaPerfilGustosDos = new PanelFondo();
 		ventanaPerfilGustosDos.setName("ventanaPerfilGustosDos"); //no va??
-		JPanel ventanaMenuPrincipal = new JPanel();
+		PanelFondo ventanaMenuPrincipal = new PanelFondo();
 		ventanaMenuPrincipal.setName("ventanaMenuPrincipal"); //No va??
-		JPanel ventanaCarga = new JPanel();
+		PanelFondo ventanaCarga = new PanelFondo();
 		ventanaCarga.setName("ventana de Carga"); //No va?
-		JPanel ventanaAnyadirVestimenta = new JPanel();
-		JPanel ventanaPideOutfit = new JPanel();
-		JPanel ventanaFeedback = new JPanel();
-		 ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/jorge.jpg"));
+		PanelFondo ventanaAnyadirVestimenta = new PanelFondo();
+		PanelFondo ventanaPideOutfit = new PanelFondo();
+		PanelFondo ventanaFeedback = new PanelFondo();
+		
 		//ventanas	Emergentes
 		JPanel ajustes = new JPanel(new GridLayout(3, 1));	
 		JPanel ventanaEmergenteOutfit = new JPanel();
-		
-		  JPanel ventanaInicioSesion =  new JPanel(){
-				public void paintComponent(Graphics g) {
-			        Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
-			        Graphics bufferGraphics = bufferImage.getGraphics();
-			        bufferGraphics.drawImage(imagenInicio.getImage(), 0, 0, 720, 480, null);
-			        g.drawImage(bufferImage, 0, 0, this);
-			       
-			    }
-	       };
 		
 		CrearPanel(ventanaInicioSesion);
 		CrearPanel(ventanaCrearCuenta);
@@ -213,7 +211,6 @@ public class Principal {
 		CrearPanel(ventanaAnyadirVestimenta);
 		CrearPanel(ventanaPideOutfit);
 		CrearPanel(ventanaFeedback);
-		
 		
 		frame.getContentPane().add(ventanaInicioSesion);
 		frame.getContentPane().add(ventanaCrearCuenta);	
@@ -681,6 +678,7 @@ public class Principal {
 				CambiarPanel(ventanaMenuPrincipal, ventanaPideOutfit);
 				mb.setVisible(false);
 				mb.setEnabled(false);
+				
 			}
 		});
 		
@@ -943,7 +941,7 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Thread.sleep(3000);
+					Thread.sleep(0); //'''''''''''''''''''''''''''''
 					//Escribir aqui lo que pasa
 					mb.setVisible(false);
 					mb.setEnabled(false);
@@ -1011,6 +1009,8 @@ public class Principal {
 				new Principal();
 			}
 		});
+		
+		
 		
 		//Lo de la hora
 		Calendar cal = Calendar.getInstance();
