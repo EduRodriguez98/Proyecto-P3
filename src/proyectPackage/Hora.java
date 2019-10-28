@@ -2,7 +2,7 @@ package proyectPackage;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class hora {
+public class Hora {
 	
 	public static void hora() {
 		Calendar cal = Calendar.getInstance();
