@@ -2,7 +2,9 @@ package proyectPackage;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +34,8 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+
+//import ventana.Paneles;
 
 public class Principal {
 
@@ -167,9 +171,9 @@ public class Principal {
 		
 		
 		//Creando y Anyadiendo Paneles al Frame
-		JPanel ventanaInicioSesion = new JPanel();
-		ventanaInicioSesion.setName("ventanaInicioSesion"); //no va??
-		JPanel ventanaCrearCuenta = new JPanel();
+		//JPanel ventanaInicioSesion = new JPanel();
+		//ventanaInicioSesion.setName("ventanaInicioSesion"); //no va??
+		Paneles ventanaCrearCuenta = new Paneles();
 		ventanaCrearCuenta.setName("ventanaCrearCuenta"); //no va??
 		JPanel ventanaGenero = new JPanel(); 
 		ventanaGenero.setName("VentanaGenero");  //No va??
@@ -184,11 +188,20 @@ public class Principal {
 		JPanel ventanaAnyadirVestimenta = new JPanel();
 		JPanel ventanaPideOutfit = new JPanel();
 		JPanel ventanaFeedback = new JPanel();
-		
-		
+		 ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/jorge.jpg"));
 		//ventanas	Emergentes
 		JPanel ajustes = new JPanel(new GridLayout(3, 1));	
 		JPanel ventanaEmergenteOutfit = new JPanel();
+		
+		  JPanel ventanaInicioSesion =  new JPanel(){
+				public void paintComponent(Graphics g) {
+			        Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
+			        Graphics bufferGraphics = bufferImage.getGraphics();
+			        bufferGraphics.drawImage(imagenInicio.getImage(), 0, 0, 720, 480, null);
+			        g.drawImage(bufferImage, 0, 0, this);
+			       
+			    }
+	       };
 		
 		CrearPanel(ventanaInicioSesion);
 		CrearPanel(ventanaCrearCuenta);
