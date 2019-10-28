@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-public class Paneles extends JPanel{
+public class PanelFondo extends JPanel{
 	/**
 	 * 
 	 */
@@ -27,7 +27,7 @@ public class Paneles extends JPanel{
 	String nombre;
 	Font fuente;
 	
-	public Paneles() {
+	public PanelFondo() {
 		super();
 		this.nombre = " ";
 		this.imagenInicio= new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/jorge.jpg"));

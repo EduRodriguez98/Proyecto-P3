@@ -173,7 +173,7 @@ public class Principal {
 		//Creando y Anyadiendo Paneles al Frame
 		//JPanel ventanaInicioSesion = new JPanel();
 		//ventanaInicioSesion.setName("ventanaInicioSesion"); //no va??
-		Paneles ventanaCrearCuenta = new Paneles();
+		PanelFondo ventanaCrearCuenta = new PanelFondo();
 		ventanaCrearCuenta.setName("ventanaCrearCuenta"); //no va??
 		JPanel ventanaGenero = new JPanel(); 
 		ventanaGenero.setName("VentanaGenero");  //No va??
