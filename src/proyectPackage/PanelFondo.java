@@ -15,7 +15,7 @@ public class PanelFondo extends JPanel{
 	public PanelFondo() {
 		super();
 		this.nombre = " ";
-		this.imagenInicio= new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/jorge.jpg"));
+		this.imagenInicio= new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/modise.png"));
 	}
 
 	public String getNombre() {

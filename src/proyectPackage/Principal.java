@@ -172,7 +172,7 @@ public class Principal {
 		//action listeners del menu DEBAJO del todo, ANTES del main!!!
 		
 		//Creando y Anyadiendo Paneles al Frame
-		JPanel ventanaInicioSesion = new JPanel();
+		/*JPanel ventanaInicioSesion = new JPanel();
 		JPanel ventanaCrearCuenta = new JPanel();
 		JPanel ventanaGenero = new JPanel(); 
 		JPanel ventanaPerfilGustosUno = new JPanel();
@@ -181,11 +181,11 @@ public class Principal {
 		JPanel ventanaCarga = new JPanel();
 		JPanel ventanaAnyadirVestimenta = new JPanel();
 		JPanel ventanaPideOutfit = new JPanel();
-		JPanel ventanaFeedback = new JPanel();		
+		JPanel ventanaFeedback = new JPanel();	*/	
 		
-		/*	ESTA PARTE COMENTADA ES PARA PONER UNA FOTO DE FONDO, LO DEJO COMENTADO POR SI ACASO
+		/*	ESTA PARTE COMENTADA ES PARA PONER UNA FOTO DE FONDO, LO DEJO COMENTADO POR SI ACASO */
 		//Imagen de fondo
-		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/jorge.jpg"));
+		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/modise.png"));
 		
 		JPanel ventanaInicioSesion = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -196,23 +196,16 @@ public class Principal {
 		       
 		    }
 		};
-		ventanaInicioSesion.setName("ventanaInicioSesion"); //no va??
 		PanelFondo ventanaCrearCuenta = new PanelFondo();
-		ventanaCrearCuenta.setName("ventanaCrearCuenta"); //no va??
 		PanelFondo ventanaGenero = new PanelFondo(); 
-		ventanaGenero.setName("VentanaGenero");  //No va??
 		PanelFondo ventanaPerfilGustosUno = new PanelFondo();
-		ventanaPerfilGustosUno.setName("ventanaPerfilGustosUno"); //no va??
 		PanelFondo ventanaPerfilGustosDos = new PanelFondo();
-		ventanaPerfilGustosDos.setName("ventanaPerfilGustosDos"); //no va??
 		PanelFondo ventanaMenuPrincipal = new PanelFondo();
-		ventanaMenuPrincipal.setName("ventanaMenuPrincipal"); //No va??
 		PanelFondo ventanaCarga = new PanelFondo();
-		ventanaCarga.setName("ventana de Carga"); //No va?
 		PanelFondo ventanaAnyadirVestimenta = new PanelFondo();
 		PanelFondo ventanaPideOutfit = new PanelFondo();
 		PanelFondo ventanaFeedback = new PanelFondo();
-		*/
+		
 		
 		//ventanas	Emergentes
 		JPanel ajustes = new JPanel(new GridLayout(3, 1));	
