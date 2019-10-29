@@ -857,7 +857,6 @@ public class Principal {
 		errorPideOutfit.setBounds(250, 340, 400, 40);
 		errorPideOutfit.setForeground(Color.RED);
 		
-		
 		//Action Listeners
 		radioNo.addActionListener(new ActionListener() {
 			
@@ -866,8 +865,6 @@ public class Principal {
 				if (radioNo.isSelected()) {
 					txtEstilo.setText("");
 				}
-				
-				
 			}
 		});
 		
@@ -900,6 +897,7 @@ public class Principal {
 				CambiarPanel(ventanaPideOutfit, ventanaMenuPrincipal);
 				mb.setVisible(true);
 				mb.setEnabled(true);
+				errorPideOutfit.setText("");
 			}
 		});
 		//Action Listeners
@@ -1120,6 +1118,7 @@ public class Principal {
 				radioNo.setSelected(false);
 				txtEstilo.setText("ej: Clasico");
 				escrito5 = false;
+				errorPideOutfit.setText("");
 				
 				//ventanaFeedback
 				radioButtonsEstrellas.clearSelection();
