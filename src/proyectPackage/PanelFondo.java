@@ -15,7 +15,7 @@ public class PanelFondo extends JPanel{
 	public PanelFondo() {
 		super();
 		this.nombre = " ";
-		this.imagenInicio= new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/jorge.jpg"));
+		this.imagenInicio= new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/fondo.jpg"));
 	}
 
 	public String getNombre() {
@@ -29,7 +29,7 @@ public class PanelFondo extends JPanel{
 	public void paintComponent(Graphics g) {
 		Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
 		Graphics bufferGraphics = bufferImage.getGraphics();
-		bufferGraphics.drawImage(imagenInicio.getImage(), 0, -23, 720, 480, null);
+		bufferGraphics.drawImage(imagenInicio.getImage(), 0, -23, 720, 460, null);
 		g.drawImage(bufferImage, 0, 0, this);
 	}
 }

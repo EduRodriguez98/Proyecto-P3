@@ -172,7 +172,7 @@ public class Principal {
 		//action listeners del menu DEBAJO del todo, ANTES del main!!!
 		
 		//Creando y Anyadiendo Paneles al Frame
-		JPanel ventanaInicioSesion = new JPanel();
+		/*JPanel ventanaInicioSesion = new JPanel();
 		JPanel ventanaCrearCuenta = new JPanel();
 		JPanel ventanaGenero = new JPanel(); 
 		JPanel ventanaPerfilGustosUno = new JPanel();
@@ -181,17 +181,26 @@ public class Principal {
 		JPanel ventanaCarga = new JPanel();
 		JPanel ventanaAnyadirVestimenta = new JPanel();
 		JPanel ventanaPideOutfit = new JPanel();
-		JPanel ventanaFeedback = new JPanel();		
+		JPanel ventanaFeedback = new JPanel();	*/	
 		
-		/*	ESTA PARTE COMENTADA ES PARA PONER UNA FOTO DE FONDO, LO DEJO COMENTADO POR SI ACASO
+		
 		//Imagen de fondo
-		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/jorge.jpg"));
+		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/fondo.jpg"));
 		
 		JPanel ventanaInicioSesion = new JPanel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public void paintComponent(Graphics g) {
 		        Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
 		        Graphics bufferGraphics = bufferImage.getGraphics();
-		        bufferGraphics.drawImage(imagenInicio.getImage(), 0, 0, 720, 480, null);
+		        if (mb.isVisible() && mb.isEnabled()) {
+		        bufferGraphics.drawImage(imagenInicio.getImage(), 0, 0, 720, 460, null);
+		        } else {
+		        	bufferGraphics.drawImage(imagenInicio.getImage(), 0, 0, 720, 480, null);
+		        }
 		        g.drawImage(bufferImage, 0, 0, this);
 		       
 		    }
@@ -212,7 +221,7 @@ public class Principal {
 		PanelFondo ventanaAnyadirVestimenta = new PanelFondo();
 		PanelFondo ventanaPideOutfit = new PanelFondo();
 		PanelFondo ventanaFeedback = new PanelFondo();
-		*/
+		
 		
 		//ventanas	Emergentes
 		JPanel ajustes = new JPanel(new GridLayout(3, 1));	
@@ -243,6 +252,8 @@ public class Principal {
 		ventanaInicioSesion.setVisible(true); //la primera ventana visible
 		
 		//Anyadiendo los componentes de ventanaInicioSesion
+		mb.setVisible(false);
+		mb.setEnabled(false);
 		botonCrear = new JButton("Crear Cuenta");
 		ventanaInicioSesion.add(botonCrear);
 		botonCrear.setBounds(500, 350, 200, 50);
@@ -966,11 +977,11 @@ public class Principal {
 		gustoColores = new JLabel("Te han gustado los colores?");
 		ventanaFeedback.add(gustoColores);
 		
-		estrella1 = new JRadioButton("⭐");
-		estrella2 = new JRadioButton("⭐⭐");
-		estrella3 = new JRadioButton("⭐⭐⭐");
-		estrella4 = new JRadioButton("⭐⭐⭐⭐");
-		estrella5 = new JRadioButton("⭐⭐⭐⭐⭐");
+		estrella1 = new JRadioButton("*");
+		estrella2 = new JRadioButton("**");
+		estrella3 = new JRadioButton("***");
+		estrella4 = new JRadioButton("****");
+		estrella5 = new JRadioButton("*****");
 		si = new JRadioButton("Si");
 		no = new JRadioButton("No");
 		
