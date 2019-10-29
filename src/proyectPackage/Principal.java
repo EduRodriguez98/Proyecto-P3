@@ -151,7 +151,8 @@ public class Principal {
 		frame.setResizable(false);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
-		frame.setIconImage (new ImageIcon(getClass().getResource("jorge.jpg")).getImage());		
+		frame.setIconImage (new ImageIcon(getClass().getResource("jorge.jpg")).getImage());	//Icono de frame
+		frame.getContentPane().setBackground(Color.red);
 		
 		mb = new JMenuBar();
 		menu1 = new JMenu("Menu");	
@@ -168,9 +169,22 @@ public class Principal {
 		
 		//action listeners del menu DEBAJO del todo, ANTES del main!!!
 		
-		
-		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/jorge.jpg"));
 		//Creando y Anyadiendo Paneles al Frame
+		JPanel ventanaInicioSesion = new JPanel();
+		JPanel ventanaCrearCuenta = new JPanel();
+		JPanel ventanaGenero = new JPanel(); 
+		JPanel ventanaPerfilGustosUno = new JPanel();
+		JPanel ventanaPerfilGustosDos = new JPanel();
+		JPanel ventanaMenuPrincipal = new JPanel();
+		JPanel ventanaCarga = new JPanel();
+		JPanel ventanaAnyadirVestimenta = new JPanel();
+		JPanel ventanaPideOutfit = new JPanel();
+		JPanel ventanaFeedback = new JPanel();		
+		
+		/*	ESTA PARTE COMENTADA ES PARA PONER UNA FOTO DE FONDO, LO DEJO COMENTADO POR SI ACASO
+		//Imagen de fondo
+		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/jorge.jpg"));
+		
 		JPanel ventanaInicioSesion = new JPanel() {
 			public void paintComponent(Graphics g) {
 		        Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
@@ -180,7 +194,7 @@ public class Principal {
 		       
 		    }
 		};
-		//ventanaInicioSesion.setName("ventanaInicioSesion"); //no va??
+		ventanaInicioSesion.setName("ventanaInicioSesion"); //no va??
 		PanelFondo ventanaCrearCuenta = new PanelFondo();
 		ventanaCrearCuenta.setName("ventanaCrearCuenta"); //no va??
 		PanelFondo ventanaGenero = new PanelFondo(); 
@@ -196,6 +210,7 @@ public class Principal {
 		PanelFondo ventanaAnyadirVestimenta = new PanelFondo();
 		PanelFondo ventanaPideOutfit = new PanelFondo();
 		PanelFondo ventanaFeedback = new PanelFondo();
+		*/
 		
 		//ventanas	Emergentes
 		JPanel ajustes = new JPanel(new GridLayout(3, 1));	
