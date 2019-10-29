@@ -1,16 +1,19 @@
 package proyectPackage;
 
 import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class EjemploPrincipal {
+public class EjemploPrincipal extends JFrame{
 
 	JLabel labelA, labelB;
 	JButton botonA;
@@ -55,7 +58,6 @@ public class EjemploPrincipal {
 		frame.getContentPane().add(panelB);	
 		
 		panelA.setVisible(true);
-		
 		
 		labelA = new JLabel();
 		labelA.setText("labelA");

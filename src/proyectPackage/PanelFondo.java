@@ -10,26 +10,15 @@ public class PanelFondo extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	ImageIcon imagenInicio; 
-	String nombre;
 	
 	public PanelFondo() {
 		super();
-		this.nombre = " ";
-		this.imagenInicio= new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/modise.png"));
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+		this.imagenInicio= new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/fondo.jpg"));}
 
 	public void paintComponent(Graphics g) {
 		Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
 		Graphics bufferGraphics = bufferImage.getGraphics();
-		bufferGraphics.drawImage(imagenInicio.getImage(), 0, -23, 720, 480, null);
+		bufferGraphics.drawImage(imagenInicio.getImage(), 0, 0, 720, 480, null); //ojo, antes: 0, -23, 720, 460
 		g.drawImage(bufferImage, 0, 0, this);
 	}
 }

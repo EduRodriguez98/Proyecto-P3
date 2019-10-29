@@ -183,19 +183,18 @@ public class Principal {
 		JPanel ventanaPideOutfit = new JPanel();
 		JPanel ventanaFeedback = new JPanel();	*/	
 		
-		/*	ESTA PARTE COMENTADA ES PARA PONER UNA FOTO DE FONDO, LO DEJO COMENTADO POR SI ACASO */
 		//Imagen de fondo
-		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/modise.png"));
-		
+		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/fondo.jpg"));
+
 		JPanel ventanaInicioSesion = new JPanel() {
 			public void paintComponent(Graphics g) {
 		        Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
 		        Graphics bufferGraphics = bufferImage.getGraphics();
 		        bufferGraphics.drawImage(imagenInicio.getImage(), 0, 0, 720, 480, null);
 		        g.drawImage(bufferImage, 0, 0, this);
-		       
-		    }
+			}
 		};
+			
 		PanelFondo ventanaCrearCuenta = new PanelFondo();
 		PanelFondo ventanaGenero = new PanelFondo(); 
 		PanelFondo ventanaPerfilGustosUno = new PanelFondo();
@@ -236,6 +235,8 @@ public class Principal {
 		ventanaInicioSesion.setVisible(true); //la primera ventana visible
 		
 		//Anyadiendo los componentes de ventanaInicioSesion
+		mb.setVisible(false);
+		mb.setEnabled(false);
 		botonCrear = new JButton("Crear Cuenta");
 		ventanaInicioSesion.add(botonCrear);
 		botonCrear.setBounds(500, 350, 200, 50);
@@ -959,11 +960,11 @@ public class Principal {
 		gustoColores = new JLabel("Te han gustado los colores?");
 		ventanaFeedback.add(gustoColores);
 		
-		estrella1 = new JRadioButton("⭐");
-		estrella2 = new JRadioButton("⭐⭐");
-		estrella3 = new JRadioButton("⭐⭐⭐");
-		estrella4 = new JRadioButton("⭐⭐⭐⭐");
-		estrella5 = new JRadioButton("⭐⭐⭐⭐⭐");
+		estrella1 = new JRadioButton("*");
+		estrella2 = new JRadioButton("**");
+		estrella3 = new JRadioButton("***");
+		estrella4 = new JRadioButton("****");
+		estrella5 = new JRadioButton("*****");
 		si = new JRadioButton("Si");
 		no = new JRadioButton("No");
 		
