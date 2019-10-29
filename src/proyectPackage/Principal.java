@@ -181,16 +181,21 @@ public class Principal {
 		JPanel ventanaCarga = new JPanel();
 		JPanel ventanaAnyadirVestimenta = new JPanel();
 		JPanel ventanaPideOutfit = new JPanel();
-		JPanel ventanaFeedback = new JPanel();	*/	
+		JPanel ventanaFeedback = new JPanel();	*/
 		
 		//Imagen de fondo
 		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/fondo.jpg"));
 
 		JPanel ventanaInicioSesion = new JPanel() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public void paintComponent(Graphics g) {
 		        Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
 		        Graphics bufferGraphics = bufferImage.getGraphics();
-		        bufferGraphics.drawImage(imagenInicio.getImage(), 0, 0, 720, 480, null);
+		        bufferGraphics.drawImage(imagenInicio.getImage(), 0, 0, 720, 440, null);
 		        g.drawImage(bufferImage, 0, 0, this);
 			}
 		};
@@ -219,7 +224,7 @@ public class Principal {
 		CrearPanel(ventanaCarga);
 		CrearPanel(ventanaAnyadirVestimenta);
 		CrearPanel(ventanaPideOutfit);
-		CrearPanel(ventanaFeedback);
+		CrearPanel(ventanaFeedback); 
 		
 		frame.getContentPane().add(ventanaInicioSesion);
 		frame.getContentPane().add(ventanaCrearCuenta);	

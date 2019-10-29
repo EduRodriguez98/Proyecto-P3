@@ -13,6 +13,7 @@ public class PanelFondo extends JPanel{
 	
 	public PanelFondo() {
 		super();
+		
 		this.imagenInicio= new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/fondo.jpg"));}
 
 	public void paintComponent(Graphics g) {
