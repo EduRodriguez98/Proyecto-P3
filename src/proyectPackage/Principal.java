@@ -507,7 +507,7 @@ public class Principal {
 		
 		errorGenero = new JLabel();
 		ventanaGenero.add(errorGenero);
-		errorGenero.setBounds(80, 380, 400, 40);
+		errorGenero.setBounds(220, 380, 400, 40);
 		errorGenero.setForeground(Color.RED);
 		
 		//mb.setVisible(false);
@@ -540,6 +540,7 @@ public class Principal {
 					casualChickM.setBounds(400, 270, 150, 50);
 					
 					CambiarPanel(ventanaGenero, ventanaPerfilGustosUno);
+					errorGenero.setText("");
 				} else if (radioFemenino.isSelected()) {
 					clasicoF = new JCheckBox("Clasico");
 					ventanaPerfilGustosUno.add(clasicoF);
@@ -575,7 +576,8 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaGenero, ventanaCrearCuenta);
-				
+				radioButtonsGenero.clearSelection();
+				errorGenero.setText("");
 			}
 		});
 			
