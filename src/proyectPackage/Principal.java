@@ -403,6 +403,10 @@ public class Principal {
 				String CrearEdad = spinCrearEdad.getValue().toString();
 				int EdadSeleccionada = (int) spinCrearEdad.getValue();
 				
+				errorNombre.setText("");
+				errorEmail.setText("");
+				errorContrasenya.setText("");
+				
 				if (CrearNombre.matches("^[a-zA-Z]*$") && !CrearNombre.isEmpty() && 
 						CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"	//Dos lineas para validar si es
 						+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")			//un correo o no, FUNCIONA 100% ??
