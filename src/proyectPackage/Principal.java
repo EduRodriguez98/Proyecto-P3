@@ -78,7 +78,7 @@ public class Principal {
 		boolean escrito1, escrito2;
 		
 		// VentanaCrearCuenta
-		JLabel labelCrearNombre, labelCrearEmail, labelCrearContrasenya, labelCrearEdad, errorCrearCuenta;
+		JLabel labelCrearNombre, labelCrearEmail, labelCrearContrasenya, labelCrearEdad, errorNombre, errorEmail, errorContrasenya;
 		JTextField txtCrearNombre, txtCrearEmail, txtCrearContrasenya;
 		JSpinner spinCrearEdad;
 		SpinnerModel model;
@@ -372,10 +372,20 @@ public class Principal {
 		ventanaCrearCuenta.add(botonCrearSiguiente);
 		botonCrearSiguiente.setBounds(500, 380, 200, 40);
 		
-		errorCrearCuenta = new JLabel();
-		ventanaCrearCuenta.add(errorCrearCuenta);
-		errorCrearCuenta.setBounds(80, 380, 150, 40);
-		errorCrearCuenta.setForeground(Color.RED);
+		errorNombre = new JLabel();
+		ventanaCrearCuenta.add(errorNombre);
+		errorNombre.setBounds(250, 90, 150, 40);
+		errorNombre.setForeground(Color.RED);
+		
+		errorEmail = new JLabel();
+		ventanaCrearCuenta.add(errorEmail);
+		errorEmail.setBounds(250, 165, 150, 40);
+		errorEmail.setForeground(Color.RED);
+		
+		errorContrasenya = new JLabel();
+		ventanaCrearCuenta.add(errorContrasenya);
+		errorContrasenya.setBounds(250, 240, 150, 40);
+		errorContrasenya.setForeground(Color.RED);
 		
 		//mb.setVisible(false);
 		//mb.setEnabled(false);
@@ -394,17 +404,34 @@ public class Principal {
 				int EdadSeleccionada = (int) spinCrearEdad.getValue();
 				
 				if (CrearNombre.matches("^[a-zA-Z]*$") && !CrearNombre.isEmpty() && 
-				CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"	//Dos lineas para validar si es
-				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")			//un correo o no, FUNCIONA 100% ??
-				&& !CrearEmail.isEmpty() && !CrearContrasenya.isEmpty() && 
-				CrearEdad.matches("^[0-9]*$")) {
+						CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"	//Dos lineas para validar si es
+						+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")			//un correo o no, FUNCIONA 100% ??
+						&& !CrearEmail.isEmpty() && !CrearContrasenya.isEmpty() && 
+						CrearEdad.matches("^[0-9]*$")) {
 					CambiarPanel(ventanaCrearCuenta, ventanaGenero);
-					errorCrearCuenta.setText("");
-					System.out.println("Edad marcado al crear cuenta:"+CrearEdad);
-				} else {
+					errorNombre.setText("");
+					errorEmail.setText("");
+					errorContrasenya.setText("");
+					System.out.println("Edad marcado al crear cuenta:"+CrearEdad); //para comporbar que guarda
+				/*} else {
 					errorCrearCuenta.setText("Error al insertar datos.");
 					spinCrearEdad.setValue(EdadSeleccionada);
 					System.out.println("Edad marcado al crear cuenta:"+CrearEdad);
+				}*/
+				} else if (!CrearNombre.matches("^[a-zA-Z]*$") || CrearNombre.isEmpty()){
+					errorNombre.setText("Nombre NO valido");
+					spinCrearEdad.setValue(EdadSeleccionada);
+					System.out.println("Edad marcado al crear cuenta:"+CrearEdad+", Nombre NO valido");
+				} else if (!CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"	//Dos lineas para validar si es
+						+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")			//un correo o no, FUNCIONA 100% ??
+						|| CrearEmail.isEmpty()) {
+					errorEmail.setText("Email NO valido");
+					spinCrearEdad.setValue(EdadSeleccionada);
+					System.out.println("Edad marcado al crear cuenta:"+CrearEdad+", Email NO valido");
+				} else if(CrearContrasenya.isEmpty()) {
+					errorContrasenya.setText("Contraseña NO valida");
+					spinCrearEdad.setValue(EdadSeleccionada);
+					System.out.println("Edad marcado al crear cuenta:"+CrearEdad+", Contraseña NO valida");
 				}
 			}
 		});
