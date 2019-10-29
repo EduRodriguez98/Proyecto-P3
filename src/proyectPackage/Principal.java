@@ -151,8 +151,8 @@ public class Principal {
 		frame.setResizable(false);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
-		frame.setIconImage (new ImageIcon(getClass().getResource("jorge.jpg")).getImage());	//Icono de frame
-		frame.getContentPane().setBackground(Color.red);
+		frame.setIconImage (new ImageIcon(getClass().getResource("modise1.png")).getImage());	//Icono de frame
+		frame.setBackground(Color.RED);	//no va!!! :v
 		
 		mb = new JMenuBar();
 		menu1 = new JMenu("Menu");	
@@ -393,15 +393,18 @@ public class Principal {
 				String CrearEdad = spinCrearEdad.getValue().toString();
 				int EdadSeleccionada = (int) spinCrearEdad.getValue();
 				
-				if (CrearNombre.matches("^[a-zA-Z]*$") && !CrearNombre.isEmpty() 
-				&& !CrearEmail.isEmpty() && !CrearContrasenya.isEmpty() && CrearEdad.matches("^[0-9]*$")) {
+				if (CrearNombre.matches("^[a-zA-Z]*$") && !CrearNombre.isEmpty() && 
+				CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"	//Dos lineas para validar si es
+				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")			//un correo o no, FUNCIONA 100% ??
+				&& !CrearEmail.isEmpty() && !CrearContrasenya.isEmpty() && 
+				CrearEdad.matches("^[0-9]*$")) {
 					CambiarPanel(ventanaCrearCuenta, ventanaGenero);
 					errorCrearCuenta.setText("");
-					System.out.println(CrearEdad);
+					System.out.println("Edad marcado al crear cuenta:"+CrearEdad);
 				} else {
 					errorCrearCuenta.setText("Error al insertar datos.");
 					spinCrearEdad.setValue(EdadSeleccionada);
-					System.out.println(CrearEdad);
+					System.out.println("Edad marcado al crear cuenta:"+CrearEdad);
 				}
 			}
 		});
