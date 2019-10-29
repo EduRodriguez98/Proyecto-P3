@@ -116,7 +116,8 @@ public class Principal {
 		
 		//ventanaAnyadirVestimenta
 		JRadioButton sol, lluvia, nublado;
-		JLabel estilosLabelAnyadirVestimenta, colorLabelAnyadirVestimenta, tiempoLabelAnyadirvestimenta;
+		JLabel estilosLabelAnyadirVestimenta, colorLabelAnyadirVestimenta, tiempoLabelAnyadirvestimenta, errorPideOutfit;
+		boolean escrito5;
 		
 		JComboBox<String> estilosComboBoxAnyadirVestimenta;
 		
@@ -583,6 +584,7 @@ public class Principal {
 				CambiarPanel(ventanaGenero, ventanaCrearCuenta);
 				radioButtonsGenero.clearSelection();
 				errorGenero.setText("");
+				txtCrearContrasenya.setText("");		
 			}
 		});
 			
@@ -843,6 +845,16 @@ public class Principal {
 		txtEstilo = new JTextField("ej: Clasico");
 		ventanaPideOutfit.add(txtEstilo);
 		txtEstilo.setBounds(150, 260, 200, 30);
+		escrito5 = false;
+		txtEstilo.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                if (escrito5 == false) {
+                	txtEstilo.setText("");
+                	escrito5 = true;
+                }
+            }
+        });
 		
 		botonAtrasPideOutfit = new JButton("Atras");
 		ventanaPideOutfit.add(botonAtrasPideOutfit);
@@ -852,17 +864,29 @@ public class Principal {
 		ventanaPideOutfit.add(botonBuscar);
 		botonBuscar.setBounds(550, 350, 80, 30);
 		
+		errorPideOutfit = new JLabel();
+		ventanaPideOutfit.add(errorPideOutfit);
+		errorPideOutfit.setBounds(180, 380, 400, 40);
+		errorPideOutfit.setForeground(Color.RED);
+		
 		
 		//Action Listeners
-		
 		botonBuscar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//CambiarPanel(ventanaPideOutfit, ventanaCarga);
-				CambiarPanel(ventanaPideOutfit, ventanaFeedback);
-				UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
-				JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
+				if (bgPideOutfit.getSelection() != null && (radioNo.isSelected() || !txtEstilo.getText().equals(""))) {
+					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
+					UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
+					JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
+					escrito5 = false;
+					bgPideOutfit.clearSelection();
+					radioNo.setSelected(false);
+					txtEstilo.setText("ej: Clasico");
+				} else {
+					errorPideOutfit.setText("Rellena todos los campos requeridos.");
+				}
 			}
 		});
 		
@@ -1037,24 +1061,30 @@ public class Principal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Menu
 				mb.setVisible(false);
 				mb.setEnabled(false);
 				
+				//ventanaInicioSesion
 				txtEmail.setText("ejemplo@gmail.com");
 				contrasenya.setText("12345");
 				view.setSelected(false);
-				bgPideOutfit.clearSelection();
-				radioNo.setSelected(false);
-				txtEstilo.setText("ej: Clasico");
-				radioButtonsEstrellas.clearSelection();
-				radioButtonsSiNo.clearSelection();
+				escrito1 = false;
+				escrito2 = false;
 				
-				txtCrearNombre.setText("");
-				txtCrearEmail.setText("");
+				//ventanaCrearCuenta
+				txtCrearNombre.setText("nombre");
+				txtCrearEmail.setText("ejemplo@gmail.com");
 				txtCrearContrasenya.setText("");
 				spinCrearEdad.setValue(18);
-				radioButtonsGenero.clearSelection();
+				escrito3 = false;
+				escrito4 = false;
 				
+				//ventanaGenero
+				radioButtonsGenero.clearSelection();
+				errorGenero.setText("");
+				
+				//ventanaPerfilGustosUno
 				if (radioMasculino.isSelected() == true ) {
 					clasicoM.setSelected(false);
 					urbanaM.setSelected(false);
@@ -1070,8 +1100,30 @@ public class Principal {
 					formalF.setSelected(false);
 					sportyChickF.setSelected(false);
 				}
+				errorPerfilGustosUno.setText("");				
 				
+				//ventanaPerfilGustosDos
 				bgPerfilGustosDos.clearSelection();
+				errorPerfilGustosDos.setText("");
+				
+				//ventanaCarga
+				counter = 0;
+				
+				//ventanaMenuPrincipal
+				//hace falta reiniciar algo?
+				
+				//ventanaPideOutfit
+				bgPideOutfit.clearSelection();
+				radioNo.setSelected(false);
+				txtEstilo.setText("ej: Clasico");
+				escrito5 = false;
+				
+				//ventanaFeedback
+				radioButtonsEstrellas.clearSelection();
+				radioButtonsSiNo.clearSelection();
+				
+				//"sobras"
+				//quitar comentario y agregar aqui	<-
 				
 				//Hasta aqui
 				CambiarPanel(ventanaMenuPrincipal, ventanaInicioSesion);
