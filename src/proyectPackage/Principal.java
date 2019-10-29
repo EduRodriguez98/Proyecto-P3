@@ -61,7 +61,7 @@ public class Principal {
 		g.setVisible(false);
 		g.setEnabled(false);
 		g.setBounds(0, 0, 720, 480);
-		g.setBackground(Color.white);
+		g.setBackground(Color.GRAY);	//color de todos los paneles (NO de las ventanas emergentes), a no ser que queramos cambiar alguno
 	}
 		
 	//ORDENES DE LAS VENTANAS!!!!!
@@ -152,7 +152,7 @@ public class Principal {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
 		frame.setIconImage (new ImageIcon(getClass().getResource("modise1.png")).getImage());	//Icono de frame
-		frame.setBackground(Color.RED);	//no va!!! :v
+		//para el color haced " ctrl + F " y buscad " g.setBackground "
 		
 		mb = new JMenuBar();
 		menu1 = new JMenu("Menu");	
