@@ -479,6 +479,11 @@ public class Principal {
 				escrito4 = false;
 				errorEmail.setText("");
 				errorContrasenya.setText("");
+				
+				txtEmail.setText("ejemplo@gmail.com");
+				contrasenya.setText("12345");
+				escrito1 = false;
+				escrito2 = false;
 			}
 		});
 			
