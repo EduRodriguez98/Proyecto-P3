@@ -132,10 +132,10 @@ public class Principal {
 		//ventanaFeedback
 		
 		//ventanaFeedback
-				JLabel nivelSatisfaccion;
-				JLabel gustoColores;
-				JRadioButton estrella1, estrella2, estrella3, estrella4,estrella5, si, no;
-				JButton botonInicioFeedback;
+		JLabel nivelSatisfaccion;
+		JLabel gustoColores;
+		JRadioButton estrella1, estrella2, estrella3, estrella4,estrella5, si, no;
+		JButton botonInicioFeedback;
 		
 		//Ajustes
 		JButton cambiarContrasenya, cambiarFecha, reiniciarPerfil;
@@ -187,11 +187,7 @@ public class Principal {
 		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/fondo.jpg"));
 
 		JPanel ventanaInicioSesion = new JPanel() {
-			/**
-			 * 
-			 */
 			private static final long serialVersionUID = 1L;
-
 			public void paintComponent(Graphics g) {
 		        Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
 		        Graphics bufferGraphics = bufferImage.getGraphics();
@@ -209,7 +205,6 @@ public class Principal {
 		PanelFondo ventanaAnyadirVestimenta = new PanelFondo();
 		PanelFondo ventanaPideOutfit = new PanelFondo();
 		PanelFondo ventanaFeedback = new PanelFondo();
-		
 		
 		//ventanas	Emergentes
 		JPanel ajustes = new JPanel(new GridLayout(3, 1));	
@@ -262,8 +257,6 @@ public class Principal {
 		ventanaInicioSesion.add(labelContrasenya);
 		labelContrasenya.setBounds(60, 135, 100, 40);
 		
-		
-		
 		contrasenya = new JPasswordField("12345");	//cambiado
 		contrasenya.setEchoChar('*');				//hacer checkbox isSelected para ver contraseña, HECHO
 		ventanaInicioSesion.add(contrasenya);
@@ -286,7 +279,6 @@ public class Principal {
 		botonCrear = new JButton("Crear Cuenta");
 		ventanaInicioSesion.add(botonCrear);
 		botonCrear.setBounds(500, 300, 200, 30);
-		
 		
 		view = new JCheckBox("Visualizar contraseña");
 		ventanaInicioSesion.add(view);
@@ -509,7 +501,7 @@ public class Principal {
 		
 		errorGenero = new JLabel();
 		ventanaGenero.add(errorGenero);
-		errorGenero.setBounds(220, 380, 400, 30);
+		errorGenero.setBounds(220, 340, 400, 30);
 		errorGenero.setForeground(Color.RED);
 		
 		//mb.setVisible(false);
@@ -595,7 +587,7 @@ public class Principal {
 		
 		errorPerfilGustosUno = new JLabel();
 		ventanaPerfilGustosUno.add(errorPerfilGustosUno);
-		errorPerfilGustosUno.setBounds(300, 380, 400, 40);
+		errorPerfilGustosUno.setBounds(300, 340, 400, 40);
 		errorPerfilGustosUno.setForeground(Color.RED);
 		
 		//mb.setVisible(false);
@@ -681,7 +673,7 @@ public class Principal {
 		
 		errorPerfilGustosDos = new JLabel();
 		ventanaPerfilGustosDos.add(errorPerfilGustosDos);
-		errorPerfilGustosDos.setBounds(300, 380, 400, 40);
+		errorPerfilGustosDos.setBounds(300, 340, 400, 40);
 		errorPerfilGustosDos.setForeground(Color.RED);
 		
 		//mb.setVisible(false);
@@ -743,7 +735,7 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaPerfilGustosDos, ventanaPerfilGustosUno);
-					
+				errorPerfilGustosUno.setText("");	
 			}
 		});
 			
@@ -862,11 +854,23 @@ public class Principal {
 		
 		errorPideOutfit = new JLabel();
 		ventanaPideOutfit.add(errorPideOutfit);
-		errorPideOutfit.setBounds(180, 380, 400, 40);
+		errorPideOutfit.setBounds(250, 340, 400, 40);
 		errorPideOutfit.setForeground(Color.RED);
 		
 		
 		//Action Listeners
+		radioNo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (radioNo.isSelected()) {
+					txtEstilo.setText("");
+				}
+				
+				
+			}
+		});
+		
 		botonBuscar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -874,7 +878,7 @@ public class Principal {
 				//CambiarPanel(ventanaPideOutfit, ventanaCarga);
 				String noValido = "ej: Clasico";
 				
-				if (bgPideOutfit.getSelection() != null && (radioNo.isSelected() || !txtEstilo.getText().equals("") || !txtEstilo.getText().equals("ej: Clasico") )) { //no va
+				if (bgPideOutfit.getSelection() != null && (radioNo.isSelected() || !txtEstilo.getText().equals("")) && !txtEstilo.getText().equals(noValido)) { //no va
 					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
 					UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
 					JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
@@ -963,10 +967,10 @@ public class Principal {
 		ventanaFeedback.add(gustoColores);
 		
 		estrella1 = new JRadioButton("*");
-		estrella2 = new JRadioButton("**");
-		estrella3 = new JRadioButton("***");
-		estrella4 = new JRadioButton("****");
-		estrella5 = new JRadioButton("*****");
+		estrella2 = new JRadioButton("* *");
+		estrella3 = new JRadioButton("* * *");
+		estrella4 = new JRadioButton("* * * *");
+		estrella5 = new JRadioButton("* * * * *");
 		si = new JRadioButton("Si");
 		no = new JRadioButton("No");
 		
@@ -1000,7 +1004,7 @@ public class Principal {
 		si.setBounds(100,220,100,50);
 		no.setBounds(200,220,100,50);
 		
-		botonInicioFeedback = new JButton("Inicio");
+		botonInicioFeedback = new JButton("Mandar e inicio");
 		ventanaFeedback.add(botonInicioFeedback);
 		botonInicioFeedback.setBounds(260, 350, 200, 30);
 		
