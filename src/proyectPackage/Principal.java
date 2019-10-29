@@ -240,31 +240,13 @@ public class Principal {
 		ventanaInicioSesion.setVisible(true); //la primera ventana visible
 		
 		//Anyadiendo los componentes de ventanaInicioSesion
-		mb.setVisible(false);
-		mb.setEnabled(false);
-		botonCrear = new JButton("Crear Cuenta");
-		ventanaInicioSesion.add(botonCrear);
-		botonCrear.setBounds(500, 350, 200, 50);
-			
-		botonInicio = new JButton("Iniciar Sesion");
-		ventanaInicioSesion.add(botonInicio);
-		botonInicio.setBounds(500, 225, 200, 50);
-		
-		labelBrand = new JLabel("MODISE");
-		ventanaInicioSesion.add(labelBrand);
-		labelBrand.setBounds(320, 50, 100, 50);
-		
 		labelEmail = new JLabel("Email: ");
 		ventanaInicioSesion.add(labelEmail);
-		labelEmail.setBounds(60, 150, 100, 50);
-		
-		labelContrasenya = new JLabel("Contrasena: ");
-		ventanaInicioSesion.add(labelContrasenya);
-		labelContrasenya.setBounds(60, 225, 100, 50);
+		labelEmail.setBounds(60, 65, 100, 40);
 		
 		txtEmail = new JTextField("ejemplo@gmail.com");
 		ventanaInicioSesion.add(txtEmail);
-		txtEmail.setBounds(160, 150, 300, 50);
+		txtEmail.setBounds(160, 70, 300, 30);
 		escrito1 = false;
 		txtEmail.addMouseListener(new MouseAdapter(){
             @Override
@@ -276,10 +258,16 @@ public class Principal {
             }
         });
 		
+		labelContrasenya = new JLabel("Contrasena: ");
+		ventanaInicioSesion.add(labelContrasenya);
+		labelContrasenya.setBounds(60, 135, 100, 40);
+		
+		
+		
 		contrasenya = new JPasswordField("12345");	//cambiado
 		contrasenya.setEchoChar('*');				//hacer checkbox isSelected para ver contraseña, HECHO
 		ventanaInicioSesion.add(contrasenya);
-		contrasenya.setBounds(160, 225, 300, 50);
+		contrasenya.setBounds(160, 140, 300, 30);
 		escrito2 = false;
 		contrasenya.addMouseListener(new MouseAdapter(){
             @Override
@@ -291,13 +279,22 @@ public class Principal {
             }
         });
 		
+		botonInicio = new JButton("Iniciar Sesion");
+		ventanaInicioSesion.add(botonInicio);
+		botonInicio.setBounds(500, 140, 200, 30);
+		
+		botonCrear = new JButton("Crear Cuenta");
+		ventanaInicioSesion.add(botonCrear);
+		botonCrear.setBounds(500, 300, 200, 30);
+		
+		
 		view = new JCheckBox("Visualizar contraseña");
 		ventanaInicioSesion.add(view);
-		view.setBounds(160, 280, 150, 30);
+		view.setBounds(160, 190, 150, 30);
 				
 		labelPregunta = new JLabel("Es tu primera vez en Modise? Pulsa el boton Crear Cuenta para empezar!");
 		ventanaInicioSesion.add(labelPregunta);
-		labelPregunta.setBounds(60, 350, 450, 50);
+		labelPregunta.setBounds(60, 295, 450, 40);
 		
 		mb.setVisible(false);
 		mb.setEnabled(false);
@@ -337,11 +334,11 @@ public class Principal {
 		//Anyadiendo los componentes de ventanaCrearCuenta
 		labelCrearNombre = new JLabel("Introduzca su nombre: ");
 		ventanaCrearCuenta.add(labelCrearNombre);
-		labelCrearNombre.setBounds(80, 50, 200, 50);
+		labelCrearNombre.setBounds(80, 50, 200, 30);
 			
 		txtCrearNombre = new JTextField("nombre");
 		ventanaCrearCuenta.add(txtCrearNombre);
-		txtCrearNombre.setBounds(250, 50, 300, 50);
+		txtCrearNombre.setBounds(250, 50, 300, 30);
 		escrito3 = false;
 		txtCrearNombre.addMouseListener(new MouseAdapter(){
             @Override
@@ -355,11 +352,11 @@ public class Principal {
 		
 		labelCrearEmail = new JLabel("Introduzca su email: ");
 		ventanaCrearCuenta.add(labelCrearEmail);
-		labelCrearEmail.setBounds(80, 125, 200, 50);
+		labelCrearEmail.setBounds(80, 125, 200, 30);
 			
 		txtCrearEmail = new JTextField("ejemplo@gmail.com");
 		ventanaCrearCuenta.add(txtCrearEmail);
-		txtCrearEmail.setBounds(250, 125, 300, 50);
+		txtCrearEmail.setBounds(250, 125, 300, 30);
 		escrito4 = false;
 		txtCrearEmail.addMouseListener(new MouseAdapter(){
             @Override
@@ -373,43 +370,43 @@ public class Principal {
 		
 		labelCrearContrasenya = new JLabel("Cree una contrasena: ");
 		ventanaCrearCuenta.add(labelCrearContrasenya);
-		labelCrearContrasenya.setBounds(80, 200, 200, 50);
+		labelCrearContrasenya.setBounds(80, 200, 200, 30);
 		
 		txtCrearContrasenya = new JTextField("");
 		ventanaCrearCuenta.add(txtCrearContrasenya);
-		txtCrearContrasenya.setBounds(250, 200, 300, 50);
+		txtCrearContrasenya.setBounds(250, 200, 300, 30);
 		
 		labelCrearEdad = new JLabel("Seleccione su edad: ");
 		ventanaCrearCuenta.add(labelCrearEdad);
-		labelCrearEdad.setBounds(80, 275, 200, 50);
+		labelCrearEdad.setBounds(80, 275, 200, 30);
 		
 				SpinnerModel model = new SpinnerNumberModel(18, 0, 99, 1); //default 18, min 0, max 99, +-1
 		//spinCrearEdad.setValue(18);
 		spinCrearEdad = new JSpinner(model);
 		ventanaCrearCuenta.add(spinCrearEdad);
-		spinCrearEdad.setBounds(250, 275, 80, 50);
+		spinCrearEdad.setBounds(250, 275, 80, 30);
 		
 		botonCrearSiguiente = new JButton("Siguiente");
 		ventanaCrearCuenta.add(botonCrearSiguiente);
-		botonCrearSiguiente.setBounds(500, 380, 200, 40);
+		botonCrearSiguiente.setBounds(500, 340, 200, 30);
 		
 		botonCrearAtras = new JButton("Atras");
 		ventanaCrearCuenta.add(botonCrearAtras);
-		botonCrearAtras.setBounds(10, 380, 200, 40);
+		botonCrearAtras.setBounds(10, 340, 200, 30);
 		
 		errorNombre = new JLabel();
 		ventanaCrearCuenta.add(errorNombre);
-		errorNombre.setBounds(250, 90, 150, 40);
+		errorNombre.setBounds(250, 90, 150, 30);
 		errorNombre.setForeground(Color.RED);
 		
 		errorEmail = new JLabel();
 		ventanaCrearCuenta.add(errorEmail);
-		errorEmail.setBounds(250, 165, 150, 40);
+		errorEmail.setBounds(250, 165, 150, 30);
 		errorEmail.setForeground(Color.RED);
 		
 		errorContrasenya = new JLabel();
 		ventanaCrearCuenta.add(errorContrasenya);
-		errorContrasenya.setBounds(250, 240, 150, 40);
+		errorContrasenya.setBounds(250, 240, 150, 30);
 		errorContrasenya.setForeground(Color.RED);
 		
 		//mb.setVisible(false);
@@ -490,7 +487,7 @@ public class Principal {
 		//Anyadiendo los componentes de ventanaGenero
 		labelEscogerGenero = new JLabel("Seleccione su genero: ");
 		ventanaGenero.add(labelEscogerGenero);
-		labelEscogerGenero.setBounds(100, 150, 200, 50);
+		labelEscogerGenero.setBounds(100, 150, 200, 40);
 		
 		radioMasculino = new JRadioButton("Masculino");
 		radioFemenino = new JRadioButton("Femenino");
@@ -499,20 +496,20 @@ public class Principal {
 		radioButtonsGenero.add(radioMasculino);
 		ventanaGenero.add(radioMasculino);
 		ventanaGenero.add(radioFemenino);
-		radioMasculino.setBounds(300, 150, 100, 50);
-		radioFemenino.setBounds(400, 150, 100, 50);
+		radioMasculino.setBounds(300, 150, 100, 30);
+		radioFemenino.setBounds(400, 150, 100, 30);
 		
 		botonGeneroSiguiente = new JButton("Siguiente");
 		ventanaGenero.add(botonGeneroSiguiente);
-		botonGeneroSiguiente.setBounds(500, 380, 200, 40);
+		botonGeneroSiguiente.setBounds(500, 340, 200, 30);
 		
 		botonGeneroAtras = new JButton("Atras");
 		ventanaGenero.add(botonGeneroAtras);
-		botonGeneroAtras.setBounds(10, 380, 200, 40);
+		botonGeneroAtras.setBounds(10, 340, 200, 30);
 		
 		errorGenero = new JLabel();
 		ventanaGenero.add(errorGenero);
-		errorGenero.setBounds(220, 380, 400, 40);
+		errorGenero.setBounds(220, 380, 400, 30);
 		errorGenero.setForeground(Color.RED);
 		
 		//mb.setVisible(false);
@@ -527,44 +524,44 @@ public class Principal {
 				if(radioMasculino.isSelected()) {
 					clasicoM = new JCheckBox("Clasico");
 					ventanaPerfilGustosUno.add(clasicoM);
-					clasicoM.setBounds(200, 70, 150, 50);
+					clasicoM.setBounds(200, 70, 150, 40);
 					urbanaM = new JCheckBox("Urbana");
 					ventanaPerfilGustosUno.add(urbanaM);
-					urbanaM.setBounds(400, 70, 150, 50);
+					urbanaM.setBounds(400, 70, 150, 40);
 					rockM = new JCheckBox("Rock");
 					ventanaPerfilGustosUno.add(rockM);
-					rockM.setBounds(200, 170 , 150, 50);
+					rockM.setBounds(200, 140 , 150, 40);
 					smartM = new JCheckBox("Smart");
 					ventanaPerfilGustosUno.add(smartM);
-					smartM.setBounds(400, 170, 150, 50);
+					smartM.setBounds(400, 140, 150, 40);
 					formalM = new JCheckBox("Formal");
 					ventanaPerfilGustosUno.add(formalM);
-					formalM.setBounds(200, 270, 150, 50);
+					formalM.setBounds(200, 210, 150, 40);
 					casualChickM = new JCheckBox("Casual Chick");
 					ventanaPerfilGustosUno.add(casualChickM);
-					casualChickM.setBounds(400, 270, 150, 50);
+					casualChickM.setBounds(400, 210, 150, 40);
 					
 					CambiarPanel(ventanaGenero, ventanaPerfilGustosUno);
 					errorGenero.setText("");
 				} else if (radioFemenino.isSelected()) {
 					clasicoF = new JCheckBox("Clasico");
 					ventanaPerfilGustosUno.add(clasicoF);
-					clasicoF.setBounds(200, 70, 150, 50);
+					clasicoF.setBounds(200, 70, 150, 40);
 					urbanaF = new JCheckBox("Urbana");
 					ventanaPerfilGustosUno.add(urbanaF);
-					urbanaF.setBounds(400, 70, 150, 50);
+					urbanaF.setBounds(400, 70, 150, 40);
 					rockF = new JCheckBox("Rock");
 					ventanaPerfilGustosUno.add(rockF);
-					rockF.setBounds(200, 170 , 150, 50);
+					rockF.setBounds(200, 140 , 150, 40);
 					bohoF = new JCheckBox("Boho");
 					ventanaPerfilGustosUno.add(bohoF);
-					bohoF.setBounds(400, 170, 150, 50);
+					bohoF.setBounds(400, 140, 150, 40);
 					formalF = new JCheckBox("Formal");
 					ventanaPerfilGustosUno.add(formalF);
-					formalF.setBounds(200, 270, 150, 50);
+					formalF.setBounds(200, 210, 150, 40);
 					sportyChickF = new JCheckBox("Sporty Chick");
 					ventanaPerfilGustosUno.add(sportyChickF);
-					sportyChickF.setBounds(400, 270, 150, 50);
+					sportyChickF.setBounds(400, 210, 150, 40);
 						
 					CambiarPanel(ventanaGenero, ventanaPerfilGustosUno);
 					errorGenero.setText("");
@@ -590,11 +587,11 @@ public class Principal {
 		//Anyadiendo los componentes de ventanaPerfilGustosUno
 		botonPerfilGustosUnoAtras = new JButton("Atras");
 		ventanaPerfilGustosUno.add(botonPerfilGustosUnoAtras);
-		botonPerfilGustosUnoAtras.setBounds(10, 380, 200, 40);
+		botonPerfilGustosUnoAtras.setBounds(10, 340, 200, 30);
 			
 		botonPerfilGustosUnoSiguiente = new JButton("Siguiente");
 		ventanaPerfilGustosUno.add(botonPerfilGustosUnoSiguiente);
-		botonPerfilGustosUnoSiguiente.setBounds(500, 380, 200, 40);
+		botonPerfilGustosUnoSiguiente.setBounds(500, 340, 200, 30);
 		
 		errorPerfilGustosUno = new JLabel();
 		ventanaPerfilGustosUno.add(errorPerfilGustosUno);
@@ -660,15 +657,15 @@ public class Principal {
 		//Anyadiendo los componentes de ventanaPerfilGustosDos
 		labelEscoge = new JLabel("Cual de las siguientes prendas te gusta mas para ti?");
 		ventanaPerfilGustosDos.add(labelEscoge);
-		labelEscoge.setBounds(200, 30, 350, 50);
+		labelEscoge.setBounds(200, 30, 350, 40);
 			
 		radioPrendaIzq = new JRadioButton("Opcion 1");
 		ventanaPerfilGustosDos.add(radioPrendaIzq);
-		radioPrendaIzq.setBounds(200, 300, 100, 50);
+		radioPrendaIzq.setBounds(200, 280, 100, 40);
 			
 		radioPrendaDer = new JRadioButton("Opcion 2");
 		ventanaPerfilGustosDos.add(radioPrendaDer);
-		radioPrendaDer.setBounds(420, 300, 100, 50);
+		radioPrendaDer.setBounds(420, 280, 100, 40);
 		
 		ButtonGroup bgPerfilGustosDos = new ButtonGroup();
 		bgPerfilGustosDos.add(radioPrendaIzq);
@@ -676,11 +673,11 @@ public class Principal {
 		
 		botonPerfilGustosDosAtras = new JButton("Atras");
 		ventanaPerfilGustosDos.add(botonPerfilGustosDosAtras);
-		botonPerfilGustosDosAtras.setBounds(10, 380, 200, 40);
+		botonPerfilGustosDosAtras.setBounds(10, 340, 200, 30);
 		
 		botonPerfilGustosDosSiguiente = new JButton("Siguiente");
 		ventanaPerfilGustosDos.add(botonPerfilGustosDosSiguiente);
-		botonPerfilGustosDosSiguiente.setBounds(500, 380, 200, 40);	
+		botonPerfilGustosDosSiguiente.setBounds(500, 340, 200, 30);	
 		
 		errorPerfilGustosDos = new JLabel();
 		ventanaPerfilGustosDos.add(errorPerfilGustosDos);
@@ -857,11 +854,11 @@ public class Principal {
 		
 		botonAtrasPideOutfit = new JButton("Atras");
 		ventanaPideOutfit.add(botonAtrasPideOutfit);
-		botonAtrasPideOutfit.setBounds(50, 350, 80, 30);
+		botonAtrasPideOutfit.setBounds(10, 340, 200, 30);
 		
 		botonBuscar = new JButton("Buscar!");
 		ventanaPideOutfit.add(botonBuscar);
-		botonBuscar.setBounds(550, 350, 80, 30);
+		botonBuscar.setBounds(500, 340, 200, 30);
 		
 		errorPideOutfit = new JLabel();
 		ventanaPideOutfit.add(errorPideOutfit);
@@ -1005,7 +1002,7 @@ public class Principal {
 		
 		botonInicioFeedback = new JButton("Inicio");
 		ventanaFeedback.add(botonInicioFeedback);
-		botonInicioFeedback.setBounds(310, 350, 100, 50);
+		botonInicioFeedback.setBounds(260, 350, 200, 30);
 		
 		//Action Listeners
 		botonInicioFeedback.addActionListener(new ActionListener() {

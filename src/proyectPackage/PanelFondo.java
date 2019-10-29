@@ -19,7 +19,7 @@ public class PanelFondo extends JPanel{
 	public void paintComponent(Graphics g) {
 		Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
 		Graphics bufferGraphics = bufferImage.getGraphics();
-		bufferGraphics.drawImage(imagenInicio.getImage(), 0, 0, 720, 480, null); //ojo, antes: 0, -23, 720, 460
+		bufferGraphics.drawImage(imagenInicio.getImage(), 0, -23, 720, 460, null);
 		g.drawImage(bufferImage, 0, 0, this);
 	}
 }
