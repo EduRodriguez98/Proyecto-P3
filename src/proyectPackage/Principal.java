@@ -82,12 +82,13 @@ public class Principal {
 		JTextField txtCrearNombre, txtCrearEmail, txtCrearContrasenya;
 		JSpinner spinCrearEdad;
 		SpinnerModel model;
-		JButton botonCrearSiguiente;
+		JButton botonCrearSiguiente, botonCrearAtras;
+		boolean escrito3, escrito4;
 		
 		// VentanaGenero
 		JRadioButton radioMasculino, radioFemenino;
 		JLabel labelEscogerGenero, errorGenero;
-		JButton botonGeneroSiguiente;
+		JButton botonGeneroSiguiente, botonGeneroAtras;
 		
 		// VentanaPerfilGustosUno
 		JButton botonPerfilGustosUnoSiguiente, botonPerfilGustosUnoAtras;
@@ -338,17 +339,37 @@ public class Principal {
 		ventanaCrearCuenta.add(labelCrearNombre);
 		labelCrearNombre.setBounds(80, 50, 200, 50);
 			
-		txtCrearNombre = new JTextField("");
+		txtCrearNombre = new JTextField("nombre");
 		ventanaCrearCuenta.add(txtCrearNombre);
 		txtCrearNombre.setBounds(250, 50, 300, 50);
+		escrito3 = false;
+		txtCrearNombre.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                if (escrito3 == false) {
+                	txtCrearNombre.setText("");
+                	escrito3 = true;
+                }
+            }
+        });
 		
 		labelCrearEmail = new JLabel("Introduzca su email: ");
 		ventanaCrearCuenta.add(labelCrearEmail);
 		labelCrearEmail.setBounds(80, 125, 200, 50);
 			
-		txtCrearEmail = new JTextField("");
+		txtCrearEmail = new JTextField("ejemplo@gmail.com");
 		ventanaCrearCuenta.add(txtCrearEmail);
 		txtCrearEmail.setBounds(250, 125, 300, 50);
+		escrito4 = false;
+		txtCrearEmail.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                if (escrito4 == false) {
+                	txtCrearEmail.setText("");
+                	escrito4 = true;
+                }
+            }
+        });
 		
 		labelCrearContrasenya = new JLabel("Cree una contrasena: ");
 		ventanaCrearCuenta.add(labelCrearContrasenya);
@@ -371,6 +392,10 @@ public class Principal {
 		botonCrearSiguiente = new JButton("Siguiente");
 		ventanaCrearCuenta.add(botonCrearSiguiente);
 		botonCrearSiguiente.setBounds(500, 380, 200, 40);
+		
+		botonCrearAtras = new JButton("Atras");
+		ventanaCrearCuenta.add(botonCrearAtras);
+		botonCrearAtras.setBounds(10, 380, 200, 40);
 		
 		errorNombre = new JLabel();
 		ventanaCrearCuenta.add(errorNombre);
@@ -439,6 +464,23 @@ public class Principal {
 				}
 			}
 		});
+		
+		botonCrearAtras.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaCrearCuenta, ventanaInicioSesion);
+				txtCrearNombre.setText("nombre");
+				txtCrearEmail.setText("ejemplo@gmail.com");
+				txtCrearContrasenya.setText("");
+				spinCrearEdad.setValue(18);
+				errorNombre.setText("");
+				escrito3 = false;
+				escrito4 = false;
+				errorEmail.setText("");
+				errorContrasenya.setText("");
+			}
+		});
 			
 		//Anyadiendo los componentes de ventanaGenero
 		labelEscogerGenero = new JLabel("Seleccione su genero: ");
@@ -458,6 +500,10 @@ public class Principal {
 		botonGeneroSiguiente = new JButton("Siguiente");
 		ventanaGenero.add(botonGeneroSiguiente);
 		botonGeneroSiguiente.setBounds(500, 380, 200, 40);
+		
+		botonGeneroAtras = new JButton("Atras");
+		ventanaGenero.add(botonGeneroAtras);
+		botonGeneroAtras.setBounds(10, 380, 200, 40);
 		
 		errorGenero = new JLabel();
 		ventanaGenero.add(errorGenero);
@@ -521,6 +567,15 @@ public class Principal {
 					System.out.println("Se necesita seleccionar 1 genero para continuar.");   //Hacer dialogo mas adelante
 				}
 					//CambiarPanel(ventanaGenero, ventanaPerfilGustosUno);
+			}
+		});
+		
+		botonGeneroAtras.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaGenero, ventanaCrearCuenta);
+				
 			}
 		});
 			
