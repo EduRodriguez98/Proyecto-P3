@@ -876,7 +876,9 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//CambiarPanel(ventanaPideOutfit, ventanaCarga);
-				if (bgPideOutfit.getSelection() != null && (radioNo.isSelected() || !txtEstilo.getText().equals(""))) {
+				String noValido = "ej: Clasico";
+				
+				if (bgPideOutfit.getSelection() != null && (radioNo.isSelected() || !txtEstilo.getText().equals("") || !txtEstilo.getText().equals("ej: Clasico") )) { //no va
 					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
 					UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
 					JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
@@ -884,6 +886,7 @@ public class Principal {
 					bgPideOutfit.clearSelection();
 					radioNo.setSelected(false);
 					txtEstilo.setText("ej: Clasico");
+					errorPideOutfit.setText("");
 				} else {
 					errorPideOutfit.setText("Rellena todos los campos requeridos.");
 				}
