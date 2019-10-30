@@ -14,7 +14,7 @@ public class PanelFondo extends JPanel{
 	public PanelFondo() {
 		super();
 		
-		this.imagenInicio= new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/fondo.jpg"));}
+		this.imagenInicio= new ImageIcon(this.getClass().getClassLoader().getResource("modise/fondo.jpg"));}
 
 	public void paintComponent(Graphics g) {
 		Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);

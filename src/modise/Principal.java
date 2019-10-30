@@ -184,7 +184,7 @@ public class Principal {
 		JPanel ventanaFeedback = new JPanel();	*/
 		
 		//Imagen de fondo
-		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("proyectPackage/fondo.jpg"));
+		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("modise/fondo.jpg"));
 
 		JPanel ventanaInicioSesion = new JPanel() {
 			private static final long serialVersionUID = 1L;
