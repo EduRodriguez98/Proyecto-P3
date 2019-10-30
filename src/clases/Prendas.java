@@ -1,4 +1,4 @@
-package proyectPackage;
+package clases;
 
 public abstract class Prendas {
 

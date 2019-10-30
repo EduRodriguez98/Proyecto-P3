@@ -1,16 +1,15 @@
-package proyectPackage;
+package clases;
 
 public class Pantalones extends Prendas{
 
 	String marca;
 	Boolean corto;
-	Boolean largo;
 	
-	public Pantalones(String colorPrincipal, String colorSecundario, String marca, Boolean corto, Boolean largo) {
+	
+	public Pantalones(String colorPrincipal, String colorSecundario, String marca, Boolean corto) {
 		super(colorPrincipal, colorSecundario);
 		this.marca = marca;
 		this.corto = corto;
-		this.largo = largo;
 	}
 
 	public String getMarca() {
@@ -29,17 +28,9 @@ public class Pantalones extends Prendas{
 		this.corto = corto;
 	}
 
-	public Boolean getLargo() {
-		return largo;
-	}
-
-	public void setLargo(Boolean largo) {
-		this.largo = largo;
-	}
-
 	@Override
 	public String toString() {
-		return "Pantalones [Marca: " + marca + ", Corto: " + corto + ", Largo: " + largo + ", Color Principal: "
+		return "Pantalones [Marca: " + marca + ", Corto: " + corto + ", Color Principal: "
 				+ getColorPrincipal() + ", Color Secundario: " + getColorSecundario() + "]";
 	}
 	

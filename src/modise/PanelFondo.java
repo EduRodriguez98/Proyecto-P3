@@ -1,4 +1,4 @@
-package proyectPackage;
+package modise;
 
 import java.awt.Graphics;
 import java.awt.Image;

@@ -1,22 +1,22 @@
-package proyectPackage;
+package clases;
 
 public class Zapatos extends Prendas {
 
-	Boolean Deportivos;
+	Boolean deportivos;
 	Boolean deVestir;
 	
 	public Zapatos(String colorPrincipal, String colorSecundario, Boolean deportivos, Boolean deVestir) {
 		super(colorPrincipal, colorSecundario);
-		Deportivos = deportivos;
+		this.deportivos = deportivos;
 		this.deVestir = deVestir;
 	}
 
 	public Boolean getDeportivos() {
-		return Deportivos;
+		return deportivos;
 	}
 
 	public void setDeportivos(Boolean deportivos) {
-		Deportivos = deportivos;
+		this.deportivos = deportivos;
 	}
 
 	public Boolean getDeVestir() {
@@ -29,7 +29,7 @@ public class Zapatos extends Prendas {
 
 	@Override
 	public String toString() {
-		return "Zapatos [Deportivos: " + Deportivos + ", de Vestir: " + deVestir + ", Color Principal: "
+		return "Zapatos [Deportivos: " + deportivos + ", de Vestir: " + deVestir + ", Color Principal: "
 				+ getColorPrincipal() + ", Color Secundario: " + getColorSecundario() + "]";
 	}
 	

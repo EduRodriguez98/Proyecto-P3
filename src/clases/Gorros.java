@@ -1,35 +1,35 @@
-package proyectPackage;
+package clases;
 
 public class Gorros extends Prendas{
 
-	Boolean Verano;
-	Boolean Invierno;
+	Boolean verano;
+	Boolean invierno;
 	
 	public Gorros(String colorPrincipal, String colorSecundario, Boolean verano, Boolean invierno) {
 		super(colorPrincipal, colorSecundario);
-		Verano = verano;
-		Invierno = invierno;
+		this.verano = verano;
+		this.invierno = invierno;
 	}
 
 	public Boolean getVerano() {
-		return Verano;
+		return verano;
 	}
 
 	public void setVerano(Boolean verano) {
-		Verano = verano;
+		this.verano = verano;
 	}
 
 	public Boolean getInvierno() {
-		return Invierno;
+		return invierno;
 	}
 
 	public void setInvierno(Boolean invierno) {
-		Invierno = invierno;
+		this.invierno = invierno;
 	}
 
 	@Override
 	public String toString() {
-		return "Gorros [Verano: " + Verano + ", Invierno: " + Invierno + ", Color Principal: " + getColorPrincipal()
+		return "Gorros [Verano: " + verano + ", Invierno: " + invierno + ", Color Principal: " + getColorPrincipal()
 				+ ", Color Secundario: " + getColorSecundario() + "]";
 	}
 	
