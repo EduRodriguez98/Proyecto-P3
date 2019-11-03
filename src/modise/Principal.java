@@ -2,6 +2,7 @@ package modise;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -172,20 +173,6 @@ public class Principal {
 		//mb.setEnabled(true);
 		frame.setJMenuBar(mb);
 		
-		//action listeners del menu DEBAJO del todo, ANTES del main!!!
-		
-		//Creando y Anyadiendo Paneles al Frame
-		/*JPanel ventanaInicioSesion = new JPanel();
-		JPanel ventanaCrearCuenta = new JPanel();
-		JPanel ventanaGenero = new JPanel(); 
-		JPanel ventanaPerfilGustosUno = new JPanel();
-		JPanel ventanaPerfilGustosDos = new JPanel();
-		JPanel ventanaMenuPrincipal = new JPanel();
-		JPanel ventanaCarga = new JPanel();
-		JPanel ventanaAnyadirVestimenta = new JPanel();
-		JPanel ventanaPideOutfit = new JPanel();
-		JPanel ventanaFeedback = new JPanel();	*/
-		
 		//Imagen de fondo
 		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("modise/fondo.jpg"));
 
@@ -242,8 +229,9 @@ public class Principal {
 		
 		//Anyadiendo los componentes de ventanaInicioSesion
 		labelEmail = new JLabel("Email: ");
+		labelEmail.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaInicioSesion.add(labelEmail);
-		labelEmail.setBounds(60, 65, 100, 40);
+		labelEmail.setBounds(60, 62, 100, 40);
 		
 		txtEmail = new JTextField("ejemplo@gmail.com");
 		ventanaInicioSesion.add(txtEmail);
@@ -260,8 +248,9 @@ public class Principal {
         });
 		
 		labelContrasenya = new JLabel("Contrasena: ");
+		labelContrasenya.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaInicioSesion.add(labelContrasenya);
-		labelContrasenya.setBounds(60, 135, 100, 40);
+		labelContrasenya.setBounds(60, 133, 100, 40);
 		
 		contrasenya = new JPasswordField("12345");	//cambiado
 		contrasenya.setEchoChar('*');				//hacer checkbox isSelected para ver contraseña, HECHO
@@ -279,18 +268,22 @@ public class Principal {
         });
 		
 		botonInicio = new JButton("Iniciar Sesion");
+		botonInicio.setFont(new Font("Monospace", Font.BOLD, 12));
 		ventanaInicioSesion.add(botonInicio);
 		botonInicio.setBounds(500, 140, 200, 30);
 		
 		botonCrear = new JButton("Crear Cuenta");
 		ventanaInicioSesion.add(botonCrear);
 		botonCrear.setBounds(500, 300, 200, 30);
+		botonCrear.setFont(new Font("Monospace", Font.BOLD, 12));
 		
 		view = new JCheckBox("Visualizar contraseña");
+		view.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaInicioSesion.add(view);
 		view.setBounds(160, 190, 150, 30);
 				
 		labelPregunta = new JLabel("Es tu primera vez en Modise? Pulsa el boton Crear Cuenta para empezar!");
+		labelPregunta.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaInicioSesion.add(labelPregunta);
 		labelPregunta.setBounds(60, 295, 450, 40);
 		
@@ -331,6 +324,7 @@ public class Principal {
 			
 		//Anyadiendo los componentes de ventanaCrearCuenta
 		labelCrearNombre = new JLabel("Introduzca su nombre: ");
+		labelCrearNombre.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaCrearCuenta.add(labelCrearNombre);
 		labelCrearNombre.setBounds(80, 50, 200, 30);
 			
@@ -349,6 +343,7 @@ public class Principal {
         });
 		
 		labelCrearEmail = new JLabel("Introduzca su email: ");
+		labelCrearEmail.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaCrearCuenta.add(labelCrearEmail);
 		labelCrearEmail.setBounds(80, 125, 200, 30);
 			
@@ -367,6 +362,7 @@ public class Principal {
         });
 		
 		labelCrearContrasenya = new JLabel("Cree una contrasena: ");
+		labelCrearContrasenya.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaCrearCuenta.add(labelCrearContrasenya);
 		labelCrearContrasenya.setBounds(80, 200, 200, 30);
 		
@@ -375,10 +371,11 @@ public class Principal {
 		txtCrearContrasenya.setBounds(250, 200, 300, 30);
 		
 		labelCrearEdad = new JLabel("Seleccione su edad: ");
+		labelCrearEdad.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaCrearCuenta.add(labelCrearEdad);
 		labelCrearEdad.setBounds(80, 275, 200, 30);
 		
-				SpinnerModel model = new SpinnerNumberModel(18, 0, 99, 1); //default 18, min 0, max 99, +-1
+		SpinnerModel model = new SpinnerNumberModel(18, 0, 99, 1); //default 18, min 0, max 99, +-1
 		//spinCrearEdad.setValue(18);
 		spinCrearEdad = new JSpinner(model);
 		ventanaCrearCuenta.add(spinCrearEdad);
@@ -485,10 +482,13 @@ public class Principal {
 		//Anyadiendo los componentes de ventanaGenero
 		labelEscogerGenero = new JLabel("Seleccione su genero: ");
 		ventanaGenero.add(labelEscogerGenero);
-		labelEscogerGenero.setBounds(100, 150, 200, 40);
+		labelEscogerGenero.setBounds(115, 145, 200, 40);
+		labelEscogerGenero.setFont(new Font("Monospace", Font.BOLD, 13));
 		
-		radioMasculino = new JRadioButton("Masculino");
+		radioMasculino = new JRadioButton("Masculino");	
+		radioMasculino.setFont(new Font("Monospace", Font.PLAIN, 12));
 		radioFemenino = new JRadioButton("Femenino");
+		radioFemenino.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ButtonGroup radioButtonsGenero = new ButtonGroup();
 		radioButtonsGenero.add(radioFemenino);
 		radioButtonsGenero.add(radioMasculino);
@@ -655,16 +655,17 @@ public class Principal {
 			
 		//Anyadiendo los componentes de ventanaPerfilGustosDos
 		labelEscoge = new JLabel("Cual de las siguientes prendas te gusta mas para ti?");
+		labelEscoge.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPerfilGustosDos.add(labelEscoge);
 		labelEscoge.setBounds(200, 30, 350, 40);
 			
 		radioPrendaIzq = new JRadioButton("Opcion 1");
 		ventanaPerfilGustosDos.add(radioPrendaIzq);
-		radioPrendaIzq.setBounds(200, 280, 100, 40);
+		radioPrendaIzq.setBounds(200, 280, 100, 30);
 			
 		radioPrendaDer = new JRadioButton("Opcion 2");
 		ventanaPerfilGustosDos.add(radioPrendaDer);
-		radioPrendaDer.setBounds(420, 280, 100, 40);
+		radioPrendaDer.setBounds(420, 280, 100, 30);
 		
 		ButtonGroup bgPerfilGustosDos = new ButtonGroup();
 		bgPerfilGustosDos.add(radioPrendaIzq);
@@ -814,16 +815,20 @@ public class Principal {
 		
 		//Anyadiendo los compenentes de ventanaPideOutfit
 		preguntaTiempo = new JLabel("Que tiempo hace hoy?");
+		preguntaTiempo.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPideOutfit.add(preguntaTiempo);
 		preguntaTiempo.setBounds(50, 0, 300, 100);
 		
 		radioSol = new JRadioButton("Soleado");
+		radioSol.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioSol);
 		radioSol.setBounds(50, 80, 100, 40);
 		radioLluvia = new JRadioButton("Llueve");
+		radioLluvia.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioLluvia);
 		radioLluvia.setBounds(50, 120, 100, 40);
 		radioNublado = new JRadioButton("Nublado");
+		radioNublado.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioNublado);
 		radioNublado.setBounds(50, 160, 100, 40);
 		
@@ -833,10 +838,12 @@ public class Principal {
 		bgPideOutfit.add(radioNublado);
 		
 		preguntaEstilo = new JLabel("Tienes algun estilo en mente para tu outfit?");
+		preguntaEstilo.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPideOutfit.add(preguntaEstilo);
 		preguntaEstilo.setBounds(50, 210, 300, 60);
 		
 		radioNo = new JRadioButton("No");
+		radioNo.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioNo);
 		radioNo.setBounds(50, 260, 50, 30);
 		
@@ -945,8 +952,11 @@ public class Principal {
 		
 		//Anyadiendo los componentes de ventanaAnyadirVestimenta
 		estilosLabelAnyadirVestimenta = new JLabel("Selecciona un estilo: (F para Femenino y M para masculino)");
+		estilosLabelAnyadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 		colorLabelAnyadirVestimenta = new JLabel("Selecciona un color: ");
+		colorLabelAnyadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 		tiempoLabelAnyadirvestimenta = new JLabel("Selecciona el tiempo: ");
+		tiempoLabelAnyadirvestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 		
 		sol = new JRadioButton("Sol");
 		lluvia = new JRadioButton("Lluvia");
@@ -975,7 +985,7 @@ public class Principal {
 		coloresComboBoxAnyadirVestimenta.addItem("Negro");
 		
 		estilosLabelAnyadirVestimenta.setBounds(40,200,400,40);
-		colorLabelAnyadirVestimenta.setBounds(400,200,200,40);
+		colorLabelAnyadirVestimenta.setBounds(450,200,200,40);
 		tiempoLabelAnyadirvestimenta.setBounds(40,50,200,40);
 		
 		sol.setBounds(40,100,100,40);
@@ -983,7 +993,7 @@ public class Principal {
 		nublado.setBounds(280,100,100,40);
 		
 		estilosComboBoxAnyadirVestimenta.setBounds(40,250,100,40);
-		coloresComboBoxAnyadirVestimenta.setBounds(400,250,100,40);
+		coloresComboBoxAnyadirVestimenta.setBounds(450,250,100,40);
 		
 		ButtonGroup radioButtonsTiempo = new ButtonGroup();
 		radioButtonsTiempo.add(sol);
@@ -1041,8 +1051,10 @@ public class Principal {
 		
 		//Anyadiendo los componentes de ventanaFeedback
 		nivelSatisfaccion = new JLabel("Nivel de satisfaccion: ");
+		nivelSatisfaccion.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaFeedback.add(nivelSatisfaccion);
 		gustoColores = new JLabel("Te han gustado los colores?");
+		gustoColores.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaFeedback.add(gustoColores);
 		
 		estrella1 = new JRadioButton("*");
@@ -1051,7 +1063,9 @@ public class Principal {
 		estrella4 = new JRadioButton("* * * *");
 		estrella5 = new JRadioButton("* * * * *");
 		si = new JRadioButton("Si");
+		si.setFont(new Font("Monospace", Font.PLAIN, 12));
 		no = new JRadioButton("No");
+		no.setFont(new Font("Monospace", Font.PLAIN, 12));
 		
 		ButtonGroup radioButtonsEstrellas = new ButtonGroup();
 		radioButtonsEstrellas.add(estrella1);
@@ -1071,9 +1085,8 @@ public class Principal {
 		ventanaFeedback.add(si);
 		ventanaFeedback.add(no);
 		
-		//probando si funciona el pito git
 		nivelSatisfaccion.setBounds(100,50,200,50);
-		gustoColores.setBounds(100,170,200,50);
+		gustoColores.setBounds(100,175,200,50);
 		
 		estrella1.setBounds(100,100,80,50);
 		estrella2.setBounds(200,100,80,50);
@@ -1085,7 +1098,7 @@ public class Principal {
 		
 		botonInicioFeedback = new JButton("Mandar e inicio");
 		ventanaFeedback.add(botonInicioFeedback);
-		botonInicioFeedback.setBounds(260, 350, 200, 30);
+		botonInicioFeedback.setBounds(260, 330, 200, 30);
 		
 		errorFeedback = new JLabel();
 		ventanaFeedback.add(errorFeedback);
