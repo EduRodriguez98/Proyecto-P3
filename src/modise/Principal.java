@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -116,8 +117,9 @@ public class Principal {
 		
 		//ventanaAnyadirVestimenta
 		JRadioButton sol, lluvia, nublado;
-		JLabel estilosLabelAnyadirVestimenta, colorLabelAnyadirVestimenta, tiempoLabelAnyadirvestimenta, errorPideOutfit;
+		JLabel estilosLabelAnyadirVestimenta, colorLabelAnyadirVestimenta, tiempoLabelAnyadirvestimenta, errorVentanaAnyadirVestimenta ;
 		boolean escrito5;
+		JButton ventanaAnyadirVestimentaAtras, ventanaAnyadirVestimentaAnyadir;
 		
 		JComboBox<String> estilosComboBoxAnyadirVestimenta;
 		
@@ -127,7 +129,7 @@ public class Principal {
 		//ventanaPideOutfit
 		JButton botonAtrasPideOutfit, botonBuscar;
 		JRadioButton radioSol, radioLluvia, radioNublado, radioNo;
-		JLabel preguntaEstilo, preguntaTiempo;
+		JLabel preguntaEstilo, preguntaTiempo, errorPideOutfit;
 		JTextField txtEstilo;
 		//ventanaFeedback
 		
@@ -141,6 +143,9 @@ public class Principal {
 		JButton cambiarContrasenya, cambiarFecha, reiniciarPerfil;
 		
 		//ventanaEmergenteOutfit
+		
+		//ventanaProx
+		JLabel prox;
 			
 	public Principal() {
 		
@@ -205,6 +210,7 @@ public class Principal {
 		PanelFondo ventanaAnyadirVestimenta = new PanelFondo();
 		PanelFondo ventanaPideOutfit = new PanelFondo();
 		PanelFondo ventanaFeedback = new PanelFondo();
+		JPanel ventanaProx = new JPanel(); //dejadla asi
 		
 		//ventanas	Emergentes
 		JPanel ajustes = new JPanel(new GridLayout(3, 1));	
@@ -220,6 +226,7 @@ public class Principal {
 		CrearPanel(ventanaAnyadirVestimenta);
 		CrearPanel(ventanaPideOutfit);
 		CrearPanel(ventanaFeedback); 
+		CrearPanel(ventanaProx);
 		
 		frame.getContentPane().add(ventanaInicioSesion);
 		frame.getContentPane().add(ventanaCrearCuenta);	
@@ -231,6 +238,7 @@ public class Principal {
 		frame.getContentPane().add(ventanaAnyadirVestimenta);
 		frame.getContentPane().add(ventanaPideOutfit);
 		frame.getContentPane().add(ventanaFeedback);
+		frame.getContentPane().add(ventanaProx);
 		
 		ventanaInicioSesion.setVisible(true); //la primera ventana visible
 		
@@ -641,7 +649,8 @@ public class Principal {
 					ventanaPerfilGustosUno.remove(formalF);
 					ventanaPerfilGustosUno.remove(sportyChickF);
 				}	
-						
+			errorPerfilGustosUno.setText("");
+				
 			CambiarPanel(ventanaPerfilGustosUno, ventanaGenero);
 			}
 		});
@@ -736,6 +745,8 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaPerfilGustosDos, ventanaPerfilGustosUno);
 				errorPerfilGustosUno.setText("");	
+				errorPerfilGustosDos.setText("");
+				bgPerfilGustosDos.clearSelection();
 			}
 		});
 			
@@ -763,9 +774,9 @@ public class Principal {
 		ventanaMenuPrincipal.add(botonAnyadirVestimenta);
 		
 		
-		//Este botï¿½n solo puede ser visible cuando se hace log in con una cuenta administradora, para que solo los
+		//Este boton solo puede ser visible cuando se hace log in con una cuenta administradora, para que solo los
 		//administradores puedan gestionar a los administradores.
-		//De momento la dejamos ahï¿½ y ya le haremos el if admin = true .setvisible luego
+		//De momento la dejamos ahi y ya le haremos el if admin = true .setvisible luego
 		botonMasMenosAdmin = new JButton("Admin +/-");
 		botonMasMenosAdmin.setBounds(550,40, 110, 30);
 		ventanaMenuPrincipal.add(botonMasMenosAdmin);
@@ -799,6 +810,7 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 				mb.setVisible(false);
 				mb.setEnabled(false);
+				CambiarPanel(ventanaMenuPrincipal, ventanaProx);
 			}
 		});
 		
@@ -898,6 +910,37 @@ public class Principal {
 				mb.setVisible(true);
 				mb.setEnabled(true);
 				errorPideOutfit.setText("");
+				bgPideOutfit.clearSelection();
+				radioNo.setSelected(false);
+				txtEstilo.setText("ej: Clasico");
+			}
+		});
+		
+		txtEstilo.addMouseListener(new MouseListener() {	//trucazo
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				radioNo.setSelected(false);
 			}
 		});
 		//Action Listeners
@@ -949,6 +992,19 @@ public class Principal {
 		radioButtonsTiempo.add(lluvia);
 		radioButtonsTiempo.add(nublado);
 		
+		ventanaAnyadirVestimentaAtras = new JButton("Atras");
+		ventanaAnyadirVestimenta.add(ventanaAnyadirVestimentaAtras);
+		ventanaAnyadirVestimentaAtras.setBounds(10, 340, 200, 30);
+		
+		ventanaAnyadirVestimentaAnyadir = new JButton("Anyadir");
+		ventanaAnyadirVestimenta.add(ventanaAnyadirVestimentaAnyadir);
+		ventanaAnyadirVestimentaAnyadir.setBounds(500, 340, 200, 30);
+		
+		errorVentanaAnyadirVestimenta = new JLabel();
+		ventanaAnyadirVestimenta.add(errorVentanaAnyadirVestimenta);
+		errorVentanaAnyadirVestimenta.setBounds(300, 340, 400, 40);
+		errorVentanaAnyadirVestimenta.setForeground(Color.RED);
+		
 		ventanaAnyadirVestimenta.add(sol);
 		ventanaAnyadirVestimenta.add(lluvia);
 		ventanaAnyadirVestimenta.add(nublado);
@@ -957,6 +1013,31 @@ public class Principal {
 		ventanaAnyadirVestimenta.add(estilosLabelAnyadirVestimenta);
 		ventanaAnyadirVestimenta.add(colorLabelAnyadirVestimenta);
 		ventanaAnyadirVestimenta.add(tiempoLabelAnyadirvestimenta);
+		
+		//actionlisteners ventanaAnyadirVestimenta
+		ventanaAnyadirVestimentaAtras.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaAnyadirVestimenta, ventanaMenuPrincipal);
+				radioButtonsTiempo.clearSelection();
+				errorVentanaAnyadirVestimenta.setText("");
+			}
+		});
+		
+		ventanaAnyadirVestimentaAnyadir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (radioButtonsTiempo.isSelected(null)) {
+					errorVentanaAnyadirVestimenta.setText("Selecciona el tiempo.");
+				} else {
+					CambiarPanel(ventanaAnyadirVestimenta, ventanaProx); //prox
+					radioButtonsTiempo.clearSelection();
+					errorVentanaAnyadirVestimenta.setText("");
+				}
+			}
+		});
 		
 		//Anyadiendo los componentes de ventanaFeedback
 		nivelSatisfaccion = new JLabel("Nivel de satisfaccion: ");
@@ -1058,6 +1139,12 @@ public class Principal {
 			}
 		});
 		
+		//VentanaProximamente
+		prox = new JLabel("PROXIMAMENTE");
+		prox.setBounds(100, 100, 100, 50);
+		ventanaProx.add(prox);
+		
+		//actionlistener menu - cerrar sesion
 		mi1.addActionListener(new ActionListener() {
 			
 			@Override
