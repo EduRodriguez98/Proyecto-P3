@@ -130,8 +130,8 @@ public class Principal {
 		JButton botonAtrasPideOutfit, botonBuscar;
 		JRadioButton radioSol, radioLluvia, radioNublado, radioNo;
 		JLabel preguntaEstilo, preguntaTiempo, errorPideOutfit;
-		JTextField txtEstilo;
-		//ventanaFeedback
+		JComboBox<String> estilosComboBoxPideOutfit;
+			//JTextField txtEstilo;
 		
 		//ventanaFeedback
 		JLabel nivelSatisfaccion, gustoColores, errorFeedback;
@@ -849,7 +849,7 @@ public class Principal {
 		ventanaPideOutfit.add(radioNo);
 		radioNo.setBounds(50, 260, 50, 30);
 		
-		txtEstilo = new JTextField("ej: Clasico");
+		/*txtEstilo = new JTextField("ej: Clasico");
 		ventanaPideOutfit.add(txtEstilo);
 		txtEstilo.setBounds(150, 260, 200, 30);
 		escrito5 = false;
@@ -861,7 +861,24 @@ public class Principal {
                 	escrito5 = true;
                 }
             }
-        });
+        });*/
+		
+		estilosComboBoxPideOutfit = new JComboBox<String>();
+		ventanaPideOutfit.add(estilosComboBoxPideOutfit);
+		estilosComboBoxPideOutfit.addItem(null); //mantener esta opcion como primero!!! se supone que es -1
+		estilosComboBoxPideOutfit.addItem("ClasicoF");		//1
+		estilosComboBoxPideOutfit.addItem("ClasicoM");		//2
+		estilosComboBoxPideOutfit.addItem("UrbanaF");
+		estilosComboBoxPideOutfit.addItem("UrbanaM");		//4
+		estilosComboBoxPideOutfit.addItem("RockF");
+		estilosComboBoxPideOutfit.addItem("RockM");
+		estilosComboBoxPideOutfit.addItem("BohoF");
+		estilosComboBoxPideOutfit.addItem("SmartM");		//8
+		estilosComboBoxPideOutfit.addItem("FormalF");
+		estilosComboBoxPideOutfit.addItem("FormalM");
+		estilosComboBoxPideOutfit.addItem("SportyChickF");
+		estilosComboBoxPideOutfit.addItem("CasualChickM"); //12
+		estilosComboBoxPideOutfit.setBounds(150, 260, 200, 30);
 		
 		botonAtrasPideOutfit = new JButton("Atras");
 		ventanaPideOutfit.add(botonAtrasPideOutfit);
@@ -882,7 +899,9 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (radioNo.isSelected()) {
-					txtEstilo.setText("");
+					//txtEstilo.setText("");
+					estilosComboBoxPideOutfit.setSelectedIndex(0); //dejarlo en 0
+					System.out.println("radioNo , " + estilosComboBoxPideOutfit.getSelectedIndex());
 				}
 			}
 		});
@@ -892,16 +911,17 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//CambiarPanel(ventanaPideOutfit, ventanaCarga);
-				String noValido = "ej: Clasico";
-				
-				if (bgPideOutfit.getSelection() != null && (radioNo.isSelected() || !txtEstilo.getText().equals("")) && !txtEstilo.getText().equals(noValido)) { //no va
+				System.out.println(estilosComboBoxPideOutfit.getSelectedIndex());
+				//String noValido = "ej: Clasico";
+				if (bgPideOutfit.getSelection() != null && (radioNo.isSelected() || estilosComboBoxPideOutfit.getSelectedIndex() != -1
+						/*!txtEstilo.getText().equals("")) && !txtEstilo.getText().equals(noValido)*/) ) {
 					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
 					UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
 					JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
 					escrito5 = false;
 					bgPideOutfit.clearSelection();
 					radioNo.setSelected(false);
-					txtEstilo.setText("ej: Clasico");
+					//txtEstilo.setText("ej: Clasico");
 					errorPideOutfit.setText("");
 				} else {
 					errorPideOutfit.setText("Rellena todos los campos requeridos.");
@@ -919,11 +939,11 @@ public class Principal {
 				errorPideOutfit.setText("");
 				bgPideOutfit.clearSelection();
 				radioNo.setSelected(false);
-				txtEstilo.setText("ej: Clasico");
+				//txtEstilo.setText("ej: Clasico");
 			}
 		});
 		
-		txtEstilo.addMouseListener(new MouseListener() {	//trucazo
+		/*txtEstilo.addMouseListener(new MouseListener() {	//trucazo
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -949,7 +969,40 @@ public class Principal {
 			public void mouseClicked(MouseEvent e) {
 				radioNo.setSelected(false);
 			}
+		});*/
+		
+		estilosComboBoxPideOutfit.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (estilosComboBoxPideOutfit.getSelectedIndex() != 0) {
+					radioNo.setSelected(false);
+				} else if (estilosComboBoxPideOutfit.getSelectedIndex() == 0) {
+					radioNo.setSelected(true);
+				}
+			}
 		});
+		
 		//Action Listeners
 		
 		//Anyadiendo los componentes de ventanaAnyadirVestimenta
@@ -1229,7 +1282,7 @@ public class Principal {
 				//ventanaPideOutfit
 				bgPideOutfit.clearSelection();
 				radioNo.setSelected(false);
-				txtEstilo.setText("ej: Clasico");
+				//txtEstilo.setText("ej: Clasico");
 				escrito5 = false;
 				errorPideOutfit.setText("");
 				
