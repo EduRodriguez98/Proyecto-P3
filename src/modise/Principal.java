@@ -2,6 +2,7 @@ package modise;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -174,20 +175,6 @@ public class Principal {
 		//mb.setEnabled(true);
 		frame.setJMenuBar(mb);
 		
-		//action listeners del menu DEBAJO del todo, ANTES del main!!!
-		
-		//Creando y Anyadiendo Paneles al Frame
-		/*JPanel ventanaInicioSesion = new JPanel();
-		JPanel ventanaCrearCuenta = new JPanel();
-		JPanel ventanaGenero = new JPanel(); 
-		JPanel ventanaPerfilGustosUno = new JPanel();
-		JPanel ventanaPerfilGustosDos = new JPanel();
-		JPanel ventanaMenuPrincipal = new JPanel();
-		JPanel ventanaCarga = new JPanel();
-		JPanel ventanaAnyadirVestimenta = new JPanel();
-		JPanel ventanaPideOutfit = new JPanel();
-		JPanel ventanaFeedback = new JPanel();	*/
-		
 		//Imagen de fondo
 		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("modise/fondo.jpg"));
 
@@ -244,8 +231,9 @@ public class Principal {
 		
 		//Anyadiendo los componentes de ventanaInicioSesion
 		labelEmail = new JLabel("Email: ");
+		labelEmail.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaInicioSesion.add(labelEmail);
-		labelEmail.setBounds(60, 65, 100, 40);
+		labelEmail.setBounds(60, 62, 100, 40);
 		
 		txtEmail = new JTextField("ejemplo@gmail.com");
 		ventanaInicioSesion.add(txtEmail);
@@ -262,8 +250,9 @@ public class Principal {
         });
 		
 		labelContrasenya = new JLabel("Contrasena: ");
+		labelContrasenya.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaInicioSesion.add(labelContrasenya);
-		labelContrasenya.setBounds(60, 135, 100, 40);
+		labelContrasenya.setBounds(60, 133, 100, 40);
 		
 		contrasenya = new JPasswordField("12345");	//cambiado
 		contrasenya.setEchoChar('*');				//hacer checkbox isSelected para ver contraseña, HECHO
@@ -281,18 +270,22 @@ public class Principal {
         });
 		
 		botonInicio = new JButton("Iniciar Sesion");
+		botonInicio.setFont(new Font("Monospace", Font.BOLD, 12));
 		ventanaInicioSesion.add(botonInicio);
 		botonInicio.setBounds(500, 140, 200, 30);
 		
 		botonCrear = new JButton("Crear Cuenta");
 		ventanaInicioSesion.add(botonCrear);
 		botonCrear.setBounds(500, 300, 200, 30);
+		botonCrear.setFont(new Font("Monospace", Font.BOLD, 12));
 		
 		view = new JCheckBox("Visualizar contraseña");
+		view.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaInicioSesion.add(view);
 		view.setBounds(160, 190, 150, 30);
 				
 		labelPregunta = new JLabel("Es tu primera vez en Modise? Pulsa el boton Crear Cuenta para empezar!");
+		labelPregunta.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaInicioSesion.add(labelPregunta);
 		labelPregunta.setBounds(60, 295, 450, 40);
 		
