@@ -1102,7 +1102,7 @@ public class Principal {
 		
 		errorFeedback = new JLabel();
 		ventanaFeedback.add(errorFeedback);
-		errorFeedback.setBounds(275, 310, 200, 30);
+		errorFeedback.setBounds(275, 300, 200, 30);
 		errorFeedback.setForeground(Color.RED);
 		
 		//Action Listeners
