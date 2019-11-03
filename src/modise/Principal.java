@@ -391,17 +391,17 @@ public class Principal {
 		
 		errorNombre = new JLabel();
 		ventanaCrearCuenta.add(errorNombre);
-		errorNombre.setBounds(250, 90, 150, 30);
+		errorNombre.setBounds(250, 80, 150, 30);
 		errorNombre.setForeground(Color.RED);
 		
 		errorEmail = new JLabel();
 		ventanaCrearCuenta.add(errorEmail);
-		errorEmail.setBounds(250, 165, 150, 30);
+		errorEmail.setBounds(250, 155, 150, 30);
 		errorEmail.setForeground(Color.RED);
 		
 		errorContrasenya = new JLabel();
 		ventanaCrearCuenta.add(errorContrasenya);
-		errorContrasenya.setBounds(250, 240, 150, 30);
+		errorContrasenya.setBounds(250, 230, 150, 30);
 		errorContrasenya.setForeground(Color.RED);
 		
 		//mb.setVisible(false);
