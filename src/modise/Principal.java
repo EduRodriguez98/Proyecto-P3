@@ -923,6 +923,7 @@ public class Principal {
 					radioNo.setSelected(false);
 					//txtEstilo.setText("ej: Clasico");
 					errorPideOutfit.setText("");
+					estilosComboBoxPideOutfit.setSelectedIndex(0);
 				} else {
 					errorPideOutfit.setText("Rellena todos los campos requeridos.");
 				}
