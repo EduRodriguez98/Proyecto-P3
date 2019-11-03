@@ -176,21 +176,21 @@ public class Principal {
 		//Imagen de fondo
 		ImageIcon imagenInicio = new ImageIcon(this.getClass().getClassLoader().getResource("modise/fondo.jpg"));
 
-		JPanel ventanaInicioSesion = new JPanel() {
+		JPanel ventanaMenuPrincipal = new JPanel() {
 			private static final long serialVersionUID = 1L;
 			public void paintComponent(Graphics g) {
 		        Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
 		        Graphics bufferGraphics = bufferImage.getGraphics();
-		        bufferGraphics.drawImage(imagenInicio.getImage(), 0, 0, 720, 440, null);
+		        bufferGraphics.drawImage(imagenInicio.getImage(), 0, -23, 720, 440, null);
 		        g.drawImage(bufferImage, 0, 0, this);
 			}
 		};
-			
+		
+		PanelFondo ventanaInicioSesion = new PanelFondo();
 		PanelFondo ventanaCrearCuenta = new PanelFondo();
 		PanelFondo ventanaGenero = new PanelFondo(); 
 		PanelFondo ventanaPerfilGustosUno = new PanelFondo();
 		PanelFondo ventanaPerfilGustosDos = new PanelFondo();
-		PanelFondo ventanaMenuPrincipal = new PanelFondo();
 		PanelFondo ventanaCarga = new PanelFondo();
 		PanelFondo ventanaAnyadirVestimenta = new PanelFondo();
 		PanelFondo ventanaPideOutfit = new PanelFondo();
@@ -307,6 +307,8 @@ public class Principal {
 				CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
 				mb.setVisible(true);
 				mb.setEnabled(true);
+				System.out.println("menubar height "+mb.getHeight());
+				System.out.println("menubar width "+mb.getWidth());
 			}
 		});
 		
