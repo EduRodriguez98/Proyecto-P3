@@ -326,6 +326,7 @@ public class Principal {
 			
 		//Anyadiendo los componentes de ventanaCrearCuenta
 		labelCrearNombre = new JLabel("Introduzca su nombre: ");
+		labelCrearNombre.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaCrearCuenta.add(labelCrearNombre);
 		labelCrearNombre.setBounds(80, 50, 200, 30);
 			
@@ -344,6 +345,7 @@ public class Principal {
         });
 		
 		labelCrearEmail = new JLabel("Introduzca su email: ");
+		labelCrearEmail.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaCrearCuenta.add(labelCrearEmail);
 		labelCrearEmail.setBounds(80, 125, 200, 30);
 			
@@ -362,6 +364,7 @@ public class Principal {
         });
 		
 		labelCrearContrasenya = new JLabel("Cree una contrasena: ");
+		labelCrearContrasenya.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaCrearCuenta.add(labelCrearContrasenya);
 		labelCrearContrasenya.setBounds(80, 200, 200, 30);
 		
@@ -370,10 +373,11 @@ public class Principal {
 		txtCrearContrasenya.setBounds(250, 200, 300, 30);
 		
 		labelCrearEdad = new JLabel("Seleccione su edad: ");
+		labelCrearEdad.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaCrearCuenta.add(labelCrearEdad);
 		labelCrearEdad.setBounds(80, 275, 200, 30);
 		
-				SpinnerModel model = new SpinnerNumberModel(18, 0, 99, 1); //default 18, min 0, max 99, +-1
+		SpinnerModel model = new SpinnerNumberModel(18, 0, 99, 1); //default 18, min 0, max 99, +-1
 		//spinCrearEdad.setValue(18);
 		spinCrearEdad = new JSpinner(model);
 		ventanaCrearCuenta.add(spinCrearEdad);
@@ -480,10 +484,13 @@ public class Principal {
 		//Anyadiendo los componentes de ventanaGenero
 		labelEscogerGenero = new JLabel("Seleccione su genero: ");
 		ventanaGenero.add(labelEscogerGenero);
-		labelEscogerGenero.setBounds(100, 150, 200, 40);
+		labelEscogerGenero.setBounds(115, 145, 200, 40);
+		labelEscogerGenero.setFont(new Font("Monospace", Font.BOLD, 13));
 		
-		radioMasculino = new JRadioButton("Masculino");
+		radioMasculino = new JRadioButton("Masculino");	
+		radioMasculino.setFont(new Font("Monospace", Font.PLAIN, 12));
 		radioFemenino = new JRadioButton("Femenino");
+		radioFemenino.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ButtonGroup radioButtonsGenero = new ButtonGroup();
 		radioButtonsGenero.add(radioFemenino);
 		radioButtonsGenero.add(radioMasculino);
@@ -650,16 +657,17 @@ public class Principal {
 			
 		//Anyadiendo los componentes de ventanaPerfilGustosDos
 		labelEscoge = new JLabel("Cual de las siguientes prendas te gusta mas para ti?");
+		labelEscoge.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPerfilGustosDos.add(labelEscoge);
 		labelEscoge.setBounds(200, 30, 350, 40);
 			
 		radioPrendaIzq = new JRadioButton("Opcion 1");
 		ventanaPerfilGustosDos.add(radioPrendaIzq);
-		radioPrendaIzq.setBounds(200, 280, 100, 40);
+		radioPrendaIzq.setBounds(200, 280, 100, 30);
 			
 		radioPrendaDer = new JRadioButton("Opcion 2");
 		ventanaPerfilGustosDos.add(radioPrendaDer);
-		radioPrendaDer.setBounds(420, 280, 100, 40);
+		radioPrendaDer.setBounds(420, 280, 100, 30);
 		
 		ButtonGroup bgPerfilGustosDos = new ButtonGroup();
 		bgPerfilGustosDos.add(radioPrendaIzq);
@@ -946,8 +954,11 @@ public class Principal {
 		
 		//Anyadiendo los componentes de ventanaAnyadirVestimenta
 		estilosLabelAnyadirVestimenta = new JLabel("Selecciona un estilo: (F para Femenino y M para masculino)");
+		estilosLabelAnyadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 		colorLabelAnyadirVestimenta = new JLabel("Selecciona un color: ");
+		colorLabelAnyadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 		tiempoLabelAnyadirvestimenta = new JLabel("Selecciona el tiempo: ");
+		tiempoLabelAnyadirvestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 		
 		sol = new JRadioButton("Sol");
 		lluvia = new JRadioButton("Lluvia");
@@ -976,7 +987,7 @@ public class Principal {
 		coloresComboBoxAnyadirVestimenta.addItem("Negro");
 		
 		estilosLabelAnyadirVestimenta.setBounds(40,200,400,40);
-		colorLabelAnyadirVestimenta.setBounds(400,200,200,40);
+		colorLabelAnyadirVestimenta.setBounds(450,200,200,40);
 		tiempoLabelAnyadirvestimenta.setBounds(40,50,200,40);
 		
 		sol.setBounds(40,100,100,40);
@@ -984,7 +995,7 @@ public class Principal {
 		nublado.setBounds(280,100,100,40);
 		
 		estilosComboBoxAnyadirVestimenta.setBounds(40,250,100,40);
-		coloresComboBoxAnyadirVestimenta.setBounds(400,250,100,40);
+		coloresComboBoxAnyadirVestimenta.setBounds(450,250,100,40);
 		
 		ButtonGroup radioButtonsTiempo = new ButtonGroup();
 		radioButtonsTiempo.add(sol);
@@ -1021,6 +1032,8 @@ public class Principal {
 				CambiarPanel(ventanaAnyadirVestimenta, ventanaMenuPrincipal);
 				radioButtonsTiempo.clearSelection();
 				errorVentanaAnyadirVestimenta.setText("");
+				mb.setVisible(true);
+				mb.setEnabled(true);
 			}
 		});
 		
