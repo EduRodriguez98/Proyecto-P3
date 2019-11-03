@@ -108,11 +108,10 @@ public class Principal {
 		private boolean stop = false;
 		private final int MAX_STEPS = 100000;
 		
-		
 		//ventanaMenuPrincipal
 		JMenuBar mb;
 		JMenu menu1;
-		JMenuItem mi1, mi2, mi3;
+		JMenuItem mi1, mi2, mi3; //mi1 = cerrar sesion
 		JButton botonPideOutfit, botonAnyadirVestimenta, botonMasMenosAdmin;
 		
 		//ventanaAnyadirVestimenta
@@ -134,8 +133,7 @@ public class Principal {
 		//ventanaFeedback
 		
 		//ventanaFeedback
-		JLabel nivelSatisfaccion;
-		JLabel gustoColores;
+		JLabel nivelSatisfaccion, gustoColores, errorFeedback;
 		JRadioButton estrella1, estrella2, estrella3, estrella4,estrella5, si, no;
 		JButton botonInicioFeedback;
 		
@@ -605,7 +603,7 @@ public class Principal {
 		botonPerfilGustosUnoSiguiente.addActionListener(new ActionListener() {
 				
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { //qwe
 				
 				if (radioMasculino.isSelected()) {
 					if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() ||
@@ -1022,6 +1020,8 @@ public class Principal {
 				CambiarPanel(ventanaAnyadirVestimenta, ventanaMenuPrincipal);
 				radioButtonsTiempo.clearSelection();
 				errorVentanaAnyadirVestimenta.setText("");
+				mb.setVisible(true);
+				mb.setEnabled(true);
 			}
 		});
 		
@@ -1087,17 +1087,28 @@ public class Principal {
 		ventanaFeedback.add(botonInicioFeedback);
 		botonInicioFeedback.setBounds(260, 350, 200, 30);
 		
+		errorFeedback = new JLabel();
+		ventanaFeedback.add(errorFeedback);
+		errorFeedback.setBounds(275, 310, 200, 30);
+		errorFeedback.setForeground(Color.RED);
+		
 		//Action Listeners
 		botonInicioFeedback.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaFeedback, ventanaMenuPrincipal);
-				mb.setVisible(true);
-				mb.setEnabled(true);
-				System.out.println("Mandando feedback... (?)");
-				radioButtonsEstrellas.clearSelection();
-				radioButtonsSiNo.clearSelection();			
+				
+				if (!radioButtonsEstrellas.isSelected(null) && (si.isSelected() || no.isSelected())) {
+					CambiarPanel(ventanaFeedback, ventanaMenuPrincipal);
+					mb.setVisible(true);
+					mb.setEnabled(true);
+					System.out.println("Mandando feedback... (?)");
+					radioButtonsEstrellas.clearSelection();
+					radioButtonsSiNo.clearSelection();	
+					errorFeedback.setText("");
+				} else {
+					errorFeedback.setText("Contesta todas las preguntas.");	
+				}
 			}
 		});
 		
@@ -1156,7 +1167,7 @@ public class Principal {
 				//ventanaInicioSesion
 				txtEmail.setText("ejemplo@gmail.com");
 				contrasenya.setText("12345");
-				view.setSelected(false);
+				//view.setSelected(false);	dejarlo asi
 				escrito1 = false;
 				escrito2 = false;
 				
@@ -1172,15 +1183,15 @@ public class Principal {
 				radioButtonsGenero.clearSelection();
 				errorGenero.setText("");
 				
-				//ventanaPerfilGustosUno
-				if (radioMasculino.isSelected() == true ) {
+				//ventanaPerfilGustosUno	//qwe
+				if (radioMasculino.isSelected()) {
 					clasicoM.setSelected(false);
 					urbanaM.setSelected(false);
 					rockM.setSelected(false);
 					smartM.setSelected(false);
 					formalM.setSelected(false);
 					casualChickM.setSelected(false);
-				} else if (radioFemenino.isSelected() == true) {
+				} else if (radioFemenino.isSelected()) {
 					clasicoF.setSelected(false);
 					urbanaF.setSelected(false);
 					rockF.setSelected(false);
@@ -1210,6 +1221,9 @@ public class Principal {
 				//ventanaFeedback
 				radioButtonsEstrellas.clearSelection();
 				radioButtonsSiNo.clearSelection();
+				
+				//ventanaAnyadirVestimenta
+				radioButtonsTiempo.clearSelection();
 				
 				//"sobras"
 				//quitar comentario y agregar aqui	<-
