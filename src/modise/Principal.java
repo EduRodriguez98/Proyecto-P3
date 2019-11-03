@@ -809,16 +809,20 @@ public class Principal {
 		
 		//Anyadiendo los compenentes de ventanaPideOutfit
 		preguntaTiempo = new JLabel("Que tiempo hace hoy?");
+		preguntaTiempo.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPideOutfit.add(preguntaTiempo);
 		preguntaTiempo.setBounds(50, 0, 300, 100);
 		
 		radioSol = new JRadioButton("Soleado");
+		radioSol.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioSol);
 		radioSol.setBounds(50, 80, 100, 40);
 		radioLluvia = new JRadioButton("Llueve");
+		radioLluvia.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioLluvia);
 		radioLluvia.setBounds(50, 120, 100, 40);
 		radioNublado = new JRadioButton("Nublado");
+		radioNublado.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioNublado);
 		radioNublado.setBounds(50, 160, 100, 40);
 		
@@ -828,10 +832,12 @@ public class Principal {
 		bgPideOutfit.add(radioNublado);
 		
 		preguntaEstilo = new JLabel("Tienes algun estilo en mente para tu outfit?");
+		preguntaEstilo.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPideOutfit.add(preguntaEstilo);
 		preguntaEstilo.setBounds(50, 210, 300, 60);
 		
 		radioNo = new JRadioButton("No");
+		radioNo.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioNo);
 		radioNo.setBounds(50, 260, 50, 30);
 		
@@ -1034,8 +1040,10 @@ public class Principal {
 		
 		//Anyadiendo los componentes de ventanaFeedback
 		nivelSatisfaccion = new JLabel("Nivel de satisfaccion: ");
+		nivelSatisfaccion.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaFeedback.add(nivelSatisfaccion);
 		gustoColores = new JLabel("Te han gustado los colores?");
+		gustoColores.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaFeedback.add(gustoColores);
 		
 		estrella1 = new JRadioButton("*");
@@ -1044,7 +1052,9 @@ public class Principal {
 		estrella4 = new JRadioButton("* * * *");
 		estrella5 = new JRadioButton("* * * * *");
 		si = new JRadioButton("Si");
+		si.setFont(new Font("Monospace", Font.PLAIN, 12));
 		no = new JRadioButton("No");
+		no.setFont(new Font("Monospace", Font.PLAIN, 12));
 		
 		ButtonGroup radioButtonsEstrellas = new ButtonGroup();
 		radioButtonsEstrellas.add(estrella1);
@@ -1064,9 +1074,8 @@ public class Principal {
 		ventanaFeedback.add(si);
 		ventanaFeedback.add(no);
 		
-		//probando si funciona el pito git
 		nivelSatisfaccion.setBounds(100,50,200,50);
-		gustoColores.setBounds(100,170,200,50);
+		gustoColores.setBounds(100,175,200,50);
 		
 		estrella1.setBounds(100,100,80,50);
 		estrella2.setBounds(200,100,80,50);
@@ -1078,7 +1087,7 @@ public class Principal {
 		
 		botonInicioFeedback = new JButton("Mandar e inicio");
 		ventanaFeedback.add(botonInicioFeedback);
-		botonInicioFeedback.setBounds(260, 350, 200, 30);
+		botonInicioFeedback.setBounds(260, 330, 200, 30);
 		
 		//Action Listeners
 		botonInicioFeedback.addActionListener(new ActionListener() {
