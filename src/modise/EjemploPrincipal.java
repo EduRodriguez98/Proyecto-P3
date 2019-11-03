@@ -1,10 +1,13 @@
 package modise;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,6 +20,7 @@ public class EjemploPrincipal extends JFrame{
 
 	JLabel labelA, labelB;
 	JButton botonA;
+	
 	
 	public void CambiarPanel(JPanel g, JPanel h) {
 		g.setVisible(false);
