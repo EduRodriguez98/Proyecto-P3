@@ -12,8 +12,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -151,7 +156,8 @@ public class Principal {
 		JLabel prox;
 		
 		//mas
-		static Logger log;
+		static PrintStream log1;
+		static Logger log2;
 			
 	public Principal() {
 		
@@ -592,7 +598,15 @@ public class Principal {
 					CambiarPanel(ventanaPerfilGustosUnoM, ventanaPerfilGustosDos);
 					errorPerfilGustosUnoM.setText("");
 					
-					System.out.println("Gustos seleccionados: " + clasicoM.get);
+					//Esto es para comprobar que y como funciona
+					if(clasicoM.isSelected()){System.out.println("clasicoM");}
+					if(urbanaM.isSelected()){System.out.println("urbanaM");}					
+					if(rockM.isSelected()){System.out.println("rockM");}
+					if(smartM.isSelected()){System.out.println("smartM");}
+					if(formalM.isSelected()){System.out.println("formalM");}
+					if(casualChickM.isSelected()){System.out.println("casualChickM");}
+					System.out.println("- - - - -");
+					
 				} else {
 					errorPerfilGustosUnoM.setText("Selecciona al menos 1.");
 				}
@@ -655,16 +669,23 @@ public class Principal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) { //qwe
-				
-				
-				//} else if (radioFemenino.isSelected()) {
-					if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() ||
-					bohoF.isSelected() || formalF.isSelected() || sportyChickF.isSelected()) {
-						CambiarPanel(ventanaPerfilGustosUnoF, ventanaPerfilGustosDos);
-						errorPerfilGustosUnoF.setText("");
-					} else {
-						errorPerfilGustosUnoF.setText("Selecciona al menos 1.");
-					}
+				if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() ||
+				bohoF.isSelected() || formalF.isSelected() || sportyChickF.isSelected()) {
+					CambiarPanel(ventanaPerfilGustosUnoF, ventanaPerfilGustosDos);
+					errorPerfilGustosUnoF.setText("");
+					
+					//Esto es para comprobar que y como funciona
+					if(clasicoF.isSelected()){System.out.println("clasicoF");}
+					if(urbanaF.isSelected()){System.out.println("urbanaF");}					
+					if(rockF.isSelected()){System.out.println("rockF");}
+					if(bohoF.isSelected()){System.out.println("bohoF");}
+					if(formalF.isSelected()){System.out.println("formalF");}
+					if(sportyChickF.isSelected()){System.out.println("sportyChickF");}
+					System.out.println("- - - - -");
+					
+				} else {
+					errorPerfilGustosUnoF.setText("Selecciona al menos 1.");
+				}
 			}
 		});
 			
@@ -1305,11 +1326,17 @@ public class Principal {
 	public static void main(String[] args) {
 		
 		try {
-			log = Logger.getLogger("prueba-logger");
-			log.addHandler(new FileHandler("pruebaLogLogger.xml.1", true));
+			log1 = new PrintStream( new FileOutputStream("pruebaLog.log", true));
+		} catch (Exception e) {	
+		}
+		log1.println("Inicio del programa con log: " + (new Date()));
+		
+		try {
+			log2 = Logger.getLogger("prueba-logger");
+			log2.addHandler(new FileHandler("pruebaLogger.xml.1", true));
 		} catch (Exception e) {
 		}
-		log.log(Level.INFO, "Inicio de programa");
+		log2.log(Level.INFO, "Inicio de programa con logger: ");
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override

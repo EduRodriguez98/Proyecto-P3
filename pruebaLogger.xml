@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-04T18:53:53.179501100Z</date>
+  <millis>1572893633179</millis>
+  <nanos>501100</nanos>
+  <sequence>0</sequence>
+  <logger>prueba-logger</logger>
+  <level>INFO</level>
+  <class>modise.Principal</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Inicio de programa con logger: </message>
+</record>
+</log>
