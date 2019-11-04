@@ -592,7 +592,7 @@ public class Principal {
 					CambiarPanel(ventanaPerfilGustosUnoM, ventanaPerfilGustosDos);
 					errorPerfilGustosUnoM.setText("");
 					
-					System.out.println("Gustos seleccionados: ");
+					System.out.println("Gustos seleccionados: " + clasicoM.get);
 				} else {
 					errorPerfilGustosUnoM.setText("Selecciona al menos 1.");
 				}
