@@ -21,7 +21,6 @@ public class EjemploPrincipal extends JFrame{
 	JLabel labelA, labelB;
 	JButton botonA;
 	
-	
 	public void CambiarPanel(JPanel g, JPanel h) {
 		g.setVisible(false);
 		g.setEnabled(false);

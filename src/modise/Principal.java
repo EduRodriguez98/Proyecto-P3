@@ -14,6 +14,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -145,6 +148,9 @@ public class Principal {
 		
 		//ventanaProx
 		JLabel prox;
+		
+		//mas
+		static Logger log;
 			
 	public Principal() {
 		
@@ -1317,15 +1323,20 @@ public class Principal {
 		}
 			
 	public static void main(String[] args) {
+		
+		try {
+			log = Logger.getLogger("prueba-logger");
+			log.addHandler(new FileHandler("pruebaLogLogger.xml.1", true));
+		} catch (Exception e) {
+		}
+		log.log(Level.INFO, "Inicio de programa");
+		
 		SwingUtilities.invokeLater(new Runnable() {
-
 			@Override
 			public void run() {
 				new Principal();
 			}
 		});
-		
-		
 		
 		//Lo de la hora
 		Calendar cal = Calendar.getInstance();
