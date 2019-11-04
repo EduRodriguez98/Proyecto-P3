@@ -1329,6 +1329,8 @@ public class Principal {
 				formalM.setSelected(false);
 				casualChickM.setSelected(false);
 				
+				errorPerfilGustosUnoM.setText("");
+				
 				//ventanaPerfilGustosUnoF
 				clasicoF.setSelected(false);
 				urbanaF.setSelected(false);
@@ -1336,8 +1338,7 @@ public class Principal {
 				bohoF.setSelected(false);
 				formalF.setSelected(false);
 				sportyChickF.setSelected(false);
-			
-				errorPerfilGustosUnoM.setText("");	
+				
 				errorPerfilGustosUnoF.setText("");	
 				
 				//ventanaPerfilGustosDos
