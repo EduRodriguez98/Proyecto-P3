@@ -1333,7 +1333,7 @@ public class Principal {
 		
 		try {
 			log2 = Logger.getLogger("prueba-logger");
-			log2.addHandler(new FileHandler("pruebaLogger.xml.1", true));
+			log2.addHandler(new FileHandler("pruebaLogger.xml", true));
 		} catch (Exception e) {
 		}
 		log2.log(Level.INFO, "Inicio de programa con logger: ");
