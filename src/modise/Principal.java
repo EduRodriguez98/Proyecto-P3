@@ -72,7 +72,6 @@ public class Principal {
 	//ORDENES DE LAS VENTANAS!!!!!
 		//(CASO DE PRIMERA VEZ EN MODISE) 1.Ventana Inicio Sesion || 2.Ventana Crear Cuenta || 3.Ventana Genero || 4.Ventana Perfil Gustos 1 || 5.Ventana Perfil Gustos 2 || || 6.Ventana de Carga || 7.Ventana Menu Principal
 		//(CASO USUARIO YA REGISTRADO) 1.Ventana Inicio Sesion || 2.Ventana de Carga  || 3.Ventana Menu Principal
-		
 	//Declarando componentes
 		// VentanaInicioSesion
 		JLabel labelBrand, labelEmail, labelContrasenya, labelPregunta;
@@ -95,10 +94,15 @@ public class Principal {
 		JLabel labelEscogerGenero, errorGenero;
 		JButton botonGeneroSiguiente, botonGeneroAtras;
 		
-		// VentanaPerfilGustosUno
-		JButton botonPerfilGustosUnoSiguiente, botonPerfilGustosUnoAtras;
-		JCheckBox clasicoF, clasicoM, urbanaF, urbanaM, rockF, rockM, bohoF, smartM, formalF, formalM, sportyChickF, casualChickM;
-		JLabel errorPerfilGustosUno;
+		// VentanaPerfilGustosUnoM
+		JButton botonPerfilGustosUnoMSiguiente, botonPerfilGustosUnoMAtras;
+		JCheckBox clasicoM, urbanaM, rockM, smartM, formalM, casualChickM;
+		JLabel errorPerfilGustosUnoM;
+		
+		// VentanaPerfilGustosUnoF
+		JButton botonPerfilGustosUnoFSiguiente, botonPerfilGustosUnoFAtras;
+		JCheckBox clasicoF, urbanaF, rockF, bohoF, formalF, sportyChickF;
+		JLabel errorPerfilGustosUnoF;
 		
 		// VentanaPerfilGustos2
 		JLabel labelEscoge, errorPerfilGustosDos;
@@ -195,7 +199,8 @@ public class Principal {
 		PanelFondo ventanaInicioSesion = new PanelFondo();
 		PanelFondo ventanaCrearCuenta = new PanelFondo();
 		PanelFondo ventanaGenero = new PanelFondo(); 
-		PanelFondo ventanaPerfilGustosUno = new PanelFondo();
+		PanelFondo ventanaPerfilGustosUnoM = new PanelFondo();
+		PanelFondo ventanaPerfilGustosUnoF = new PanelFondo();
 		PanelFondo ventanaPerfilGustosDos = new PanelFondo();
 		PanelFondo ventanaCarga = new PanelFondo();
 		PanelFondo ventanaAnyadirVestimenta = new PanelFondo();
@@ -210,7 +215,8 @@ public class Principal {
 		CrearPanel(ventanaInicioSesion);
 		CrearPanel(ventanaCrearCuenta);
 		CrearPanel(ventanaGenero);
-		CrearPanel(ventanaPerfilGustosUno);
+		CrearPanel(ventanaPerfilGustosUnoM);
+		CrearPanel(ventanaPerfilGustosUnoF);
 		CrearPanel(ventanaPerfilGustosDos);
 		CrearPanel(ventanaMenuPrincipal);
 		CrearPanel(ventanaCarga);
@@ -222,7 +228,8 @@ public class Principal {
 		frame.getContentPane().add(ventanaInicioSesion);
 		frame.getContentPane().add(ventanaCrearCuenta);	
 		frame.getContentPane().add(ventanaGenero);
-		frame.getContentPane().add(ventanaPerfilGustosUno);
+		frame.getContentPane().add(ventanaPerfilGustosUnoM);
+		frame.getContentPane().add(ventanaPerfilGustosUnoF);
 		frame.getContentPane().add(ventanaPerfilGustosDos);
 		frame.getContentPane().add(ventanaMenuPrincipal);
 		frame.getContentPane().add(ventanaCarga);
@@ -527,55 +534,19 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Dependiendo de lo escogido en ventanaGenero apareceran diferentes checkboxes!
+				
 				if(radioMasculino.isSelected()) {
-					clasicoM = new JCheckBox("Clasico");
-					ventanaPerfilGustosUno.add(clasicoM);
-					clasicoM.setBounds(200, 70, 150, 40);
-					urbanaM = new JCheckBox("Urbana");
-					ventanaPerfilGustosUno.add(urbanaM);
-					urbanaM.setBounds(400, 70, 150, 40);
-					rockM = new JCheckBox("Rock");
-					ventanaPerfilGustosUno.add(rockM);
-					rockM.setBounds(200, 140 , 150, 40);
-					smartM = new JCheckBox("Smart");
-					ventanaPerfilGustosUno.add(smartM);
-					smartM.setBounds(400, 140, 150, 40);
-					formalM = new JCheckBox("Formal");
-					ventanaPerfilGustosUno.add(formalM);
-					formalM.setBounds(200, 210, 150, 40);
-					casualChickM = new JCheckBox("Casual Chick");
-					ventanaPerfilGustosUno.add(casualChickM);
-					casualChickM.setBounds(400, 210, 150, 40);
 					
-					CambiarPanel(ventanaGenero, ventanaPerfilGustosUno);
-					errorGenero.setText("");
+					CambiarPanel(ventanaGenero, ventanaPerfilGustosUnoM);
+					errorGenero.setText("");					
 				} else if (radioFemenino.isSelected()) {
-					clasicoF = new JCheckBox("Clasico");
-					ventanaPerfilGustosUno.add(clasicoF);
-					clasicoF.setBounds(200, 70, 150, 40);
-					urbanaF = new JCheckBox("Urbana");
-					ventanaPerfilGustosUno.add(urbanaF);
-					urbanaF.setBounds(400, 70, 150, 40);
-					rockF = new JCheckBox("Rock");
-					ventanaPerfilGustosUno.add(rockF);
-					rockF.setBounds(200, 140 , 150, 40);
-					bohoF = new JCheckBox("Boho");
-					ventanaPerfilGustosUno.add(bohoF);
-					bohoF.setBounds(400, 140, 150, 40);
-					formalF = new JCheckBox("Formal");
-					ventanaPerfilGustosUno.add(formalF);
-					formalF.setBounds(200, 210, 150, 40);
-					sportyChickF = new JCheckBox("Sporty Chick");
-					ventanaPerfilGustosUno.add(sportyChickF);
-					sportyChickF.setBounds(400, 210, 150, 40);
-						
-					CambiarPanel(ventanaGenero, ventanaPerfilGustosUno);
+					CambiarPanel(ventanaGenero, ventanaPerfilGustosUnoF);
 					errorGenero.setText("");
 				} else {
 					errorGenero.setText("Se necesita seleccionar 1 genero para continuar.");
 					System.out.println("Se necesita seleccionar 1 genero para continuar.");   //Hacer dialogo mas adelante
 				}
-					//CambiarPanel(ventanaGenero, ventanaPerfilGustosUno);
+					//CambiarPanel(ventanaGenero, ventanaPerfilGustosUnoM);
 			}
 		});
 		
@@ -590,74 +561,159 @@ public class Principal {
 			}
 		});
 			
-		//Anyadiendo los componentes de ventanaPerfilGustosUno
-		botonPerfilGustosUnoAtras = new JButton("Atras");
-		ventanaPerfilGustosUno.add(botonPerfilGustosUnoAtras);
-		botonPerfilGustosUnoAtras.setBounds(10, 340, 200, 30);
-			
-		botonPerfilGustosUnoSiguiente = new JButton("Siguiente");
-		ventanaPerfilGustosUno.add(botonPerfilGustosUnoSiguiente);
-		botonPerfilGustosUnoSiguiente.setBounds(500, 340, 200, 30);
+		//Anyadiendo los componentes de ventanaPerfilGustosUnoM
 		
-		errorPerfilGustosUno = new JLabel();
-		ventanaPerfilGustosUno.add(errorPerfilGustosUno);
-		errorPerfilGustosUno.setBounds(300, 340, 400, 40);
-		errorPerfilGustosUno.setForeground(Color.RED);
+		clasicoM = new JCheckBox("Clasico");
+		ventanaPerfilGustosUnoM.add(clasicoM);
+		clasicoM.setBounds(200, 70, 150, 40);
+		urbanaM = new JCheckBox("Urbana");
+		ventanaPerfilGustosUnoM.add(urbanaM);
+		urbanaM.setBounds(400, 70, 150, 40);
+		rockM = new JCheckBox("Rock");
+		ventanaPerfilGustosUnoM.add(rockM);
+		rockM.setBounds(200, 140 , 150, 40);
+		smartM = new JCheckBox("Smart");
+		ventanaPerfilGustosUnoM.add(smartM);
+		smartM.setBounds(400, 140, 150, 40);
+		formalM = new JCheckBox("Formal");
+		ventanaPerfilGustosUnoM.add(formalM);
+		formalM.setBounds(200, 210, 150, 40);
+		casualChickM = new JCheckBox("Casual Chick");
+		ventanaPerfilGustosUnoM.add(casualChickM);
+		casualChickM.setBounds(400, 210, 150, 40);
+		
+		botonPerfilGustosUnoMAtras = new JButton("Atras");
+		ventanaPerfilGustosUnoM.add(botonPerfilGustosUnoMAtras);
+		botonPerfilGustosUnoMAtras.setBounds(10, 340, 200, 30);
+			
+		botonPerfilGustosUnoMSiguiente = new JButton("Siguiente");
+		ventanaPerfilGustosUnoM.add(botonPerfilGustosUnoMSiguiente);
+		botonPerfilGustosUnoMSiguiente.setBounds(500, 340, 200, 30);
+		
+		errorPerfilGustosUnoM = new JLabel();
+		ventanaPerfilGustosUnoM.add(errorPerfilGustosUnoM);
+		errorPerfilGustosUnoM.setBounds(300, 340, 400, 40);
+		errorPerfilGustosUnoM.setForeground(Color.RED);
 		
 		//mb.setVisible(false);
 		//mb.setEnabled(false);
 			
 		//Action Listeners
-		botonPerfilGustosUnoSiguiente.addActionListener(new ActionListener() {
+		botonPerfilGustosUnoMSiguiente.addActionListener(new ActionListener() {
 				
 			@Override
 			public void actionPerformed(ActionEvent e) { //qwe
 				
-				if (radioMasculino.isSelected()) {
+				//if (radioMasculino.isSelected()) {
 					if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() ||
 					smartM.isSelected() || formalM.isSelected() || casualChickM.isSelected()) {
-						CambiarPanel(ventanaPerfilGustosUno, ventanaPerfilGustosDos);
-						errorPerfilGustosUno.setText("");
+						CambiarPanel(ventanaPerfilGustosUnoM, ventanaPerfilGustosDos);
+						errorPerfilGustosUnoM.setText("");
 					} else {
-						errorPerfilGustosUno.setText("Selecciona al menos 1.");
+						errorPerfilGustosUnoM.setText("Selecciona al menos 1.");
 					}
-				} else if (radioFemenino.isSelected()) {
+				/*} else if (radioFemenino.isSelected()) {
 					if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() ||
 					bohoF.isSelected() || formalF.isSelected() || sportyChickF.isSelected()) {
-						CambiarPanel(ventanaPerfilGustosUno, ventanaPerfilGustosDos);
-						errorPerfilGustosUno.setText("");
+						CambiarPanel(ventanaPerfilGustosUnoM, ventanaPerfilGustosDos);
+						errorPerfilGustosUnoM.setText("");
 					} else {
-						errorPerfilGustosUno.setText("Selecciona al menos 1.");
+						errorPerfilGustosUnoM.setText("Selecciona al menos 1.");
 					}
-				}
+				}*/
 				
-				//CambiarPanel(ventanaPerfilGustosUno, ventanaPerfilGustosDos);
+				//CambiarPanel(ventanaPerfilGustosUnoM, ventanaPerfilGustosDos);
 			}
 		});
 			
-		botonPerfilGustosUnoAtras.addActionListener(new ActionListener() {
+		botonPerfilGustosUnoMAtras.addActionListener(new ActionListener() {
 				
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Asegurarse de que los checkboxes que aparezcan se borran y se vuelven a generar al darle a siguiente en caso de cambio de genero al volver atras
-				if(radioMasculino.isSelected()) {
-					ventanaPerfilGustosUno.remove(clasicoM);
-					ventanaPerfilGustosUno.remove(urbanaM);
-					ventanaPerfilGustosUno.remove(rockM);
-					ventanaPerfilGustosUno.remove(smartM);
-					ventanaPerfilGustosUno.remove(formalM);
-					ventanaPerfilGustosUno.remove(casualChickM);
-				} else if (radioFemenino.isSelected()) {
-					ventanaPerfilGustosUno.remove(clasicoF);
-					ventanaPerfilGustosUno.remove(urbanaF);
-					ventanaPerfilGustosUno.remove(rockF);
-					ventanaPerfilGustosUno.remove(bohoF);
-					ventanaPerfilGustosUno.remove(formalF);
-					ventanaPerfilGustosUno.remove(sportyChickF);
-				}	
-			errorPerfilGustosUno.setText("");
+				clasicoM.setSelected(false);
+				urbanaM.setSelected(false);
+				rockM.setSelected(false);
+				smartM.setSelected(false);
+				formalM.setSelected(false);
+				casualChickM.setSelected(false);
 				
-			CambiarPanel(ventanaPerfilGustosUno, ventanaGenero);
+			errorPerfilGustosUnoM.setText("");
+				
+			CambiarPanel(ventanaPerfilGustosUnoM, ventanaGenero);
+			}
+		});
+		
+		//Anyadiendo los componentes de ventanaPerfilGustosUnoF
+		
+		clasicoF = new JCheckBox("Clasico");
+		ventanaPerfilGustosUnoF.add(clasicoF);
+		clasicoF.setBounds(200, 70, 150, 40);
+		urbanaF = new JCheckBox("Urbana");
+		ventanaPerfilGustosUnoF.add(urbanaF);
+		urbanaF.setBounds(400, 70, 150, 40);
+		rockF = new JCheckBox("Rock");
+		ventanaPerfilGustosUnoF.add(rockF);
+		rockF.setBounds(200, 140 , 150, 40);
+		bohoF = new JCheckBox("Boho");
+		ventanaPerfilGustosUnoF.add(bohoF);
+		bohoF.setBounds(400, 140, 150, 40);
+		formalF = new JCheckBox("Formal");
+		ventanaPerfilGustosUnoF.add(formalF);
+		formalF.setBounds(200, 210, 150, 40);
+		sportyChickF = new JCheckBox("Sporty Chick");
+		ventanaPerfilGustosUnoF.add(sportyChickF);
+		sportyChickF.setBounds(400, 210, 150, 40);
+		
+		botonPerfilGustosUnoFAtras = new JButton("Atras");
+		ventanaPerfilGustosUnoF.add(botonPerfilGustosUnoFAtras);
+		botonPerfilGustosUnoFAtras.setBounds(10, 340, 200, 30);
+			
+		botonPerfilGustosUnoFSiguiente = new JButton("Siguiente");
+		ventanaPerfilGustosUnoF.add(botonPerfilGustosUnoFSiguiente);
+		botonPerfilGustosUnoFSiguiente.setBounds(500, 340, 200, 30);
+		
+		errorPerfilGustosUnoF = new JLabel();
+		ventanaPerfilGustosUnoF.add(errorPerfilGustosUnoF);
+		errorPerfilGustosUnoF.setBounds(300, 340, 400, 40);
+		errorPerfilGustosUnoF.setForeground(Color.RED);
+		
+		botonPerfilGustosUnoFSiguiente.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) { //qwe
+				
+				
+				//} else if (radioFemenino.isSelected()) {
+					if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() ||
+					bohoF.isSelected() || formalF.isSelected() || sportyChickF.isSelected()) {
+						CambiarPanel(ventanaPerfilGustosUnoF, ventanaPerfilGustosDos);
+						errorPerfilGustosUnoF.setText("");
+					} else {
+						errorPerfilGustosUnoF.setText("Selecciona al menos 1.");
+					}
+				
+				
+				//CambiarPanel(ventanaPerfilGustosUnoM, ventanaPerfilGustosDos);
+			}
+		});
+			
+		botonPerfilGustosUnoFAtras.addActionListener(new ActionListener() {
+				
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Asegurarse de que los checkboxes que aparezcan se borran y se vuelven a generar al darle a siguiente en caso de cambio de genero al volver atras
+				clasicoF.setSelected(false);
+				urbanaF.setSelected(false);
+				rockF.setSelected(false);
+				bohoF.setSelected(false);
+				formalF.setSelected(false);
+				sportyChickF.setSelected(false);
+				
+			
+			errorPerfilGustosUnoM.setText("");
+				
+			CambiarPanel(ventanaPerfilGustosUnoF, ventanaGenero);
 			}
 		});
 			
@@ -750,8 +806,15 @@ public class Principal {
 				
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaPerfilGustosDos, ventanaPerfilGustosUno);
-				errorPerfilGustosUno.setText("");	
+				if (radioMasculino.isSelected()) {
+					CambiarPanel(ventanaPerfilGustosDos, ventanaPerfilGustosUnoM);
+				} else if (radioFemenino.isSelected()) {
+					CambiarPanel(ventanaPerfilGustosDos, ventanaPerfilGustosUnoF);
+				}
+				
+				//CambiarPanel(ventanaPerfilGustosDos, ventanaPerfilGustosUnoM);
+				errorPerfilGustosUnoM.setText("");	
+				errorPerfilGustosUnoF.setText("");	
 				errorPerfilGustosDos.setText("");
 				bgPerfilGustosDos.clearSelection();
 			}
@@ -1258,23 +1321,24 @@ public class Principal {
 				radioButtonsGenero.clearSelection();
 				errorGenero.setText("");
 				
-				//ventanaPerfilGustosUno	//qwe
-				if (radioMasculino.isSelected()) {
-					clasicoM.setSelected(false);
-					urbanaM.setSelected(false);
-					rockM.setSelected(false);
-					smartM.setSelected(false);
-					formalM.setSelected(false);
-					casualChickM.setSelected(false);
-				} else if (radioFemenino.isSelected()) {
-					clasicoF.setSelected(false);
-					urbanaF.setSelected(false);
-					rockF.setSelected(false);
-					bohoF.setSelected(false);
-					formalF.setSelected(false);
-					sportyChickF.setSelected(false);
-				}
-				errorPerfilGustosUno.setText("");				
+				//ventanaPerfilGustosUnoM
+				clasicoM.setSelected(false);
+				urbanaM.setSelected(false);
+				rockM.setSelected(false);
+				smartM.setSelected(false);
+				formalM.setSelected(false);
+				casualChickM.setSelected(false);
+				
+				//ventanaPerfilGustosUnoF
+				clasicoF.setSelected(false);
+				urbanaF.setSelected(false);
+				rockF.setSelected(false);
+				bohoF.setSelected(false);
+				formalF.setSelected(false);
+				sportyChickF.setSelected(false);
+			
+				errorPerfilGustosUnoM.setText("");	
+				errorPerfilGustosUnoF.setText("");	
 				
 				//ventanaPerfilGustosDos
 				bgPerfilGustosDos.clearSelection();
