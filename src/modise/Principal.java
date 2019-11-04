@@ -40,8 +40,6 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
-//import ventana.Paneles;
-
 public class Principal {
 
 	//Metodo Cambiar Paneles
@@ -138,8 +136,7 @@ public class Principal {
 		JRadioButton radioSol, radioLluvia, radioNublado, radioNo;
 		JLabel preguntaEstilo, preguntaTiempo, errorPideOutfit;
 		JComboBox<String> estilosComboBoxPideOutfit;
-			//JTextField txtEstilo;
-		
+				
 		//ventanaFeedback
 		JLabel nivelSatisfaccion, gustoColores, errorFeedback;
 		JRadioButton estrella1, estrella2, estrella3, estrella4,estrella5, si, no;
@@ -179,8 +176,6 @@ public class Principal {
 		menu1.add(mi2);
 		menu1.add(mi3);
 		mb.add(menu1);
-		//mb.setVisible(true);
-		//mb.setEnabled(true);
 		frame.setJMenuBar(mb);
 		
 		//Imagen de fondo
@@ -419,16 +414,11 @@ public class Principal {
 		errorContrasenya.setBounds(250, 230, 150, 30);
 		errorContrasenya.setForeground(Color.RED);
 		
-		//mb.setVisible(false);
-		//mb.setEnabled(false);
-		
 		//Action Listeners
 		botonCrearSiguiente.addActionListener(new ActionListener() {
 				
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//CambiarPanel(ventanaCrearCuenta, ventanaGenero);			En el IF de abajo
-				
 				String CrearNombre = txtCrearNombre.getText();
 				String CrearEmail = txtCrearEmail.getText();				
 				String CrearContrasenya = txtCrearContrasenya.getText();
@@ -525,9 +515,6 @@ public class Principal {
 		errorGenero.setBounds(220, 340, 400, 30);
 		errorGenero.setForeground(Color.RED);
 		
-		//mb.setVisible(false);
-		//mb.setEnabled(false);
-		
 		//Action Listeners
 		botonGeneroSiguiente.addActionListener(new ActionListener() {
 			
@@ -546,7 +533,6 @@ public class Principal {
 					errorGenero.setText("Se necesita seleccionar 1 genero para continuar.");
 					System.out.println("Se necesita seleccionar 1 genero para continuar.");   //Hacer dialogo mas adelante
 				}
-					//CambiarPanel(ventanaGenero, ventanaPerfilGustosUnoM);
 			}
 		});
 		
@@ -594,35 +580,22 @@ public class Principal {
 		ventanaPerfilGustosUnoM.add(errorPerfilGustosUnoM);
 		errorPerfilGustosUnoM.setBounds(300, 340, 400, 40);
 		errorPerfilGustosUnoM.setForeground(Color.RED);
-		
-		//mb.setVisible(false);
-		//mb.setEnabled(false);
 			
 		//Action Listeners
 		botonPerfilGustosUnoMSiguiente.addActionListener(new ActionListener() {
 				
 			@Override
 			public void actionPerformed(ActionEvent e) { //qwe
-				
-				//if (radioMasculino.isSelected()) {
-					if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() ||
-					smartM.isSelected() || formalM.isSelected() || casualChickM.isSelected()) {
-						CambiarPanel(ventanaPerfilGustosUnoM, ventanaPerfilGustosDos);
-						errorPerfilGustosUnoM.setText("");
-					} else {
-						errorPerfilGustosUnoM.setText("Selecciona al menos 1.");
-					}
-				/*} else if (radioFemenino.isSelected()) {
-					if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() ||
-					bohoF.isSelected() || formalF.isSelected() || sportyChickF.isSelected()) {
-						CambiarPanel(ventanaPerfilGustosUnoM, ventanaPerfilGustosDos);
-						errorPerfilGustosUnoM.setText("");
-					} else {
-						errorPerfilGustosUnoM.setText("Selecciona al menos 1.");
-					}
-				}*/
-				
-				//CambiarPanel(ventanaPerfilGustosUnoM, ventanaPerfilGustosDos);
+			
+				if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() ||
+				smartM.isSelected() || formalM.isSelected() || casualChickM.isSelected()) {
+					CambiarPanel(ventanaPerfilGustosUnoM, ventanaPerfilGustosDos);
+					errorPerfilGustosUnoM.setText("");
+					
+					System.out.println("Gustos seleccionados: ");
+				} else {
+					errorPerfilGustosUnoM.setText("Selecciona al menos 1.");
+				}
 			}
 		});
 			
@@ -692,9 +665,6 @@ public class Principal {
 					} else {
 						errorPerfilGustosUnoF.setText("Selecciona al menos 1.");
 					}
-				
-				
-				//CambiarPanel(ventanaPerfilGustosUnoM, ventanaPerfilGustosDos);
 			}
 		});
 			
@@ -747,9 +717,6 @@ public class Principal {
 		ventanaPerfilGustosDos.add(errorPerfilGustosDos);
 		errorPerfilGustosDos.setBounds(300, 340, 400, 40);
 		errorPerfilGustosDos.setForeground(Color.RED);
-		
-		//mb.setVisible(false);
-		//mb.setEnabled(false);
 		
 		//Action Listeners
 		botonPerfilGustosDosSiguiente.addActionListener(new ActionListener() {
@@ -812,7 +779,6 @@ public class Principal {
 					CambiarPanel(ventanaPerfilGustosDos, ventanaPerfilGustosUnoF);
 				}
 				
-				//CambiarPanel(ventanaPerfilGustosDos, ventanaPerfilGustosUnoM);
 				errorPerfilGustosUnoM.setText("");	
 				errorPerfilGustosUnoF.setText("");	
 				errorPerfilGustosDos.setText("");
@@ -830,9 +796,6 @@ public class Principal {
 		progressCargando.setValue(75);
 		ventanaCarga.add(progressCargando);
 		progressCargando.setBounds(200, 220, 300, 40);
-				
-		//mb.setVisible(false);
-		//mb.setEnabled(false);
 			
 		//Anyadiendo los componentes de ventanaMenuPrincipal
 		botonPideOutfit = new JButton("Pide un Outfit!");
@@ -918,20 +881,6 @@ public class Principal {
 		ventanaPideOutfit.add(radioNo);
 		radioNo.setBounds(50, 260, 50, 30);
 		
-		/*txtEstilo = new JTextField("ej: Clasico");
-		ventanaPideOutfit.add(txtEstilo);
-		txtEstilo.setBounds(150, 260, 200, 30);
-		escrito5 = false;
-		txtEstilo.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                if (escrito5 == false) {
-                	txtEstilo.setText("");
-                	escrito5 = true;
-                }
-            }
-        });*/
-		
 		estilosComboBoxPideOutfit = new JComboBox<String>();
 		ventanaPideOutfit.add(estilosComboBoxPideOutfit);
 		estilosComboBoxPideOutfit.addItem(null); //mantener esta opcion como primero!!! se supone que es -1
@@ -968,7 +917,6 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (radioNo.isSelected()) {
-					//txtEstilo.setText("");
 					estilosComboBoxPideOutfit.setSelectedIndex(0); //dejarlo en 0
 					System.out.println("radioNo , " + estilosComboBoxPideOutfit.getSelectedIndex());
 				}
@@ -979,18 +927,15 @@ public class Principal {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//CambiarPanel(ventanaPideOutfit, ventanaCarga);
 				System.out.println(estilosComboBoxPideOutfit.getSelectedIndex());
-				//String noValido = "ej: Clasico";
-				if (bgPideOutfit.getSelection() != null && (radioNo.isSelected() || estilosComboBoxPideOutfit.getSelectedIndex() != -1
-						/*!txtEstilo.getText().equals("")) && !txtEstilo.getText().equals(noValido)*/) ) {
+				
+				if (bgPideOutfit.getSelection() != null && (radioNo.isSelected() || estilosComboBoxPideOutfit.getSelectedIndex() != -1) ) {
 					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
 					UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
 					JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
 					escrito5 = false;
 					bgPideOutfit.clearSelection();
 					radioNo.setSelected(false);
-					//txtEstilo.setText("ej: Clasico");
 					errorPideOutfit.setText("");
 					estilosComboBoxPideOutfit.setSelectedIndex(0);
 				} else {
@@ -1009,38 +954,9 @@ public class Principal {
 				errorPideOutfit.setText("");
 				bgPideOutfit.clearSelection();
 				radioNo.setSelected(false);
-				//txtEstilo.setText("ej: Clasico");
 			}
 		});
-		
-		/*txtEstilo.addMouseListener(new MouseListener() {	//trucazo
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
 				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				radioNo.setSelected(false);
-			}
-		});*/
-		
 		estilosComboBoxPideOutfit.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -1354,7 +1270,6 @@ public class Principal {
 				//ventanaPideOutfit
 				bgPideOutfit.clearSelection();
 				radioNo.setSelected(false);
-				//txtEstilo.setText("ej: Clasico");
 				escrito5 = false;
 				errorPideOutfit.setText("");
 				
