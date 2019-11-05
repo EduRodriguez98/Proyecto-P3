@@ -328,10 +328,10 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
+				log.println("Inicio de sesion: " + txtEmail.getText() + " " + (new Date()) + "\n");
+				
 				mb.setVisible(true);
 				mb.setEnabled(true);
-				System.out.println("menubar height "+mb.getHeight());
-				System.out.println("menubar width "+mb.getWidth());
 			}
 		});
 		
@@ -506,8 +506,10 @@ public class Principal {
 		labelEscogerGenero.setFont(new Font("Monospace", Font.BOLD, 13));
 		
 		radioMasculino = new JRadioButton("Masculino");	
+		radioMasculino.setActionCommand("Masculino");
 		radioMasculino.setFont(new Font("Monospace", Font.PLAIN, 12));
 		radioFemenino = new JRadioButton("Femenino");
+		radioFemenino.setActionCommand("Femenino");
 		radioFemenino.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ButtonGroup radioButtonsGenero = new ButtonGroup();
 		radioButtonsGenero.add(radioFemenino);
@@ -781,6 +783,11 @@ public class Principal {
 
 							if(stop = true) {
 								CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+								
+	//log crear cuenta
+	log.println("Creacion de cuenta: " + (new Date()) + "\n" + "Nombre:" + txtCrearNombre.getText() + " ,Email:" + txtCrearEmail.getText() + " ,Edad:" + spinCrearEdad.getValue() +
+			" ,Genero:" + radioButtonsGenero.getSelection().getActionCommand() + "\n");
+								
 								//se cambia? SI GUD JOB
 								mb.setVisible(true);
 								mb.setEnabled(true);
@@ -884,14 +891,17 @@ public class Principal {
 		preguntaTiempo.setBounds(50, 0, 300, 100);
 		
 		radioSol = new JRadioButton("Soleado");
+		radioSol.setActionCommand("Sol");
 		radioSol.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioSol);
 		radioSol.setBounds(50, 80, 100, 40);
 		radioLluvia = new JRadioButton("Llueve");
+		radioLluvia.setActionCommand("Llueve");
 		radioLluvia.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioLluvia);
 		radioLluvia.setBounds(50, 120, 100, 40);
 		radioNublado = new JRadioButton("Nublado");
+		radioNublado.setActionCommand("Nublado");
 		radioNublado.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioNublado);
 		radioNublado.setBounds(50, 160, 100, 40);
@@ -960,7 +970,18 @@ public class Principal {
 				System.out.println(estilosComboBoxPideOutfit.getSelectedIndex());
 				
 				if (bgPideOutfit.getSelection() != null && (radioNo.isSelected() || estilosComboBoxPideOutfit.getSelectedIndex() != -1) ) {
+					
+					Object l;
+					if (radioNo.isSelected()) {
+						l = "No";
+					} else {
+						l = estilosComboBoxAnyadirVestimenta.getSelectedItem();
+					}
+					log.println("Pide Outfit, tiempo: " + bgPideOutfit.getSelection().getActionCommand() + " ,estilo: " + l + "\n");
+					
+					
 					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
+					
 					UIManager.put("OptionPane.minimumSize",new Dimension(600, 700)); 
 					JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!", JOptionPane.DEFAULT_OPTION);
 					escrito5 = false;
@@ -1356,14 +1377,14 @@ public class Principal {
 			log = new PrintStream( new FileOutputStream("pruebaLog.log", true));
 		} catch (Exception e) {	
 		}
-		log.println("Inicio del programa con log: " + (new Date()));
+		log.println("Inicio del programa. \n");
 		
-		try {
+		/*try {
 			logger = Logger.getLogger("prueba-logger");
 			logger.addHandler(new FileHandler("pruebaLogger.xml", true));
 		} catch (Exception e) {
 		}
-		logger.log(Level.INFO, "Inicio de programa con logger: ");
+		logger.log(Level.INFO, "Inicio de programa con logger: ");*/
 		//fin de prueba
 		
 		SwingUtilities.invokeLater(new Runnable() {

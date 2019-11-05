@@ -123,3 +123,51 @@
   <message>Inicio de programa con logger: </message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-05T19:00:08.514568200Z</date>
+  <millis>1572980408514</millis>
+  <nanos>568200</nanos>
+  <sequence>0</sequence>
+  <logger>prueba-logger</logger>
+  <level>INFO</level>
+  <class>modise.Principal</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Inicio de programa con logger: </message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-05T19:04:14.035602200Z</date>
+  <millis>1572980654035</millis>
+  <nanos>602200</nanos>
+  <sequence>0</sequence>
+  <logger>prueba-logger</logger>
+  <level>INFO</level>
+  <class>modise.Principal</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Inicio de programa con logger: </message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-05T19:23:57.984787100Z</date>
+  <millis>1572981837984</millis>
+  <nanos>787100</nanos>
+  <sequence>0</sequence>
+  <logger>prueba-logger</logger>
+  <level>INFO</level>
+  <class>modise.Principal</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Inicio de programa con logger: </message>
+</record>
+</log>
