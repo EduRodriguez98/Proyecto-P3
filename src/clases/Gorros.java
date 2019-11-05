@@ -27,7 +27,7 @@ public class Gorros extends Prendas{
 
 	@Override
 	public String toString() {
-		return "Gorros [id_prendas = " + getId_prendas() + ", id_color = " + getIdColor() + ", color principal = " + getColorPrincipal()
+		return "Gorros [id_prendas = " + getId_prendas() + ", color principal = " + getColorPrincipal()
 				+ ", color secundario = " + getColorSecundario() + ", verano = " + verano + "]";
 	}
 

@@ -2,9 +2,38 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2019-11-04T18:53:53.179501100Z</date>
-  <millis>1572893633179</millis>
-  <nanos>501100</nanos>
+  <date>2019-11-05T13:49:36</date>
+  <millis>1572958176865</millis>
+  <sequence>0</sequence>
+  <logger>prueba-logger</logger>
+  <level>INFO</level>
+  <class>modise.Principal</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Inicio de programa con logger: </message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-05T13:52:42</date>
+  <millis>1572958362682</millis>
+  <sequence>0</sequence>
+  <logger>prueba-logger</logger>
+  <level>INFO</level>
+  <class>modise.Principal</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Inicio de programa con logger: </message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-05T14:10:32</date>
+  <millis>1572959432974</millis>
   <sequence>0</sequence>
   <logger>prueba-logger</logger>
   <level>INFO</level>

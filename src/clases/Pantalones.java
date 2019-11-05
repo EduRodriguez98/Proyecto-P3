@@ -36,7 +36,7 @@ public class Pantalones extends Prendas{
 
 	@Override
 	public String toString() {
-		return "Pantalones [id_prendas = " + getId_prendas() + ", id_color = " + getIdColor() + ", color principal = " + getColorPrincipal() + 
+		return "Pantalones [id_prendas = " + getId_prendas() + ", color principal = " + getColorPrincipal() + 
 				", color secundario = " + getColorSecundario() + ", marca = " + marca + ", corto = " + corto + "]";
 	}
 
