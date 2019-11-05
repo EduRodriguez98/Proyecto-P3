@@ -18,7 +18,7 @@ public class TestConexion {
 		
 		try {
 			cn = conexion.conectar();
-			cn.createStatement();
+			stm = cn.createStatement();
 			rs = stm.executeQuery("SELECT * FROM usuario");
 			
 			while(rs.next()) {
