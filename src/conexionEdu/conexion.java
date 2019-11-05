@@ -12,7 +12,7 @@ public class conexion {
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
-			conexion = DriverManager.getConnection("jdbc:sqlite:NOMBRE DEL ARCHIVO SUPONGO");
+			conexion = DriverManager.getConnection("jdbc:sqlite://localhost:3306/modise_schema");
 		
 		} catch (ClassNotFoundException e) {
 			throw new BDException("No se pudo cargar el driver", e);
