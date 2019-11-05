@@ -3,12 +3,18 @@ package clases;
 public class Gorros extends Prendas{
 
 	Boolean verano;
-	Boolean invierno;
 	
-	public Gorros(String colorPrincipal, String colorSecundario, Boolean verano, Boolean invierno) {
+	
+	public Gorros(String colorPrincipal, String colorSecundario, Boolean verano) {
 		super(colorPrincipal, colorSecundario);
 		this.verano = verano;
-		this.invierno = invierno;
+		
+	}
+	
+	public Gorros() {
+		super();
+		this.verano = null;
+		
 	}
 
 	public Boolean getVerano() {
@@ -19,19 +25,13 @@ public class Gorros extends Prendas{
 		this.verano = verano;
 	}
 
-	public Boolean getInvierno() {
-		return invierno;
-	}
-
-	public void setInvierno(Boolean invierno) {
-		this.invierno = invierno;
-	}
-
 	@Override
 	public String toString() {
-		return "Gorros [Verano: " + verano + ", Invierno: " + invierno + ", Color Principal: " + getColorPrincipal()
-				+ ", Color Secundario: " + getColorSecundario() + "]";
+		return "Gorros [id_prendas = " + getId_prendas() + ", color principal = " + getColorPrincipal()
+				+ ", color secundario = " + getColorSecundario() + ", verano = " + verano + "]";
 	}
+
+	
 	
 	
 }
