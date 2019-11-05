@@ -1,0 +1,19 @@
+package modise;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+public class TextFileCleaner {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		
+		File f = new File("Feedback.log"); //elegir fichero ej: .log ,...
+
+		PrintWriter writer = new PrintWriter(f);
+		writer.print("");
+		writer.close();	
+		
+	}
+
+}
