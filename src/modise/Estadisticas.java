@@ -66,9 +66,9 @@ public class Estadisticas {
 			}
 		}
 				
-		System.out.println("Media de puntuacion:" + countNum/mediaNum);
-		System.out.println("Si: " + countSi/mediaSN + "%");
-		System.out.println("No: " + countNo/mediaSN + "%");
+		System.out.println("Media de puntuacion: " + countNum/mediaNum + " (sobre 5).");
+		System.out.println("Si: " + countSi/mediaSN + " %.");
+		System.out.println("No: " + countNo/mediaSN + " %.");
 		
 		fr.close();
 	}
