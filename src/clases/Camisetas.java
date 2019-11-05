@@ -6,8 +6,8 @@ public class Camisetas extends Prendas {
 	private Boolean rayas;
 	private Boolean cuadros;
 	
-	public Camisetas(String colorPrincipal, String colorSecundario, Boolean logotipo, Boolean rayas, Boolean cuadros) {
-		super(colorPrincipal, colorSecundario);
+	public Camisetas(Color colorPrincipal, Boolean logotipo, Boolean rayas, Boolean cuadros) {
+		super(colorPrincipal);
 		this.logotipo = logotipo;
 		this.rayas = rayas;
 		this.cuadros = cuadros;
@@ -46,9 +46,10 @@ public class Camisetas extends Prendas {
 
 	@Override
 	public String toString() {
-		return "Camisetas [id_prendas = " + getId_prendas() + ", color principal = " + getColorPrincipal() + ", color secundario = " + getColorSecundario() +
-				", logotipo = " + logotipo + ", rayas = " + rayas + ", cuadros = " + cuadros +  "]";
+		return "Camisetas [Id_prendas = " + getId_prendas() + ", Color Principal = " + getColorPrincipal() + "logotipo = " + logotipo +
+				", rayas = " + rayas + ", cuadros = " + cuadros + "]";
 	}
+	
 	
 	
 }

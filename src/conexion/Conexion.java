@@ -30,6 +30,7 @@ public class Conexion {
 			System.out.println("Se ha conectado");
 		
 		}catch(SQLException e) {
+			
 			System.out.println("Error en la conexion");
 			e.printStackTrace();
 		}

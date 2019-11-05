@@ -1,20 +1,24 @@
 package clases;
 
-public abstract class Prendas extends Color {
+public abstract class Prendas {
 
 	private static int contador = 0;
 	
 	private int id_prendas;
-
-	public Prendas(String colorPrincipal, String colorSecundario) {
-		super(colorPrincipal, colorSecundario);
+	private Color colorPrincipal;
+	
+	public Prendas(Color colorPrincipal) {
+		super();
 		this.id_prendas = contador;
 		contador++;
+		this.colorPrincipal = colorPrincipal;
 	}
 	
 	public Prendas() {
 		super();
 		this.id_prendas = contador;
+		contador++;
+		this.colorPrincipal = null;
 	}
 
 	public int getId_prendas() {
@@ -25,11 +29,20 @@ public abstract class Prendas extends Color {
 		this.id_prendas = id_prendas;
 	}
 
+	public Color getColorPrincipal() {
+		return colorPrincipal;
+	}
+
+	public void setColorPrincipal(Color colorPrincipal) {
+		this.colorPrincipal = colorPrincipal;
+	}
+
 	@Override
 	public String toString() {
-		return "Prendas [id_prendas = " + id_prendas + ", color principal = "
-				+ getColorPrincipal() + ", color secundario = " + getColorSecundario() + "]";
+		return "Prendas [id_prendas = " + id_prendas + ", colorPrincipal = " + colorPrincipal + "]";
 	}
+	
+	
 	
 	
 }
