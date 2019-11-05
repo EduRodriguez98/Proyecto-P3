@@ -61,6 +61,7 @@ public class Estadisticas {
 				if (word.equals(si)) {
 					countSi++;
 				} else if (word.equals(no)) {
+					
 					countNo++;
 				}
 			}
