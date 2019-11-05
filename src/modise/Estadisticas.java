@@ -8,6 +8,7 @@ import java.io.IOException;
 public class Estadisticas {
    
 	public static void main(String[] args) throws IOException  {
+		
 		File f1 = new File("Feedback.log"); //Creation of File Descriptor for input file
 		String[] words = null;  //Intialize the word Array
 		FileReader fr = new FileReader(f1);  //Creation of File Reader object
