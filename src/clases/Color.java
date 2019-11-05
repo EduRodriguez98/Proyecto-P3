@@ -4,26 +4,20 @@ public class Color {
 	private static int contador = 0;
 	
 	private int idColor;
-	private String colorPrincipal;
-	private String ColorSecundario;
+	protected String nombre_color;
 	
-	
-	public Color(String colorPrincipal, String colorSecundario) {
+	public Color(String color) {
 		super();
 		this.idColor = contador;
 		contador++;
-		this.colorPrincipal = colorPrincipal;
-		ColorSecundario = colorSecundario;
-		
+		this.nombre_color = color;
 	}
 	
-	public Color() {
+	public Color(int idColor, String color) {
 		super();
 		this.idColor = contador;
 		contador++;
-		this.colorPrincipal = "";
-		ColorSecundario = "";
-		
+		this.nombre_color = null;
 	}
 
 	public int getIdColor() {
@@ -34,27 +28,19 @@ public class Color {
 		this.idColor = idColor;
 	}
 
-	public String getColorPrincipal() {
-		return colorPrincipal;
+	public String getColor() {
+		return nombre_color;
 	}
 
-	public void setColorPrincipal(String colorPrincipal) {
-		this.colorPrincipal = colorPrincipal;
-	}
-
-	public String getColorSecundario() {
-		return ColorSecundario;
-	}
-
-	public void setColorSecundario(String colorSecundario) {
-		ColorSecundario = colorSecundario;
+	public void setColor(String color) {
+		this.nombre_color = color;
 	}
 
 	@Override
 	public String toString() {
-		return "Color [idColor = " + idColor + ", colorPrincipal = " + colorPrincipal + ", ColorSecundario = "
-				+ ColorSecundario + "]";
+		return "Color [id color = " + idColor + ", color = " + nombre_color + "]";
 	}
+	
 	
 	
 }
