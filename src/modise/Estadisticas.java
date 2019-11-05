@@ -66,9 +66,7 @@ public class Estadisticas {
 		System.out.println(mediaSN);
 		
 		System.out.println("Media de puntuacion:" + countNum/mediaNum);
-		
 		System.out.println("Si: " + countSi/mediaSN + "%");
-		
 		System.out.println("No: " + countNo/mediaSN + "%");
 		
 		fr.close();
