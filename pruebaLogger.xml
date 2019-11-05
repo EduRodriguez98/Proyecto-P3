@@ -123,3 +123,19 @@
   <message>Inicio de programa con logger: </message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-05T18:52:37.238787900Z</date>
+  <millis>1572979957238</millis>
+  <nanos>787900</nanos>
+  <sequence>0</sequence>
+  <logger>prueba-logger</logger>
+  <level>INFO</level>
+  <class>modise.Principal</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Inicio de programa con logger: </message>
+</record>
+</log>
