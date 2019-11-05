@@ -27,13 +27,9 @@ public class TestConexion {
 				String correo = rs.getString(3);
 				boolean administrador = rs.getBoolean(4);
 				int edad = rs.getInt(5);
-				int id_camisetas = rs.getInt(6);
-				int id_chaquetas = rs.getInt(7);
-				int id_gorros = rs.getInt(8);
-				int id_pantalones = rs.getInt(9);
-				int id_zapatos = rs.getInt(10);
+	
 				
-				System.out.println(idUsuario + " - " + nom_Usuario + " - " + correo + " - " + administrador + " - " + edad + " - " + id_camisetas + " - " + id_chaquetas + " - " + id_gorros + " - " + id_pantalones + " - " + id_zapatos);
+				System.out.println(idUsuario + " - " + nom_Usuario + " - " + correo + " - " + administrador + " - " + edad );
 			}
 			
 		} catch (SQLException e) {
