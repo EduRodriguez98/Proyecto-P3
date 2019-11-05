@@ -192,10 +192,19 @@ public class Principal {
 			public void paintComponent(Graphics g) {
 		        Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
 		        Graphics bufferGraphics = bufferImage.getGraphics();
-		        bufferGraphics.drawImage(imagenInicio.getImage(), 0, -23, 720, 440, null);
+		      
+		        //probando para ver si arreglamos lo de la imagen descentrada de fondo, en mi MAC hace lo que le da la gana los graficos :) pero probadlo en windows a ver como sale la ventana.
+		        if (mb.isVisible() && mb.isEnabled()) {
+		        	bufferGraphics.drawImage(imagenInicio.getImage(), 0, -3, 720, 440, null);
+		        } else {
+		        	bufferGraphics.drawImage(imagenInicio.getImage(), 0, -23, 720, 440, null);
+		        }
+		        
+	        	bufferGraphics.drawImage(imagenInicio.getImage(), 0, -23, 720, 440, null);
+
 		        g.drawImage(bufferImage, 0, 0, this);
 			}
-		};
+		}; 
 		
 		PanelFondo ventanaInicioSesion = new PanelFondo();
 		PanelFondo ventanaCrearCuenta = new PanelFondo();
