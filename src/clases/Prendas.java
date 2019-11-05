@@ -1,54 +1,35 @@
 package clases;
 
-public abstract class Prendas {
+public abstract class Prendas extends Color {
 
-	private String colorPrincipal;
-	private String colorSecundario;
+	private static int contador = 0;
 	
-	
+	private int id_prendas;
+
 	public Prendas(String colorPrincipal, String colorSecundario) {
-		super();
-		this.colorPrincipal = colorPrincipal;
-		this.colorSecundario = colorSecundario;
-		
-	}
-	
-	public Prendas(Prendas p) {
-		super();
-		this.colorPrincipal = p.colorPrincipal;
-		this.colorSecundario = p.colorSecundario;
-
+		super(colorPrincipal, colorSecundario);
+		this.id_prendas = contador;
+		contador++;
 	}
 	
 	public Prendas() {
 		super();
-		this.colorPrincipal = "";
-		this.colorSecundario = "";
-
+		this.id_prendas = contador;
 	}
 
-	public String getColorPrincipal() {
-		return colorPrincipal;
+	public int getId_prendas() {
+		return id_prendas;
 	}
 
-	public void setColorPrincipal(String colorPrincipal) {
-		this.colorPrincipal = colorPrincipal;
+	public void setId_prendas(int id_prendas) {
+		this.id_prendas = id_prendas;
 	}
-
-	public String getColorSecundario() {
-		return colorSecundario;
-	}
-
-	public void setColorSecundario(String colorSecundario) {
-		this.colorSecundario = colorSecundario;
-	}
-
 
 	@Override
 	public String toString() {
-		return "Prendas [Color Principal: " + colorPrincipal + ", Color Secundario: " + colorSecundario + " ]";
+		return "Prendas [id_prendas = " + id_prendas + ", color principal = "
+				+ getColorPrincipal() + ", color secundario = " + getColorSecundario() + "]";
 	}
-
 	
-
+	
 }

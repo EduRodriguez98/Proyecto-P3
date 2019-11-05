@@ -14,3 +14,83 @@
   <message>Inicio de programa con logger: </message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-05T07:16:10.807832Z</date>
+  <millis>1572938170807</millis>
+  <nanos>832000</nanos>
+  <sequence>0</sequence>
+  <logger>prueba-logger</logger>
+  <level>INFO</level>
+  <class>modise.Principal</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Inicio de programa con logger: </message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-05T07:16:44.006536Z</date>
+  <millis>1572938204006</millis>
+  <nanos>536000</nanos>
+  <sequence>0</sequence>
+  <logger>prueba-logger</logger>
+  <level>INFO</level>
+  <class>modise.Principal</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Inicio de programa con logger: </message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-05T07:17:19.499337Z</date>
+  <millis>1572938239499</millis>
+  <nanos>337000</nanos>
+  <sequence>0</sequence>
+  <logger>prueba-logger</logger>
+  <level>INFO</level>
+  <class>modise.Principal</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Inicio de programa con logger: </message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-05T08:07:20.215365Z</date>
+  <millis>1572941240215</millis>
+  <nanos>365000</nanos>
+  <sequence>0</sequence>
+  <logger>prueba-logger</logger>
+  <level>INFO</level>
+  <class>modise.Principal</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Inicio de programa con logger: </message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-05T08:10:24.554369Z</date>
+  <millis>1572941424554</millis>
+  <nanos>369000</nanos>
+  <sequence>0</sequence>
+  <logger>prueba-logger</logger>
+  <level>INFO</level>
+  <class>modise.Principal</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Inicio de programa con logger: </message>
+</record>
+</log>
