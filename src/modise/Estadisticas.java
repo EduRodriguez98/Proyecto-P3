@@ -13,18 +13,24 @@ public class Estadisticas {
 		FileReader fr = new FileReader(f1);  //Creation of File Reader object
 		BufferedReader br = new BufferedReader(fr); //Creation of BufferedReader object
 		String s;     
+		
 		String si = "si";   // Input word to be searched
+		float countSi = 0;
+		
 		String no = "no";
-		int countNo = 0;
-		int countSi = 0;
-		int mediaSN = 0;
+		float countNo = 0;
+		
+		float mediaSN = 0;
+		
+		
 		String uno = "1";
 		String dos = "2";
 		String tres = "3";
 		String cuatro = "4";
 		String cinco = "5";
-		int countNum = 0;
-		int mediaNum = 0;   //Intialize the word to zero
+		float countNum = 0;
+		float mediaNum = 0;   //Intialize the word to zero
+		
 		while((s = br.readLine()) != null) { //Reading Content from the file
 			words = s.split(" ");  //Split the word using space
 			for (String word : words) {
@@ -57,14 +63,9 @@ public class Estadisticas {
 				} else if (word.equals(no)) {
 					countNo++;
 				}
-				
 			}
 		}
-		
-		System.out.println(countSi);
-		System.out.println(countNo);
-		System.out.println(mediaSN);
-		
+				
 		System.out.println("Media de puntuacion:" + countNum/mediaNum);
 		System.out.println("Si: " + countSi/mediaSN + "%");
 		System.out.println("No: " + countNo/mediaSN + "%");
