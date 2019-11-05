@@ -156,8 +156,8 @@ public class Principal {
 		JLabel prox;
 		
 		//mas
-		static PrintStream log1;
-		static Logger log2;
+		static PrintStream log;
+		static Logger logger;
 			
 	public Principal() {
 		
@@ -1120,13 +1120,20 @@ public class Principal {
 		ventanaFeedback.add(gustoColores);
 		
 		estrella1 = new JRadioButton("*");
+		estrella1.setActionCommand("1");
 		estrella2 = new JRadioButton("* *");
+		estrella2.setActionCommand("2");
 		estrella3 = new JRadioButton("* * *");
+		estrella3.setActionCommand("3");
 		estrella4 = new JRadioButton("* * * *");
+		estrella4.setActionCommand("4");
 		estrella5 = new JRadioButton("* * * * *");
+		estrella5.setActionCommand("5");
 		si = new JRadioButton("Si");
+		si.setActionCommand("si");
 		si.setFont(new Font("Monospace", Font.PLAIN, 12));
 		no = new JRadioButton("No");
+		no.setActionCommand("no");
 		no.setFont(new Font("Monospace", Font.PLAIN, 12));
 		
 		ButtonGroup radioButtonsEstrellas = new ButtonGroup();
@@ -1178,6 +1185,16 @@ public class Principal {
 					mb.setVisible(true);
 					mb.setEnabled(true);
 					System.out.println("Mandando feedback... (?)");
+					
+					//Feedback.log 
+					try {
+						log = new PrintStream( new FileOutputStream("Feedback.log", true));
+					} catch (Exception e1) {	
+					}
+					log.println("Puntuacion: " + radioButtonsEstrellas.getSelection().getActionCommand() + "\n"
+							+ "Si/No: " + radioButtonsSiNo.getSelection().getActionCommand() + "\n");
+					//hasta aqui
+					
 					radioButtonsEstrellas.clearSelection();
 					radioButtonsSiNo.clearSelection();	
 					errorFeedback.setText("");
@@ -1325,18 +1342,20 @@ public class Principal {
 			
 	public static void main(String[] args) {
 		
+		//prueba
 		try {
-			log1 = new PrintStream( new FileOutputStream("pruebaLog.log", true));
+			log = new PrintStream( new FileOutputStream("pruebaLog.log", true));
 		} catch (Exception e) {	
 		}
-		log1.println("Inicio del programa con log: " + (new Date()));
+		log.println("Inicio del programa con log: " + (new Date()));
 		
 		try {
-			log2 = Logger.getLogger("prueba-logger");
-			log2.addHandler(new FileHandler("pruebaLogger.xml", true));
+			logger = Logger.getLogger("prueba-logger");
+			logger.addHandler(new FileHandler("pruebaLogger.xml", true));
 		} catch (Exception e) {
 		}
-		log2.log(Level.INFO, "Inicio de programa con logger: ");
+		logger.log(Level.INFO, "Inicio de programa con logger: ");
+		//fin de prueba
 		
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
