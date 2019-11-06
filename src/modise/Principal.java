@@ -156,7 +156,7 @@ public class Principal {
 		JLabel prox;
 		
 		//mas
-		static PrintStream log;
+		static PrintStream Feedbacklog, Usuariolog;
 		static Logger logger;
 			
 	public Principal() {
@@ -328,7 +328,7 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
-				log.println("Inicio de sesion: " + txtEmail.getText() + " " + (new Date()) + "\n");
+				Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + " " + (new Date()));
 				
 				mb.setVisible(true);
 				mb.setEnabled(true);
@@ -785,8 +785,8 @@ public class Principal {
 								CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 								
 	//log crear cuenta
-	log.println("Creacion de cuenta: " + (new Date()) + "\n" + "Nombre:" + txtCrearNombre.getText() + " ,Email:" + txtCrearEmail.getText() + " ,Edad:" + spinCrearEdad.getValue() +
-			" ,Genero:" + radioButtonsGenero.getSelection().getActionCommand() + "\n");
+	Usuariolog.println("Creacion de cuenta: " + (new Date()) + "\n" + "Nombre:" + txtCrearNombre.getText() + ", Email:" + txtCrearEmail.getText() + ", Edad:" + spinCrearEdad.getValue() +
+			", Genero:" + radioButtonsGenero.getSelection().getActionCommand());
 								
 								//se cambia? SI GUD JOB
 								mb.setVisible(true);
@@ -977,7 +977,7 @@ public class Principal {
 					} else {
 						l = estilosComboBoxAnyadirVestimenta.getSelectedItem();
 					}
-					log.println("Pide Outfit, tiempo: " + bgPideOutfit.getSelection().getActionCommand() + " ,estilo: " + l + "\n");
+					Usuariolog.println("Pide Outfit, tiempo: " + bgPideOutfit.getSelection().getActionCommand() + ", estilo: " + l);
 					
 					
 					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
@@ -1051,8 +1051,11 @@ public class Principal {
 		tiempoLabelAnyadirvestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 		
 		sol = new JRadioButton("Sol");
+		sol.setActionCommand("Sol");
 		lluvia = new JRadioButton("Lluvia");
+		lluvia.setActionCommand("Lluvia");
 		nublado = new JRadioButton("Nublado");
+		nublado.setActionCommand("Nublado");
 		
 		estilosComboBoxAnyadirVestimenta = new JComboBox<String>();
 		coloresComboBoxAnyadirVestimenta = new JComboBox<String>();
@@ -1134,6 +1137,8 @@ public class Principal {
 				if (radioButtonsTiempo.isSelected(null)) {
 					errorVentanaAnyadirVestimenta.setText("Selecciona el tiempo.");
 				} else {
+					Usuariolog.println("Anyade vestimenta, tiempo " + radioButtonsTiempo.getSelection().getActionCommand() 
+							+ ", estilo: " + estilosComboBoxAnyadirVestimenta.getSelectedItem() + ", color: " + coloresComboBoxAnyadirVestimenta.getSelectedItem());
 					CambiarPanel(ventanaAnyadirVestimenta, ventanaProx); //prox
 					radioButtonsTiempo.clearSelection();
 					errorVentanaAnyadirVestimenta.setText("");
@@ -1218,11 +1223,11 @@ public class Principal {
 					
 					//Feedback.log 
 					try {
-						log = new PrintStream( new FileOutputStream("Feedback.log", true));
+						Feedbacklog = new PrintStream( new FileOutputStream("Feedback.log", true));
 					} catch (Exception e1) {	
 					}
-					log.println("Puntuacion: " + radioButtonsEstrellas.getSelection().getActionCommand() + "\n"
-							+ "Si/No: " + radioButtonsSiNo.getSelection().getActionCommand() + "\n");
+					Feedbacklog.println("Puntuacion: " + radioButtonsEstrellas.getSelection().getActionCommand() + "\n"
+							+ "Si/No: " + radioButtonsSiNo.getSelection().getActionCommand());
 					//hasta aqui
 					
 					radioButtonsEstrellas.clearSelection();
@@ -1352,6 +1357,7 @@ public class Principal {
 				//quitar comentario y agregar aqui	<-
 				
 				//Hasta aqui
+				Usuariolog.println("Sesion cerrada.");
 				CambiarPanel(ventanaMenuPrincipal, ventanaInicioSesion);
 				System.out.println("Sesion cerrada.");
 				
@@ -1374,10 +1380,10 @@ public class Principal {
 		
 		//prueba
 		try {
-			log = new PrintStream( new FileOutputStream("pruebaLog.log", true));
+			Usuariolog = new PrintStream( new FileOutputStream("Usuario.log", true));
 		} catch (Exception e) {	
 		}
-		log.println("Inicio del programa. \n");
+		Usuariolog.println("Inicio del programa.");
 		
 		/*try {
 			logger = Logger.getLogger("prueba-logger");
