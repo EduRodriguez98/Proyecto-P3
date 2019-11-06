@@ -113,6 +113,20 @@ public class Principal {
 	JCheckBox clasicoF, urbanaF, rockF, bohoF, formalF, sportyChickF;
 	JLabel errorPerfilGustosUnoF;
 
+	// VentanaPerfilGustosUno
+	String g1 = "";
+	String g7 = "";
+	String g2 = "";
+	String g8 = "";
+	String g3 = "";
+	String g9 = "";
+	String g4 = "";
+	String g10 = "";
+	String g5 = "";
+	String g11 = "";
+	String g6 = "";
+	String g12 = "";
+
 	// VentanaPerfilGustos2
 	JLabel labelEscoge, errorPerfilGustosDos;
 	JButton botonPerfilGustosDosAtras, botonPerfilGustosDosSiguiente;
@@ -821,10 +835,62 @@ public class Principal {
 								CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 
 								// log crear cuenta
+								if (clasicoM.isSelected()) {
+									g1 = " clasicoM ";
+								}
+								if (urbanaM.isSelected()) {
+									g2 = " urbanaM ";
+								}
+								if (rockM.isSelected()) {
+									g3 = " rockM ";
+								}
+								if (smartM.isSelected()) {
+									g4 = " smartM ";
+								}
+								if (formalM.isSelected()) {
+									g5 = " formalM ";
+								}
+								if (casualChickM.isSelected()) {
+									g6 = " casualChickM ";
+								}
+
+								if (clasicoF.isSelected()) {
+									g7 = " clasicoF ";
+								}
+								if (urbanaF.isSelected()) {
+									g8 = " urbanF ";
+								}
+								if (rockF.isSelected()) {
+									g9 = " rockF ";
+								}
+								if (bohoF.isSelected()) {
+									g10 = " bohoF ";
+								}
+								if (formalF.isSelected()) {
+									g11 = " formalF ";
+								}
+								if (sportyChickF.isSelected()) {
+									g12 = " sportyChickF ";
+								}
+
 								Usuariolog.println("Creacion de cuenta: " + (new Date()) + "\n" + "Nombre:"
 										+ txtCrearNombre.getText() + ", Email:" + txtCrearEmail.getText() + ", Edad:"
 										+ spinCrearEdad.getValue() + ", Genero:"
-										+ radioButtonsGenero.getSelection().getActionCommand());
+										+ radioButtonsGenero.getSelection().getActionCommand() + "\n Gustos: " + g1 + g2
+										+ g3 + g4 + g5 + g6 + g7 + g8 + g9 + g10 + g11 + g12);
+
+								String g1 = "";
+								String g7 = "";
+								String g2 = "";
+								String g8 = "";
+								String g3 = "";
+								String g9 = "";
+								String g4 = "";
+								String g10 = "";
+								String g5 = "";
+								String g11 = "";
+								String g6 = "";
+								String g12 = "";
 
 								// se cambia? SI GUD JOB
 								mb.setVisible(true);
