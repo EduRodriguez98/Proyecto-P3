@@ -26,8 +26,8 @@ CREATE TABLE `camisetas` (
   `idcamisetas` int(11) NOT NULL,
   `idprendas` int(11) NOT NULL,
   `logotipo` varchar(45) DEFAULT NULL,
-  `rayas` varchar(45) DEFAULT NULL,
-  `cuadros` varchar(45) DEFAULT NULL,
+  `rayas` tinyint(4) DEFAULT NULL,
+  `cuadros` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`idcamisetas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,6 +38,7 @@ CREATE TABLE `camisetas` (
 
 LOCK TABLES `camisetas` WRITE;
 /*!40000 ALTER TABLE `camisetas` DISABLE KEYS */;
+INSERT INTO `camisetas` VALUES (1,1,'lacoste',0,0),(2,1,'lacoste',1,0),(3,1,'zara',0,1),(4,1,'h&m',0,0),(5,1,'vitorioylucino',0,1);
 /*!40000 ALTER TABLE `camisetas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,6 +64,7 @@ CREATE TABLE `chaquetas` (
 
 LOCK TABLES `chaquetas` WRITE;
 /*!40000 ALTER TABLE `chaquetas` DISABLE KEYS */;
+INSERT INTO `chaquetas` VALUES (1,2,1,1),(2,2,0,1),(3,2,0,0),(4,2,1,0),(5,2,1,1);
 /*!40000 ALTER TABLE `chaquetas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,6 +88,7 @@ CREATE TABLE `color` (
 
 LOCK TABLES `color` WRITE;
 /*!40000 ALTER TABLE `color` DISABLE KEYS */;
+INSERT INTO `color` VALUES (1,'rojo'),(2,'azul'),(3,'amarillo'),(4,'verde'),(5,'negro');
 /*!40000 ALTER TABLE `color` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,6 +113,7 @@ CREATE TABLE `gorros` (
 
 LOCK TABLES `gorros` WRITE;
 /*!40000 ALTER TABLE `gorros` DISABLE KEYS */;
+INSERT INTO `gorros` VALUES (1,3,1),(2,3,0),(3,3,1),(4,3,0),(5,3,0);
 /*!40000 ALTER TABLE `gorros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,6 +139,7 @@ CREATE TABLE `pantalones` (
 
 LOCK TABLES `pantalones` WRITE;
 /*!40000 ALTER TABLE `pantalones` DISABLE KEYS */;
+INSERT INTO `pantalones` VALUES (1,4,'zara',0),(2,4,'berskha',0),(3,4,'zara',1),(4,4,'bersache',0),(5,4,'h&m',1);
 /*!40000 ALTER TABLE `pantalones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -308,7 +313,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'eneko','enkop@gmail.com',1,20);
+INSERT INTO `usuario` VALUES (1,'eneko','enekop@gmail.com',1,20),(2,'eduj','edudor@gmail.com',1,20),(3,'acvelap','acvelap@gmail.com',1,28),(4,'laura','lauram@gmail.com',0,21),(5,'barbara','barbarae@gmail.com',0,19),(6,'francisco','francis@gmail.com',0,24),(7,'paula','paulaf@gmail.com',0,45),(8,'ernesto','ernestos@gmail.com',0,18),(9,'marta','martasa@gmail.com',0,24),(10,'maripili','mpili@gmail.com',0,20);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -334,6 +339,7 @@ CREATE TABLE `zapatos` (
 
 LOCK TABLES `zapatos` WRITE;
 /*!40000 ALTER TABLE `zapatos` DISABLE KEYS */;
+INSERT INTO `zapatos` VALUES (1,5,1,1),(2,5,1,0),(3,5,1,0),(4,5,0,1),(5,5,0,1);
 /*!40000 ALTER TABLE `zapatos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -346,4 +352,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-06 16:53:57
+-- Dump completed on 2019-11-06 17:09:32
