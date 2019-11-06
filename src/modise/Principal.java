@@ -875,7 +875,7 @@ public class Principal {
 								Usuariolog.println("Creacion de cuenta: " + (new Date()) + "\n" + "Nombre:"
 										+ txtCrearNombre.getText() + ", Email:" + txtCrearEmail.getText() + ", Edad:"
 										+ spinCrearEdad.getValue() + ", Genero:"
-										+ radioButtonsGenero.getSelection().getActionCommand() + "\n Gustos: " + g1 + g2
+										+ radioButtonsGenero.getSelection().getActionCommand() + "\nGustos: " + g1 + g2
 										+ g3 + g4 + g5 + g6 + g7 + g8 + g9 + g10 + g11 + g12);
 
 								String g1 = "";
