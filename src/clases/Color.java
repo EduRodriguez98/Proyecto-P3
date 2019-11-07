@@ -2,17 +2,17 @@ package clases;
 
 public class Color {
 	private static int contador = 0;
-	
+
 	private int idColor;
 	protected String nombre_color;
-	
+
 	public Color(String color) {
 		super();
 		this.idColor = contador;
 		contador++;
 		this.nombre_color = color;
 	}
-	
+
 	public Color(int idColor, String color) {
 		super();
 		this.idColor = contador;
@@ -40,7 +40,5 @@ public class Color {
 	public String toString() {
 		return "Color [id color = " + idColor + ", color = " + nombre_color + "]";
 	}
-	
-	
-	
+
 }

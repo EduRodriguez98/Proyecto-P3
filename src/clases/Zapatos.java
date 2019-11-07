@@ -1,16 +1,16 @@
-	package clases;
+package clases;
 
 public class Zapatos extends Prendas {
 
 	private Boolean deportivos;
 	private Boolean deVestir;
-	
+
 	public Zapatos(Color colorPrincipal, Boolean deportivos, Boolean deVestir) {
 		super(colorPrincipal);
 		this.deportivos = deportivos;
 		this.deVestir = deVestir;
 	}
-	
+
 	public Zapatos() {
 		super();
 		this.deportivos = null;
@@ -35,8 +35,8 @@ public class Zapatos extends Prendas {
 
 	@Override
 	public String toString() {
-		return "Zapatos [Id_prendas = " + getId_prendas() + ", ColorPrincipal = " + getColorPrincipal() + "deportivos=" + deportivos + ", deVestir=" + deVestir + "]";
+		return "Zapatos [Id_prendas = " + getId_prendas() + ", ColorPrincipal = " + getColorPrincipal() + "deportivos="
+				+ deportivos + ", deVestir=" + deVestir + "]";
 	}
-	
-	
+
 }

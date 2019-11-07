@@ -1,16 +1,16 @@
 package clases;
 
-public class Pantalones extends Prendas{
+public class Pantalones extends Prendas {
 
 	private String marca;
 	private Boolean corto;
-	
+
 	public Pantalones(Color colorPrincipal, String marca, Boolean corto) {
 		super(colorPrincipal);
 		this.marca = marca;
 		this.corto = corto;
 	}
-	
+
 	public Pantalones() {
 		super();
 		this.marca = "";
@@ -35,9 +35,8 @@ public class Pantalones extends Prendas{
 
 	@Override
 	public String toString() {
-		return "Pantalones [Id_prendas = " + getId_prendas()
-				+ ", ColorPrincipal = " + getColorPrincipal() + "marca = " + marca + ", corto = " + corto + "]";
+		return "Pantalones [Id_prendas = " + getId_prendas() + ", ColorPrincipal = " + getColorPrincipal() + "marca = "
+				+ marca + ", corto = " + corto + "]";
 	}
-	
-	
+
 }

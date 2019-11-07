@@ -4,13 +4,13 @@ public class Chaquetas extends Prendas {
 
 	private Boolean larga;
 	private Boolean lisa;
-	
+
 	public Chaquetas(Color colorPrincipal, Boolean larga, Boolean lisa) {
 		super(colorPrincipal);
 		this.larga = larga;
 		this.lisa = lisa;
 	}
-	
+
 	public Chaquetas() {
 		super();
 		this.larga = null;
@@ -35,9 +35,9 @@ public class Chaquetas extends Prendas {
 
 	@Override
 	public String toString() {
-		return "Chaquetas [Id_prendas = " + getId_prendas() + ", ColorPrincipal = " + getColorPrincipal() + "larga = " + larga + ", lisa = " + lisa + "]";
-	
-	
+		return "Chaquetas [Id_prendas = " + getId_prendas() + ", ColorPrincipal = " + getColorPrincipal() + "larga = "
+				+ larga + ", lisa = " + lisa + "]";
+
 	}
-	
+
 }

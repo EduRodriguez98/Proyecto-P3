@@ -14,46 +14,45 @@ public class TestConexion {
 		Connection cn = null;
 		Statement stm = null;
 		ResultSet rs = null;
-		
-		
+
 		try {
 			cn = conexion.conectar();
 			stm = cn.createStatement();
 			rs = stm.executeQuery("SELECT * FROM usuario");
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				int idUsuario = rs.getInt(1);
 				String nom_Usuario = rs.getString(2);
 				String correo = rs.getString(3);
 				boolean administrador = rs.getBoolean(4);
 				int edad = rs.getInt(5);
-	
-				
-				System.out.println(idUsuario + " - " + nom_Usuario + " - " + correo + " - " + administrador + " - " + edad );
+
+				System.out.println(
+						idUsuario + " - " + nom_Usuario + " - " + correo + " - " + administrador + " - " + edad);
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
-				if(rs!= null) {
+				if (rs != null) {
 					rs.close();
 				}
-				
-				if(stm!= null) {
+
+				if (stm != null) {
 					stm.close();
 				}
-				
-				if(cn != null) {
+
+				if (cn != null) {
 					cn.close();
 				}
-				
-			} catch(Exception e2) {
+
+			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}
-		
+
 	}
 
 }

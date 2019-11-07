@@ -2,13 +2,13 @@ package clases;
 
 public class Usuario {
 	private static int contador = 0;
-	
+
 	private int id_usuario;
 	private String nombre_usuario;
 	private String correo_usuario;
 	private Boolean administrador;
 	private int edad;
-	
+
 	public Usuario(String nombre_usuario, String correo_usuario, Boolean administrador, int edad) {
 		super();
 		this.id_usuario = contador;
@@ -18,7 +18,7 @@ public class Usuario {
 		this.administrador = administrador;
 		this.edad = edad;
 	}
-	
+
 	public Usuario() {
 		super();
 		this.id_usuario = contador;
@@ -74,7 +74,5 @@ public class Usuario {
 		return "Usuario [id_usuario = " + id_usuario + ", nombre_usuario = " + nombre_usuario + ", correo_usuario = "
 				+ correo_usuario + ", administrador = " + administrador + ", edad = " + edad + "]";
 	}
-	
-	
-	
+
 }

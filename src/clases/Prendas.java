@@ -3,17 +3,17 @@ package clases;
 public abstract class Prendas {
 
 	private static int contador = 0;
-	
+
 	private int id_prendas;
 	private Color colorPrincipal;
-	
+
 	public Prendas(Color colorPrincipal) {
 		super();
 		this.id_prendas = contador;
 		contador++;
 		this.colorPrincipal = colorPrincipal;
 	}
-	
+
 	public Prendas() {
 		super();
 		this.id_prendas = contador;
@@ -41,8 +41,5 @@ public abstract class Prendas {
 	public String toString() {
 		return "Prendas [id_prendas = " + id_prendas + ", colorPrincipal = " + colorPrincipal + "]";
 	}
-	
-	
-	
-	
+
 }
