@@ -8,7 +8,6 @@ public class TextFileCleaner {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-		
 		File f = new File("Usuario.log"); // elegir fichero ej: .log ,...
 
 		PrintWriter writer = new PrintWriter(f);
