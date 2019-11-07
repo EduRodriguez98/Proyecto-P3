@@ -10,12 +10,4 @@ public class Hora {
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 		System.out.println(sdf.format(cal.getTime()));
 	}
-
-	/*
-	 * public static void main(String[] args) {
-	 * 
-	 * Calendar cal = Calendar.getInstance(); SimpleDateFormat sdf = new
-	 * SimpleDateFormat("dd/MM/yyyy HH:mm"); System.out.println(
-	 * sdf.format(cal.getTime()) ); }
-	 */
 }

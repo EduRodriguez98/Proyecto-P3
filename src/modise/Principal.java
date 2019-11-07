@@ -167,7 +167,7 @@ public class Principal {
 	JLabel prox;
 
 	// mas
-	static PrintStream Feedbacklog, Usuariolog;
+	static PrintStream feedbackLog, usuarioLog;
 	static Logger logger;
 
 	public Principal() {
@@ -342,7 +342,7 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
-				Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + " " + (new Date()));
+				usuarioLog.println("Inicio de sesion: " + txtEmail.getText() + " " + (new Date()));
 
 				mb.setVisible(true);
 				mb.setEnabled(true);
@@ -877,7 +877,7 @@ public class Principal {
 									g12 = " sportyChickF ";
 								}
 
-								Usuariolog.println("Creacion de cuenta: " + (new Date()) + "\n" + "Nombre:"
+								usuarioLog.println("Creacion de cuenta: " + (new Date()) + "\n" + "Nombre:"
 										+ txtCrearNombre.getText() + ", Email:" + txtCrearEmail.getText() + ", Edad:"
 										+ spinCrearEdad.getValue() + ", Genero:"
 										+ radioButtonsGenero.getSelection().getActionCommand() + "\nGustos: " + g1 + g2
@@ -1074,7 +1074,7 @@ public class Principal {
 					} else {
 						l = estilosComboBoxAnyadirVestimenta.getSelectedItem();
 					}
-					Usuariolog.println("Pide Outfit, tiempo: " + bgPideOutfit.getSelection().getActionCommand()
+					usuarioLog.println("Pide Outfit, tiempo: " + bgPideOutfit.getSelection().getActionCommand()
 							+ ", estilo: " + l);
 
 					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
@@ -1254,7 +1254,7 @@ public class Principal {
 				if (radioButtonsTiempo.isSelected(null)) {
 					errorVentanaAnyadirVestimenta.setText("Selecciona el tiempo.");
 				} else {
-					Usuariolog.println(
+					usuarioLog.println(
 							"Anyade vestimenta, tiempo: " + radioButtonsTiempo.getSelection().getActionCommand()
 									+ ", estilo: " + estilosComboBoxAnyadirVestimenta.getSelectedItem() + ", color: "
 									+ coloresComboBoxAnyadirVestimenta.getSelectedItem());
@@ -1342,10 +1342,10 @@ public class Principal {
 
 					// Feedback.log
 					try {
-						Feedbacklog = new PrintStream(new FileOutputStream("Feedback.log", true));
+						feedbackLog = new PrintStream(new FileOutputStream("Feedback.log", true));
 					} catch (Exception e1) {
 					}
-					Feedbacklog.println("Puntuacion: " + radioButtonsEstrellas.getSelection().getActionCommand() + "\n"
+					feedbackLog.println("Puntuacion: " + radioButtonsEstrellas.getSelection().getActionCommand() + "\n"
 							+ "Si/No: " + radioButtonsSiNo.getSelection().getActionCommand());
 					// hasta aqui
 
@@ -1476,7 +1476,7 @@ public class Principal {
 				// quitar comentario y agregar aqui <-
 
 				// Hasta aqui
-				Usuariolog.println("Sesion cerrada.");
+				usuarioLog.println("Sesion cerrada.");
 				CambiarPanel(ventanaMenuPrincipal, ventanaInicioSesion);
 				System.out.println("Sesion cerrada.");
 
@@ -1498,7 +1498,7 @@ public class Principal {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
-				Usuariolog.println("Fin del programa.\n");
+				usuarioLog.println("Fin del programa.\n");
 			}
 
 		});
@@ -1509,14 +1509,14 @@ public class Principal {
 
 		// prueba
 		try {
-			Usuariolog = new PrintStream(new FileOutputStream("Usuario.log", true));
+			usuarioLog = new PrintStream(new FileOutputStream("Usuario.log", true));
 		} catch (Exception e) {
 		}
-		Usuariolog.println("Inicio del programa.");
+		usuarioLog.println("Inicio del programa.");
 
 		/*
 		 * try { logger = Logger.getLogger("prueba-logger"); logger.addHandler(new
-		 * FileHandler("pruebaLogger.xml", true)); } catch (Exception e) { }
+		 * FileHandler("PruebaLogger.xml", true)); } catch (Exception e) { }
 		 * logger.log(Level.INFO, "Inicio de programa con logger: ");
 		 */
 		// fin de prueba
