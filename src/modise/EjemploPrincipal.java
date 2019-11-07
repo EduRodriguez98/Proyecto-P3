@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class EjemploPrincipal extends JFrame {
+public class EjemploPrincipal {
 
 	JLabel labelA, labelB;
 	JButton botonA;
