@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Estadisticas {
+public class EstadisticaFeedback {
 
 	public static void main(String[] args) throws IOException {
 
@@ -68,8 +68,8 @@ public class Estadisticas {
 		}
 
 		System.out.println("Media de puntuacion: " + countNum / mediaNum + " (sobre 5).");
-		System.out.println("Si: " + countSi / mediaSN + " %.");
-		System.out.println("No: " + countNo / mediaSN + " %.");
+		System.out.println("Si: " + (countSi / mediaSN) * 100 + " %.");
+		System.out.println("No: " + (countNo / mediaSN) * 100 + " %.");
 
 		fr.close();
 	}

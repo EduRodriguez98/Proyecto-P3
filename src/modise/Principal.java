@@ -25,7 +25,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -113,18 +112,11 @@ public class Principal {
 	JLabel errorPerfilGustosUnoF;
 
 	// VentanaPerfilGustosUno
-	String g1 = "";
-	String g7 = "";
-	String g2 = "";
-	String g8 = "";
-	String g3 = "";
-	String g9 = "";
-	String g4 = "";
-	String g10 = "";
-	String g5 = "";
-	String g11 = "";
-	String g6 = "";
-	String g12 = "";
+	/*
+	 * String g1 = ""; String g7 = ""; String g2 = ""; String g8 = ""; String g3 =
+	 * ""; String g9 = ""; String g4 = ""; String g10 = ""; String g5 = ""; String
+	 * g11 = ""; String g6 = ""; String g12 = "";
+	 */
 
 	// VentanaPerfilGustos2
 	JLabel labelEscoge, errorPerfilGustosDos;
@@ -833,6 +825,19 @@ public class Principal {
 							if (stop = true) {
 								CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 
+								String g1 = "";
+								String g7 = "";
+								String g2 = "";
+								String g8 = "";
+								String g3 = "";
+								String g9 = "";
+								String g4 = "";
+								String g10 = "";
+								String g5 = "";
+								String g11 = "";
+								String g6 = "";
+								String g12 = "";
+
 								// log crear cuenta
 								if (clasicoM.isSelected()) {
 									g1 = " clasicoM ";
@@ -877,19 +882,6 @@ public class Principal {
 										+ spinCrearEdad.getValue() + ", Genero:"
 										+ radioButtonsGenero.getSelection().getActionCommand() + "\nGustos: " + g1 + g2
 										+ g3 + g4 + g5 + g6 + g7 + g8 + g9 + g10 + g11 + g12);
-
-								String g1 = "";
-								String g7 = "";
-								String g2 = "";
-								String g8 = "";
-								String g3 = "";
-								String g9 = "";
-								String g4 = "";
-								String g10 = "";
-								String g5 = "";
-								String g11 = "";
-								String g6 = "";
-								String g12 = "";
 
 								// se cambia? SI GUD JOB
 								mb.setVisible(true);
@@ -1268,8 +1260,8 @@ public class Principal {
 				if (radioButtonsTiempo.isSelected(null)) {
 					errorVentanaAnyadirVestimenta.setText("Selecciona el tiempo.");
 				} else {
-					Usuariolog
-							.println("Anyade vestimenta, tiempo " + radioButtonsTiempo.getSelection().getActionCommand()
+					Usuariolog.println(
+							"Anyade vestimenta, tiempo: " + radioButtonsTiempo.getSelection().getActionCommand()
 									+ ", estilo: " + estilosComboBoxAnyadirVestimenta.getSelectedItem() + ", color: "
 									+ coloresComboBoxAnyadirVestimenta.getSelectedItem());
 					CambiarPanel(ventanaAnyadirVestimenta, ventanaProx); // prox
@@ -1517,7 +1509,7 @@ public class Principal {
 			Usuariolog = new PrintStream(new FileOutputStream("Usuario.log", true));
 		} catch (Exception e) {
 		}
-		Usuariolog.println("Inicio del programa.");
+		Usuariolog.println("\nInicio del programa.");
 
 		/*
 		 * try { logger = Logger.getLogger("prueba-logger"); logger.addHandler(new
