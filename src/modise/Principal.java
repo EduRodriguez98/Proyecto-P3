@@ -1094,20 +1094,20 @@ public class Principal {
 					// Probando cargar imagen de pideOutfit. 
 
 					
-					  FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de archivos JPEG(*.JPG;*.JPEG)", "jpg", "jpeg"); 
-					  JFileChooser archivo = new JFileChooser();
+					//  FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de archivos JPEG(*.JPG;*.JPEG)", "jpg", "jpeg"); 
+					 // JFileChooser archivo = new JFileChooser();
 					 
-					  archivo.addChooseableFileFilter(filtro);
-					  archivo.setDialogTitle("Abrir archivo"); File ruta = new File
-					 ("la ruta en la que tengamos la foto"); archivo.setCurrentDirectory(ruta);
-					  int ventana = archivo.showOpenDialog(null); if(ventana ==
-					  JFileChooser.APPROVE_OPTION) { File file = archivo.getSelectedFile();
-					  txtnomimagen.setText(String.valueOf(file)) Image foto =
-					  getToolkit().getImage(txtnomimage.getText()); /importar Image foto =
-					  foto.getScaledInstance(110,110,Image.SCALE_DEFAULT); lblfoto.setIcon(new
-					  ImageIcon(foto));
+					 // archivo.addChooseableFileFilter(filtro);
+					 // archivo.setDialogTitle("Abrir archivo"); File ruta = new File
+					// ("la ruta en la que tengamos la foto"); archivo.setCurrentDirectory(ruta);
+					 // int ventana = archivo.showOpenDialog(null); if(ventana ==
+					 // JFileChooser.APPROVE_OPTION) { File file = archivo.getSelectedFile();
+					 // txtnomimagen.setText(String.valueOf(file));
+					//  Image foto = getToolkit().getImage(txtnomimage.getText()); /importar 
+					//  Image foto = foto.getScaledInstance(110,110,Image.SCALE_DEFAULT); 
+					 // lblfoto.setIcon(new ImageIcon(foto));
 					  
-					  }
+					 // }
 					 
 
 				} else {
