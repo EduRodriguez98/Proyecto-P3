@@ -1095,30 +1095,31 @@ public class Principal {
 					radioNo.setSelected(false);
 					errorPideOutfit.setText("");
 					estilosComboBoxPideOutfit.setSelectedIndex(0);
-					
-					//Probando cargar imagen de pideOutfit. Nah no sirve porque esta hecho con la mierda del Netbeans pero igual nos sirve como referencia, 
-					//porque los comandos si debieran ser parecidos, y he buscado mas videos por youtube y no encuentro ninguno que suban imagenes a mysql son todo panchis y todos con netbeans
-					
+
+					// Probando cargar imagen de pideOutfit. Nah no sirve porque esta hecho con la
+					// mierda del Netbeans pero igual nos sirve como referencia,
+					// porque los comandos si debieran ser parecidos, y he buscado mas videos por
+					// youtube y no encuentro ninguno que suban imagenes a mysql son todo panchis y
+					// todos con netbeans
+
 					/*
-					 FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de archivos JPEG(*.JPG;*.JPEG)", "jpg", "jpeg");
-					 JFileChooser archivo = new JFileChooser();
-					 
-					 archivo.addChooseableFileFilter(filtro);
-					 archivo.setDialogTitle("Abrir archivo");
-					 File ruta = new File ("la ruta en la que tengamos la foto");
-					 archivo.setCurrentDirectory(ruta);
-					int ventana = archivo.showOpenDialog(null);
-					if(ventana == JFileChooser.APPROVE_OPTION) {
-						File file = archivo.getSelectedFile();
-						txtnomimagen.setText(String.valueOf(file))
-						Image foto = getToolkit().getImage(txtnomimage.getText()); /importar Image
-						foto = foto.getScaledInstance(110,110,Image.SCALE_DEFAULT);
-						lblfoto.setIcon(new ImageIcon(foto));
-						
-					}*/
-					
-					
-					
+					 * FileNameExtensionFilter filtro = new
+					 * FileNameExtensionFilter("Formatos de archivos JPEG(*.JPG;*.JPEG)", "jpg",
+					 * "jpeg"); JFileChooser archivo = new JFileChooser();
+					 * 
+					 * archivo.addChooseableFileFilter(filtro);
+					 * archivo.setDialogTitle("Abrir archivo"); File ruta = new File
+					 * ("la ruta en la que tengamos la foto"); archivo.setCurrentDirectory(ruta);
+					 * int ventana = archivo.showOpenDialog(null); if(ventana ==
+					 * JFileChooser.APPROVE_OPTION) { File file = archivo.getSelectedFile();
+					 * txtnomimagen.setText(String.valueOf(file)) Image foto =
+					 * getToolkit().getImage(txtnomimage.getText()); /importar Image foto =
+					 * foto.getScaledInstance(110,110,Image.SCALE_DEFAULT); lblfoto.setIcon(new
+					 * ImageIcon(foto));
+					 * 
+					 * }
+					 */
+
 				} else {
 					errorPideOutfit.setText("Rellena todos los campos requeridos.");
 				}
