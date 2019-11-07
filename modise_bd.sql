@@ -178,10 +178,11 @@ DROP TABLE IF EXISTS `usu_cami`;
 CREATE TABLE `usu_cami` (
   `idusuario` int(11) NOT NULL,
   `idcamisetas` int(11) NOT NULL,
+  `fecha` date DEFAULT NULL,
   KEY `idcamisetas_idx` (`idcamisetas`),
   KEY `idusuario_idx` (`idusuario`),
   CONSTRAINT `idcamisetas` FOREIGN KEY (`idcamisetas`) REFERENCES `camisetas` (`idcamisetas`) ON DELETE CASCADE,
-  CONSTRAINT `idusuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
+  CONSTRAINT `idusuario_cami` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -206,7 +207,9 @@ CREATE TABLE `usu_cha` (
   `idchaquetas` int(11) NOT NULL,
   `fecha` date DEFAULT NULL,
   KEY `idusuario_idx` (`idusuario`),
-  KEY `idchaquetas_idx` (`idchaquetas`)
+  KEY `idchaquetas_idx` (`idchaquetas`),
+  CONSTRAINT `idchaquetas` FOREIGN KEY (`idchaquetas`) REFERENCES `chaquetas` (`idchaquetas`) ON DELETE CASCADE,
+  CONSTRAINT `idusuario_cha` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -229,7 +232,11 @@ DROP TABLE IF EXISTS `usu_gor`;
 CREATE TABLE `usu_gor` (
   `idusuario` int(11) NOT NULL,
   `idgorros` int(11) NOT NULL,
-  `fecha` date DEFAULT NULL
+  `fecha` date DEFAULT NULL,
+  KEY `idusuario_gor_idx` (`idusuario`),
+  KEY `idgorros_idx` (`idgorros`),
+  CONSTRAINT `idgorros` FOREIGN KEY (`idgorros`) REFERENCES `gorros` (`idgorros`) ON DELETE CASCADE,
+  CONSTRAINT `idusuario_gor` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -252,7 +259,11 @@ DROP TABLE IF EXISTS `usu_pan`;
 CREATE TABLE `usu_pan` (
   `idusuario` int(11) NOT NULL,
   `idpantalones` int(11) NOT NULL,
-  `fecha` date DEFAULT NULL
+  `fecha` date DEFAULT NULL,
+  KEY `idusuario_pan_idx` (`idusuario`),
+  KEY `idpantalones_idx` (`idpantalones`),
+  CONSTRAINT `idpantalones` FOREIGN KEY (`idpantalones`) REFERENCES `pantalones` (`idpantalones`) ON DELETE CASCADE,
+  CONSTRAINT `idusuario_pan` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -277,7 +288,9 @@ CREATE TABLE `usu_zap` (
   `idzapatos` int(11) NOT NULL,
   `fecha` date DEFAULT NULL,
   KEY `idusuario_idx` (`idusuario`),
-  KEY `idzapatos_idx` (`idzapatos`)
+  KEY `idzapatos_idx` (`idzapatos`),
+  CONSTRAINT `idusuario_zap` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE,
+  CONSTRAINT `idzapatos` FOREIGN KEY (`idzapatos`) REFERENCES `zapatos` (`idzapatos`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -352,4 +365,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-06 17:09:32
+-- Dump completed on 2019-11-07 11:26:10
