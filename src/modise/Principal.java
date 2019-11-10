@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
@@ -26,7 +25,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -43,7 +41,6 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 //import com.sun.java.util.jar.pack.Package.File;
 
@@ -1091,24 +1088,23 @@ public class Principal {
 					errorPideOutfit.setText("");
 					estilosComboBoxPideOutfit.setSelectedIndex(0);
 
-					// Probando cargar imagen de pideOutfit. 
+					// Probando cargar imagen de pideOutfit.
 
-					
-					//  FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de archivos JPEG(*.JPG;*.JPEG)", "jpg", "jpeg"); 
-					 // JFileChooser archivo = new JFileChooser();
-					 
-					 // archivo.addChooseableFileFilter(filtro);
-					 // archivo.setDialogTitle("Abrir archivo"); File ruta = new File
+					// FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de
+					// archivos JPEG(*.JPG;*.JPEG)", "jpg", "jpeg");
+					// JFileChooser archivo = new JFileChooser();
+
+					// archivo.addChooseableFileFilter(filtro);
+					// archivo.setDialogTitle("Abrir archivo"); File ruta = new File
 					// ("la ruta en la que tengamos la foto"); archivo.setCurrentDirectory(ruta);
-					 // int ventana = archivo.showOpenDialog(null); if(ventana ==
-					 // JFileChooser.APPROVE_OPTION) { File file = archivo.getSelectedFile();
-					 // txtnomimagen.setText(String.valueOf(file));
-					//  Image foto = getToolkit().getImage(txtnomimage.getText()); /importar 
-					//  Image foto = foto.getScaledInstance(110,110,Image.SCALE_DEFAULT); 
-					 // lblfoto.setIcon(new ImageIcon(foto));
-					  
-					 // }
-					 
+					// int ventana = archivo.showOpenDialog(null); if(ventana ==
+					// JFileChooser.APPROVE_OPTION) { File file = archivo.getSelectedFile();
+					// txtnomimagen.setText(String.valueOf(file));
+					// Image foto = getToolkit().getImage(txtnomimage.getText()); /importar
+					// Image foto = foto.getScaledInstance(110,110,Image.SCALE_DEFAULT);
+					// lblfoto.setIcon(new ImageIcon(foto));
+
+					// }
 
 				} else {
 					errorPideOutfit.setText("Rellena todos los campos requeridos.");

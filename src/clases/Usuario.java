@@ -11,7 +11,8 @@ public class Usuario {
 	private String contrasena;
 	private Boolean genero;
 
-	public Usuario(String nombre_usuario, String correo_usuario, Boolean administrador, int edad, String contrasena,Boolean genero) {
+	public Usuario(String nombre_usuario, String correo_usuario, Boolean administrador, int edad, String contrasena,
+			Boolean genero) {
 		super();
 		this.id_usuario = contador;
 		contador++;
@@ -74,7 +75,6 @@ public class Usuario {
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-	
 
 	public String getContrasena() {
 		return contrasena;
@@ -83,7 +83,6 @@ public class Usuario {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
-	
 
 	public Boolean getGenero() {
 		return genero;
@@ -93,7 +92,6 @@ public class Usuario {
 		this.genero = genero;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "Usuario [id_usuario=" + id_usuario + ", nombre_usuario=" + nombre_usuario + ", correo_usuario="
