@@ -4,8 +4,8 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FileChooser {
-	public static void main(String[] args) { // 　　　　　　　　　　　　
 
+	public static void Choose() {
 		String userDir = System.getProperty("user.home");
 		JFileChooser chooser = new JFileChooser(userDir + "/Pictures");
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg",
@@ -19,7 +19,9 @@ public class FileChooser {
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
 		}
+	}
 
-	} // 　　　　　　　　　　　　
-
+	/*
+	 * public static void main(String[] args) { Choose(); }
+	 */
 }

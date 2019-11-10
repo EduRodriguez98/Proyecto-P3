@@ -14,9 +14,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -1496,7 +1495,7 @@ public class Principal {
 
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		// prueba
 		try {
@@ -1519,10 +1518,19 @@ public class Principal {
 			}
 		});
 
+		// COSITAS:
+
+		EstadisticaFeedback.Read(); // aqui o ponemos main en su clase???
+
+		/*
+		 * Ojo a la magia FileChooser.Choose();
+		 */
+
+		// Cual de estas dos preferimos???
+		System.out.println(new Date());
 		// Lo de la hora
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-		System.out.println(sdf.format(cal.getTime()));
+		Hora.hora();
+
 	}
 
 }
