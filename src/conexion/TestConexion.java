@@ -1,9 +1,12 @@
 package conexion;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javax.swing.JOptionPane;
 
 public class TestConexion {
 
@@ -14,12 +17,26 @@ public class TestConexion {
 		Connection cn = null;
 		Statement stm = null;
 		ResultSet rs = null;
+		
+		PreparedStatement ps;
+		
 
 		try {
 			cn = conexion.conectar();
 			stm = cn.createStatement();
 			rs = stm.executeQuery("SELECT * FROM usuario");
+			ps = cn.prepareStatement("INSERT INTO usuario(nom_usuario, correo, administrador, edad, contrasena, genero) VALUES(?,?,?,?,?,?)");
 
+			//ps.setString(1, txtCrearNombre.getText());
+			
+			int res = ps.executeUpdate();
+			
+			if(res >0) {
+				JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
+			}else {
+				JOptionPane.showMessageDialog(null, "Error al crear el usuario");
+			}
+			
 			while (rs.next()) {
 				int idUsuario = rs.getInt(1);
 				String nom_Usuario = rs.getString(2);
