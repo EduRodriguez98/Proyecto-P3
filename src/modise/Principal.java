@@ -935,7 +935,7 @@ public class Principal {
 		botonPideOutfit.setBounds(250, 150, 200, 50);
 		ventanaMenuPrincipal.add(botonPideOutfit);
 
-		botonAnyadirVestimenta = new JButton("Anyade tu propia Vestimenta");
+		botonAnyadirVestimenta = new JButton("Añade tu propia Vestimenta");
 		botonAnyadirVestimenta.setBounds(250, 250, 200, 50);
 		ventanaMenuPrincipal.add(botonAnyadirVestimenta);
 
@@ -1217,7 +1217,7 @@ public class Principal {
 		ventanaAnyadirVestimenta.add(ventanaAnyadirVestimentaAtras);
 		ventanaAnyadirVestimentaAtras.setBounds(10, 340, 200, 30);
 
-		ventanaAnyadirVestimentaAnyadir = new JButton("Anyadir");
+		ventanaAnyadirVestimentaAnyadir = new JButton("Añadir");
 		ventanaAnyadirVestimenta.add(ventanaAnyadirVestimentaAnyadir);
 		ventanaAnyadirVestimentaAnyadir.setBounds(500, 340, 200, 30);
 
@@ -1255,8 +1255,8 @@ public class Principal {
 				if (radioButtonsTiempo.isSelected(null)) {
 					errorVentanaAnyadirVestimenta.setText("Selecciona el tiempo.");
 				} else {
-					Usuariolog.println(
-							"Anyade vestimenta, tiempo: " + radioButtonsTiempo.getSelection().getActionCommand()
+					Usuariolog
+							.println("Añade vestimenta, tiempo: " + radioButtonsTiempo.getSelection().getActionCommand()
 									+ ", estilo: " + estilosComboBoxAnyadirVestimenta.getSelectedItem() + ", color: "
 									+ coloresComboBoxAnyadirVestimenta.getSelectedItem());
 					CambiarPanel(ventanaAnyadirVestimenta, ventanaProx); // prox
