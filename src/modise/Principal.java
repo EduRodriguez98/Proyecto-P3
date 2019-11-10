@@ -40,6 +40,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 
 //import com.sun.java.util.jar.pack.Package.File;
 
@@ -175,7 +176,7 @@ public class Principal {
 		JFrame frame = new JFrame();
 		frame.setVisible(true);
 		frame.setSize(720, 480);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setTitle("Principal.java");
 		frame.setResizable(false);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -200,6 +201,7 @@ public class Principal {
 		JPanel ventanaMenuPrincipal = new JPanel() {
 			private static final long serialVersionUID = 1L;
 
+			@Override
 			public void paintComponent(Graphics g) {
 				Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
 				Graphics bufferGraphics = bufferImage.getGraphics();

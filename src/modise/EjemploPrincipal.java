@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 
 public class EjemploPrincipal {
 
@@ -42,7 +43,7 @@ public class EjemploPrincipal {
 		JFrame frame = new JFrame();
 		frame.setVisible(true);
 		frame.setSize(1000, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setTitle("EjemploPrincipal.java");
 
 		JPanel panelA = new JPanel();
