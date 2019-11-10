@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -1495,6 +1497,12 @@ public class Principal {
 			}
 		});
 
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				Usuariolog.println("Fin del programa.\n");
+			}
+		});
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -1504,7 +1512,7 @@ public class Principal {
 			Usuariolog = new PrintStream(new FileOutputStream("Usuario.log", true));
 		} catch (Exception e) {
 		}
-		Usuariolog.println("\nInicio del programa.");
+		Usuariolog.println("Inicio del programa.");
 
 		/*
 		 * try { logger = Logger.getLogger("prueba-logger"); logger.addHandler(new
