@@ -168,9 +168,11 @@ public class Principal {
 	// ventanaMasMenosAdmin
 	JLabel labelEmailMasMenosAdmin;
 	JTextField txtEmailMasMenosAdmin;
-	JLabel errorSuccessMasMenosAdmin;
+	JLabel labelErrorMasMenosAdmin;
 	JComboBox<String> comboMasMenosAdministrador;
 	JLabel labelSelecionOperacionMasMenosAdmin;
+	JButton botonGuardarCambiosMasMenosAdmin, botonatrasMasMenosAdmin;
+	
 
 	// mas
 	static PrintStream Feedbacklog, Usuariolog;
@@ -1423,7 +1425,38 @@ public class Principal {
 		ventanaMasMenosAdmin.add(comboMasMenosAdministrador);
 		comboMasMenosAdministrador.setBounds(375, 200, 300, 40);
 		
-		botonMasMenosAdmin = new JButton("Realizar cambios");
+		botonGuardarCambiosMasMenosAdmin = new JButton("Realizar cambios");
+		ventanaMasMenosAdmin.add(botonGuardarCambiosMasMenosAdmin);
+		botonGuardarCambiosMasMenosAdmin.setBounds(500, 350, 200, 40);
+		
+		botonatrasMasMenosAdmin = new JButton("Atras");
+		ventanaMasMenosAdmin.add(botonatrasMasMenosAdmin);
+		botonatrasMasMenosAdmin.setBounds(25, 350, 200, 40);
+		
+		labelErrorMasMenosAdmin = new JLabel("Error, email no valido");
+		
+		//Action Lsiteners
+		botonGuardarCambiosMasMenosAdmin.addActionListener(new ActionListener() {
+			
+			String editarEmail = txtEmailMasMenosAdmin.getText();
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (editarEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" 
+					+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") && !editarEmail.isEmpty()) {
+					
+					//if (escrito1) {
+						//comprobacion de que el email exista en la base de datos!
+						
+						if (comboMasMenosAdministrador.getSelectedItem() == "Hacer Administrador") {
+							//hacer el usuario en la base de datos y en la clase de usuarios administrador (dejarlo en true el boolean admin)
+						} else if (comboMasMenosAdministrador.getSelectedItem() == "Quitar privilegios de Administrado") {
+							//Hacer el boolean Admin de la BD y clase False
+						}
+					//}
+				}
+				
+			}
+		});
 
 		// actionlistener menu - cerrar sesion
 		mi1.addActionListener(new ActionListener() {
