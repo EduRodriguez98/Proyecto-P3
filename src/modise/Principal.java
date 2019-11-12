@@ -168,7 +168,7 @@ public class Principal {
 	// ventanaMasMenosAdmin
 	JLabel labelEmailMasMenosAdmin;
 	JTextField txtEmailMasMenosAdmin;
-	JLabel labelErrorMasMenosAdmin;
+	JLabel labelErrorMasMenosAdmin, labelSuccessMasMenosAdmin;
 	JComboBox<String> comboMasMenosAdministrador;
 	JLabel labelSelecionOperacionMasMenosAdmin;
 	JButton botonGuardarCambiosMasMenosAdmin, botonatrasMasMenosAdmin;
@@ -1433,7 +1433,15 @@ public class Principal {
 		ventanaMasMenosAdmin.add(botonatrasMasMenosAdmin);
 		botonatrasMasMenosAdmin.setBounds(25, 350, 200, 40);
 		
-		labelErrorMasMenosAdmin = new JLabel("Error, email no valido");
+		labelErrorMasMenosAdmin = new JLabel("Error, email no valido, porfavor reviselo e intentelo otra vez");
+		ventanaMasMenosAdmin.add(labelErrorMasMenosAdmin);
+		labelErrorMasMenosAdmin.setVisible(false);
+		labelErrorMasMenosAdmin.setBounds(25, 400, 300, 40);
+		
+		labelSuccessMasMenosAdmin = new JLabel("Cambio realizado con Exito!");
+		ventanaMasMenosAdmin.add(labelSuccessMasMenosAdmin);
+		labelSuccessMasMenosAdmin.setVisible(false);
+		labelSuccessMasMenosAdmin.setBounds(25, 400, 300, 40);
 		
 		//Action Lsiteners
 		botonGuardarCambiosMasMenosAdmin.addActionListener(new ActionListener() {
@@ -1449,12 +1457,28 @@ public class Principal {
 						
 						if (comboMasMenosAdministrador.getSelectedItem() == "Hacer Administrador") {
 							//hacer el usuario en la base de datos y en la clase de usuarios administrador (dejarlo en true el boolean admin)
+							labelSuccessMasMenosAdmin.setVisible(true);
+							
 						} else if (comboMasMenosAdministrador.getSelectedItem() == "Quitar privilegios de Administrado") {
 							//Hacer el boolean Admin de la BD y clase False
+							labelSuccessMasMenosAdmin.setVisible(true);
 						}
 					//}
+				} else {
+					labelErrorMasMenosAdmin.setVisible(true);
 				}
 				
+			}
+		});
+		
+		botonatrasMasMenosAdmin.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaMasMenosAdmin, ventanaMenuPrincipal);
+				labelSuccessMasMenosAdmin.setVisible(false);
+				labelErrorMasMenosAdmin.setVisible(false);
+				txtEmailMasMenosAdmin.setText("");
 			}
 		});
 
