@@ -165,8 +165,12 @@ public class Principal {
 
 	// ventanaEmergenteOutfit
 
-	// ventanaProx
-	JLabel prox;
+	// ventanaMasMenosAdmin
+	JLabel labelEmailMasMenosAdmin;
+	JTextField txtEmailMasMenosAdmin;
+	JLabel errorSuccessMasMenosAdmin;
+	JComboBox<String> comboMasMenosAdministrador;
+	JLabel labelSelecionOperacionMasMenosAdmin;
 
 	// mas
 	static PrintStream Feedbacklog, Usuariolog;
@@ -233,7 +237,7 @@ public class Principal {
 		PanelFondo ventanaAnyadirVestimenta = new PanelFondo();
 		PanelFondo ventanaPideOutfit = new PanelFondo();
 		PanelFondo ventanaFeedback = new PanelFondo();
-		JPanel ventanaProx = new JPanel(); // dejadla asi
+		JPanel ventanaMasMenosAdmin = new JPanel(); // dejadla asi. NO, le he cambiado el nombre
 
 		// ventanas Emergentes
 		JPanel ajustes = new JPanel(new GridLayout(3, 1));
@@ -250,7 +254,7 @@ public class Principal {
 		CrearPanel(ventanaAnyadirVestimenta);
 		CrearPanel(ventanaPideOutfit);
 		CrearPanel(ventanaFeedback);
-		CrearPanel(ventanaProx);
+		CrearPanel(ventanaMasMenosAdmin);
 
 		frame.getContentPane().add(ventanaInicioSesion);
 		frame.getContentPane().add(ventanaCrearCuenta);
@@ -263,7 +267,7 @@ public class Principal {
 		frame.getContentPane().add(ventanaAnyadirVestimenta);
 		frame.getContentPane().add(ventanaPideOutfit);
 		frame.getContentPane().add(ventanaFeedback);
-		frame.getContentPane().add(ventanaProx);
+		frame.getContentPane().add(ventanaMasMenosAdmin);
 
 		ventanaInicioSesion.setVisible(true); // la primera ventana visible
 
@@ -621,7 +625,7 @@ public class Principal {
 		botonPerfilGustosUnoMSiguiente.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) { // qwe
+			public void actionPerformed(ActionEvent e) {
 
 				if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() || smartM.isSelected()
 						|| formalM.isSelected() || casualChickM.isSelected()) {
@@ -979,7 +983,7 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 				mb.setVisible(false);
 				mb.setEnabled(false);
-				CambiarPanel(ventanaMenuPrincipal, ventanaProx);
+				CambiarPanel(ventanaMenuPrincipal, ventanaMasMenosAdmin);
 			}
 		});
 
@@ -1261,7 +1265,7 @@ public class Principal {
 							.println("Añade vestimenta, tiempo: " + radioButtonsTiempo.getSelection().getActionCommand()
 									+ ", estilo: " + estilosComboBoxAnyadirVestimenta.getSelectedItem() + ", color: "
 									+ coloresComboBoxAnyadirVestimenta.getSelectedItem());
-					CambiarPanel(ventanaAnyadirVestimenta, ventanaProx); // prox
+					CambiarPanel(ventanaAnyadirVestimenta, ventanaMasMenosAdmin); 
 					radioButtonsTiempo.clearSelection();
 					errorVentanaAnyadirVestimenta.setText("");
 				}
@@ -1399,10 +1403,27 @@ public class Principal {
 			}
 		});
 
-		// VentanaProximamente
-		prox = new JLabel("PROXIMAMENTE");
-		prox.setBounds(100, 100, 100, 50);
-		ventanaProx.add(prox);
+		// VentanaMasMenosAdmin
+		
+		labelEmailMasMenosAdmin = new JLabel("Introduzca el email de la cuenta que desea modificar: ");
+		ventanaMasMenosAdmin.add(labelEmailMasMenosAdmin);
+		labelEmailMasMenosAdmin.setBounds(25, 100, 350, 40);
+		
+		txtEmailMasMenosAdmin = new JTextField();
+		ventanaMasMenosAdmin.add(txtEmailMasMenosAdmin);
+		txtEmailMasMenosAdmin.setBounds(375, 100, 300, 40);
+		
+		labelSelecionOperacionMasMenosAdmin = new JLabel("Selecione como quiere modificar esta cuenta: ");
+		ventanaMasMenosAdmin.add(labelSelecionOperacionMasMenosAdmin);
+		labelSelecionOperacionMasMenosAdmin.setBounds(25, 200, 300, 40);
+		
+		comboMasMenosAdministrador = new JComboBox<String>();
+		comboMasMenosAdministrador.addItem("Hacer Administrador");
+		comboMasMenosAdministrador.addItem("Quitar privilegios de Administrador");
+		ventanaMasMenosAdmin.add(comboMasMenosAdministrador);
+		comboMasMenosAdministrador.setBounds(375, 200, 300, 40);
+		
+		botonMasMenosAdmin = new JButton("Realizar cambios");
 
 		// actionlistener menu - cerrar sesion
 		mi1.addActionListener(new ActionListener() {
