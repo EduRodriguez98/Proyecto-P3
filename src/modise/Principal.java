@@ -82,17 +82,17 @@ public class Principal {
 	// 3.Ventana Menu Principal
 	// Declarando componentes
 	// VentanaInicioSesion
-	JLabel labelBrand, labelEmail, labelContrasenya, labelPregunta;
-	JTextField txtEmail, txtContrasenya;
+	JLabel labelBrand, labelEmail, labelContraseña, labelPregunta;
+	JTextField txtEmail, txtContraseña;
 	JButton botonCrear, botonInicio;
-	JPasswordField contrasenya;
+	JPasswordField contraseña;
 	JCheckBox view;
 	boolean escrito1, escrito2;
 
 	// VentanaCrearCuenta
-	JLabel labelCrearNombre, labelCrearEmail, labelCrearContrasenya, labelCrearEdad, errorNombre, errorEmail,
-			errorContrasenya;
-	JTextField txtCrearNombre, txtCrearEmail, txtCrearContrasenya;
+	JLabel labelCrearNombre, labelCrearEmail, labelCrearContraseña, labelCrearEdad, errorNombre, errorEmail,
+			errorContraseña;
+	JTextField txtCrearNombre, txtCrearEmail, txtCrearContraseña;
 	JSpinner spinCrearEdad;
 	SpinnerModel model;
 	JButton botonCrearSiguiente, botonCrearAtras;
@@ -136,18 +136,18 @@ public class Principal {
 	JMenuBar mb;
 	JMenu menu1;
 	JMenuItem mi1, mi2, mi3; // mi1 = cerrar sesion
-	JButton botonPideOutfit, botonAnyadirVestimenta, botonMasMenosAdmin;
+	JButton botonPideOutfit, botonAñadirVestimenta, botonMasMenosAdmin;
 
-	// ventanaAnyadirVestimenta
+	// ventanaAñadirVestimenta
 	JRadioButton sol, lluvia, nublado;
-	JLabel estilosLabelAnyadirVestimenta, colorLabelAnyadirVestimenta, tiempoLabelAnyadirvestimenta,
-			errorVentanaAnyadirVestimenta;
+	JLabel estilosLabelAñadirVestimenta, colorLabelAñadirVestimenta, tiempoLabelAñadirvestimenta,
+			errorVentanaAñadirVestimenta;
 	boolean escrito5;
-	JButton ventanaAnyadirVestimentaAtras, ventanaAnyadirVestimentaAnyadir;
+	JButton ventanaAñadirVestimentaAtras, ventanaAñadirVestimentaAñadir;
 
-	JComboBox<String> estilosComboBoxAnyadirVestimenta;
+	JComboBox<String> estilosComboBoxAñadirVestimenta;
 
-	JComboBox<String> coloresComboBoxAnyadirVestimenta;
+	JComboBox<String> coloresComboBoxAñadirVestimenta;
 
 	// ventanaPideOutfit
 	JButton botonAtrasPideOutfit, botonBuscar;
@@ -161,7 +161,7 @@ public class Principal {
 	JButton botonInicioFeedback;
 
 	// Ajustes
-	JButton cambiarContrasenya, cambiarFecha, reiniciarPerfil;
+	JButton cambiarContraseña, cambiarFecha, reiniciarPerfil;
 
 	// ventanaEmergenteOutfit
 
@@ -172,7 +172,6 @@ public class Principal {
 	JComboBox<String> comboMasMenosAdministrador;
 	JLabel labelSelecionOperacionMasMenosAdmin;
 	JButton botonGuardarCambiosMasMenosAdmin, botonatrasMasMenosAdmin;
-	
 
 	// mas
 	static PrintStream Feedbacklog, Usuariolog;
@@ -236,7 +235,7 @@ public class Principal {
 		PanelFondo ventanaPerfilGustosUnoF = new PanelFondo();
 		PanelFondo ventanaPerfilGustosDos = new PanelFondo();
 		PanelFondo ventanaCarga = new PanelFondo();
-		PanelFondo ventanaAnyadirVestimenta = new PanelFondo();
+		PanelFondo ventanaAñadirVestimenta = new PanelFondo();
 		PanelFondo ventanaPideOutfit = new PanelFondo();
 		PanelFondo ventanaFeedback = new PanelFondo();
 		JPanel ventanaMasMenosAdmin = new JPanel(); // dejadla asi. NO, le he cambiado el nombre
@@ -253,7 +252,7 @@ public class Principal {
 		CrearPanel(ventanaPerfilGustosDos);
 		CrearPanel(ventanaMenuPrincipal);
 		CrearPanel(ventanaCarga);
-		CrearPanel(ventanaAnyadirVestimenta);
+		CrearPanel(ventanaAñadirVestimenta);
 		CrearPanel(ventanaPideOutfit);
 		CrearPanel(ventanaFeedback);
 		CrearPanel(ventanaMasMenosAdmin);
@@ -266,14 +265,14 @@ public class Principal {
 		frame.getContentPane().add(ventanaPerfilGustosDos);
 		frame.getContentPane().add(ventanaMenuPrincipal);
 		frame.getContentPane().add(ventanaCarga);
-		frame.getContentPane().add(ventanaAnyadirVestimenta);
+		frame.getContentPane().add(ventanaAñadirVestimenta);
 		frame.getContentPane().add(ventanaPideOutfit);
 		frame.getContentPane().add(ventanaFeedback);
 		frame.getContentPane().add(ventanaMasMenosAdmin);
 
 		ventanaInicioSesion.setVisible(true); // la primera ventana visible
 
-		// Anyadiendo los componentes de ventanaInicioSesion
+		// Añadiendo los componentes de ventanaInicioSesion
 		labelEmail = new JLabel("Email: ");
 		labelEmail.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaInicioSesion.add(labelEmail);
@@ -293,21 +292,21 @@ public class Principal {
 			}
 		});
 
-		labelContrasenya = new JLabel("Contrasena: ");
-		labelContrasenya.setFont(new Font("Monospace", Font.BOLD, 13));
-		ventanaInicioSesion.add(labelContrasenya);
-		labelContrasenya.setBounds(60, 133, 100, 40);
+		labelContraseña = new JLabel("Contrasena: ");
+		labelContraseña.setFont(new Font("Monospace", Font.BOLD, 13));
+		ventanaInicioSesion.add(labelContraseña);
+		labelContraseña.setBounds(60, 133, 100, 40);
 
-		contrasenya = new JPasswordField("12345"); // cambiado
-		contrasenya.setEchoChar('*'); // hacer checkbox isSelected para ver contraseña, HECHO
-		ventanaInicioSesion.add(contrasenya);
-		contrasenya.setBounds(160, 140, 300, 30);
+		contraseña = new JPasswordField("12345"); // cambiado
+		contraseña.setEchoChar('*'); // hacer checkbox isSelected para ver contraseña, HECHO
+		ventanaInicioSesion.add(contraseña);
+		contraseña.setBounds(160, 140, 300, 30);
 		escrito2 = false;
-		contrasenya.addMouseListener(new MouseAdapter() {
+		contraseña.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (escrito2 == false) {
-					contrasenya.setText("");
+					contraseña.setText("");
 					escrito2 = true;
 				}
 			}
@@ -363,14 +362,14 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (view.isSelected() == true) {
-					contrasenya.setEchoChar((char) 0);
+					contraseña.setEchoChar((char) 0);
 				} else {
-					contrasenya.setEchoChar('*');
+					contraseña.setEchoChar('*');
 				}
 			}
 		});
 
-		// Anyadiendo los componentes de ventanaCrearCuenta
+		// Añadiendo los componentes de ventanaCrearCuenta
 		labelCrearNombre = new JLabel("Introduzca su nombre: ");
 		labelCrearNombre.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaCrearCuenta.add(labelCrearNombre);
@@ -409,14 +408,14 @@ public class Principal {
 			}
 		});
 
-		labelCrearContrasenya = new JLabel("Cree una contrasena: ");
-		labelCrearContrasenya.setFont(new Font("Monospace", Font.BOLD, 13));
-		ventanaCrearCuenta.add(labelCrearContrasenya);
-		labelCrearContrasenya.setBounds(80, 200, 200, 30);
+		labelCrearContraseña = new JLabel("Cree una contrasena: ");
+		labelCrearContraseña.setFont(new Font("Monospace", Font.BOLD, 13));
+		ventanaCrearCuenta.add(labelCrearContraseña);
+		labelCrearContraseña.setBounds(80, 200, 200, 30);
 
-		txtCrearContrasenya = new JTextField("");
-		ventanaCrearCuenta.add(txtCrearContrasenya);
-		txtCrearContrasenya.setBounds(250, 200, 300, 30);
+		txtCrearContraseña = new JTextField("");
+		ventanaCrearCuenta.add(txtCrearContraseña);
+		txtCrearContraseña.setBounds(250, 200, 300, 30);
 
 		labelCrearEdad = new JLabel("Seleccione su edad: ");
 		labelCrearEdad.setFont(new Font("Monospace", Font.BOLD, 13));
@@ -447,10 +446,10 @@ public class Principal {
 		errorEmail.setBounds(250, 155, 150, 30);
 		errorEmail.setForeground(Color.RED);
 
-		errorContrasenya = new JLabel();
-		ventanaCrearCuenta.add(errorContrasenya);
-		errorContrasenya.setBounds(250, 230, 150, 30);
-		errorContrasenya.setForeground(Color.RED);
+		errorContraseña = new JLabel();
+		ventanaCrearCuenta.add(errorContraseña);
+		errorContraseña.setBounds(250, 230, 150, 30);
+		errorContraseña.setForeground(Color.RED);
 
 		// Action Listeners
 		botonCrearSiguiente.addActionListener(new ActionListener() {
@@ -459,23 +458,23 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 				String CrearNombre = txtCrearNombre.getText();
 				String CrearEmail = txtCrearEmail.getText();
-				String CrearContrasenya = txtCrearContrasenya.getText();
+				String CrearContraseña = txtCrearContraseña.getText();
 				String CrearEdad = spinCrearEdad.getValue().toString();
 				int EdadSeleccionada = (int) spinCrearEdad.getValue();
 
 				errorNombre.setText("");
 				errorEmail.setText("");
-				errorContrasenya.setText("");
+				errorContraseña.setText("");
 
 				if (CrearNombre.matches("^[a-zA-Z]*$") && !CrearNombre.isEmpty()
 						&& CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" // Dos lineas para validar si es
 								+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") // un correo o no, FUNCIONA 100%
 																						// ??
-						&& !CrearEmail.isEmpty() && !CrearContrasenya.isEmpty() && CrearEdad.matches("^[0-9]*$")) {
+						&& !CrearEmail.isEmpty() && !CrearContraseña.isEmpty() && CrearEdad.matches("^[0-9]*$")) {
 					CambiarPanel(ventanaCrearCuenta, ventanaGenero);
 					errorNombre.setText("");
 					errorEmail.setText("");
-					errorContrasenya.setText("");
+					errorContraseña.setText("");
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdad); // para comporbar que guarda
 					/*
 					 * } else { errorCrearCuenta.setText("Error al insertar datos.");
@@ -493,8 +492,8 @@ public class Principal {
 					errorEmail.setText("Email NO valido");
 					spinCrearEdad.setValue(EdadSeleccionada);
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdad + ", Email NO valido");
-				} else if (CrearContrasenya.isEmpty()) {
-					errorContrasenya.setText("Contraseña NO valida");
+				} else if (CrearContraseña.isEmpty()) {
+					errorContraseña.setText("Contraseña NO valida");
 					spinCrearEdad.setValue(EdadSeleccionada);
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdad + ", Contraseña NO valida");
 				}
@@ -508,22 +507,22 @@ public class Principal {
 				CambiarPanel(ventanaCrearCuenta, ventanaInicioSesion);
 				txtCrearNombre.setText("nombre");
 				txtCrearEmail.setText("ejemplo@gmail.com");
-				txtCrearContrasenya.setText("");
+				txtCrearContraseña.setText("");
 				spinCrearEdad.setValue(18);
 				errorNombre.setText("");
 				escrito3 = false;
 				escrito4 = false;
 				errorEmail.setText("");
-				errorContrasenya.setText("");
+				errorContraseña.setText("");
 
 				txtEmail.setText("ejemplo@gmail.com");
-				contrasenya.setText("12345");
+				contraseña.setText("12345");
 				escrito1 = false;
 				escrito2 = false;
 			}
 		});
 
-		// Anyadiendo los componentes de ventanaGenero
+		// Añadiendo los componentes de ventanaGenero
 		labelEscogerGenero = new JLabel("Seleccione su genero: ");
 		ventanaGenero.add(labelEscogerGenero);
 		labelEscogerGenero.setBounds(115, 145, 200, 40);
@@ -585,11 +584,11 @@ public class Principal {
 				CambiarPanel(ventanaGenero, ventanaCrearCuenta);
 				radioButtonsGenero.clearSelection();
 				errorGenero.setText("");
-				txtCrearContrasenya.setText("");
+				txtCrearContraseña.setText("");
 			}
 		});
 
-		// Anyadiendo los componentes de ventanaPerfilGustosUnoM
+		// Añadiendo los componentes de ventanaPerfilGustosUnoM
 
 		clasicoM = new JCheckBox("Clasico");
 		ventanaPerfilGustosUnoM.add(clasicoM);
@@ -680,7 +679,7 @@ public class Principal {
 			}
 		});
 
-		// Anyadiendo los componentes de ventanaPerfilGustosUnoF
+		// Añadiendo los componentes de ventanaPerfilGustosUnoF
 
 		clasicoF = new JCheckBox("Clasico");
 		ventanaPerfilGustosUnoF.add(clasicoF);
@@ -769,7 +768,7 @@ public class Principal {
 			}
 		});
 
-		// Anyadiendo los componentes de ventanaPerfilGustosDos
+		// Añadiendo los componentes de ventanaPerfilGustosDos
 		labelEscoge = new JLabel("Cual de las siguientes prendas te gusta mas para ti?");
 		labelEscoge.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPerfilGustosDos.add(labelEscoge);
@@ -928,7 +927,7 @@ public class Principal {
 			}
 		});
 
-		// Anyadiendo los componentes de ventanaCarga
+		// Añadiendo los componentes de ventanaCarga
 		labelCargando = new JLabel("Cargando");
 		ventanaCarga.add(labelCargando);
 		labelCargando.setBounds(320, 170, 200, 50);
@@ -938,14 +937,14 @@ public class Principal {
 		ventanaCarga.add(progressCargando);
 		progressCargando.setBounds(200, 220, 300, 40);
 
-		// Anyadiendo los componentes de ventanaMenuPrincipal
+		// Añadiendo los componentes de ventanaMenuPrincipal
 		botonPideOutfit = new JButton("Pide un Outfit!");
 		botonPideOutfit.setBounds(250, 150, 200, 50);
 		ventanaMenuPrincipal.add(botonPideOutfit);
 
-		botonAnyadirVestimenta = new JButton("Añade tu propia Vestimenta");
-		botonAnyadirVestimenta.setBounds(250, 250, 200, 50);
-		ventanaMenuPrincipal.add(botonAnyadirVestimenta);
+		botonAñadirVestimenta = new JButton("Añade tu propia Vestimenta");
+		botonAñadirVestimenta.setBounds(250, 250, 200, 50);
+		ventanaMenuPrincipal.add(botonAñadirVestimenta);
 
 		// Este boton solo puede ser visible cuando se hace log in con una cuenta
 		// administradora, para que solo los
@@ -969,11 +968,11 @@ public class Principal {
 			}
 		});
 
-		botonAnyadirVestimenta.addActionListener(new ActionListener() {
+		botonAñadirVestimenta.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaMenuPrincipal, ventanaAnyadirVestimenta);
+				CambiarPanel(ventanaMenuPrincipal, ventanaAñadirVestimenta);
 				mb.setVisible(false);
 				mb.setEnabled(false);
 			}
@@ -989,7 +988,7 @@ public class Principal {
 			}
 		});
 
-		// Anyadiendo los compenentes de ventanaPideOutfit
+		// Añadiendo los compenentes de ventanaPideOutfit
 		preguntaTiempo = new JLabel("Que tiempo hace hoy?");
 		preguntaTiempo.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPideOutfit.add(preguntaTiempo);
@@ -1081,7 +1080,7 @@ public class Principal {
 					if (radioNo.isSelected()) {
 						l = "No";
 					} else {
-						l = estilosComboBoxAnyadirVestimenta.getSelectedItem();
+						l = estilosComboBoxAñadirVestimenta.getSelectedItem();
 					}
 					Usuariolog.println("Pide Outfit, tiempo: " + bgPideOutfit.getSelection().getActionCommand()
 							+ ", estilo: " + l);
@@ -1168,13 +1167,13 @@ public class Principal {
 
 		// Action Listeners
 
-		// Anyadiendo los componentes de ventanaAnyadirVestimenta
-		estilosLabelAnyadirVestimenta = new JLabel("Selecciona un estilo: (F para Femenino y M para masculino)");
-		estilosLabelAnyadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
-		colorLabelAnyadirVestimenta = new JLabel("Selecciona un color: ");
-		colorLabelAnyadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
-		tiempoLabelAnyadirvestimenta = new JLabel("Selecciona el tiempo: ");
-		tiempoLabelAnyadirvestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
+		// Añadiendo los componentes de ventanaAñadirVestimenta
+		estilosLabelAñadirVestimenta = new JLabel("Selecciona un estilo: (F para Femenino y M para masculino)");
+		estilosLabelAñadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
+		colorLabelAñadirVestimenta = new JLabel("Selecciona un color: ");
+		colorLabelAñadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
+		tiempoLabelAñadirvestimenta = new JLabel("Selecciona el tiempo: ");
+		tiempoLabelAñadirvestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 
 		sol = new JRadioButton("Sol");
 		sol.setActionCommand("Sol");
@@ -1183,98 +1182,98 @@ public class Principal {
 		nublado = new JRadioButton("Nublado");
 		nublado.setActionCommand("Nublado");
 
-		estilosComboBoxAnyadirVestimenta = new JComboBox<String>();
-		coloresComboBoxAnyadirVestimenta = new JComboBox<String>();
+		estilosComboBoxAñadirVestimenta = new JComboBox<String>();
+		coloresComboBoxAñadirVestimenta = new JComboBox<String>();
 
-		estilosComboBoxAnyadirVestimenta.addItem("ClasicoF");
-		estilosComboBoxAnyadirVestimenta.addItem("ClasicoM");
-		estilosComboBoxAnyadirVestimenta.addItem("UrbanaF");
-		estilosComboBoxAnyadirVestimenta.addItem("UrbanaM");
-		estilosComboBoxAnyadirVestimenta.addItem("RockF");
-		estilosComboBoxAnyadirVestimenta.addItem("RockM");
-		estilosComboBoxAnyadirVestimenta.addItem("BohoF");
-		estilosComboBoxAnyadirVestimenta.addItem("SmartM");
-		estilosComboBoxAnyadirVestimenta.addItem("FormalF");
-		estilosComboBoxAnyadirVestimenta.addItem("FormalM");
-		estilosComboBoxAnyadirVestimenta.addItem("SportyChickF");
-		estilosComboBoxAnyadirVestimenta.addItem("CasualChickM");
+		estilosComboBoxAñadirVestimenta.addItem("ClasicoF");
+		estilosComboBoxAñadirVestimenta.addItem("ClasicoM");
+		estilosComboBoxAñadirVestimenta.addItem("UrbanaF");
+		estilosComboBoxAñadirVestimenta.addItem("UrbanaM");
+		estilosComboBoxAñadirVestimenta.addItem("RockF");
+		estilosComboBoxAñadirVestimenta.addItem("RockM");
+		estilosComboBoxAñadirVestimenta.addItem("BohoF");
+		estilosComboBoxAñadirVestimenta.addItem("SmartM");
+		estilosComboBoxAñadirVestimenta.addItem("FormalF");
+		estilosComboBoxAñadirVestimenta.addItem("FormalM");
+		estilosComboBoxAñadirVestimenta.addItem("SportyChickF");
+		estilosComboBoxAñadirVestimenta.addItem("CasualChickM");
 
-		coloresComboBoxAnyadirVestimenta.addItem("Rojo");
-		coloresComboBoxAnyadirVestimenta.addItem("Azul");
-		coloresComboBoxAnyadirVestimenta.addItem("Amarillo");
-		coloresComboBoxAnyadirVestimenta.addItem("Verde");
-		coloresComboBoxAnyadirVestimenta.addItem("Negro");
+		coloresComboBoxAñadirVestimenta.addItem("Rojo");
+		coloresComboBoxAñadirVestimenta.addItem("Azul");
+		coloresComboBoxAñadirVestimenta.addItem("Amarillo");
+		coloresComboBoxAñadirVestimenta.addItem("Verde");
+		coloresComboBoxAñadirVestimenta.addItem("Negro");
 
-		estilosLabelAnyadirVestimenta.setBounds(40, 200, 400, 40);
-		colorLabelAnyadirVestimenta.setBounds(450, 200, 200, 40);
-		tiempoLabelAnyadirvestimenta.setBounds(40, 50, 200, 40);
+		estilosLabelAñadirVestimenta.setBounds(40, 200, 400, 40);
+		colorLabelAñadirVestimenta.setBounds(450, 200, 200, 40);
+		tiempoLabelAñadirvestimenta.setBounds(40, 50, 200, 40);
 
 		sol.setBounds(40, 100, 100, 40);
 		lluvia.setBounds(160, 100, 100, 40);
 		nublado.setBounds(280, 100, 100, 40);
 
-		estilosComboBoxAnyadirVestimenta.setBounds(40, 250, 100, 40);
-		coloresComboBoxAnyadirVestimenta.setBounds(450, 250, 100, 40);
+		estilosComboBoxAñadirVestimenta.setBounds(40, 250, 100, 40);
+		coloresComboBoxAñadirVestimenta.setBounds(450, 250, 100, 40);
 
 		ButtonGroup radioButtonsTiempo = new ButtonGroup();
 		radioButtonsTiempo.add(sol);
 		radioButtonsTiempo.add(lluvia);
 		radioButtonsTiempo.add(nublado);
 
-		ventanaAnyadirVestimentaAtras = new JButton("Atras");
-		ventanaAnyadirVestimenta.add(ventanaAnyadirVestimentaAtras);
-		ventanaAnyadirVestimentaAtras.setBounds(10, 340, 200, 30);
+		ventanaAñadirVestimentaAtras = new JButton("Atras");
+		ventanaAñadirVestimenta.add(ventanaAñadirVestimentaAtras);
+		ventanaAñadirVestimentaAtras.setBounds(10, 340, 200, 30);
 
-		ventanaAnyadirVestimentaAnyadir = new JButton("Añadir");
-		ventanaAnyadirVestimenta.add(ventanaAnyadirVestimentaAnyadir);
-		ventanaAnyadirVestimentaAnyadir.setBounds(500, 340, 200, 30);
+		ventanaAñadirVestimentaAñadir = new JButton("Añadir");
+		ventanaAñadirVestimenta.add(ventanaAñadirVestimentaAñadir);
+		ventanaAñadirVestimentaAñadir.setBounds(500, 340, 200, 30);
 
-		errorVentanaAnyadirVestimenta = new JLabel();
-		ventanaAnyadirVestimenta.add(errorVentanaAnyadirVestimenta);
-		errorVentanaAnyadirVestimenta.setBounds(300, 340, 400, 40);
-		errorVentanaAnyadirVestimenta.setForeground(Color.RED);
+		errorVentanaAñadirVestimenta = new JLabel();
+		ventanaAñadirVestimenta.add(errorVentanaAñadirVestimenta);
+		errorVentanaAñadirVestimenta.setBounds(300, 340, 400, 40);
+		errorVentanaAñadirVestimenta.setForeground(Color.RED);
 
-		ventanaAnyadirVestimenta.add(sol);
-		ventanaAnyadirVestimenta.add(lluvia);
-		ventanaAnyadirVestimenta.add(nublado);
-		ventanaAnyadirVestimenta.add(estilosComboBoxAnyadirVestimenta);
-		ventanaAnyadirVestimenta.add(coloresComboBoxAnyadirVestimenta);
-		ventanaAnyadirVestimenta.add(estilosLabelAnyadirVestimenta);
-		ventanaAnyadirVestimenta.add(colorLabelAnyadirVestimenta);
-		ventanaAnyadirVestimenta.add(tiempoLabelAnyadirvestimenta);
+		ventanaAñadirVestimenta.add(sol);
+		ventanaAñadirVestimenta.add(lluvia);
+		ventanaAñadirVestimenta.add(nublado);
+		ventanaAñadirVestimenta.add(estilosComboBoxAñadirVestimenta);
+		ventanaAñadirVestimenta.add(coloresComboBoxAñadirVestimenta);
+		ventanaAñadirVestimenta.add(estilosLabelAñadirVestimenta);
+		ventanaAñadirVestimenta.add(colorLabelAñadirVestimenta);
+		ventanaAñadirVestimenta.add(tiempoLabelAñadirvestimenta);
 
-		// actionlisteners ventanaAnyadirVestimenta
-		ventanaAnyadirVestimentaAtras.addActionListener(new ActionListener() {
+		// actionlisteners ventanaAñadirVestimenta
+		ventanaAñadirVestimentaAtras.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaAnyadirVestimenta, ventanaMenuPrincipal);
+				CambiarPanel(ventanaAñadirVestimenta, ventanaMenuPrincipal);
 				radioButtonsTiempo.clearSelection();
-				errorVentanaAnyadirVestimenta.setText("");
+				errorVentanaAñadirVestimenta.setText("");
 				mb.setVisible(true);
 				mb.setEnabled(true);
 			}
 		});
 
-		ventanaAnyadirVestimentaAnyadir.addActionListener(new ActionListener() {
+		ventanaAñadirVestimentaAñadir.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (radioButtonsTiempo.isSelected(null)) {
-					errorVentanaAnyadirVestimenta.setText("Selecciona el tiempo.");
+					errorVentanaAñadirVestimenta.setText("Selecciona el tiempo.");
 				} else {
 					Usuariolog
 							.println("Añade vestimenta, tiempo: " + radioButtonsTiempo.getSelection().getActionCommand()
-									+ ", estilo: " + estilosComboBoxAnyadirVestimenta.getSelectedItem() + ", color: "
-									+ coloresComboBoxAnyadirVestimenta.getSelectedItem());
-					CambiarPanel(ventanaAnyadirVestimenta, ventanaMasMenosAdmin); 
+									+ ", estilo: " + estilosComboBoxAñadirVestimenta.getSelectedItem() + ", color: "
+									+ coloresComboBoxAñadirVestimenta.getSelectedItem());
+					// CambiarPanel(ventanaAñadirVestimenta, );
 					radioButtonsTiempo.clearSelection();
-					errorVentanaAnyadirVestimenta.setText("");
+					errorVentanaAñadirVestimenta.setText("");
 				}
 			}
 		});
 
-		// Anyadiendo los componentes de ventanaFeedback
+		// Añadiendo los componentes de ventanaFeedback
 		nivelSatisfaccion = new JLabel("Nivel de satisfaccion: ");
 		nivelSatisfaccion.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaFeedback.add(nivelSatisfaccion);
@@ -1367,10 +1366,10 @@ public class Principal {
 			}
 		});
 
-		// Anyadiendo los componentes de ajustes
-		cambiarContrasenya = new JButton("Cambiar contrasenya");
-		cambiarContrasenya.setBounds(50, 20, 50, 50);
-		ajustes.add(cambiarContrasenya);
+		// Añadiendo los componentes de ajustes
+		cambiarContraseña = new JButton("Cambiar contraseña");
+		cambiarContraseña.setBounds(50, 20, 50, 50);
+		ajustes.add(cambiarContraseña);
 
 		cambiarFecha = new JButton("Cambiar fecha");
 		cambiarFecha.setBounds(50, 100, 50, 50);
@@ -1381,11 +1380,11 @@ public class Principal {
 		ajustes.add(reiniciarPerfil);
 
 		// Action listeners OJO ESTO SOLO PARA PROBAR
-		cambiarContrasenya.addActionListener(new ActionListener() {
+		cambiarContraseña.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Cambiar contrasenya");
+				System.out.println("Cambiar contraseña");
 			}
 		});
 
@@ -1406,73 +1405,76 @@ public class Principal {
 		});
 
 		// VentanaMasMenosAdmin
-		
+
 		labelEmailMasMenosAdmin = new JLabel("Introduzca el email de la cuenta que desea modificar: ");
 		ventanaMasMenosAdmin.add(labelEmailMasMenosAdmin);
 		labelEmailMasMenosAdmin.setBounds(25, 100, 350, 40);
-		
+
 		txtEmailMasMenosAdmin = new JTextField();
 		ventanaMasMenosAdmin.add(txtEmailMasMenosAdmin);
 		txtEmailMasMenosAdmin.setBounds(375, 100, 300, 40);
-		
+
 		labelSelecionOperacionMasMenosAdmin = new JLabel("Selecione como quiere modificar esta cuenta: ");
 		ventanaMasMenosAdmin.add(labelSelecionOperacionMasMenosAdmin);
 		labelSelecionOperacionMasMenosAdmin.setBounds(25, 200, 300, 40);
-		
+
 		comboMasMenosAdministrador = new JComboBox<String>();
 		comboMasMenosAdministrador.addItem("Hacer Administrador");
 		comboMasMenosAdministrador.addItem("Quitar privilegios de Administrador");
 		ventanaMasMenosAdmin.add(comboMasMenosAdministrador);
 		comboMasMenosAdministrador.setBounds(375, 200, 300, 40);
-		
+
 		botonGuardarCambiosMasMenosAdmin = new JButton("Realizar cambios");
 		ventanaMasMenosAdmin.add(botonGuardarCambiosMasMenosAdmin);
 		botonGuardarCambiosMasMenosAdmin.setBounds(500, 350, 200, 40);
-		
+
 		botonatrasMasMenosAdmin = new JButton("Atras");
 		ventanaMasMenosAdmin.add(botonatrasMasMenosAdmin);
 		botonatrasMasMenosAdmin.setBounds(25, 350, 200, 40);
-		
+
 		labelErrorMasMenosAdmin = new JLabel("Error, email no valido, porfavor reviselo e intentelo otra vez");
 		ventanaMasMenosAdmin.add(labelErrorMasMenosAdmin);
 		labelErrorMasMenosAdmin.setVisible(false);
 		labelErrorMasMenosAdmin.setBounds(25, 400, 300, 40);
-		
+
 		labelSuccessMasMenosAdmin = new JLabel("Cambio realizado con Exito!");
 		ventanaMasMenosAdmin.add(labelSuccessMasMenosAdmin);
 		labelSuccessMasMenosAdmin.setVisible(false);
 		labelSuccessMasMenosAdmin.setBounds(25, 400, 300, 40);
-		
-		//Action Lsiteners
+
+		// Action Lsiteners
 		botonGuardarCambiosMasMenosAdmin.addActionListener(new ActionListener() {
-			
+
 			String editarEmail = txtEmailMasMenosAdmin.getText();
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (editarEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" 
-					+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") && !editarEmail.isEmpty()) {
-					
-					//if (escrito1) {
-						//comprobacion de que el email exista en la base de datos!
-						
-						if (comboMasMenosAdministrador.getSelectedItem() == "Hacer Administrador") {
-							//hacer el usuario en la base de datos y en la clase de usuarios administrador (dejarlo en true el boolean admin)
-							labelSuccessMasMenosAdmin.setVisible(true);
-							
-						} else if (comboMasMenosAdministrador.getSelectedItem() == "Quitar privilegios de Administrado") {
-							//Hacer el boolean Admin de la BD y clase False
-							labelSuccessMasMenosAdmin.setVisible(true);
-						}
-					//}
+				if (editarEmail.matches(
+						"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+						&& !editarEmail.isEmpty()) {
+
+					// if (escrito1) {
+					// comprobacion de que el email exista en la base de datos!
+
+					if (comboMasMenosAdministrador.getSelectedItem() == "Hacer Administrador") {
+						// hacer el usuario en la base de datos y en la clase de usuarios administrador
+						// (dejarlo en true el boolean admin)
+						labelSuccessMasMenosAdmin.setVisible(true);
+
+					} else if (comboMasMenosAdministrador.getSelectedItem() == "Quitar privilegios de Administrado") {
+						// Hacer el boolean Admin de la BD y clase False
+						labelSuccessMasMenosAdmin.setVisible(true);
+					}
+					// }
 				} else {
 					labelErrorMasMenosAdmin.setVisible(true);
 				}
-				
+
 			}
 		});
-		
+
 		botonatrasMasMenosAdmin.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaMasMenosAdmin, ventanaMenuPrincipal);
@@ -1493,7 +1495,7 @@ public class Principal {
 
 				// ventanaInicioSesion
 				txtEmail.setText("ejemplo@gmail.com");
-				contrasenya.setText("12345");
+				contraseña.setText("12345");
 				// view.setSelected(false); dejarlo asi
 				escrito1 = false;
 				escrito2 = false;
@@ -1501,7 +1503,7 @@ public class Principal {
 				// ventanaCrearCuenta
 				txtCrearNombre.setText("nombre");
 				txtCrearEmail.setText("ejemplo@gmail.com");
-				txtCrearContrasenya.setText("");
+				txtCrearContraseña.setText("");
 				spinCrearEdad.setValue(18);
 				escrito3 = false;
 				escrito4 = false;
@@ -1550,7 +1552,7 @@ public class Principal {
 				radioButtonsEstrellas.clearSelection();
 				radioButtonsSiNo.clearSelection();
 
-				// ventanaAnyadirVestimenta
+				// ventanaAñadirVestimenta
 				radioButtonsTiempo.clearSelection();
 
 				// "sobras"
@@ -1568,7 +1570,7 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				UIManager.put("OptionPane.minimumSize", new Dimension(200, 200)); // este tamanyo es solo para esta
+				UIManager.put("OptionPane.minimumSize", new Dimension(200, 200)); // este tamaño es solo para esta
 																					// ventana emergente
 				JOptionPane.showMessageDialog(null, ajustes, "Ajustes", JOptionPane.DEFAULT_OPTION);
 
