@@ -19,7 +19,7 @@ public class TestConexion {
 		// logger1
 		try {
 			BDLogger = Logger.getLogger("BDLogger");
-			BDLogger.addHandler(new FileHandler("BDLogger.xml.1", true));
+			BDLogger.addHandler(new FileHandler("BDLogger.xml", true));
 		} catch (Exception e) {
 		}
 		// BDLogger.log(Level.X, " Message ");

@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2019-11-14T15:58:34.917330400Z</date>
-  <millis>1573747114917</millis>
-  <nanos>330400</nanos>
+  <date>2019-11-14T16:11:06.520115300Z</date>
+  <millis>1573747866520</millis>
+  <nanos>115300</nanos>
   <sequence>0</sequence>
   <logger>BDLogger</logger>
   <level>INFO</level>

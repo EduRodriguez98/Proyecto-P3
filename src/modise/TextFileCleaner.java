@@ -8,9 +8,11 @@ public class TextFileCleaner {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-		File f = new File("Usuario.log"); // elegir fichero ej: .log , .xml ,...
+		File f1 = new File("Usuario.log"); // elegir fichero ej: .log , .xml ,...
+		File f2 = new File("BDLogger.xml");
+		// ¡¡¡ NO limpies el Feedback.log !!!
 
-		PrintWriter writer = new PrintWriter(f);
+		PrintWriter writer = new PrintWriter(f2);
 		writer.print("");
 		writer.close();
 
