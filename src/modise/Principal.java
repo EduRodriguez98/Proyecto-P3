@@ -1413,10 +1413,10 @@ public class Principal {
 		ventanaMasMenosAdmin.add(botonatrasMasMenosAdmin);
 		botonatrasMasMenosAdmin.setBounds(25, 350, 200, 40);
 
-		labelErrorMasMenosAdmin = new JLabel("Error, email no valido, porfavor reviselo e intentelo otra vez");
+		labelErrorMasMenosAdmin = new JLabel("Error, email no valido, porfavor reviselo e intentelo otra vez.");
 		ventanaMasMenosAdmin.add(labelErrorMasMenosAdmin);
 		labelErrorMasMenosAdmin.setVisible(false);
-		labelErrorMasMenosAdmin.setBounds(25, 400, 300, 40);
+		labelErrorMasMenosAdmin.setBounds(25, 400, 350, 40);
 
 		labelSuccessMasMenosAdmin = new JLabel("Cambio realizado con Exito!");
 		ventanaMasMenosAdmin.add(labelSuccessMasMenosAdmin);
@@ -1430,6 +1430,8 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("boton Realizar Cambios");
+
 				if (editarEmail.matches(
 						"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 						&& !editarEmail.isEmpty()) {
@@ -1461,6 +1463,8 @@ public class Principal {
 				CambiarPanel(ventanaMasMenosAdmin, ventanaMenuPrincipal);
 				labelSuccessMasMenosAdmin.setVisible(false);
 				labelErrorMasMenosAdmin.setVisible(false);
+				mb.setVisible(true);
+				mb.setEnabled(true);
 				txtEmailMasMenosAdmin.setText("");
 			}
 		});
