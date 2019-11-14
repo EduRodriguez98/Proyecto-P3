@@ -1413,10 +1413,11 @@ public class Principal {
 		ventanaMasMenosAdmin.add(botonatrasMasMenosAdmin);
 		botonatrasMasMenosAdmin.setBounds(25, 350, 200, 40);
 
-		labelErrorMasMenosAdmin = new JLabel("Error, email no valido, porfavor reviselo e intentelo otra vez.");
+		labelErrorMasMenosAdmin = new JLabel("");
 		ventanaMasMenosAdmin.add(labelErrorMasMenosAdmin);
-		labelErrorMasMenosAdmin.setVisible(false);
+		//labelErrorMasMenosAdmin.setVisible(false);
 		labelErrorMasMenosAdmin.setBounds(25, 400, 350, 40);
+		labelErrorMasMenosAdmin.setForeground(Color.red);
 
 		labelSuccessMasMenosAdmin = new JLabel("Cambio realizado con Exito!");
 		ventanaMasMenosAdmin.add(labelSuccessMasMenosAdmin);
@@ -1435,22 +1436,22 @@ public class Principal {
 				if (editarEmail.matches(
 						"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 						&& !editarEmail.isEmpty()) {
-
+					
 					// if (escrito1) {
 					// comprobacion de que el email exista en la base de datos!
 
 					if (comboMasMenosAdministrador.getSelectedItem() == "Hacer Administrador") {
 						// hacer el usuario en la base de datos y en la clase de usuarios administrador
 						// (dejarlo en true el boolean admin)
-						labelSuccessMasMenosAdmin.setVisible(true);
+						labelSuccessMasMenosAdmin.setVisible(false);
 
 					} else if (comboMasMenosAdministrador.getSelectedItem() == "Quitar privilegios de Administrado") {
 						// Hacer el boolean Admin de la BD y clase False
-						labelSuccessMasMenosAdmin.setVisible(true);
+						labelSuccessMasMenosAdmin.setVisible(false);
 					}
 					// }
 				} else {
-					labelErrorMasMenosAdmin.setVisible(true);
+					labelErrorMasMenosAdmin.setText("Error, email no valido, porfavor reviselo e intentelo otra vez.");
 				}
 
 			}
