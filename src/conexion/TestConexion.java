@@ -5,13 +5,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
 public class TestConexion {
 
+	static Logger BDLogger;
+
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
+		// logger1
+		try {
+			BDLogger = Logger.getLogger("BDLogger");
+			BDLogger.addHandler(new FileHandler("BDLogger.xml.1", true));
+		} catch (Exception e) {
+		}
+		// BDLogger.log(Level.X, " Message ");
+		// ->en esta misma clase
+
+		// TestConexion.BDLogger.log(Level.X [Por ahora Level.INFO en todos], " Message
+		// ");
+		// -> en otra clase de este paquete
+
+		// fin logger1
 
 		Conexion conexion = new Conexion();
 		Connection cn = null;
@@ -49,7 +67,6 @@ public class TestConexion {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {

@@ -18,7 +18,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Date;
-import java.util.logging.Logger;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -174,7 +173,6 @@ public class Principal {
 
 	// mas
 	static PrintStream Feedbacklog, Usuariolog;
-	static Logger logger;
 
 	public Principal() {
 
@@ -1569,25 +1567,20 @@ public class Principal {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				Usuariolog.println("Fin del programa.\n");
+				Usuariolog.close();
 			}
 		});
 	}
 
 	public static void main(String[] args) throws IOException {
 
+		// log 1
 		try {
 			Usuariolog = new PrintStream(new FileOutputStream("Usuario.log", true));
 		} catch (Exception e) {
 		}
 		Usuariolog.println("Inicio del programa.");
-
-		// prueba
-		/*
-		 * try { logger = Logger.getLogger("prueba-logger"); logger.addHandler(new
-		 * FileHandler("pruebaLogger.xml", true)); } catch (Exception e) { }
-		 * logger.log(Level.INFO, "Inicio de programa con logger: ");
-		 */
-		// fin de prueba
+		// fin de log1
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -1596,7 +1589,7 @@ public class Principal {
 			}
 		});
 
-		// COSITAS:
+		// COSITAS: HAY QUE HABLAR SOBRE ESTO!!!
 
 		EstadisticaFeedback.Read(); // aqui o ponemos main en su clase???
 

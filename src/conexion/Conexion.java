@@ -3,6 +3,7 @@ package conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 public class Conexion {
 
@@ -15,7 +16,8 @@ public class Conexion {
 		try {
 			Class.forName(CONTROLADOR);
 		} catch (ClassNotFoundException e) {
-			System.out.println("Error al cargar el controlador");
+			TestConexion.BDLogger.log(Level.INFO, "Error al cargar el controlador");
+			// System.out.println("Error al cargar el controlador");
 			e.printStackTrace();
 		}
 	}
@@ -27,11 +29,13 @@ public class Conexion {
 		try {
 
 			conexion = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			System.out.println("Se ha conectado");
+			TestConexion.BDLogger.log(Level.INFO, "Se ha conectado");
+			// System.out.println("Se ha conectado");
 
 		} catch (SQLException e) {
 
-			System.out.println("Error en la conexion");
+			TestConexion.BDLogger.log(Level.INFO, "Error en la conexion");
+			// System.out.println("Error en la conexion");
 			e.printStackTrace();
 		}
 
