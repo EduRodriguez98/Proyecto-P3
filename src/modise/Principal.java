@@ -349,7 +349,7 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
-				Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + " " + (new Date()));
+				Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + "	, " + (new Date()));
 
 				mb.setVisible(true);
 				mb.setEnabled(true);
@@ -884,10 +884,10 @@ public class Principal {
 									g12 = " sportyChickF ";
 								}
 
-								Usuariolog.println("Creacion de cuenta: " + (new Date()) + "\n" + "Nombre:"
-										+ txtCrearNombre.getText() + ", Email:" + txtCrearEmail.getText() + ", Edad:"
-										+ spinCrearEdad.getValue() + ", Genero:"
-										+ radioButtonsGenero.getSelection().getActionCommand() + "\nGustos: " + g1 + g2
+								Usuariolog.println("Creacion de cuenta: " + (new Date()) + "\n" + "Nombre: "
+										+ txtCrearNombre.getText() + ", Email: " + txtCrearEmail.getText() + ", Edad: "
+										+ spinCrearEdad.getValue() + ", Genero: "
+										+ radioButtonsGenero.getSelection().getActionCommand() + "\nGustos:" + g1 + g2
 										+ g3 + g4 + g5 + g6 + g7 + g8 + g9 + g10 + g11 + g12);
 
 								// se cambia? SI GUD JOB
@@ -1248,6 +1248,8 @@ public class Principal {
 					// CambiarPanel(ventanaAñadirVestimenta, ???);
 					FileChooser.Choose();
 					CambiarPanel(ventanaAñadirVestimenta, ventanaMenuPrincipal);
+					mb.setEnabled(true);
+					mb.setVisible(true);
 					radioButtonsTiempo.clearSelection();
 					errorVentanaAñadirVestimenta.setText("");
 				}
@@ -1413,9 +1415,9 @@ public class Principal {
 		ventanaMasMenosAdmin.add(botonatrasMasMenosAdmin);
 		botonatrasMasMenosAdmin.setBounds(25, 350, 200, 40);
 
-		labelErrorMasMenosAdmin = new JLabel("");
+		labelErrorMasMenosAdmin = new JLabel("Error, email no valido, porfavor reviselo e intentelo otra vez.");
 		ventanaMasMenosAdmin.add(labelErrorMasMenosAdmin);
-		//labelErrorMasMenosAdmin.setVisible(false);
+		labelErrorMasMenosAdmin.setVisible(false);
 		labelErrorMasMenosAdmin.setBounds(25, 400, 350, 40);
 		labelErrorMasMenosAdmin.setForeground(Color.red);
 
@@ -1436,22 +1438,22 @@ public class Principal {
 				if (editarEmail.matches(
 						"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 						&& !editarEmail.isEmpty()) {
-					
+
 					// if (escrito1) {
 					// comprobacion de que el email exista en la base de datos!
 
 					if (comboMasMenosAdministrador.getSelectedItem() == "Hacer Administrador") {
 						// hacer el usuario en la base de datos y en la clase de usuarios administrador
 						// (dejarlo en true el boolean admin)
-						labelSuccessMasMenosAdmin.setVisible(false);
+						labelSuccessMasMenosAdmin.setVisible(true);
 
 					} else if (comboMasMenosAdministrador.getSelectedItem() == "Quitar privilegios de Administrado") {
 						// Hacer el boolean Admin de la BD y clase False
-						labelSuccessMasMenosAdmin.setVisible(false);
+						labelSuccessMasMenosAdmin.setVisible(true);
 					}
 					// }
 				} else {
-					labelErrorMasMenosAdmin.setText("Error, email no valido, porfavor reviselo e intentelo otra vez.");
+					labelErrorMasMenosAdmin.setVisible(true);
 				}
 
 			}
