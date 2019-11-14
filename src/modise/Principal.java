@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileOutputStream;
@@ -1133,27 +1132,7 @@ public class Principal {
 			}
 		});
 
-		estilosComboBoxPideOutfit.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-
-			}
+		estilosComboBoxPideOutfit.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -1266,7 +1245,9 @@ public class Principal {
 							.println("Añade vestimenta, tiempo: " + radioButtonsTiempo.getSelection().getActionCommand()
 									+ ", estilo: " + estilosComboBoxAñadirVestimenta.getSelectedItem() + ", color: "
 									+ coloresComboBoxAñadirVestimenta.getSelectedItem());
-					// CambiarPanel(ventanaAñadirVestimenta, );
+					// CambiarPanel(ventanaAñadirVestimenta, ???);
+					FileChooser.Choose();
+					CambiarPanel(ventanaAñadirVestimenta, ventanaMenuPrincipal);
 					radioButtonsTiempo.clearSelection();
 					errorVentanaAñadirVestimenta.setText("");
 				}
@@ -1587,13 +1568,13 @@ public class Principal {
 
 	public static void main(String[] args) throws IOException {
 
-		// prueba
 		try {
 			Usuariolog = new PrintStream(new FileOutputStream("Usuario.log", true));
 		} catch (Exception e) {
 		}
 		Usuariolog.println("Inicio del programa.");
 
+		// prueba
 		/*
 		 * try { logger = Logger.getLogger("prueba-logger"); logger.addHandler(new
 		 * FileHandler("pruebaLogger.xml", true)); } catch (Exception e) { }

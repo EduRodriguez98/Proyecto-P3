@@ -1,9 +1,14 @@
 package modise;
 
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FileChooser {
+
+	static PrintStream Usuariolog;
 
 	public static void Choose() {
 		String userDir = System.getProperty("user.home");
@@ -18,6 +23,14 @@ public class FileChooser {
 		int returnVal = chooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+
+			// esto asi esta bien?
+			try {
+				Usuariolog = new PrintStream(new FileOutputStream("Usuario.log", true));
+			} catch (Exception e) {
+			}
+			Usuariolog.println("Archivo de prenda añadida: " + chooser.getSelectedFile().getName());
+
 		}
 	}
 
