@@ -42,8 +42,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
-//import com.sun.java.util.jar.pack.Package.File;
-
 public class Principal {
 
 	// Metodo Cambiar Paneles
@@ -119,7 +117,7 @@ public class Principal {
 	 */
 
 	// VentanaPerfilGustos2
-	JLabel labelEscoge, errorPerfilGustosDos;
+	JLabel labelEscoge, errorPerfilGustosDos, opcion1, opcion2; // --
 	JButton botonPerfilGustosDosAtras, botonPerfilGustosDosSiguiente;
 	JRadioButton radioPrendaIzq, radioPrendaDer;
 
@@ -162,6 +160,7 @@ public class Principal {
 	JButton cambiarContraseña, cambiarFecha, reiniciarPerfil;
 
 	// ventanaEmergenteOutfit
+	JLabel OutFit; // --
 
 	// ventanaMasMenosAdmin
 	JLabel labelEmailMasMenosAdmin;
@@ -795,6 +794,16 @@ public class Principal {
 		ventanaPerfilGustosDos.add(errorPerfilGustosDos);
 		errorPerfilGustosDos.setBounds(300, 340, 400, 40);
 		errorPerfilGustosDos.setForeground(Color.RED);
+
+		opcion1 = new JLabel("aaaaaa");
+		ventanaInicioSesion.add(opcion1);
+		opcion1.setBounds(30, 30, 250, 250);
+		ImageIcon im1 = new ImageIcon(this.getClass().getClassLoader().getResource("modise1.png"));
+		opcion1.setIcon(im1);
+
+		opcion1 = new JLabel();
+		ventanaPerfilGustosDos.add(opcion1);
+		opcion1.setBounds(60, 60, 50, 50);
 
 		// Action Listeners
 		botonPerfilGustosDosSiguiente.addActionListener(new ActionListener() {
