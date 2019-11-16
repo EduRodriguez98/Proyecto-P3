@@ -22,12 +22,11 @@ public class TestConexion {
 			BDLogger.addHandler(new FileHandler("BDLogger.xml", true));
 		} catch (Exception e) {
 		}
-		// BDLogger.log(Level.X, " Message ");
 		// ->en esta misma clase
+		// BDLogger.log(Level.X, " Message ");
 
-		// TestConexion.BDLogger.log(Level.X [Por ahora Level.INFO en todos], " Message
-		// ");
 		// -> en otra clase de este paquete
+		// TestConexion.BDLogger.log(Level.X [Por ahora Level.INFO], "Message");
 
 		// fin logger1
 
