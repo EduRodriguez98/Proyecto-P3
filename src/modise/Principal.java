@@ -89,7 +89,7 @@ public class Principal {
 
 	private JLabel clockLabel;
 	public final static int ONE_SECOND = 1000;
-	private final SimpleDateFormat clockFormat = new SimpleDateFormat("H:mm");
+	private final SimpleDateFormat clockFormat = new SimpleDateFormat("H:mm:ss");
 
 	// VentanaCrearCuenta
 	JLabel labelCrearNombre, labelCrearEmail, labelCrearContraseña, labelCrearEdad, errorNombre, errorEmail,
@@ -1578,7 +1578,7 @@ public class Principal {
 		// Reloj
 		clockLabel = new JLabel();
 		clockLabel.setFont(new Font(clockLabel.getFont().getName(), Font.PLAIN, 15));
-		clockLabel.setBounds(660, 0, 100, 20);
+		clockLabel.setBounds(640, 0, 100, 20);
 
 		ventanaMenuPrincipal.add(clockLabel);
 		// lo ponemos en mas?
@@ -1613,7 +1613,6 @@ public class Principal {
 		System.out.println(new Date());
 
 		// COSITAS: HAY QUE HABLAR SOBRE ESTO!!!
-
 		EstadisticaFeedback.Read(); // aqui o ponemos main en su clase???
 	}
 
