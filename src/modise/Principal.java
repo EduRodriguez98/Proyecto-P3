@@ -17,6 +17,7 @@ import java.awt.event.WindowEvent;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.ButtonGroup;
@@ -39,6 +40,7 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
@@ -85,6 +87,10 @@ public class Principal {
 	JCheckBox view;
 	boolean escrito1, escrito2;
 
+	private JLabel clockLabel;
+	public final static int ONE_SECOND = 1000;
+	private final SimpleDateFormat clockFormat = new SimpleDateFormat("H:mm");
+
 	// VentanaCrearCuenta
 	JLabel labelCrearNombre, labelCrearEmail, labelCrearContraseña, labelCrearEdad, errorNombre, errorEmail,
 			errorContraseña;
@@ -117,7 +123,7 @@ public class Principal {
 	 */
 
 	// VentanaPerfilGustos2
-	JLabel labelEscoge, errorPerfilGustosDos, opcion1, opcion2; // --
+	JLabel labelEscoge, errorPerfilGustosDos;
 	JButton botonPerfilGustosDosAtras, botonPerfilGustosDosSiguiente;
 	JRadioButton radioPrendaIzq, radioPrendaDer;
 
@@ -160,7 +166,6 @@ public class Principal {
 	JButton cambiarContraseña, cambiarFecha, reiniciarPerfil;
 
 	// ventanaEmergenteOutfit
-	JLabel OutFit; // --
 
 	// ventanaMasMenosAdmin
 	JLabel labelEmailMasMenosAdmin;
@@ -794,17 +799,6 @@ public class Principal {
 		ventanaPerfilGustosDos.add(errorPerfilGustosDos);
 		errorPerfilGustosDos.setBounds(300, 340, 400, 40);
 		errorPerfilGustosDos.setForeground(Color.RED);
-
-		opcion1 = new JLabel("aaaaaa");
-		ventanaInicioSesion.add(opcion1);
-		opcion1.setBounds(30, 30, 250, 250);
-		// ImageIcon im1 = new
-		// ImageIcon(this.getClass().getClassLoader().getResource("modise1.png")); --
-		// opcion1.setIcon(im1);
-
-		opcion1 = new JLabel();
-		ventanaPerfilGustosDos.add(opcion1);
-		opcion1.setBounds(60, 60, 50, 50);
 
 		// Action Listeners
 		botonPerfilGustosDosSiguiente.addActionListener(new ActionListener() {
@@ -1580,6 +1574,23 @@ public class Principal {
 				Usuariolog.close();
 			}
 		});
+
+		// Reloj
+		clockLabel = new JLabel();
+		clockLabel.setFont(new Font(clockLabel.getFont().getName(), Font.PLAIN, 15));
+		clockLabel.setBounds(660, 0, 100, 20);
+
+		ventanaMenuPrincipal.add(clockLabel);
+		// lo ponemos en mas?
+
+		Timer timer = new Timer(ONE_SECOND, new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				clockLabel.setText(clockFormat.format(new Date()));
+				clockLabel.repaint();
+			}
+		});
+		clockLabel.setText(clockFormat.format(new Date()));
+		timer.start();
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -1596,22 +1607,14 @@ public class Principal {
 			@Override
 			public void run() {
 				new Principal();
+
 			}
 		});
+		System.out.println(new Date());
 
 		// COSITAS: HAY QUE HABLAR SOBRE ESTO!!!
 
 		EstadisticaFeedback.Read(); // aqui o ponemos main en su clase???
-
-		/*
-		 * Ojo a la magia FileChooser.Choose();
-		 */
-
-		// Cual de estas dos preferimos???
-		System.out.println(new Date());
-		// Lo de la hora
-		Hora.hora();
-
 	}
 
 }

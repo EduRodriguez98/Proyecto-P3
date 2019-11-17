@@ -12,7 +12,7 @@ public class TextFileCleaner {
 		File f2 = new File("BDLogger.xml");
 		// ¡¡¡ NO limpies el Feedback.log !!!
 
-		PrintWriter writer = new PrintWriter(f2);
+		PrintWriter writer = new PrintWriter(f1);
 		writer.print("");
 		writer.close();
 
