@@ -44,8 +44,6 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
-import conexion.BaseDatosModise;
-
 public class Principal {
 
 	// Metodo Cambiar Paneles
@@ -501,11 +499,13 @@ public class Principal {
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdad + ", Contraseña NO valida");
 				}
 			}
-			
-			//Crear Usuario
-			
-			//BaseDatosModise.CrearUsuario(txtCrearNombre.getText(), txtCrearEmail.getText(), spinCrearEdad.getValue(), txtCrearContraseña.getText());
-			
+
+			// Crear Usuario
+
+			// BaseDatosModise.CrearUsuario(txtCrearNombre.getText(),
+			// txtCrearEmail.getText(), spinCrearEdad.getValue(),
+			// txtCrearContraseña.getText());
+
 		});
 
 		botonCrearAtras.addActionListener(new ActionListener() {
@@ -1104,7 +1104,7 @@ public class Principal {
 					errorPideOutfit.setText("");
 					estilosComboBoxPideOutfit.setSelectedIndex(0);
 
-					//LLamar a la clase Crear Outfit
+					// LLamar a la clase Crear Outfit
 
 				} else {
 					errorPideOutfit.setText("Rellena todos los campos requeridos.");
