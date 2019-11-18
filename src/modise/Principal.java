@@ -44,6 +44,8 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
+import conexion.BaseDatosModise;
+
 public class Principal {
 
 	// Metodo Cambiar Paneles
@@ -499,6 +501,11 @@ public class Principal {
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdad + ", Contraseña NO valida");
 				}
 			}
+			
+			//Crear Usuario
+			
+			//BaseDatosModise.CrearUsuario(txtCrearNombre.getText(), txtCrearEmail.getText(), spinCrearEdad.getValue(), txtCrearContraseña.getText());
+			
 		});
 
 		botonCrearAtras.addActionListener(new ActionListener() {
@@ -1097,23 +1104,7 @@ public class Principal {
 					errorPideOutfit.setText("");
 					estilosComboBoxPideOutfit.setSelectedIndex(0);
 
-					// Probando cargar imagen de pideOutfit.
-
-					// FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de
-					// archivos JPEG(*.JPG;*.JPEG)", "jpg", "jpeg");
-					// JFileChooser archivo = new JFileChooser();
-
-					// archivo.addChooseableFileFilter(filtro);
-					// archivo.setDialogTitle("Abrir archivo"); File ruta = new File
-					// ("la ruta en la que tengamos la foto"); archivo.setCurrentDirectory(ruta);
-					// int ventana = archivo.showOpenDialog(null); if(ventana ==
-					// JFileChooser.APPROVE_OPTION) { File file = archivo.getSelectedFile();
-					// txtnomimagen.setText(String.valueOf(file));
-					// Image foto = getToolkit().getImage(txtnomimage.getText()); /importar
-					// Image foto = foto.getScaledInstance(110,110,Image.SCALE_DEFAULT);
-					// lblfoto.setIcon(new ImageIcon(foto));
-
-					// }
+					//LLamar a la clase Crear Outfit
 
 				} else {
 					errorPideOutfit.setText("Rellena todos los campos requeridos.");

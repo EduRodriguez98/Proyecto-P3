@@ -14,3 +14,49 @@
   <message>Error en la conexion</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-18T10:13:31</date>
+  <millis>1574068411732</millis>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Se ha conectado</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-18T10:14:56</date>
+  <millis>1574068496628</millis>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Se ha conectado</message>
+</record>
+</log>
