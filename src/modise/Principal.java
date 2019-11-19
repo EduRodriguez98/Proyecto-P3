@@ -14,11 +14,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -45,32 +48,6 @@ import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
 public class Principal {
-
-	// Metodo Cambiar Paneles
-	public void CambiarPanel(JPanel g, JPanel h) {
-		g.setVisible(false);
-		g.setEnabled(false);
-		h.setVisible(true);
-		h.setEnabled(true);
-		for (Component cp : g.getComponents()) {
-			cp.setEnabled(false);
-			cp.setVisible(false);
-		}
-		for (Component sp : h.getComponents()) {
-			sp.setEnabled(true);
-			sp.setVisible(true);
-		}
-	}
-
-	// Metodo Crear Paneles
-	public void CrearPanel(JPanel g) {
-		g.setLayout(null);
-		g.setVisible(false);
-		g.setEnabled(false);
-		g.setBounds(0, 0, 720, 480);
-		// g.setBackground(Color.GRAY); //color de todos los paneles (NO de las ventanas
-		// emergentes), a no ser que queramos cambiar alguno
-	}
 
 	// ORDENES DE LAS VENTANAS!!!!!
 	// (CASO DE PRIMERA VEZ EN MODISE) 1.Ventana Inicio Sesion || 2.Ventana Crear
@@ -177,6 +154,68 @@ public class Principal {
 
 	// mas
 	static PrintStream Feedbacklog, Usuariolog;
+
+	// Metodo Cambiar Paneles
+	public void CambiarPanel(JPanel g, JPanel h) {
+		g.setVisible(false);
+		g.setEnabled(false);
+		h.setVisible(true);
+		h.setEnabled(true);
+		for (Component cp : g.getComponents()) {
+			cp.setEnabled(false);
+			cp.setVisible(false);
+		}
+		for (Component sp : h.getComponents()) {
+			sp.setEnabled(true);
+			sp.setVisible(true);
+		}
+	}
+
+	// Metodo Crear Paneles
+	public void CrearPanel(JPanel g) {
+		g.setLayout(null);
+		g.setVisible(false);
+		g.setEnabled(false);
+		g.setBounds(0, 0, 720, 480);
+		// g.setBackground(Color.GRAY); //color de todos los paneles (NO de las ventanas
+		// emergentes), a no ser que queramos cambiar alguno
+	}
+
+	/**
+	 * Guarda en un archivo properties el valor del username que ha entrado por
+	 * ultima vez
+	 * 
+	 * @param Username nombre del usuario a escribir
+	 */
+	public static void setProp(String Username) {
+		File archivo = new File("config.properties");
+		try {
+			FileOutputStream fos = new FileOutputStream(archivo);
+			Properties propConfig = new Properties();
+
+			propConfig.setProperty("username", Username);
+			propConfig.store(fos, "program Settings");
+			fos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static String getProp() {
+		File archivo = new File("config.properties");
+		try {
+			FileInputStream fis = new FileInputStream(archivo);
+			Properties propConfig = new Properties();
+			propConfig.load(fis);
+			// cojemos las properties
+			String nombre = propConfig.getProperty("username");
+			return nombre;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
 
 	public Principal() {
 
