@@ -214,7 +214,6 @@ public class Principal {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
 
 	public Principal() {
