@@ -1622,16 +1622,18 @@ public class Principal {
 		timer.start();
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws RWException{
 
 		// log 1
 		try {
 			Usuariolog = new PrintStream(new FileOutputStream("Usuario.log", true));
-		} catch (Exception e) {
+		} catch (IOException e) {
+			throw new RWException("Error de Input/Output", e);
 		}
 		Usuariolog.println("Inicio del programa.");
 		// fin de log1
-
+		
+		
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -1640,9 +1642,8 @@ public class Principal {
 			}
 		});
 		System.out.println(new Date());
-
-		// COSITAS: HAY QUE HABLAR SOBRE ESTO!!!
-		EstadisticaFeedback.Read(); // aqui o ponemos main en su clase???
+		
+		
 	}
 
 }
