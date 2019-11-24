@@ -18,13 +18,7 @@ public class FileChooser {
 		int returnVal = chooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
-
-			// esto asi esta bien?
 			Principal.Usuariolog.println("Archivo de prenda añadida: " + chooser.getSelectedFile().getName());
 		}
 	}
-
-	/*
-	 * public static void main(String[] args) { Choose(); }
-	 */
 }

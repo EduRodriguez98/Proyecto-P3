@@ -14,10 +14,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Properties;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -39,36 +43,11 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
 public class Principal {
-
-	// Metodo Cambiar Paneles
-	public void CambiarPanel(JPanel g, JPanel h) {
-		g.setVisible(false);
-		g.setEnabled(false);
-		h.setVisible(true);
-		h.setEnabled(true);
-		for (Component cp : g.getComponents()) {
-			cp.setEnabled(false);
-			cp.setVisible(false);
-		}
-		for (Component sp : h.getComponents()) {
-			sp.setEnabled(true);
-			sp.setVisible(true);
-		}
-	}
-
-	// Metodo Crear Paneles
-	public void CrearPanel(JPanel g) {
-		g.setLayout(null);
-		g.setVisible(false);
-		g.setEnabled(false);
-		g.setBounds(0, 0, 720, 480);
-		// g.setBackground(Color.GRAY); //color de todos los paneles (NO de las ventanas
-		// emergentes), a no ser que queramos cambiar alguno
-	}
 
 	// ORDENES DE LAS VENTANAS!!!!!
 	// (CASO DE PRIMERA VEZ EN MODISE) 1.Ventana Inicio Sesion || 2.Ventana Crear
@@ -84,6 +63,10 @@ public class Principal {
 	JPasswordField contraseña;
 	JCheckBox view;
 	boolean escrito1, escrito2;
+
+	private JLabel clockLabel;
+	public final static int ONE_SECOND = 1000;
+	private final SimpleDateFormat clockFormat = new SimpleDateFormat("H:mm:ss");
 
 	// VentanaCrearCuenta
 	JLabel labelCrearNombre, labelCrearEmail, labelCrearContraseña, labelCrearEdad, errorNombre, errorEmail,
@@ -117,7 +100,7 @@ public class Principal {
 	 */
 
 	// VentanaPerfilGustos2
-	JLabel labelEscoge, errorPerfilGustosDos, opcion1, opcion2; // --
+	JLabel labelEscoge, errorPerfilGustosDos;
 	JButton botonPerfilGustosDosAtras, botonPerfilGustosDosSiguiente;
 	JRadioButton radioPrendaIzq, radioPrendaDer;
 
@@ -160,7 +143,6 @@ public class Principal {
 	JButton cambiarContraseña, cambiarFecha, reiniciarPerfil;
 
 	// ventanaEmergenteOutfit
-	JLabel OutFit; // --
 
 	// ventanaMasMenosAdmin
 	JLabel labelEmailMasMenosAdmin;
@@ -172,6 +154,67 @@ public class Principal {
 
 	// mas
 	static PrintStream Feedbacklog, Usuariolog;
+
+	// Metodo Cambiar Paneles
+	public void CambiarPanel(JPanel g, JPanel h) {
+		g.setVisible(false);
+		g.setEnabled(false);
+		h.setVisible(true);
+		h.setEnabled(true);
+		for (Component cp : g.getComponents()) {
+			cp.setEnabled(false);
+			cp.setVisible(false);
+		}
+		for (Component sp : h.getComponents()) {
+			sp.setEnabled(true);
+			sp.setVisible(true);
+		}
+	}
+
+	// Metodo Crear Paneles
+	public void CrearPanel(JPanel g) {
+		g.setLayout(null);
+		g.setVisible(false);
+		g.setEnabled(false);
+		g.setBounds(0, 0, 720, 480);
+		// g.setBackground(Color.GRAY); //color de todos los paneles (NO de las ventanas
+		// emergentes), a no ser que queramos cambiar alguno
+	}
+
+	/**
+	 * Guarda en un archivo properties el valor del username que ha entrado por
+	 * ultima vez
+	 * 
+	 * @param Username nombre del usuario a escribir
+	 */
+	public static void setProp(String Username) {
+		File archivo = new File("config.properties");
+		try {
+			FileOutputStream fos = new FileOutputStream(archivo);
+			Properties propConfig = new Properties();
+
+			propConfig.setProperty("username", Username);
+			propConfig.store(fos, "program Settings");
+			fos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static String getProp() {
+		File archivo = new File("config.properties");
+		try {
+			FileInputStream fis = new FileInputStream(archivo);
+			Properties propConfig = new Properties();
+			propConfig.load(fis);
+			// cojemos las properties
+			String nombre = propConfig.getProperty("username");
+			return nombre;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	public Principal() {
 
@@ -494,6 +537,13 @@ public class Principal {
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdad + ", Contraseña NO valida");
 				}
 			}
+
+			// Crear Usuario
+
+			// BaseDatosModise.CrearUsuario(txtCrearNombre.getText(),
+			// txtCrearEmail.getText(), spinCrearEdad.getValue(),
+			// txtCrearContraseña.getText());
+
 		});
 
 		botonCrearAtras.addActionListener(new ActionListener() {
@@ -795,16 +845,6 @@ public class Principal {
 		errorPerfilGustosDos.setBounds(300, 340, 400, 40);
 		errorPerfilGustosDos.setForeground(Color.RED);
 
-		opcion1 = new JLabel("aaaaaa");
-		ventanaInicioSesion.add(opcion1);
-		opcion1.setBounds(30, 30, 250, 250);
-		ImageIcon im1 = new ImageIcon(this.getClass().getClassLoader().getResource("modise1.png"));
-		opcion1.setIcon(im1);
-
-		opcion1 = new JLabel();
-		ventanaPerfilGustosDos.add(opcion1);
-		opcion1.setBounds(60, 60, 50, 50);
-
 		// Action Listeners
 		botonPerfilGustosDosSiguiente.addActionListener(new ActionListener() {
 
@@ -1102,23 +1142,7 @@ public class Principal {
 					errorPideOutfit.setText("");
 					estilosComboBoxPideOutfit.setSelectedIndex(0);
 
-					// Probando cargar imagen de pideOutfit.
-
-					// FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de
-					// archivos JPEG(*.JPG;*.JPEG)", "jpg", "jpeg");
-					// JFileChooser archivo = new JFileChooser();
-
-					// archivo.addChooseableFileFilter(filtro);
-					// archivo.setDialogTitle("Abrir archivo"); File ruta = new File
-					// ("la ruta en la que tengamos la foto"); archivo.setCurrentDirectory(ruta);
-					// int ventana = archivo.showOpenDialog(null); if(ventana ==
-					// JFileChooser.APPROVE_OPTION) { File file = archivo.getSelectedFile();
-					// txtnomimagen.setText(String.valueOf(file));
-					// Image foto = getToolkit().getImage(txtnomimage.getText()); /importar
-					// Image foto = foto.getScaledInstance(110,110,Image.SCALE_DEFAULT);
-					// lblfoto.setIcon(new ImageIcon(foto));
-
-					// }
+					// LLamar a la clase Crear Outfit
 
 				} else {
 					errorPideOutfit.setText("Rellena todos los campos requeridos.");
@@ -1579,6 +1603,23 @@ public class Principal {
 				Usuariolog.close();
 			}
 		});
+
+		// Reloj
+		clockLabel = new JLabel();
+		clockLabel.setFont(new Font(clockLabel.getFont().getName(), Font.PLAIN, 15));
+		clockLabel.setBounds(640, 0, 100, 20);
+
+		ventanaMenuPrincipal.add(clockLabel);
+		// lo ponemos en mas?
+
+		Timer timer = new Timer(ONE_SECOND, new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				clockLabel.setText(clockFormat.format(new Date()));
+				clockLabel.repaint();
+			}
+		});
+		clockLabel.setText(clockFormat.format(new Date()));
+		timer.start();
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -1595,22 +1636,13 @@ public class Principal {
 			@Override
 			public void run() {
 				new Principal();
+
 			}
 		});
+		System.out.println(new Date());
 
 		// COSITAS: HAY QUE HABLAR SOBRE ESTO!!!
-
 		EstadisticaFeedback.Read(); // aqui o ponemos main en su clase???
-
-		/*
-		 * Ojo a la magia FileChooser.Choose();
-		 */
-
-		// Cual de estas dos preferimos???
-		System.out.println(new Date());
-		// Lo de la hora
-		Hora.hora();
-
 	}
 
 }

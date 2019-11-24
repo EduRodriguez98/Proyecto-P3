@@ -17,6 +17,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
+<<<<<<< HEAD
 <record>
   <date>2019-11-15T14:49:33.928474Z</date>
   <millis>1573829373928</millis>
@@ -293,6 +294,42 @@
   <date>2019-11-16T15:28:46.711970Z</date>
   <millis>1573918126711</millis>
   <nanos>970000</nanos>
+=======
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-18T10:13:31</date>
+  <millis>1574068411732</millis>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Se ha conectado</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-18T10:14:56</date>
+  <millis>1574068496628</millis>
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
   <sequence>0</sequence>
   <logger>BDLogger</logger>
   <level>INFO</level>

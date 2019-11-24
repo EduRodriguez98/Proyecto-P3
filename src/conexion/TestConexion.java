@@ -1,14 +1,11 @@
 package conexion;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
-
-import javax.swing.JOptionPane;
 
 public class TestConexion {
 
@@ -22,12 +19,11 @@ public class TestConexion {
 			BDLogger.addHandler(new FileHandler("BDLogger.xml", true));
 		} catch (Exception e) {
 		}
-		// BDLogger.log(Level.X, " Message ");
 		// ->en esta misma clase
+		// BDLogger.log(Level.X, " Message ");
 
-		// TestConexion.BDLogger.log(Level.X [Por ahora Level.INFO en todos], " Message
-		// ");
 		// -> en otra clase de este paquete
+		// TestConexion.BDLogger.log(Level.X [Por ahora Level.INFO], "Message");
 
 		// fin logger1
 
@@ -36,24 +32,10 @@ public class TestConexion {
 		Statement stm = null;
 		ResultSet rs = null;
 
-		PreparedStatement ps;
-
 		try {
 			cn = conexion.conectar();
 			stm = cn.createStatement();
 			rs = stm.executeQuery("SELECT * FROM usuario");
-			ps = cn.prepareStatement(
-					"INSERT INTO usuario(nom_usuario, correo, administrador, edad, contrasena, genero) VALUES(?,?,?,?,?,?)");
-
-			// ps.setString(1, txtCrearNombre.getText());
-
-			int res = ps.executeUpdate();
-
-			if (res > 0) {
-				JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
-			} else {
-				JOptionPane.showMessageDialog(null, "Error al crear el usuario");
-			}
 
 			while (rs.next()) {
 				int idUsuario = rs.getInt(1);

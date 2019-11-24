@@ -30,7 +30,7 @@ public class Usuario {
 		contador++;
 		this.nombre_usuario = "";
 		this.correo_usuario = "";
-		this.administrador = null;
+		this.administrador = false;
 		this.edad = 0;
 		this.contrasena = "";
 		this.genero = null;
