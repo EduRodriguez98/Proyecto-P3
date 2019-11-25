@@ -1,14 +1,19 @@
 package conexion;
 
-import static org.junit.Assert.*;
+import java.sql.Connection;
 
-import org.junit.Test;
+import org.junit.Before;
 
 public class BDTest {
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
+	@Before
+	public static boolean comprobarConexion() {
+		Connection cn = Conexion.conectar();
+		if (cn == null) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }
