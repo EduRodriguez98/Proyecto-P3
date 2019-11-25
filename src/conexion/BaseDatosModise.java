@@ -60,6 +60,28 @@ public class BaseDatosModise {
 		}
 	}
 
+	public static boolean logIn(String correo_usuario, String contrasena) {
+
+		Conexion conexion = new Conexion();
+		Connection cn = null;
+		Statement stm = null;
+		ResultSet rs = null;
+
+		try {
+			cn = conexion.conectar();
+			stm = cn.createStatement();
+			rs = stm.executeQuery("select correo, contrasena FROM Usuario");
+
+			if (rs.getString(correo_usuario).equals(correo_usuario) && rs.getString(contrasena).equals(contrasena)) {
+				return true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 	public static void BuscarUsuario() {
 
 		Conexion conexion = new Conexion();

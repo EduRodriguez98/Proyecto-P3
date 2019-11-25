@@ -8,8 +8,8 @@ public class BDTest {
 
 	@Before
 	public static boolean comprobarConexion() {
-		Connection cn = Conexion.conectar();
-		if (cn == null) {
+		Connection conexion = Conexion.conectar();
+		if (conexion == null) {
 			return false;
 		} else {
 			return true;

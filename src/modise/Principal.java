@@ -1,7 +1,6 @@
 package modise;
 
 import java.awt.Color;
-import conexion.BaseDatosModise;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -47,6 +46,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
+
+import conexion.BaseDatosModise;
 
 public class Principal {
 
@@ -389,8 +390,12 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
+				// CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal); cachao
 				Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + "	, " + (new Date()));
+
+				if (BaseDatosModise.logIn(txtEmail.getText(), contraseña.getPassword().toString()) == true) {
+					CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
+				}
 
 				mb.setVisible(true);
 				mb.setEnabled(true);
@@ -539,12 +544,12 @@ public class Principal {
 				}
 			}
 		});
-			
-		//Crear Usuario
-			
-		//BaseDatosModise.CrearUsuario(txtCrearNombre.getText(), txtCrearEmail.getText(), spinCrearEdad.getValue(), txtCrearContraseña.getText());
-			
 
+		// Crear Usuario
+
+		// BaseDatosModise.CrearUsuario(txtCrearNombre.getText(),
+		// txtCrearEmail.getText(), spinCrearEdad.getValue(),
+		// txtCrearContraseña.getText());
 
 		botonCrearAtras.addActionListener(new ActionListener() {
 
@@ -1622,7 +1627,7 @@ public class Principal {
 		timer.start();
 	}
 
-	public static void main(String[] args) throws RWException{
+	public static void main(String[] args) throws RWException {
 
 		// log 1
 		try {
@@ -1632,8 +1637,7 @@ public class Principal {
 		}
 		Usuariolog.println("Inicio del programa.");
 		// fin de log1
-		
-		
+
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -1642,9 +1646,7 @@ public class Principal {
 			}
 		});
 		System.out.println(new Date());
-		
-		
+
 	}
 
 }
-	

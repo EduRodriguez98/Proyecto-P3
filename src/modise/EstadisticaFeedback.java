@@ -39,81 +39,79 @@ public class EstadisticaFeedback {
 	public static void Read() throws RWException {
 		File f1 = new File("Feedback.log"); // Creation of File Descriptor for input file
 		String[] words = null; // Intialize the word Array
-		
+
 		try {
-			
+
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f1)));
-		 // Creation of File Reader object
-		String s;
+			// Creation of File Reader object
+			String s;
 
-		String si = "si"; // Input word to be searched
-		double countSi = 0;
+			String si = "si"; // Input word to be searched
+			double countSi = 0;
 
-		String no = "no";
-		double countNo = 0;
+			String no = "no";
+			double countNo = 0;
 
-		double mediaSN = 0;
+			double mediaSN = 0;
 
-		String uno = "1";
-		String dos = "2";
-		String tres = "3";
-		String cuatro = "4";
-		String cinco = "5";
-		double countNum = 0;
-		double mediaNum = 0; // Intialize the word to zero
+			String uno = "1";
+			String dos = "2";
+			String tres = "3";
+			String cuatro = "4";
+			String cinco = "5";
+			double countNum = 0;
+			double mediaNum = 0; // Intialize the word to zero
 
-		while ((s = br.readLine()) != null) { // Reading Content from the file
-			words = s.split(" "); // Split the word using space
-			for (String word : words) {
-				// numero
-				if (word.equals(uno) || word.equals(dos) || word.equals(tres) || word.equals(cuatro)
-						|| word.equals(cinco)) { // Search for the given word
-					mediaNum++; // If Present increase the count by one
-				}
+			while ((s = br.readLine()) != null) { // Reading Content from the file
+				words = s.split(" "); // Split the word using space
+				for (String word : words) {
+					// numero
+					if (word.equals(uno) || word.equals(dos) || word.equals(tres) || word.equals(cuatro)
+							|| word.equals(cinco)) { // Search for the given word
+						mediaNum++; // If Present increase the count by one
+					}
 
-				if (word.equals(uno)) {
-					countNum = countNum + 1;
-				} else if (word.equals(dos)) {
-					countNum = countNum + 2;
-				} else if (word.equals(tres)) {
-					countNum = countNum + 3;
-				} else if (word.equals(cuatro)) {
-					countNum = countNum + 4;
-				} else if (word.equals(cinco)) {
-					countNum = countNum + 5;
-				}
+					if (word.equals(uno)) {
+						countNum = countNum + 1;
+					} else if (word.equals(dos)) {
+						countNum = countNum + 2;
+					} else if (word.equals(tres)) {
+						countNum = countNum + 3;
+					} else if (word.equals(cuatro)) {
+						countNum = countNum + 4;
+					} else if (word.equals(cinco)) {
+						countNum = countNum + 5;
+					}
 
-				// si o no
-				if (word.equals(si) || word.equals(no)) {
-					mediaSN++;
-				}
+					// si o no
+					if (word.equals(si) || word.equals(no)) {
+						mediaSN++;
+					}
 
-				if (word.equals(si)) {
-					countSi++;
-				} else if (word.equals(no)) {
+					if (word.equals(si)) {
+						countSi++;
+					} else if (word.equals(no)) {
 
-					countNo++;
+						countNo++;
+					}
 				}
 			}
+
+			mediaPuntuacion(countNum, mediaNum);
+			siNo(countSi, countNo, mediaSN);
+
+			br.close();
+
+		} catch (FileNotFoundException e) {
+			throw new RWException("el archivo no fue encontrado", e);
+		} catch (IOException e) {
+			throw new RWException("Error de input/output", e);
 		}
-
-		
-		mediaPuntuacion(countNum, mediaNum);
-		siNo(countSi, countNo, mediaSN);
-
-		br.close();
-		
-	} catch (FileNotFoundException e) {
-		throw new RWException ("el archivo no fue encontrado", e);
-	} catch (IOException e) {
-		throw new RWException ("Error de input/output", e);
-	}
 	}
 
-	
-	  public static void main(String[] args) throws RWException {
-		  
-		  EstadisticaFeedback.Read(); // aqui o ponemos main en su clase??? AQUI NO?
-	  }
-	 
+	public static void main(String[] args) throws RWException {
+
+		EstadisticaFeedback.Read(); // aqui o ponemos main en su clase??? AQUI NO?
+	}
+
 }
