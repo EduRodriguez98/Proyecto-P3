@@ -1,6 +1,7 @@
 package modise;
 
 import java.awt.Color;
+import conexion.BaseDatosModise;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -504,7 +505,7 @@ public class Principal {
 			
 			//Crear Usuario
 			
-			//BaseDatosModise.CrearUsuario(txtCrearNombre.getText(), txtCrearEmail.getText(), spinCrearEdad.getValue(), txtCrearContraseña.getText());
+			BaseDatosModise.CrearUsuario(txtCrearNombre.getText(), txtCrearEmail.getText(), spinCrearEdad.getValue(), txtCrearContraseña.getText());
 			
 		});
 
