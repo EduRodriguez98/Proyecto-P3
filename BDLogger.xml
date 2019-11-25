@@ -17,6 +17,284 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
+<<<<<<< HEAD
+<record>
+  <date>2019-11-15T14:49:33.928474Z</date>
+  <millis>1573829373928</millis>
+  <nanos>474000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T15:09:28.525823Z</date>
+  <millis>1573830568525</millis>
+  <nanos>823000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T15:10:37.395602Z</date>
+  <millis>1573830637395</millis>
+  <nanos>602000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T15:12:07.196351Z</date>
+  <millis>1573830727196</millis>
+  <nanos>351000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T15:17:34.871752Z</date>
+  <millis>1573831054871</millis>
+  <nanos>752000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T15:18:12.725049Z</date>
+  <millis>1573831092725</millis>
+  <nanos>49000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T15:22:30.271516Z</date>
+  <millis>1573831350271</millis>
+  <nanos>516000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T15:27:39.604446Z</date>
+  <millis>1573831659604</millis>
+  <nanos>446000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T15:29:04.400840Z</date>
+  <millis>1573831744400</millis>
+  <nanos>840000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T16:35:53.752596Z</date>
+  <millis>1573835753752</millis>
+  <nanos>596000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T16:37:20.677669Z</date>
+  <millis>1573835840677</millis>
+  <nanos>669000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T16:41:07.370977Z</date>
+  <millis>1573836067370</millis>
+  <nanos>977000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T16:41:43.078734Z</date>
+  <millis>1573836103078</millis>
+  <nanos>734000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T17:02:57.780046Z</date>
+  <millis>1573837377780</millis>
+  <nanos>46000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-15T17:03:39.023965Z</date>
+  <millis>1573837419023</millis>
+  <nanos>965000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-16T15:23:11.420556Z</date>
+  <millis>1573917791420</millis>
+  <nanos>556000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Error en la conexion</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-16T15:24:57.393761Z</date>
+  <millis>1573917897393</millis>
+  <nanos>761000</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.Conexion</class>
+  <method>conectar</method>
+  <thread>1</thread>
+  <message>Se ha conectado</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-11-16T15:28:46.711970Z</date>
+  <millis>1573918126711</millis>
+  <nanos>970000</nanos>
+=======
 </log>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
@@ -51,6 +329,7 @@
 <record>
   <date>2019-11-18T10:14:56</date>
   <millis>1574068496628</millis>
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
   <sequence>0</sequence>
   <logger>BDLogger</logger>
   <level>INFO</level>

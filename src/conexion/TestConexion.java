@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
-
 public class TestConexion {
 
 	static Logger BDLogger;
@@ -33,12 +32,10 @@ public class TestConexion {
 		Statement stm = null;
 		ResultSet rs = null;
 
-
 		try {
 			cn = conexion.conectar();
 			stm = cn.createStatement();
 			rs = stm.executeQuery("SELECT * FROM usuario");
-			
 
 			while (rs.next()) {
 				int idUsuario = rs.getInt(1);

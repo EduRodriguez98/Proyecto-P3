@@ -118,6 +118,29 @@ INSERT INTO `gorros` VALUES (1,3,1),(2,3,0),(3,3,1),(4,3,0),(5,3,0);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `outfit`
+--
+
+DROP TABLE IF EXISTS `outfit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `outfit` (
+  `idoutfit` int(11) NOT NULL AUTO_INCREMENT,
+  `imagen_OF` longblob,
+  PRIMARY KEY (`idoutfit`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `outfit`
+--
+
+LOCK TABLES `outfit` WRITE;
+/*!40000 ALTER TABLE `outfit` DISABLE KEYS */;
+/*!40000 ALTER TABLE `outfit` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `pantalones`
 --
 
@@ -192,6 +215,7 @@ CREATE TABLE `usu_cami` (
 
 LOCK TABLES `usu_cami` WRITE;
 /*!40000 ALTER TABLE `usu_cami` DISABLE KEYS */;
+INSERT INTO `usu_cami` VALUES (1,1,'2007-05-20'),(1,2,'2022-05-20'),(2,4,'2007-07-20'),(3,5,'2007-11-20'),(4,2,'2007-05-20');
 /*!40000 ALTER TABLE `usu_cami` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,6 +243,7 @@ CREATE TABLE `usu_cha` (
 
 LOCK TABLES `usu_cha` WRITE;
 /*!40000 ALTER TABLE `usu_cha` DISABLE KEYS */;
+INSERT INTO `usu_cha` VALUES (10,1,'2014-06-20'),(8,2,'2014-06-20'),(1,3,'2015-06-20'),(5,4,'2017-06-20'),(7,5,'2014-06-20');
 /*!40000 ALTER TABLE `usu_cha` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,6 +271,7 @@ CREATE TABLE `usu_gor` (
 
 LOCK TABLES `usu_gor` WRITE;
 /*!40000 ALTER TABLE `usu_gor` DISABLE KEYS */;
+INSERT INTO `usu_gor` VALUES (2,1,'2014-06-20'),(3,1,'2014-06-20'),(4,2,'2014-04-20'),(10,3,'2014-12-20'),(9,3,'2014-11-20');
 /*!40000 ALTER TABLE `usu_gor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -273,6 +299,7 @@ CREATE TABLE `usu_pan` (
 
 LOCK TABLES `usu_pan` WRITE;
 /*!40000 ALTER TABLE `usu_pan` DISABLE KEYS */;
+INSERT INTO `usu_pan` VALUES (1,1,'2014-06-20'),(2,3,'2014-06-20'),(6,4,'2014-06-20'),(9,5,'2014-06-20'),(4,1,'2014-06-20');
 /*!40000 ALTER TABLE `usu_pan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,6 +327,7 @@ CREATE TABLE `usu_zap` (
 
 LOCK TABLES `usu_zap` WRITE;
 /*!40000 ALTER TABLE `usu_zap` DISABLE KEYS */;
+INSERT INTO `usu_zap` VALUES (1,1,'2014-06-20'),(3,2,'2014-07-20'),(2,3,'2014-08-20'),(4,4,'2014-09-20'),(8,5,'2014-01-20');
 /*!40000 ALTER TABLE `usu_zap` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -316,6 +344,8 @@ CREATE TABLE `usuario` (
   `correo` varchar(45) DEFAULT NULL,
   `administrador` tinyint(4) DEFAULT NULL,
   `edad` int(11) DEFAULT NULL,
+  `contrasena` varchar(45) NOT NULL,
+  `genero` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`idusuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -326,7 +356,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'eneko','enekop@gmail.com',1,20),(2,'eduj','edudor@gmail.com',1,20),(3,'acvelap','acvelap@gmail.com',1,28),(4,'laura','lauram@gmail.com',0,21),(5,'barbara','barbarae@gmail.com',0,19),(6,'francisco','francis@gmail.com',0,24),(7,'paula','paulaf@gmail.com',0,45),(8,'ernesto','ernestos@gmail.com',0,18),(9,'marta','martasa@gmail.com',0,24),(10,'maripili','mpili@gmail.com',0,20);
+INSERT INTO `usuario` VALUES (1,'eneko','enekop@gmail.com',1,20,'prog',1),(2,'eduj','edudor@gmail.com',1,20,'clash',1),(3,'acvelap','acvelap@gmail.com',1,28,'lol',1),(4,'laura','lauram@gmail.com',0,21,'123',0),(5,'barbara','barbarae@gmail.com',0,19,'456',0),(6,'francisco','francis@gmail.com',0,24,'789',1),(7,'paula','paulaf@gmail.com',0,45,'987',0),(8,'ernesto','ernestos@gmail.com',0,18,'654',1),(9,'marta','martasa@gmail.com',0,24,'321',0),(10,'maripili','mpili@gmail.com',0,20,'abc',0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -365,4 +395,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-07 11:26:10
+-- Dump completed on 2019-11-25 11:14:29

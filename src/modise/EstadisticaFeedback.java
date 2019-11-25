@@ -2,8 +2,10 @@ package modise;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class EstadisticaFeedback {
 
@@ -14,7 +16,7 @@ public class EstadisticaFeedback {
 			throw new ArithmeticException("No puedes dividir por cero");
 		}
 		ans = a / b;
-		System.out.println("Media de puntuacion: " + ans);
+		System.out.println("Media de puntuacion: " + String.format("%.2f", ans) + "/5,00");
 		return ans;
 	}
 
@@ -23,19 +25,25 @@ public class EstadisticaFeedback {
 			throw new ArithmeticException("No puedes dividir por cero");
 		}
 		double ans1 = a / c;
-		System.out.println("Si: " + ans1 * 100 + " %.");
+		ans1 = ans1 * 100;
+		System.out.println("Si: " + String.format("%.2f", ans1) + " %.");
+
 		double ans2 = b / c;
-		System.out.println("No: " + ans2 * 100 + " %.");
+		ans2 = ans2 * 100;
+		System.out.println("No: " + String.format("%.2f", ans2) + " %.");
 		/*
 		 * ans = a+b; return ans;
 		 */
 	}
 
-	public static void Read() throws IOException {
+	public static void Read() throws RWException {
 		File f1 = new File("Feedback.log"); // Creation of File Descriptor for input file
 		String[] words = null; // Intialize the word Array
-		FileReader fr = new FileReader(f1); // Creation of File Reader object
-		BufferedReader br = new BufferedReader(fr); // Creation of BufferedReader object
+		
+		try {
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f1)));
+		 // Creation of File Reader object
 		String s;
 
 		String si = "si"; // Input word to be searched
@@ -89,13 +97,23 @@ public class EstadisticaFeedback {
 			}
 		}
 
+		
 		mediaPuntuacion(countNum, mediaNum);
 		siNo(countSi, countNo, mediaSN);
 
-		fr.close();
+		br.close();
+		
+	} catch (FileNotFoundException e) {
+		throw new RWException ("el archivo no fue encontrado", e);
+	} catch (IOException e) {
+		throw new RWException ("Error de input/output", e);
+	}
 	}
 
-	/*
-	 * public static void main(String[] args) throws IOException { Read(); }
-	 */
+	
+	  public static void main(String[] args) throws RWException {
+		  
+		  EstadisticaFeedback.Read(); // aqui o ponemos main en su clase??? AQUI NO?
+	  }
+	 
 }
