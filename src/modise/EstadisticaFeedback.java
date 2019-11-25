@@ -2,6 +2,7 @@ package modise;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -34,10 +35,13 @@ public class EstadisticaFeedback {
 		 */
 	}
 
-	public static void Read() throws IOException {
+	public static void Read() throws RWException {
 		File f1 = new File("Feedback.log"); // Creation of File Descriptor for input file
 		String[] words = null; // Intialize the word Array
-		FileReader fr = new FileReader(f1); // Creation of File Reader object
+		FileReader fr;
+		try {
+			fr = new FileReader(f1);
+		 // Creation of File Reader object
 		BufferedReader br = new BufferedReader(fr); // Creation of BufferedReader object
 		String s;
 
@@ -92,13 +96,23 @@ public class EstadisticaFeedback {
 			}
 		}
 
+		
 		mediaPuntuacion(countNum, mediaNum);
 		siNo(countSi, countNo, mediaSN);
 
 		fr.close();
+		
+	} catch (FileNotFoundException e) {
+		throw new RWException ("el archivo no fue encontrado", e);
+	} catch (IOException e) {
+		throw new RWException ("Error de input/output", e);
+	}
 	}
 
-	/*
-	 * public static void main(String[] args) throws IOException { Read(); }
-	 */
+	
+	  public static void main(String[] args) throws RWException {
+		  
+		  EstadisticaFeedback.Read(); // aqui o ponemos main en su clase??? AQUI NO?
+	  }
+	 
 }
