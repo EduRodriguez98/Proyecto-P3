@@ -60,56 +60,20 @@ public class BaseDatosModise {
 		}
 	}
 
-	/*
-	 * public static boolean logIn(String correo_usuario, String contrasena) {
-	 * 
-	 * Conexion conexion = new Conexion(); Connection cn = null; Statement stm =
-	 * null; ResultSet rs = null;
-	 * 
-	 * try { cn = conexion.conectar(); stm = cn.createStatement(); rs =
-	 * stm.executeQuery("select correo, contrasena FROM Usuario");
-	 * 
-	 * if (rs.getString(correo_usuario).equals(correo_usuario) &&
-	 * rs.getString(contrasena).equals(contrasena)) { return true; }
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); } return false; }
-	 */
-
-	public static boolean verificarPersona(Statement st, String username, String password, boolean admin) {
-		String SentSQL = "Select * from usuario where correo = '" + username + "'";
-		try {
-			ResultSet rs = st.executeQuery(SentSQL);
-			rs.next();
-
-			int esAdmin = rs.getInt("administrador");
-			if (esAdmin == 1) {
-				admin = true;
-			} else if (esAdmin == 0) {
-				admin = false;
-			}
-
-			String contraseña = rs.getString("contrasena");
-			if (contraseña.equals(password)) {
-				return true;
-			} else
-				return false;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	public static boolean qw(Statement st, String user, String passw, boolean admin) {
+	public static boolean qw(Statement st, String user, String passw, int admin) {
 		String sql = "select * from usuario where correo = '" + user + "' and contrasena = '" + passw + "'";
 		try {
 			ResultSet rs = st.executeQuery(sql);
 			rs.next();
 
 			int esAdmin = rs.getInt("administrador");
+			System.out.println(esAdmin);
 			if (esAdmin == 1) {
-				admin = true;
+				admin = 1;
+				System.out.println(true);
 			} else if (esAdmin == 0) {
-				admin = false;
+				admin = 0;
+				System.out.println(false);
 			}
 
 			String a = rs.getString("contrasena");
