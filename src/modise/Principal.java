@@ -403,14 +403,14 @@ public class Principal {
 				}
 				// Pasa el valor del JPassword a String
 				String valorPass = new String(contraseña.getPassword());
-				if (BaseDatosModise.qw(st, txtEmail.getText(), valorPass, 0) == true) {
-					System.out.println("VA NO000 ADMIN");
+				if (BaseDatosModise.logIn(st, txtEmail.getText(), valorPass, 0) == true) {
+					System.out.println("VA NO ADMIN");
 					CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
 					Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + "	, " + (new Date()));
 					mb.setVisible(true);
 					mb.setEnabled(true);
 					botonMasMenosAdmin.setVisible(false);
-				} else if (BaseDatosModise.qw(st, txtEmail.getText(), valorPass, 1) == true) {
+				} else if (BaseDatosModise.logIn(st, txtEmail.getText(), valorPass, 1) == true) {
 					System.out.println("VA SI ADMIN");
 					CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
 					Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + "	, " + (new Date()));
@@ -1022,11 +1022,9 @@ public class Principal {
 		botonMasMenosAdmin = new JButton("Admin +/-");
 		botonMasMenosAdmin.setBounds(550, 40, 110, 30);
 		ventanaMenuPrincipal.add(botonMasMenosAdmin);
-		// ventanaInicioSesion.add(botonMasMenosAdmin);
-		botonMasMenosAdmin.setVisible(true);
+		// botonMasMenosAdmin.setVisible(true);
 
 		// ActionListeners
-
 		botonPideOutfit.addActionListener(new ActionListener() {
 
 			@Override
@@ -1034,7 +1032,6 @@ public class Principal {
 				CambiarPanel(ventanaMenuPrincipal, ventanaPideOutfit);
 				mb.setVisible(false);
 				mb.setEnabled(false);
-
 			}
 		});
 

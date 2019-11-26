@@ -60,7 +60,7 @@ public class BaseDatosModise {
 		}
 	}
 
-	public static boolean qw(Statement st, String user, String passw, int admin) {
+	public static boolean logIn(Statement st, String user, String passw, int admin) {
 		String sql = "select * from usuario where correo = '" + user + "' and contrasena = '" + passw + "'";
 		try {
 			ResultSet rs = st.executeQuery(sql);
