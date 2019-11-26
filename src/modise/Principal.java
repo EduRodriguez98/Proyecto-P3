@@ -904,7 +904,32 @@ public class Principal {
 							}
 
 							if (stop = true) {
-								CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+
+								// bd nuevoUsuario
+								// TIRA ADELANTE, PERO NO HACE EL INSERT EL LAS TABLAS
+								Connection conexion = Conexion.conectar();
+								Statement st = null;
+								try {
+									st = conexion.createStatement();
+								} catch (SQLException e1) {
+
+								}
+
+								String valorPass = new String(contraseña.getPassword());
+
+								if (radioMasculino.isSelected() == true) {
+									BaseDatosModise.nuevoUsuario(st, 99, txtCrearNombre.getText(),
+											txtCrearEmail.getText(), 0, spinCrearEdad.getValue(), valorPass, 1);
+									System.out.println("nuevo chico");
+									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+								} else if (radioFemenino.isSelected() == true) {
+									BaseDatosModise.nuevoUsuario(st, 99, txtCrearNombre.getText(),
+											txtCrearEmail.getText(), 0, spinCrearEdad.getValue(), valorPass, 0);
+									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+									System.out.println("nueva chica");
+								} // hasta aqui bd nuevoUsuario
+
+								// CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 
 								String g1 = "";
 								String g7 = "";

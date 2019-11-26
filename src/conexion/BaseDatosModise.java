@@ -88,6 +88,18 @@ public class BaseDatosModise {
 		}
 	}
 
+	public static void nuevoUsuario(Statement st, int id, String nom, String corr, int admin, Object ed, String contr,
+			int gen) {
+		String sql = "insert into usuario values(" + id + "," + nom + "," + corr + "," + admin + "," + ed + "," + contr
+				+ "," + gen + ")";
+		System.out.println(sql);
+		try {
+			ResultSet rs = st.executeQuery(sql);
+			rs.next();
+		} catch (SQLException e) {
+		}
+	}
+
 	public static void BuscarUsuario() {
 
 		Conexion conexion = new Conexion();
