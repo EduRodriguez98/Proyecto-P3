@@ -60,26 +60,53 @@ public class BaseDatosModise {
 		}
 	}
 
-	public static boolean logIn(String correo_usuario, String contrasena) {
+	/*
+	 * public static boolean logIn(String correo_usuario, String contrasena) {
+	 * 
+	 * Conexion conexion = new Conexion(); Connection cn = null; Statement stm =
+	 * null; ResultSet rs = null;
+	 * 
+	 * try { cn = conexion.conectar(); stm = cn.createStatement(); rs =
+	 * stm.executeQuery("select correo, contrasena FROM Usuario");
+	 * 
+	 * if (rs.getString(correo_usuario).equals(correo_usuario) &&
+	 * rs.getString(contrasena).equals(contrasena)) { return true; }
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); } return false; }
+	 */
 
-		Conexion conexion = new Conexion();
-		Connection cn = null;
-		Statement stm = null;
-		ResultSet rs = null;
-
+	public static boolean verificarPersona(Statement st, String username, String password) {
+		String SentSQL = "Select * from usuario where correo = '" + username + "'";
 		try {
-			cn = conexion.conectar();
-			stm = cn.createStatement();
-			rs = stm.executeQuery("select correo, contrasena FROM Usuario");
-
-			if (rs.getString(correo_usuario).equals(correo_usuario) && rs.getString(contrasena).equals(contrasena)) {
+			ResultSet rs = st.executeQuery(SentSQL);
+			rs.next();
+			String contraseña = rs.getString("contrasena");
+			if (contraseña.equals(password)) {
 				return true;
-			}
+			} else
+				return false;
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
+	}
+
+	public static boolean qw(Statement st, String user, String passw) {
+		String sql = "select * from usuario where correo = '" + user + "' and contrasena = '" + passw + "'";
+		try {
+			ResultSet rs = st.executeQuery(sql);
+			rs.next();
+			String a = rs.getString("contrasena");
+			if (a.equals(passw)) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public static void BuscarUsuario() {

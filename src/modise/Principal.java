@@ -19,6 +19,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
@@ -48,6 +51,7 @@ import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
 import conexion.BaseDatosModise;
+import conexion.Conexion;
 
 public class Principal {
 
@@ -393,12 +397,27 @@ public class Principal {
 				// CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal); cachao
 				Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + "	, " + (new Date()));
 
-				if (BaseDatosModise.logIn(txtEmail.getText(), contraseña.getPassword().toString()) == true) {
-					CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
+				Connection conexion = Conexion.conectar();
+
+				Statement st = null;
+				try {
+					st = conexion.createStatement();
+				} catch (SQLException e1) {
+
 				}
 
-				mb.setVisible(true);
-				mb.setEnabled(true);
+				// Pasa el valor del JPassword a String
+				String valorPass = new String(contraseña.getPassword());
+
+				if (BaseDatosModise.qw(st, txtEmail.getText(), valorPass) == true) {
+					System.out.println("vaaaaaa");
+					CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
+					mb.setVisible(true);
+					mb.setEnabled(true);
+				} else {
+					System.out.println("no va");
+					JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.");
+				}
 			}
 		});
 

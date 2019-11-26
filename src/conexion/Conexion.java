@@ -29,7 +29,7 @@ public class Conexion {
 		try {
 
 			conexion = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			TestConexion.BDLogger.log(Level.INFO, "Se ha conectado");
+			// TestConexion.BDLogger.log(Level.INFO, "Se ha conectado");
 			// System.out.println("Se ha conectado");
 
 		} catch (SQLException e) {
