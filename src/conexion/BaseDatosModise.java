@@ -75,28 +75,43 @@ public class BaseDatosModise {
 	 * } catch (Exception e) { e.printStackTrace(); } return false; }
 	 */
 
-	public static boolean verificarPersona(Statement st, String username, String password) {
+	public static boolean verificarPersona(Statement st, String username, String password, boolean admin) {
 		String SentSQL = "Select * from usuario where correo = '" + username + "'";
 		try {
 			ResultSet rs = st.executeQuery(SentSQL);
 			rs.next();
+
+			int esAdmin = rs.getInt("administrador");
+			if (esAdmin == 1) {
+				admin = true;
+			} else if (esAdmin == 0) {
+				admin = false;
+			}
+
 			String contraseña = rs.getString("contrasena");
 			if (contraseña.equals(password)) {
 				return true;
 			} else
 				return false;
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
 
-	public static boolean qw(Statement st, String user, String passw) {
+	public static boolean qw(Statement st, String user, String passw, boolean admin) {
 		String sql = "select * from usuario where correo = '" + user + "' and contrasena = '" + passw + "'";
 		try {
 			ResultSet rs = st.executeQuery(sql);
 			rs.next();
+
+			int esAdmin = rs.getInt("administrador");
+			if (esAdmin == 1) {
+				admin = true;
+			} else if (esAdmin == 0) {
+				admin = false;
+			}
+
 			String a = rs.getString("contrasena");
 			if (a.equals(passw)) {
 				return true;
