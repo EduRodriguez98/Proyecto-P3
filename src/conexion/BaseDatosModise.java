@@ -61,9 +61,9 @@ public class BaseDatosModise {
 	}
 
 	public static boolean logIn(Statement st, String user, String passw, int admin) {
-		String sql = "select * from usuario where correo = '" + user + "' and contrasena = '" + passw + "'";
+		String SentSQL = "select * from usuario where correo = '" + user + "' and contrasena = '" + passw + "'";
 		try {
-			ResultSet rs = st.executeQuery(sql);
+			ResultSet rs = st.executeQuery(SentSQL);
 			rs.next();
 
 			int esAdmin = rs.getInt("administrador");
@@ -78,6 +78,7 @@ public class BaseDatosModise {
 
 			String a = rs.getString("contrasena");
 			if (a.equals(passw)) {
+				System.out.println(SentSQL);
 				return true;
 			} else {
 				return false;
@@ -90,11 +91,11 @@ public class BaseDatosModise {
 
 	public static void nuevoUsuario(Statement st, int id, String nom, String corr, int admin, Object ed, String contr,
 			int gen) {
-		String sql = "insert into usuario values(" + id + "," + nom + "," + corr + "," + admin + "," + ed + "," + contr
-				+ "," + gen + ")";
-		System.out.println(sql);
+		String SentSQL = "insert into usuario values(" + id + ",'" + nom + "','" + corr + "'," + admin + "," + ed + ",'"
+				+ contr + "'," + gen + ");";
+		System.out.println(SentSQL);
 		try {
-			ResultSet rs = st.executeQuery(sql);
+			ResultSet rs = st.executeQuery(SentSQL);
 			rs.next();
 		} catch (SQLException e) {
 		}
