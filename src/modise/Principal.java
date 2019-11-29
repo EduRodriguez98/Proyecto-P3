@@ -912,7 +912,7 @@ public class Principal {
 								try {
 									st = conexion.createStatement();
 								} catch (SQLException e1) {
-
+									e1.printStackTrace();
 								}
 
 								String valorPass = new String(contraseña.getPassword());

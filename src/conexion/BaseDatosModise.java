@@ -1,64 +1,45 @@
 package conexion;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JOptionPane;
-
 public class BaseDatosModise {
 
-	public static void CrearUsuario(int id_usuario, String nombre_usuario, String correo_usuario, boolean administrador,
-			int edad, String contrasena, boolean genero) {
-
-		Conexion conexion = new Conexion();
-		Connection cn = null;
-		Statement stm = null;
-		ResultSet rs = null;
-
-		PreparedStatement ps;
-
-		try {
-			cn = conexion.conectar();
-			stm = cn.createStatement();
-			rs = stm.executeQuery("SELECT * FROM usuario");
-			ps = cn.prepareStatement(
-					"INSERT INTO usuario(nom_usuario, correo, administrador, edad, contrasena, genero) VALUES(?,?,?,?,?,?)");
-
-			ps.setString(1, nombre_usuario);
-			// ps.setString(2, txtCrearCorreo.getText());
-
-			int res = ps.executeUpdate();
-
-			if (res > 0) {
-				JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
-			} else {
-				JOptionPane.showMessageDialog(null, "Error al crear el usuario");
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-
-				if (stm != null) {
-					stm.close();
-				}
-
-				if (cn != null) {
-					cn.close();
-				}
-
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-	}
+	/*
+	 * public static void CrearUsuario(int id_usuario, String nombre_usuario, String
+	 * correo_usuario, boolean administrador, int edad, String contrasena, boolean
+	 * genero) {
+	 * 
+	 * Conexion conexion = new Conexion(); Connection cn = null; Statement stm =
+	 * null; ResultSet rs = null;
+	 * 
+	 * PreparedStatement ps;
+	 * 
+	 * try { cn = conexion.conectar(); stm = cn.createStatement(); rs =
+	 * stm.executeQuery("SELECT * FROM usuario"); ps = cn.prepareStatement(
+	 * "INSERT INTO usuario(nom_usuario, correo, administrador, edad, contrasena, genero) VALUES(?,?,?,?,?,?)"
+	 * );
+	 * 
+	 * ps.setString(1, nombre_usuario); // ps.setString(2,
+	 * txtCrearCorreo.getText());
+	 * 
+	 * int res = ps.executeUpdate();
+	 * 
+	 * if (res > 0) { JOptionPane.showMessageDialog(null,
+	 * "Usuario creado correctamente"); } else { JOptionPane.showMessageDialog(null,
+	 * "Error al crear el usuario"); }
+	 * 
+	 * } catch (SQLException e) { e.printStackTrace(); } finally { try { if (rs !=
+	 * null) { rs.close(); }
+	 * 
+	 * if (stm != null) { stm.close(); }
+	 * 
+	 * if (cn != null) { cn.close(); }
+	 * 
+	 * } catch (Exception e2) { e2.printStackTrace(); } } }
+	 */
 
 	public static boolean logIn(Statement st, String user, String passw, int admin) {
 		String SentSQL = "select * from usuario where correo = '" + user + "' and contrasena = '" + passw + "'";
@@ -95,8 +76,11 @@ public class BaseDatosModise {
 				+ contr + "'," + gen + ");";
 		System.out.println(SentSQL);
 		try {
-			ResultSet rs = st.executeQuery(SentSQL);
-			rs.next();
+			int val = st.executeUpdate(SentSQL);
+			if (val != 1) { // Se tiene que añadir 1 - error si no
+				System.out.println("BaseDatosModise.nuevoUsuario: val!=1");
+			}
+			// rs.next();
 		} catch (SQLException e) {
 		}
 	}
