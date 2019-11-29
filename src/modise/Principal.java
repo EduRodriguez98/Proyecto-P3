@@ -1452,7 +1452,17 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
+				Connection conexion = Conexion.conectar();
+				Statement st = null;
+				try {
+					st = conexion.createStatement();
+				} catch (SQLException e1) {
+
+				}
+
 				System.out.println("Cambiar contraseña");
+				BaseDatosModise.cambiarContraseña(st, "qwerty", 99);
 			}
 		});
 

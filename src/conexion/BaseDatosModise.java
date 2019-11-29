@@ -111,6 +111,15 @@ public class BaseDatosModise {
 		}
 	}
 
+	public static void cambiarContraseña(Statement st, String passw, int id) {
+		String SentSQL = "UPDATE usuario SET contrasena = '" + passw + "' WHERE idusuario = " + id + ";";
+		System.out.println(SentSQL);
+		try {
+			int val = st.executeUpdate(SentSQL);
+		} catch (SQLException e) {
+		}
+	}
+
 	public static void BuscarUsuario() {
 
 		Conexion conexion = new Conexion();
