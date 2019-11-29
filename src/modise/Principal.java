@@ -542,9 +542,8 @@ public class Principal {
 				}
 
 				if (CrearNombre.matches("^[a-zA-Z]*$") && !CrearNombre.isEmpty()
-						&& CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" // Dos lineas para validar si es
-								+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") // un correo o no, FUNCIONA 100%
-																						// ??
+						&& CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+								+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 						&& !CrearEmail.isEmpty() && !CrearContraseña.isEmpty() && CrearEdad.matches("^[0-9]*$")
 						&& BaseDatosModise.existeUsuario(st, txtCrearEmail.getText()) == true) {
 					CambiarPanel(ventanaCrearCuenta, ventanaGenero);
@@ -561,11 +560,10 @@ public class Principal {
 					errorNombre.setText("Nombre NO valido");
 					spinCrearEdad.setValue(EdadSeleccionada);
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdad + ", Nombre NO valido");
-				} else if (!CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" // Dos lineas para validar si
-																							// es
-						+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") // un correo o no, FUNCIONA 100% ??
+				} else if (!CrearEmail.matches(
+						"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 						|| CrearEmail.isEmpty()
-								&& BaseDatosModise.existeUsuario(st, txtCrearEmail.getText()) == false) {
+						|| BaseDatosModise.existeUsuario(st, txtCrearEmail.getText()) == false) {
 					errorEmail.setText("Email NO valido");
 					spinCrearEdad.setValue(EdadSeleccionada);
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdad + ", Email NO valido");

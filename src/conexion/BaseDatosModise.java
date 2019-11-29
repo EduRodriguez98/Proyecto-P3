@@ -72,14 +72,16 @@ public class BaseDatosModise {
 
 	public static boolean existeUsuario(Statement st, String corr) {
 		String SentSQL = "select correo from usuario where correo = " + "'" + corr + "';";
+		System.out.println(SentSQL);
 
 		try {
 			ResultSet rs = st.executeQuery(SentSQL);
 
 			rs.next();
 
-			String a = rs.getString("correo");
-			if (a.equals(corr)) {
+			String b = rs.getString("correo");
+			System.out.println(b);
+			if (b.equals(corr)) {
 				System.out.println("YA EXISTE EL USUARIO");
 				return false;
 			} else {
@@ -88,9 +90,9 @@ public class BaseDatosModise {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("catch de -> BaseDatosModise.existeUsuario");
-			return false;
+			// e.printStackTrace();
+			System.out.println("catch de -> BaseDatosModise.existeUsuario, por lo que NO EXISTE EL USUARIO");
+			return true;
 		}
 	}
 
