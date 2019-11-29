@@ -533,11 +533,20 @@ public class Principal {
 				errorEmail.setText("");
 				errorContraseña.setText("");
 
+				Connection conexion = Conexion.conectar();
+				Statement st = null;
+				try {
+					st = conexion.createStatement();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
 				if (CrearNombre.matches("^[a-zA-Z]*$") && !CrearNombre.isEmpty()
 						&& CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" // Dos lineas para validar si es
 								+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") // un correo o no, FUNCIONA 100%
 																						// ??
-						&& !CrearEmail.isEmpty() && !CrearContraseña.isEmpty() && CrearEdad.matches("^[0-9]*$")) {
+						&& !CrearEmail.isEmpty() && !CrearContraseña.isEmpty() && CrearEdad.matches("^[0-9]*$")
+						&& BaseDatosModise.existeUsuario(st, txtCrearEmail.getText()) == true) {
 					CambiarPanel(ventanaCrearCuenta, ventanaGenero);
 					errorNombre.setText("");
 					errorEmail.setText("");
@@ -555,7 +564,8 @@ public class Principal {
 				} else if (!CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" // Dos lineas para validar si
 																							// es
 						+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") // un correo o no, FUNCIONA 100% ??
-						|| CrearEmail.isEmpty()) {
+						|| CrearEmail.isEmpty()
+								&& BaseDatosModise.existeUsuario(st, txtCrearEmail.getText()) == false) {
 					errorEmail.setText("Email NO valido");
 					spinCrearEdad.setValue(EdadSeleccionada);
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdad + ", Email NO valido");

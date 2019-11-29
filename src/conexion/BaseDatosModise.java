@@ -70,6 +70,30 @@ public class BaseDatosModise {
 		}
 	}
 
+	public static boolean existeUsuario(Statement st, String corr) {
+		String SentSQL = "select correo from usuario where correo = " + "'" + corr + "';";
+
+		try {
+			ResultSet rs = st.executeQuery(SentSQL);
+
+			rs.next();
+
+			String a = rs.getString("correo");
+			if (a.equals(corr)) {
+				System.out.println("YA EXISTE EL USUARIO");
+				return false;
+			} else {
+				System.out.println("NO EXISTE USUARIO");
+				return true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println("catch de -> BaseDatosModise.existeUsuario");
+			return false;
+		}
+	}
+
 	public static void nuevoUsuario(Statement st, int id, String nom, String corr, int admin, Object ed, String contr,
 			int gen) {
 		String SentSQL = "insert into usuario values(" + id + ",'" + nom + "','" + corr + "'," + admin + "," + ed + ",'"
