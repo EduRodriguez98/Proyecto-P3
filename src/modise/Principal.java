@@ -1453,6 +1453,8 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				String input = JOptionPane.showInputDialog(null, "Nueva contraseña:", "Cambiar contraseña.", 2);
+
 				Connection conexion = Conexion.conectar();
 				Statement st = null;
 				try {
@@ -1460,9 +1462,14 @@ public class Principal {
 				} catch (SQLException e1) {
 
 				}
-
-				System.out.println("Cambiar contraseña");
-				BaseDatosModise.cambiarContraseña(st, "qwerty", 99);
+				if (!input.equals("")) {
+					BaseDatosModise.cambiarContraseña(st, input, 99);
+					System.out.println("Cambiar contraseña - nueva contraseña: " + input);
+				} else {
+					JOptionPane.showMessageDialog(null, "No se acepta contraseña vacia.", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					System.out.println("Contraseña vacia o null, NO CAMBIADA");
+				}
 			}
 		});
 
