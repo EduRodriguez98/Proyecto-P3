@@ -409,7 +409,7 @@ public class Principal {
 					Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + "	, " + (new Date()));
 					mb.setVisible(true);
 					mb.setEnabled(true);
-					botonMasMenosAdmin.setVisible(false);
+					botonMasMenosAdmin.setVisible(/* false */true);
 				} else if (BaseDatosModise.logIn(st, txtEmail.getText(), valorPass, 1) == true) {
 					System.out.println("VA SI ADMIN");
 					CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
@@ -1495,7 +1495,7 @@ public class Principal {
 		ventanaMasMenosAdmin.add(labelEmailMasMenosAdmin);
 		labelEmailMasMenosAdmin.setBounds(25, 100, 350, 40);
 
-		txtEmailMasMenosAdmin = new JTextField();
+		txtEmailMasMenosAdmin = new JTextField("aaaaaaaaaaaaa");
 		ventanaMasMenosAdmin.add(txtEmailMasMenosAdmin);
 		txtEmailMasMenosAdmin.setBounds(375, 100, 300, 40);
 
@@ -1523,7 +1523,7 @@ public class Principal {
 		labelErrorMasMenosAdmin.setBounds(25, 400, 350, 40);
 		labelErrorMasMenosAdmin.setForeground(Color.red);
 
-		labelSuccessMasMenosAdmin = new JLabel("Cambio realizado con Exito!");
+		labelSuccessMasMenosAdmin = new JLabel();
 		ventanaMasMenosAdmin.add(labelSuccessMasMenosAdmin);
 		labelSuccessMasMenosAdmin.setVisible(false);
 		labelSuccessMasMenosAdmin.setBounds(25, 400, 300, 40);
@@ -1531,32 +1531,44 @@ public class Principal {
 		// Action Lsiteners
 		botonGuardarCambiosMasMenosAdmin.addActionListener(new ActionListener() {
 
-			String editarEmail = txtEmailMasMenosAdmin.getText();
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("boton Realizar Cambios");
+				System.out.println("botonGuardarCambiosMasMenosAdmin");
 
-				if (editarEmail.matches(
-						"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
-						&& !editarEmail.isEmpty()) {
+				Connection conexion = Conexion.conectar();
+				Statement st = null;
+				try {
+					st = conexion.createStatement();
+				} catch (SQLException e1) {
 
-					// if (escrito1) {
-					// comprobacion de que el email exista en la base de datos!
-
-					if (comboMasMenosAdministrador.getSelectedItem() == "Hacer Administrador") {
-						// hacer el usuario en la base de datos y en la clase de usuarios administrador
-						// (dejarlo en true el boolean admin)
-						labelSuccessMasMenosAdmin.setVisible(true);
-
-					} else if (comboMasMenosAdministrador.getSelectedItem() == "Quitar privilegios de Administrado") {
-						// Hacer el boolean Admin de la BD y clase False
-						labelSuccessMasMenosAdmin.setVisible(true);
-					}
-					// }
-				} else {
-					labelErrorMasMenosAdmin.setVisible(true);
 				}
+
+				if (comboMasMenosAdministrador.getSelectedIndex() == 0) {
+					BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 1, 99);
+					labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
+				} else if (comboMasMenosAdministrador.getSelectedIndex() == 1) {
+					BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 0, 99);
+					labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
+				}
+
+				/*
+				 * if (editarEmail.matches( "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
+				 * "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") &&
+				 * !editarEmail.isEmpty()) {
+				 * 
+				 * // if (escrito1) { // comprobacion de que el email exista en la base de
+				 * datos!
+				 * 
+				 * if (comboMasMenosAdministrador.getSelectedItem() == "Hacer Administrador") {
+				 * // hacer el usuario en la base de datos y en la clase de usuarios
+				 * administrador // (dejarlo en true el boolean admin)
+				 * labelSuccessMasMenosAdmin.setVisible(true);
+				 * 
+				 * } else if (comboMasMenosAdministrador.getSelectedItem() ==
+				 * "Quitar privilegios de Administrado") { // Hacer el boolean Admin de la BD y
+				 * clase False labelSuccessMasMenosAdmin.setVisible(true); } // } } else {
+				 * labelErrorMasMenosAdmin.setVisible(true); }
+				 */
 
 			}
 		});

@@ -120,6 +120,16 @@ public class BaseDatosModise {
 		}
 	}
 
+	public static void cambiarAdmin(Statement st, String corr, int admin, int id) {
+		String SentSQL = "UPDATE usuario SET administrador = '" + admin + "' WHERE idusuario = " + id
+				+ " and correo = '" + corr + "';";
+		System.out.println(SentSQL);
+		try {
+			int val = st.executeUpdate(SentSQL);
+		} catch (SQLException e) {
+		}
+	}
+
 	public static void BuscarUsuario() {
 
 		Conexion conexion = new Conexion();
