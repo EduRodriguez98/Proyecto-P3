@@ -96,10 +96,10 @@ public class BaseDatosModise {
 		}
 	}
 
-	public static void nuevoUsuario(Statement st, int id, String nom, String corr, int admin, Object ed, String contr,
+	public static void nuevoUsuario(Statement st, String nom, String corr, int admin, Object ed, String contr,
 			int gen) {
-		String SentSQL = "insert into usuario values(" + id + ",'" + nom + "','" + corr + "'," + admin + "," + ed + ",'"
-				+ contr + "'," + gen + ");";
+		String SentSQL = "insert into usuario(nom_usuario,correo,administrador,edad,contrasena,genero) values('" + nom
+				+ "','" + corr + "'," + admin + "," + ed + ",'" + contr + "'," + gen + ");";
 		System.out.println(SentSQL);
 		try {
 			int val = st.executeUpdate(SentSQL);
@@ -111,8 +111,8 @@ public class BaseDatosModise {
 		}
 	}
 
-	public static void cambiarContraseña(Statement st, String passw, int id) {
-		String SentSQL = "UPDATE usuario SET contrasena = '" + passw + "' WHERE idusuario = " + id + ";";
+	public static void cambiarContraseña(Statement st, String passw, String corr) {
+		String SentSQL = "UPDATE usuario SET contrasena = '" + passw + "' WHERE correo = '" + corr + "';";
 		System.out.println(SentSQL);
 		try {
 			int val = st.executeUpdate(SentSQL);
@@ -120,9 +120,8 @@ public class BaseDatosModise {
 		}
 	}
 
-	public static void cambiarAdmin(Statement st, String corr, int admin, int id) {
-		String SentSQL = "UPDATE usuario SET administrador = '" + admin + "' WHERE idusuario = " + id
-				+ " and correo = '" + corr + "';";
+	public static void cambiarAdmin(Statement st, String corr, int admin) {
+		String SentSQL = "UPDATE usuario SET administrador = '" + admin + "' WHERE correo = '" + corr + "';";
 		System.out.println(SentSQL);
 		try {
 			int val = st.executeUpdate(SentSQL);

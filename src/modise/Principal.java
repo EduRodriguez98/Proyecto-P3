@@ -926,13 +926,13 @@ public class Principal {
 								String valorPass = new String(contraseña.getPassword());
 
 								if (radioMasculino.isSelected() == true) {
-									BaseDatosModise.nuevoUsuario(st, 99, txtCrearNombre.getText(),
-											txtCrearEmail.getText(), 0, spinCrearEdad.getValue(), valorPass, 1);
+									BaseDatosModise.nuevoUsuario(st, txtCrearNombre.getText(), txtCrearEmail.getText(),
+											0, spinCrearEdad.getValue(), valorPass, 1);
 									System.out.println("nuevo chico");
 									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 								} else if (radioFemenino.isSelected() == true) {
-									BaseDatosModise.nuevoUsuario(st, 99, txtCrearNombre.getText(),
-											txtCrearEmail.getText(), 0, spinCrearEdad.getValue(), valorPass, 0);
+									BaseDatosModise.nuevoUsuario(st, txtCrearNombre.getText(), txtCrearEmail.getText(),
+											0, spinCrearEdad.getValue(), valorPass, 0);
 									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 									System.out.println("nueva chica");
 								} // hasta aqui bd nuevoUsuario
@@ -1463,7 +1463,7 @@ public class Principal {
 
 				}
 				if (!input.equals("")) {
-					BaseDatosModise.cambiarContraseña(st, input, 99);
+					BaseDatosModise.cambiarContraseña(st, input, txtEmail.getText());
 					System.out.println("Cambiar contraseña - nueva contraseña: " + input);
 				} else {
 					JOptionPane.showMessageDialog(null, "No se acepta contraseña vacia.", "Error",
@@ -1495,7 +1495,7 @@ public class Principal {
 		ventanaMasMenosAdmin.add(labelEmailMasMenosAdmin);
 		labelEmailMasMenosAdmin.setBounds(25, 100, 350, 40);
 
-		txtEmailMasMenosAdmin = new JTextField("aaaaaaaaaaaaa");
+		txtEmailMasMenosAdmin = new JTextField("");
 		ventanaMasMenosAdmin.add(txtEmailMasMenosAdmin);
 		txtEmailMasMenosAdmin.setBounds(375, 100, 300, 40);
 
@@ -1544,10 +1544,10 @@ public class Principal {
 				}
 
 				if (comboMasMenosAdministrador.getSelectedIndex() == 0) {
-					BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 1, 99);
+					BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 1);
 					labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
 				} else if (comboMasMenosAdministrador.getSelectedIndex() == 1) {
-					BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 0, 99);
+					BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 0);
 					labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
 				}
 
