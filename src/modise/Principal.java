@@ -403,20 +403,18 @@ public class Principal {
 				}
 				// Pasa el valor del JPassword a String
 				String valorPass = new String(contraseña.getPassword());
-				if (BaseDatosModise.logIn(st, txtEmail.getText(), valorPass, 0) == true) {
-					System.out.println("VA NO ADMIN");
+				if (BaseDatosModise.logIn(st, txtEmail.getText(), valorPass) == true) {
 					CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
 					Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + "	, " + (new Date()));
 					mb.setVisible(true);
 					mb.setEnabled(true);
-					botonMasMenosAdmin.setVisible(/* false */true);
-				} else if (BaseDatosModise.logIn(st, txtEmail.getText(), valorPass, 1) == true) {
-					System.out.println("VA SI ADMIN");
-					CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
-					Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + "	, " + (new Date()));
-					mb.setVisible(true);
-					mb.setEnabled(true);
-					botonMasMenosAdmin.setVisible(true);
+					if (BaseDatosModise.esAdmin(st, txtEmail.getText()) == true) {
+						botonMasMenosAdmin.setVisible(true);
+						System.out.println("VA ADMIN");
+					} else if (BaseDatosModise.esAdmin(st, txtEmail.getText()) == false) {
+						botonMasMenosAdmin.setVisible(false);
+						System.out.println("VA NO ADMIN");
+					}
 				} else {
 					System.out.println("no va");
 					JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.");
