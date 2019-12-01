@@ -22,11 +22,10 @@ public class BaseDatosModise {
 			Class.forName(CONTROLADOR);
 			Connection conexion = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			// modise.Principal.BDLogger.log(Level.INFO, "Se ha conectado");
-			// System.out.println("Se ha conectado");
+			// HAY QUE MIRAR PORK ESTO DA ERROR!!!!!!!!!!!!!!!!!!!!!!
 			return conexion;
 		} catch (ClassNotFoundException | SQLException e) {
-			modise.Principal.BDLogger.log(Level.INFO, "Error en la conexion");
-			// System.out.println("Error en la conexion");
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error en la conexion", e);
 			e.printStackTrace();
 			return null;
 		}
@@ -40,6 +39,7 @@ public class BaseDatosModise {
 				con.close();
 			return true;
 		} catch (SQLException e) {
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error al cerrar la base de datos.", e);
 			e.printStackTrace();
 			return false;
 		}
@@ -93,6 +93,7 @@ public class BaseDatosModise {
 				return false;
 			}
 		} catch (SQLException e) {
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error logIn\n" + SentSQL, e);
 			e.printStackTrace();
 			return false;
 		}
@@ -115,6 +116,7 @@ public class BaseDatosModise {
 				return false;
 			}
 		} catch (SQLException e) {
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error esAdmin\n" + SentSQL, e);
 			e.printStackTrace();
 			return false;
 		}
@@ -140,6 +142,7 @@ public class BaseDatosModise {
 			}
 
 		} catch (SQLException e) {
+			// aqui NO es un error, NO ponemos logger de error ni "e.printStackTrace();"
 			System.out.println("catch de -> BaseDatosModise.existeUsuario, por lo que NO EXISTE EL USUARIO");
 			return true;
 		}
@@ -153,6 +156,8 @@ public class BaseDatosModise {
 		try {
 			st.executeUpdate(SentSQL);
 		} catch (SQLException e) {
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error nuevoUsuario\n" + SentSQL, e);
+			e.printStackTrace();
 		}
 	}
 
@@ -164,6 +169,8 @@ public class BaseDatosModise {
 		} catch (SQLException e) {
 			System.out.println(e);
 			System.out.println("Catch BaseDatosModise.eliminarUsuario");
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error eliminarUsuario\n" + SentSQL, e);
+			e.printStackTrace();
 		}
 	}
 
@@ -173,6 +180,8 @@ public class BaseDatosModise {
 		try {
 			st.executeUpdate(SentSQL);
 		} catch (SQLException e) {
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error cambiarContraseña\n" + SentSQL, e);
+			e.printStackTrace();
 		}
 	}
 
@@ -182,10 +191,12 @@ public class BaseDatosModise {
 		try {
 			st.executeUpdate(SentSQL);
 		} catch (SQLException e) {
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error cambiarAdmin\n" + SentSQL, e);
+			e.printStackTrace();
 		}
 	}
 
-	public static void BuscarUsuario() { // sirve para algo???
+	public static void BuscarUsuario() { // sirve para algo??? Lo dejo para ver cuando hacer close por si acaso.
 
 		Conexion conexion = new Conexion();
 		Connection cn = null;
