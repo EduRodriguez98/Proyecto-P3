@@ -1,4 +1,4 @@
-package conexion;
+package PruebasYEjemplos;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

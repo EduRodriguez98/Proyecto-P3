@@ -25,6 +25,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -50,8 +52,8 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
+import PruebasYEjemplos.Conexion;
 import conexion.BaseDatosModise;
-import conexion.Conexion;
 
 public class Principal {
 
@@ -160,6 +162,7 @@ public class Principal {
 
 	// mas
 	static PrintStream Feedbacklog, Usuariolog;
+	public static Logger BDLogger;
 
 	// Metodo Cambiar Paneles
 	public void CambiarPanel(JPanel g, JPanel h) {
@@ -1711,6 +1714,20 @@ public class Principal {
 		}
 		Usuariolog.println("Inicio del programa.");
 		// fin de log1
+
+		// logger1
+		try {
+			BDLogger = Logger.getLogger("BDLogger");
+			BDLogger.addHandler(new FileHandler("BDLogger.xml", true));
+		} catch (Exception e) {
+		}
+		// ->en esta misma clase
+		// BDLogger.log(Level.X, " Message ");
+
+		// -> en otra clase de este paquete
+		// TestConexion.BDLogger.log(Level.X [Por ahora Level.INFO], "Message");
+
+		// fin logger1
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override

@@ -1,11 +1,57 @@
 package conexion;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+
+import PruebasYEjemplos.Conexion;
 
 public class BaseDatosModise {
+
+	private static final String CONTROLADOR = "com.mysql.cj.jdbc.Driver";
+	private static final String URL = "jdbc:mysql://localhost:3306/modise_schema?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private static final String USUARIO = "root";
+	private static final String CONTRASENA = "1234Abcd"; //
+
+	static {
+		try {
+			Class.forName(CONTROLADOR);
+		} catch (ClassNotFoundException e) {
+			modise.Principal.BDLogger.log(Level.INFO, "Error al cargar el controlador");
+			// System.out.println("Error al cargar el controlador");
+			e.printStackTrace();
+		}
+	}
+
+	public static Connection conectar() {
+		Connection conexion = null;
+		try {
+			conexion = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+			modise.Principal.BDLogger.log(Level.INFO, "Se ha conectado");
+			// System.out.println("Se ha conectado");
+		} catch (SQLException e) {
+			modise.Principal.BDLogger.log(Level.INFO, "Error en la conexion");
+			// System.out.println("Error en la conexion");
+			e.printStackTrace();
+		}
+		return conexion;
+	}
+
+	public static boolean cerrarBD(final Connection con, final Statement st) {
+		try {
+			if (st != null)
+				st.close();
+			if (con != null)
+				con.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 	/*
 	 * public static void CrearUsuario(int id_usuario, String nombre_usuario, String
@@ -102,7 +148,6 @@ public class BaseDatosModise {
 			}
 
 		} catch (SQLException e) {
-			// e.printStackTrace();
 			System.out.println("catch de -> BaseDatosModise.existeUsuario, por lo que NO EXISTE EL USUARIO");
 			return true;
 		}
@@ -114,11 +159,7 @@ public class BaseDatosModise {
 				+ "','" + corr + "'," + admin + "," + ed + ",'" + contr + "'," + gen + ");";
 		System.out.println(SentSQL);
 		try {
-			int val = st.executeUpdate(SentSQL);
-			if (val != 1) { // Se tiene que añadir 1 - error si no
-				System.out.println("BaseDatosModise.nuevoUsuario: val!=1");
-			}
-			// rs.next();
+			st.executeUpdate(SentSQL);
 		} catch (SQLException e) {
 		}
 	}
@@ -127,11 +168,7 @@ public class BaseDatosModise {
 		String SentSQL = "delete from usuario where correo = '" + corr + "';";
 		System.out.println(SentSQL);
 		try {
-			int val = st.executeUpdate(SentSQL);
-			if (val != 1) { // Se tiene que añadir 1 - error si no
-				System.out.println("BaseDatosModise.eliminarUsuario: val!=1");
-			}
-			// rs.next();
+			st.executeUpdate(SentSQL);
 		} catch (SQLException e) {
 			System.out.println(e);
 			System.out.println("Catch BaseDatosModise.eliminarUsuario");
@@ -142,7 +179,7 @@ public class BaseDatosModise {
 		String SentSQL = "UPDATE usuario SET contrasena = '" + passw + "' WHERE correo = '" + corr + "';";
 		System.out.println(SentSQL);
 		try {
-			int val = st.executeUpdate(SentSQL);
+			st.executeUpdate(SentSQL);
 		} catch (SQLException e) {
 		}
 	}
@@ -151,7 +188,7 @@ public class BaseDatosModise {
 		String SentSQL = "UPDATE usuario SET administrador = '" + admin + "' WHERE correo = '" + corr + "';";
 		System.out.println(SentSQL);
 		try {
-			int val = st.executeUpdate(SentSQL);
+			st.executeUpdate(SentSQL);
 		} catch (SQLException e) {
 		}
 	}

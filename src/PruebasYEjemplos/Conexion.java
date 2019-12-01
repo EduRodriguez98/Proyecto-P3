@@ -1,8 +1,9 @@
-package conexion;
+package PruebasYEjemplos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 
 public class Conexion {
@@ -16,31 +17,37 @@ public class Conexion {
 		try {
 			Class.forName(CONTROLADOR);
 		} catch (ClassNotFoundException e) {
-			TestConexion.BDLogger.log(Level.INFO, "Error al cargar el controlador");
+			modise.Principal.BDLogger.log(Level.INFO, "Error al cargar el controlador");
 			// System.out.println("Error al cargar el controlador");
 			e.printStackTrace();
 		}
 	}
 
 	public static Connection conectar() {
-
 		Connection conexion = null;
-
 		try {
-
 			conexion = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			// TestConexion.BDLogger.log(Level.INFO, "Se ha conectado");
+			modise.Principal.BDLogger.log(Level.INFO, "Se ha conectado");
 			// System.out.println("Se ha conectado");
-
 		} catch (SQLException e) {
-
-			TestConexion.BDLogger.log(Level.INFO, "Error en la conexion");
+			modise.Principal.BDLogger.log(Level.INFO, "Error en la conexion");
 			// System.out.println("Error en la conexion");
 			e.printStackTrace();
 		}
-
 		return conexion;
+	}
 
+	public static boolean cerrarBD(final Connection con, final Statement st) {
+		try {
+			if (st != null)
+				st.close();
+			if (con != null)
+				con.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }
