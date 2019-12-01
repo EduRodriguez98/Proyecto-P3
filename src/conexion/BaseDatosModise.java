@@ -134,6 +134,20 @@ public class BaseDatosModise {
 			}
 			// rs.next();
 		} catch (SQLException e) {
+			System.out.println("Catch BaseDatosModise.eliminarUsuario");
+		}
+	}
+
+	public static void eliminarUsuario2(Statement st, String corr) {
+		String SentSQL = "delete from usuario where correo = '" + corr + "';";
+		System.out.println(SentSQL);
+		try {
+			int val = st.executeUpdate(SentSQL);
+			if (val != 1) { // Se tiene que añadir 1 - error si no
+				System.out.println("BaseDatosModise.eliminarUsuario: val!=1");
+			}
+			// rs.next();
+		} catch (SQLException e) {
 		}
 	}
 

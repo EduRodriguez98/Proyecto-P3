@@ -1540,23 +1540,29 @@ public class Principal {
 				Statement st = null;
 				try {
 					st = conexion.createStatement();
+
+					if (BaseDatosModise.existeUsuario(st, txtEmailMasMenosAdmin.getText()) == false) {
+						if (comboMasMenosAdministrador.getSelectedIndex() == 0) {
+							BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 1);
+							labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
+						} else if (comboMasMenosAdministrador.getSelectedIndex() == 1) {
+							BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 0);
+							labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
+						} else if (comboMasMenosAdministrador.getSelectedIndex() == 2) {
+							BaseDatosModise.eliminarUsuario(st, txtEmailMasMenosAdmin.getText());
+							BaseDatosModise.eliminarUsuario2(st, txtEmailMasMenosAdmin.getText());
+							labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
+						}
+					} else if (BaseDatosModise.existeUsuario(st, txtEmailMasMenosAdmin.getText()) == true) {
+						labelErrorMasMenosAdmin
+								.setText("Error, email no valido, porfavor reviselo e intentelo otra vez.");
+					}
+
+					// st.execute();
+					conexion.close();
+
 				} catch (SQLException e1) {
 
-				}
-
-				if (BaseDatosModise.existeUsuario(st, txtEmailMasMenosAdmin.getText()) == false) {
-					if (comboMasMenosAdministrador.getSelectedIndex() == 0) {
-						BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 1);
-						labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
-					} else if (comboMasMenosAdministrador.getSelectedIndex() == 1) {
-						BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 0);
-						labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
-					} else if (comboMasMenosAdministrador.getSelectedIndex() == 2) {
-						BaseDatosModise.eliminarUsuario(st, txtEmailMasMenosAdmin.getText());
-						labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
-					}
-				} else if (BaseDatosModise.existeUsuario(st, txtEmailMasMenosAdmin.getText()) == true) {
-					labelErrorMasMenosAdmin.setText("Error, email no valido, porfavor reviselo e intentelo otra vez.");
 				}
 			}
 		});
