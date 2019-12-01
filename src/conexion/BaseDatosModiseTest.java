@@ -7,22 +7,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class BaseDatosModiseTest {
 
 	static Connection conexion = BaseDatosModise.conectar();
 
-	public static boolean comprobarConexion() {
-
-		if (conexion == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
-	@Test
+	@Before
 	public void conexionTest() {
 		if (conexion != null) {
 
@@ -31,7 +24,7 @@ public class BaseDatosModiseTest {
 		}
 	}
 
-	@Test
+	@After
 	public void closeConexionTest() {
 		if (conexion == null) {
 
