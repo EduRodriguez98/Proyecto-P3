@@ -17,11 +17,11 @@ public class BaseDatosModise {
 	private static final String CONTRASENA = "1234Abcd";
 
 	public static Connection conectar() {
-		Connection conexion = null;
+
 		try {
 			Class.forName(CONTROLADOR);
-			conexion = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			modise.Principal.BDLogger.log(Level.INFO, "Se ha conectado");
+			Connection conexion = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+			// modise.Principal.BDLogger.log(Level.INFO, "Se ha conectado");
 			// System.out.println("Se ha conectado");
 			return conexion;
 		} catch (ClassNotFoundException | SQLException e) {

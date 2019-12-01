@@ -7,15 +7,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 public class BaseDatosModiseTest {
 
-	static Connection conexion = BaseDatosModise.conectar();
+	Connection conexion = BaseDatosModise.conectar();
 
-	@Before
+	@Test
 	public void conexionTest() {
 		if (conexion != null) {
 
@@ -24,9 +22,9 @@ public class BaseDatosModiseTest {
 		}
 	}
 
-	@After
+	@Test
 	public void closeConexionTest() {
-		if (conexion == null) {
+		if (conexion != null) {
 
 		} else {
 			fail();
@@ -38,7 +36,7 @@ public class BaseDatosModiseTest {
 		Statement st;
 		try {
 			st = conexion.createStatement();
-			assertTrue(BaseDatosModise.logIn(st, "eneko.perez@opendeusto.es", "12345"));
+			assertTrue(BaseDatosModise.logIn(st, "a", "a"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -49,7 +47,7 @@ public class BaseDatosModiseTest {
 		Statement st;
 		try {
 			st = conexion.createStatement();
-			assertTrue(BaseDatosModise.esAdmin(st, "eneko.perez@opendeusto.es"));
+			assertTrue(BaseDatosModise.esAdmin(st, "edudor@gmail.com"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -60,7 +58,7 @@ public class BaseDatosModiseTest {
 		Statement st;
 		try {
 			st = conexion.createStatement();
-			assertTrue(BaseDatosModise.existeUsuario(st, "eneko.perez@opendeusto.es"));
+			assertTrue(BaseDatosModise.existeUsuario(st, "lauram@gmail.com"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -71,7 +69,7 @@ public class BaseDatosModiseTest {
 		Statement st;
 		try {
 			st = conexion.createStatement();
-			BaseDatosModise.nuevoUsuario(st, "eneko", "eneko.perez@opendeusto.es", 0, 20, "12345", 1);
+			BaseDatosModise.nuevoUsuario(st, "eneko", "lauram@gmail.com", 0, 20, "123", 1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -82,7 +80,7 @@ public class BaseDatosModiseTest {
 		Statement st;
 		try {
 			st = conexion.createStatement();
-			BaseDatosModise.eliminarUsuario(st, "eneko.perez@opendeusto.es");
+			BaseDatosModise.eliminarUsuario(st, "lauram@gmail.com");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -93,7 +91,7 @@ public class BaseDatosModiseTest {
 		Statement st;
 		try {
 			st = conexion.createStatement();
-			BaseDatosModise.cambiarContraseña(st, "12345", "eneko.perez@opendeusto.es");
+			BaseDatosModise.cambiarContraseña(st, "123", "lauram@gmail.com");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -104,7 +102,7 @@ public class BaseDatosModiseTest {
 		Statement st;
 		try {
 			st = conexion.createStatement();
-			BaseDatosModise.cambiarAdmin(st, "eneko.perez@opendeusto.es", 0);
+			BaseDatosModise.cambiarAdmin(st, "lauram@gmail.com", 0);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
