@@ -123,6 +123,20 @@ public class BaseDatosModise {
 		}
 	}
 
+	public static void eliminarUsuario(Statement st, String corr) {
+		String SentSQL = "SET foreign_key_checks = 0;" + "\n" + "delete from usuario where correo = '" + corr + "';"
+				+ "\n" + "SET foreign_key_checks = 1;";
+		System.out.println(SentSQL);
+		try {
+			int val = st.executeUpdate(SentSQL);
+			if (val != 1) { // Se tiene que añadir 1 - error si no
+				System.out.println("BaseDatosModise.eliminarUsuario: val!=1");
+			}
+			// rs.next();
+		} catch (SQLException e) {
+		}
+	}
+
 	public static void cambiarContraseña(Statement st, String passw, String corr) {
 		String SentSQL = "UPDATE usuario SET contrasena = '" + passw + "' WHERE correo = '" + corr + "';";
 		System.out.println(SentSQL);
@@ -141,7 +155,7 @@ public class BaseDatosModise {
 		}
 	}
 
-	public static void BuscarUsuario() {
+	public static void BuscarUsuario() { // sirve para algo???
 
 		Conexion conexion = new Conexion();
 		Connection cn = null;

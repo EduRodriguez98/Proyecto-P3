@@ -1502,8 +1502,9 @@ public class Principal {
 		labelSelecionOperacionMasMenosAdmin.setBounds(25, 200, 300, 40);
 
 		comboMasMenosAdministrador = new JComboBox<String>();
-		comboMasMenosAdministrador.addItem("Hacer Administrador");
-		comboMasMenosAdministrador.addItem("Quitar privilegios de Administrador");
+		comboMasMenosAdministrador.addItem("Hacer Administrador.");
+		comboMasMenosAdministrador.addItem("Quitar privilegios de Administrador.");
+		comboMasMenosAdministrador.addItem("Eliminar cuenta.");
 		ventanaMasMenosAdmin.add(comboMasMenosAdministrador);
 		comboMasMenosAdministrador.setBounds(375, 200, 300, 40);
 
@@ -1515,7 +1516,7 @@ public class Principal {
 		ventanaMasMenosAdmin.add(botonatrasMasMenosAdmin);
 		botonatrasMasMenosAdmin.setBounds(25, 350, 200, 40);
 
-		labelErrorMasMenosAdmin = new JLabel("Error, email no valido, porfavor reviselo e intentelo otra vez.");
+		labelErrorMasMenosAdmin = new JLabel();
 		ventanaMasMenosAdmin.add(labelErrorMasMenosAdmin);
 		labelErrorMasMenosAdmin.setVisible(false);
 		labelErrorMasMenosAdmin.setBounds(25, 400, 350, 40);
@@ -1532,6 +1533,8 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("botonGuardarCambiosMasMenosAdmin");
+				labelSuccessMasMenosAdmin.setText("");
+				labelErrorMasMenosAdmin.setText("");
 
 				Connection conexion = Conexion.conectar();
 				Statement st = null;
@@ -1541,33 +1544,20 @@ public class Principal {
 
 				}
 
-				if (comboMasMenosAdministrador.getSelectedIndex() == 0) {
-					BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 1);
-					labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
-				} else if (comboMasMenosAdministrador.getSelectedIndex() == 1) {
-					BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 0);
-					labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
+				if (BaseDatosModise.existeUsuario(st, txtEmailMasMenosAdmin.getText()) == false) {
+					if (comboMasMenosAdministrador.getSelectedIndex() == 0) {
+						BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 1);
+						labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
+					} else if (comboMasMenosAdministrador.getSelectedIndex() == 1) {
+						BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 0);
+						labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
+					} else if (comboMasMenosAdministrador.getSelectedIndex() == 2) {
+						BaseDatosModise.eliminarUsuario(st, txtEmailMasMenosAdmin.getText());
+						labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
+					}
+				} else if (BaseDatosModise.existeUsuario(st, txtEmailMasMenosAdmin.getText()) == true) {
+					labelErrorMasMenosAdmin.setText("Error, email no valido, porfavor reviselo e intentelo otra vez.");
 				}
-
-				/*
-				 * if (editarEmail.matches( "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
-				 * "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") &&
-				 * !editarEmail.isEmpty()) {
-				 * 
-				 * // if (escrito1) { // comprobacion de que el email exista en la base de
-				 * datos!
-				 * 
-				 * if (comboMasMenosAdministrador.getSelectedItem() == "Hacer Administrador") {
-				 * // hacer el usuario en la base de datos y en la clase de usuarios
-				 * administrador // (dejarlo en true el boolean admin)
-				 * labelSuccessMasMenosAdmin.setVisible(true);
-				 * 
-				 * } else if (comboMasMenosAdministrador.getSelectedItem() ==
-				 * "Quitar privilegios de Administrado") { // Hacer el boolean Admin de la BD y
-				 * clase False labelSuccessMasMenosAdmin.setVisible(true); } // } } else {
-				 * labelErrorMasMenosAdmin.setVisible(true); }
-				 */
-
 			}
 		});
 
