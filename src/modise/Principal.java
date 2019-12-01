@@ -1562,7 +1562,6 @@ public class Principal {
 					conexion.close();
 
 				} catch (SQLException e1) {
-
 				}
 			}
 		});
