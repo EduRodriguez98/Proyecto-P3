@@ -134,6 +134,7 @@ public class BaseDatosModise {
 			}
 			// rs.next();
 		} catch (SQLException e) {
+			System.out.println(e);
 			System.out.println("Catch BaseDatosModise.eliminarUsuario");
 		}
 	}
@@ -144,10 +145,12 @@ public class BaseDatosModise {
 		try {
 			int val = st.executeUpdate(SentSQL);
 			if (val != 1) { // Se tiene que añadir 1 - error si no
-				System.out.println("BaseDatosModise.eliminarUsuario: val!=1");
+				System.out.println("BaseDatosModise.eliminarUsuario2: val!=1");
 			}
 			// rs.next();
 		} catch (SQLException e) {
+			System.out.println(e);
+			System.out.println("Catch BaseDatosModise.eliminarUsuario2");
 		}
 	}
 

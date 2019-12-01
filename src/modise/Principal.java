@@ -1577,6 +1577,8 @@ public class Principal {
 				mb.setVisible(true);
 				mb.setEnabled(true);
 				txtEmailMasMenosAdmin.setText("");
+				labelErrorMasMenosAdmin.setText("");
+				labelSuccessMasMenosAdmin.setText("");
 			}
 		});
 
