@@ -356,7 +356,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'eneko','enekop@gmail.com',1,20,'prog',1),(2,'eduj','edudor@gmail.com',1,20,'clash',1),(3,'acvelap','acvelap@gmail.com',1,28,'lol',1),(4,'laura','lauram@gmail.com',0,21,'123',0),(5,'barbara','barbarae@gmail.com',0,19,'456',0),(6,'francisco','francis@gmail.com',0,24,'789',1),(7,'paula','paulaf@gmail.com',0,45,'987',0),(8,'ernesto','ernestos@gmail.com',0,18,'654',1),(9,'marta','martasa@gmail.com',0,24,'321',0),(10,'maripili','mpili@gmail.com',0,20,'abc',0);
+INSERT INTO `usuario` VALUES (1,'a','a',1,50,'a',1),(2,'eduj','edudor@gmail.com',1,20,'clash',1),(3,'acvelap','acvelap@gmail.com',1,28,'lol',1),(4,'laura','lauram@gmail.com',0,21,'123',0),(5,'barbara','barbarae@gmail.com',0,19,'456',0),(6,'francisco','francis@gmail.com',0,24,'789',1),(7,'paula','paulaf@gmail.com',0,45,'987',0),(8,'ernesto','ernestos@gmail.com',0,18,'654',1),(9,'marta','martasa@gmail.com',0,24,'321',0),(10,'maripili','mpili@gmail.com',0,20,'abc',0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
