@@ -16,28 +16,20 @@ public class BaseDatosModise {
 	private static final String USUARIO = "root";
 	private static final String CONTRASENA = "1234Abcd";
 
-	static {
-		try {
-			Class.forName(CONTROLADOR);
-		} catch (ClassNotFoundException e) {
-			modise.Principal.BDLogger.log(Level.INFO, "Error al cargar el controlador");
-			// System.out.println("Error al cargar el controlador");
-			e.printStackTrace();
-		}
-	}
-
 	public static Connection conectar() {
 		Connection conexion = null;
 		try {
+			Class.forName(CONTROLADOR);
 			conexion = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			modise.Principal.BDLogger.log(Level.INFO, "Se ha conectado");
 			// System.out.println("Se ha conectado");
-		} catch (SQLException e) {
+			return conexion;
+		} catch (ClassNotFoundException | SQLException e) {
 			modise.Principal.BDLogger.log(Level.INFO, "Error en la conexion");
 			// System.out.println("Error en la conexion");
 			e.printStackTrace();
+			return null;
 		}
-		return conexion;
 	}
 
 	public static boolean cerrarBD(final Connection con, final Statement st) {
