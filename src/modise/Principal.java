@@ -1550,7 +1550,6 @@ public class Principal {
 							labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
 						} else if (comboMasMenosAdministrador.getSelectedIndex() == 2) {
 							BaseDatosModise.eliminarUsuario(st, txtEmailMasMenosAdmin.getText());
-							BaseDatosModise.eliminarUsuario2(st, txtEmailMasMenosAdmin.getText());
 							labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
 						}
 					} else if (BaseDatosModise.existeUsuario(st, txtEmailMasMenosAdmin.getText()) == true) {

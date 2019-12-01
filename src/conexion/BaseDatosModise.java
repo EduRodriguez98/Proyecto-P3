@@ -124,8 +124,7 @@ public class BaseDatosModise {
 	}
 
 	public static void eliminarUsuario(Statement st, String corr) {
-		String SentSQL = "SET foreign_key_checks = 0;" + "\n" + "delete from usuario where correo = '" + corr + "';"
-				+ "\n" + "SET foreign_key_checks = 1;";
+		String SentSQL = "delete from usuario where correo = '" + corr + "';";
 		System.out.println(SentSQL);
 		try {
 			int val = st.executeUpdate(SentSQL);
@@ -136,21 +135,6 @@ public class BaseDatosModise {
 		} catch (SQLException e) {
 			System.out.println(e);
 			System.out.println("Catch BaseDatosModise.eliminarUsuario");
-		}
-	}
-
-	public static void eliminarUsuario2(Statement st, String corr) {
-		String SentSQL = "delete from usuario where correo = '" + corr + "';";
-		System.out.println(SentSQL);
-		try {
-			int val = st.executeUpdate(SentSQL);
-			if (val != 1) { // Se tiene que añadir 1 - error si no
-				System.out.println("BaseDatosModise.eliminarUsuario2: val!=1");
-			}
-			// rs.next();
-		} catch (SQLException e) {
-			System.out.println(e);
-			System.out.println("Catch BaseDatosModise.eliminarUsuario2");
 		}
 	}
 
