@@ -205,7 +205,7 @@ CREATE TABLE `usu_cami` (
   KEY `idcamisetas_idx` (`idcamisetas`),
   KEY `idusuario_idx` (`idusuario`),
   CONSTRAINT `idcamisetas` FOREIGN KEY (`idcamisetas`) REFERENCES `camisetas` (`idcamisetas`) ON DELETE CASCADE,
-  CONSTRAINT `idusuario_cami` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
+  CONSTRAINT `idusuario_cami` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
