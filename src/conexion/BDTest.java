@@ -1,43 +1,32 @@
 package conexion;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import PruebasYEjemplos.Conexion;
-
 public class BDTest {
 
-	static Connection conexion = Conexion.conectar();
+	static Connection conexion = BaseDatosModise.conectar();
 
 	@Before
-	public static boolean conexionTest() {
+	public void conexionTest() {
 		if (conexion != null) {
-			return true;
+
 		} else {
-			return false;
+			fail();
 		}
 	}
 
-	@After
-	public static boolean closeConexionTest() {
-		if (conexion == null) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	@After
-	public static void closeConexionTest2() {
-
-	}
+	/*
+	 * @After public boolean closeConexionTest() { if (conexion == null) { return
+	 * true; } else { return false; } }
+	 */
 
 	@Test
 	public void logInTest() {

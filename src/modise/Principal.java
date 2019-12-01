@@ -52,7 +52,6 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
-import PruebasYEjemplos.Conexion;
 import conexion.BaseDatosModise;
 
 public class Principal {
@@ -397,7 +396,7 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Connection conexion = Conexion.conectar();
+				Connection conexion = BaseDatosModise.conectar();
 				Statement st = null;
 				try {
 					st = conexion.createStatement();
@@ -534,7 +533,7 @@ public class Principal {
 				errorEmail.setText("");
 				errorContraseña.setText("");
 
-				Connection conexion = Conexion.conectar();
+				Connection conexion = BaseDatosModise.conectar();
 				Statement st = null;
 				try {
 					st = conexion.createStatement();
@@ -916,7 +915,7 @@ public class Principal {
 
 								// bd nuevoUsuario
 								// TIRA ADELANTE, PERO NO HACE EL INSERT EL LAS TABLAS
-								Connection conexion = Conexion.conectar();
+								Connection conexion = BaseDatosModise.conectar();
 								Statement st = null;
 								try {
 									st = conexion.createStatement();
@@ -1456,7 +1455,7 @@ public class Principal {
 
 				String input = JOptionPane.showInputDialog(null, "Nueva contraseña:", "Cambiar contraseña.", 2);
 
-				Connection conexion = Conexion.conectar();
+				Connection conexion = BaseDatosModise.conectar();
 				Statement st = null;
 				try {
 					st = conexion.createStatement();
@@ -1539,7 +1538,7 @@ public class Principal {
 				labelSuccessMasMenosAdmin.setText("");
 				labelErrorMasMenosAdmin.setText("");
 
-				Connection conexion = Conexion.conectar();
+				Connection conexion = BaseDatosModise.conectar();
 				Statement st = null;
 				try {
 					st = conexion.createStatement();

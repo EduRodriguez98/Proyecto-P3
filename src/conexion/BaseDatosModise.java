@@ -14,7 +14,7 @@ public class BaseDatosModise {
 	private static final String CONTROLADOR = "com.mysql.cj.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/modise_schema?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private static final String USUARIO = "root";
-	private static final String CONTRASENA = "1234Abcd"; //
+	private static final String CONTRASENA = "1234Abcd";
 
 	static {
 		try {
