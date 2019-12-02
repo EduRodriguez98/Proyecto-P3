@@ -923,16 +923,16 @@ public class Principal {
 									e1.printStackTrace();
 								}
 
-								String valorPass = new String(contraseña.getPassword());
+								// String valorPass = new String(txtCrearContraseña.getPassword());
 
 								if (radioMasculino.isSelected() == true) {
 									BaseDatosModise.nuevoUsuario(st, txtCrearNombre.getText(), txtCrearEmail.getText(),
-											0, spinCrearEdad.getValue(), valorPass, 1);
+											0, spinCrearEdad.getValue(), txtCrearContraseña.getText(), 1);
 									System.out.println("nuevo chico");
 									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 								} else if (radioFemenino.isSelected() == true) {
 									BaseDatosModise.nuevoUsuario(st, txtCrearNombre.getText(), txtCrearEmail.getText(),
-											0, spinCrearEdad.getValue(), valorPass, 0);
+											0, spinCrearEdad.getValue(), txtCrearContraseña.getText(), 0);
 									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 									System.out.println("nueva chica");
 								} // hasta aqui bd nuevoUsuario
