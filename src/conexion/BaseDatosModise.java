@@ -31,17 +31,15 @@ public class BaseDatosModise {
 		}
 	}
 
-	public static boolean cerrarBD(final Connection con, final Statement st) {
+	public static void cerrarBD(final Connection con, final Statement st) {
 		try {
 			if (st != null)
 				st.close();
 			if (con != null)
 				con.close();
-			return true;
 		} catch (SQLException e) {
 			modise.Principal.BDLogger.log(Level.SEVERE, "Error al cerrar la base de datos.", e);
 			e.printStackTrace();
-			return false;
 		}
 	}
 
@@ -196,6 +194,26 @@ public class BaseDatosModise {
 		}
 	}
 
+	public static void añadirVestimenta(Statement st, String corr, String nombreTabla, String[] valores) {
+		String SentSQL = "select * from usuario where correo = '" + corr + "';";
+		int a = 0;
+		try {
+			ResultSet rs = st.executeQuery(SentSQL);
+			a = rs.getInt("idusuario");
+		} catch (SQLException e) {
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error añadriVestimenta Query1\n" + SentSQL, e);
+			e.printStackTrace();
+		}
+
+		String SentSQL2 = "insert into " + nombreTabla + " values(" + a + "," + valores + ");";
+		try {
+			st.executeUpdate(SentSQL2);
+		} catch (SQLException e) {
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error añadriVestimenta Query2\n" + SentSQL2, e);
+			e.printStackTrace();
+		}
+	}
+
 	public static void BuscarUsuario() { // sirve para algo??? Lo dejo para ver cuando hacer close por si acaso.
 
 		Conexion conexion = new Conexion();
@@ -220,7 +238,6 @@ public class BaseDatosModise {
 				System.out.println(idUsuario + " - " + nom_Usuario + " - " + correo + " - " + administrador + " - "
 						+ edad + " - " + contrasena + " - " + genero);
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -228,22 +245,17 @@ public class BaseDatosModise {
 				if (rs != null) {
 					rs.close();
 				}
-
 				if (stm != null) {
 					stm.close();
 				}
-
 				if (cn != null) {
 					cn.close();
 				}
-
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
 		}
-
 	}
-
 }
 
 class CrearOutfit {

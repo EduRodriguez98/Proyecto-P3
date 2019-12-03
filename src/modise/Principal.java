@@ -1323,6 +1323,14 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
+				Connection conexion = BaseDatosModise.conectar();
+				Statement st = null;
+				try {
+					st = conexion.createStatement();
+				} catch (SQLException e1) {
+				}
+
 				if (radioButtonsTiempo.isSelected(null)) {
 					errorVentanaAñadirVestimenta.setText("Selecciona el tiempo.");
 				} else {
@@ -1330,8 +1338,13 @@ public class Principal {
 							.println("Añade vestimenta, tiempo: " + radioButtonsTiempo.getSelection().getActionCommand()
 									+ ", estilo: " + estilosComboBoxAñadirVestimenta.getSelectedItem() + ", color: "
 									+ coloresComboBoxAñadirVestimenta.getSelectedItem());
-					// CambiarPanel(ventanaAñadirVestimenta, ???);
 					FileChooser.Choose();
+
+					// Metodo BD
+					String[] valores = new String[10]; // 10 por ejemplo
+					BaseDatosModise.añadirVestimenta(st, txtEmail.getText(), "usu_cami", valores);
+
+					// CambiarPanel(ventanaAñadirVestimenta, ???);
 					CambiarPanel(ventanaAñadirVestimenta, ventanaMenuPrincipal);
 					mb.setEnabled(true);
 					mb.setVisible(true);
