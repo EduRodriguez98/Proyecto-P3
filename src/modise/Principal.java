@@ -1367,6 +1367,8 @@ public class Principal {
 									+ coloresComboBoxAñadirVestimenta.getSelectedItem());
 					FileChooser.Choose();
 
+					// aquiii
+
 					// Metodo BD
 					String[] valores = new String[10]; // 10 por ejemplo
 					BaseDatosModise.añadirVestimenta(st, txtEmail.getText(), "usu_cami", valores);

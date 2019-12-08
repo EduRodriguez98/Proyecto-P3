@@ -1,5 +1,7 @@
 package modise;
 
+import java.io.File;
+
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -18,7 +20,20 @@ public class FileChooser {
 		int returnVal = chooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+
+			final String path = chooser.getSelectedFile().getPath();
+			System.out.println("Path: " + path);
+
 			Principal.Usuariolog.println("Archivo de prenda añadida: " + chooser.getSelectedFile().getName());
 		}
+
+		// Nuevo para pruebas
+		if (chooser.getSelectedFile().renameTo(new File(userDir
+				+ "\\git\\Proyecto-P3\\src\\PruebasYEjemplos\\imgPruebas\\" + chooser.getSelectedFile().getName()))) {
+			chooser.getSelectedFile().delete();
+			System.out.println("File moved successfully");
+		} else {
+			System.out.println("Failed to move the file");
+		} // Hasta aqui lo de las pruebas
 	}
 }
