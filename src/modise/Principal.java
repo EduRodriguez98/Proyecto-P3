@@ -17,6 +17,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.sql.Connection;
@@ -1736,9 +1737,37 @@ public class Principal {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				setProp("ejemplo@gmail.com", "12345");
-				System.out.println("X");
+				System.out.println("windowClosing");
 				Usuariolog.println("Fin del programa.\n");
 				Usuariolog.close();
+			}
+
+			@Override
+			public void windowOpened(WindowEvent we) {
+				System.out.println("windowOpened");
+				File archivo = new File("config.properties");
+				if (archivo.length() == 0) {
+					System.out.println("File is empty ...");
+					FileWriter writer;
+					try {
+						writer = new FileWriter(archivo);
+						writer.write("#program Settings\r\n" + "#Sun Dec 08 18:06:11 CET 2019\r\n"
+								+ "correo=ejemplo@gmail.com\r\n" + "contrasena=12345");
+						writer.flush();
+						writer.close();
+						frame.dispose();
+						SwingUtilities.invokeLater(new Runnable() {
+							@Override
+							public void run() {
+								new Principal();
+							}
+						});
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				} else {
+					System.out.println("File is not empty ...");
+				}
 			}
 		});
 
@@ -1789,9 +1818,9 @@ public class Principal {
 			@Override
 			public void run() {
 				new Principal();
-
 			}
 		});
+
 		System.out.println(new Date());
 	}
 
