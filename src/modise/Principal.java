@@ -1751,8 +1751,8 @@ public class Principal {
 					FileWriter writer;
 					try {
 						writer = new FileWriter(archivo);
-						writer.write("#program Settings\r\n" + "#Sun Dec 08 18:06:11 CET 2019\r\n"
-								+ "correo=ejemplo@gmail.com\r\n" + "contrasena=12345");
+						writer.write("#program Settings\r\n" + "#Sun Dec 08 18:32:29 CET 2019\r\n"
+								+ "correo=ejemplo@gmail.com\r\n" + "contrasena=12345\r\n" + "");
 						writer.flush();
 						writer.close();
 						frame.dispose();
