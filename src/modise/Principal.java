@@ -225,7 +225,7 @@ public class Principal {
 		}
 	}
 
-	public static String getPro2() {
+	public static String getProp2() {
 		File archivo = new File("config.properties");
 		try {
 			FileInputStream fis = new FileInputStream(archivo);
@@ -343,7 +343,9 @@ public class Principal {
 		ventanaInicioSesion.add(labelEmail);
 		labelEmail.setBounds(60, 62, 100, 40);
 
-		txtEmail = new JTextField("ejemplo@gmail.com");
+		// txtEmail = new JTextField("ejemplo@gmail.com");
+		txtEmail = new JTextField();
+		txtEmail.setText(getProp1());
 		ventanaInicioSesion.add(txtEmail);
 		txtEmail.setBounds(160, 70, 300, 30);
 		escrito1 = false;
@@ -362,7 +364,9 @@ public class Principal {
 		ventanaInicioSesion.add(labelContraseña);
 		labelContraseña.setBounds(60, 133, 100, 40);
 
-		contraseña = new JPasswordField("12345"); // cambiado
+		// contraseña = new JPasswordField("12345"); // cambiado
+		contraseña = new JPasswordField();
+		contraseña.setText(getProp2());
 		contraseña.setEchoChar('*'); // hacer checkbox isSelected para ver contraseña, HECHO
 		ventanaInicioSesion.add(contraseña);
 		contraseña.setBounds(160, 140, 300, 30);
@@ -1699,6 +1703,7 @@ public class Principal {
 				Usuariolog.println("Sesion cerrada.");
 				CambiarPanel(ventanaMenuPrincipal, ventanaInicioSesion);
 				System.out.println("Sesion cerrada.");
+				setProp("ejemplo@gmail.com", "12345");
 
 			}
 		});
@@ -1720,88 +1725,17 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 				String valorPass = new String(contraseña.getPassword());
 				setProp(txtEmail.getText(), valorPass);
-
-				// A partir de aqui LO MISMO que en "cerrar sesion"
-				// Menu
-				mb.setVisible(false);
-				mb.setEnabled(false);
-
-				// ventanaInicioSesion
-				// txtEmail.setText("ejemplo@gmail.com");
-				// contraseña.setText("12345");
-				// view.setSelected(false); dejarlo asi
-				escrito1 = false;
-				escrito2 = false;
-
-				// ventanaCrearCuenta
-				txtCrearNombre.setText("nombre");
-				txtCrearEmail.setText("ejemplo@gmail.com");
-				txtCrearContraseña.setText("");
-				spinCrearEdad.setValue(18);
-				escrito3 = false;
-				escrito4 = false;
-
-				// ventanaGenero
-				radioButtonsGenero.clearSelection();
-				errorGenero.setText("");
-
-				// ventanaPerfilGustosUnoM
-				clasicoM.setSelected(false);
-				urbanaM.setSelected(false);
-				rockM.setSelected(false);
-				smartM.setSelected(false);
-				formalM.setSelected(false);
-				casualChickM.setSelected(false);
-
-				errorPerfilGustosUnoM.setText("");
-
-				// ventanaPerfilGustosUnoF
-				clasicoF.setSelected(false);
-				urbanaF.setSelected(false);
-				rockF.setSelected(false);
-				bohoF.setSelected(false);
-				formalF.setSelected(false);
-				sportyChickF.setSelected(false);
-
-				errorPerfilGustosUnoF.setText("");
-
-				// ventanaPerfilGustosDos
-				bgPerfilGustosDos.clearSelection();
-				errorPerfilGustosDos.setText("");
-
-				// ventanaCarga
-				counter = 0;
-
-				// ventanaMenuPrincipal
-				// hace falta reiniciar algo?
-
-				// ventanaPideOutfit
-				bgPideOutfit.clearSelection();
-				radioNo.setSelected(false);
-				escrito5 = false;
-				errorPideOutfit.setText("");
-
-				// ventanaFeedback
-				radioButtonsEstrellas.clearSelection();
-				radioButtonsSiNo.clearSelection();
-
-				// ventanaAñadirVestimenta
-				radioButtonsTiempo.clearSelection();
-
-				// "sobras"
-				// quitar comentario y agregar aqui <-
-
-				// Hasta aqui
-				Usuariolog.println("Sesion cerrada.");
-				CambiarPanel(ventanaMenuPrincipal, ventanaInicioSesion);
-				System.out.println("Sesion cerrada.");
-
+				System.out.println("X");
+				Usuariolog.println("Fin del programa.\n");
+				Usuariolog.close();
+				frame.dispose();
 			}
 		});
 
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				setProp("ejemplo@gmail.com", "12345");
 				System.out.println("X");
 				Usuariolog.println("Fin del programa.\n");
 				Usuariolog.close();
