@@ -197,7 +197,7 @@ public class Principal {
 	 * @param Username nombre del usuario a escribir
 	 */
 	public static void setProp(String mail, String password) {
-		File archivo = new File("config.properties");
+		File archivo = new File("account.properties");
 		try {
 			FileOutputStream fos = new FileOutputStream(archivo);
 			Properties propConfig = new Properties();
@@ -212,7 +212,7 @@ public class Principal {
 	}
 
 	public static String getProp1() {
-		File archivo = new File("config.properties");
+		File archivo = new File("account.properties");
 		try {
 			FileInputStream fis = new FileInputStream(archivo);
 			Properties propConfig = new Properties();
@@ -227,7 +227,7 @@ public class Principal {
 	}
 
 	public static String getProp2() {
-		File archivo = new File("config.properties");
+		File archivo = new File("account.properties");
 		try {
 			FileInputStream fis = new FileInputStream(archivo);
 			Properties propConfig = new Properties();
@@ -1745,7 +1745,7 @@ public class Principal {
 			@Override
 			public void windowOpened(WindowEvent we) {
 				System.out.println("windowOpened");
-				File archivo = new File("config.properties");
+				File archivo = new File("account.properties");
 				if (archivo.length() == 0) {
 					System.out.println("File is empty ...");
 					FileWriter writer;
