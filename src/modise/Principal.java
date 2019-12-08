@@ -121,7 +121,7 @@ public class Principal {
 	// ventanaMenuPrincipal
 	JMenuBar mb;
 	JMenu menu1;
-	JMenuItem mi1, mi2, mi3; // mi1 = cerrar sesion
+	JMenuItem mi1, mi2, mi3, mi4; // mi1 = cerrar sesion
 	JButton botonPideOutfit, botonAñadirVestimenta, botonMasMenosAdmin;
 
 	// ventanaAñadirVestimenta
@@ -195,13 +195,14 @@ public class Principal {
 	 * 
 	 * @param Username nombre del usuario a escribir
 	 */
-	public static void setProp(String Username) {
+	public static void setProp(String mail, String password) {
 		File archivo = new File("config.properties");
 		try {
 			FileOutputStream fos = new FileOutputStream(archivo);
 			Properties propConfig = new Properties();
 
-			propConfig.setProperty("username", Username);
+			propConfig.setProperty("correo", mail);
+			propConfig.setProperty("contrasena", password);
 			propConfig.store(fos, "program Settings");
 			fos.close();
 		} catch (IOException e) {
@@ -209,15 +210,30 @@ public class Principal {
 		}
 	}
 
-	public static String getProp() {
+	public static String getProp1() {
 		File archivo = new File("config.properties");
 		try {
 			FileInputStream fis = new FileInputStream(archivo);
 			Properties propConfig = new Properties();
 			propConfig.load(fis);
 			// cojemos las properties
-			String nombre = propConfig.getProperty("username");
+			String nombre = propConfig.getProperty("correo");
 			return nombre;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static String getPro2() {
+		File archivo = new File("config.properties");
+		try {
+			FileInputStream fis = new FileInputStream(archivo);
+			Properties propConfig = new Properties();
+			propConfig.load(fis);
+			// cojemos las properties
+			String contr = propConfig.getProperty("contrasena");
+			return contr;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
@@ -242,10 +258,12 @@ public class Principal {
 		menu1 = new JMenu("Menu");
 		mi1 = new JMenuItem("Cerrar sesion");
 		mi2 = new JMenuItem("Ajustes");
-		mi3 = new JMenuItem("mi3 - ¿Algo mas?");
+		mi3 = new JMenuItem("Salir sin cerrar sesion");
+		mi4 = new JMenuItem("mi4 - ¿Algo mas?");
 		menu1.add(mi1);
 		menu1.add(mi2);
 		menu1.add(mi3);
+		menu1.add(mi4);
 		mb.add(menu1);
 		frame.setJMenuBar(mb);
 
@@ -396,6 +414,9 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String valorPass = new String(contraseña.getPassword());
+				// setProp(txtEmail.getText(), valorPass);
+
 				Connection conexion = BaseDatosModise.conectar();
 				Statement st = null;
 				try {
@@ -404,7 +425,8 @@ public class Principal {
 
 				}
 				// Pasa el valor del JPassword a String
-				String valorPass = new String(contraseña.getPassword());
+				// String valorPass = new String(contraseña.getPassword()); UNAS LINEAS MAS
+				// ARRIBA
 				if (BaseDatosModise.logIn(st, txtEmail.getText(), valorPass) == true) {
 					CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
 					Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + "	, " + (new Date()));
@@ -1602,6 +1624,8 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// propeties
+
 				// Menu
 				mb.setVisible(false);
 				mb.setEnabled(false);
@@ -1690,9 +1714,95 @@ public class Principal {
 			}
 		});
 
+		mi3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String valorPass = new String(contraseña.getPassword());
+				setProp(txtEmail.getText(), valorPass);
+
+				// A partir de aqui LO MISMO que en "cerrar sesion"
+				// Menu
+				mb.setVisible(false);
+				mb.setEnabled(false);
+
+				// ventanaInicioSesion
+				// txtEmail.setText("ejemplo@gmail.com");
+				// contraseña.setText("12345");
+				// view.setSelected(false); dejarlo asi
+				escrito1 = false;
+				escrito2 = false;
+
+				// ventanaCrearCuenta
+				txtCrearNombre.setText("nombre");
+				txtCrearEmail.setText("ejemplo@gmail.com");
+				txtCrearContraseña.setText("");
+				spinCrearEdad.setValue(18);
+				escrito3 = false;
+				escrito4 = false;
+
+				// ventanaGenero
+				radioButtonsGenero.clearSelection();
+				errorGenero.setText("");
+
+				// ventanaPerfilGustosUnoM
+				clasicoM.setSelected(false);
+				urbanaM.setSelected(false);
+				rockM.setSelected(false);
+				smartM.setSelected(false);
+				formalM.setSelected(false);
+				casualChickM.setSelected(false);
+
+				errorPerfilGustosUnoM.setText("");
+
+				// ventanaPerfilGustosUnoF
+				clasicoF.setSelected(false);
+				urbanaF.setSelected(false);
+				rockF.setSelected(false);
+				bohoF.setSelected(false);
+				formalF.setSelected(false);
+				sportyChickF.setSelected(false);
+
+				errorPerfilGustosUnoF.setText("");
+
+				// ventanaPerfilGustosDos
+				bgPerfilGustosDos.clearSelection();
+				errorPerfilGustosDos.setText("");
+
+				// ventanaCarga
+				counter = 0;
+
+				// ventanaMenuPrincipal
+				// hace falta reiniciar algo?
+
+				// ventanaPideOutfit
+				bgPideOutfit.clearSelection();
+				radioNo.setSelected(false);
+				escrito5 = false;
+				errorPideOutfit.setText("");
+
+				// ventanaFeedback
+				radioButtonsEstrellas.clearSelection();
+				radioButtonsSiNo.clearSelection();
+
+				// ventanaAñadirVestimenta
+				radioButtonsTiempo.clearSelection();
+
+				// "sobras"
+				// quitar comentario y agregar aqui <-
+
+				// Hasta aqui
+				Usuariolog.println("Sesion cerrada.");
+				CambiarPanel(ventanaMenuPrincipal, ventanaInicioSesion);
+				System.out.println("Sesion cerrada.");
+
+			}
+		});
+
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				System.out.println("X");
 				Usuariolog.println("Fin del programa.\n");
 				Usuariolog.close();
 			}
