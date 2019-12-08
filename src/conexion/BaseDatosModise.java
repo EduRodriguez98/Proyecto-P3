@@ -1,5 +1,6 @@
 package conexion;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -39,6 +40,17 @@ public class BaseDatosModise {
 				con.close();
 		} catch (SQLException e) {
 			modise.Principal.BDLogger.log(Level.SEVERE, "Error al cerrar la base de datos.", e);
+			e.printStackTrace();
+		}
+	}
+
+	// por ahora prueba
+	public static void subirFoto(Statement st, File archivo) {
+		String SentSQL = "insert into pruebaimagenes(imagen) values('" + archivo + "');";
+		System.out.println(SentSQL);
+		try {
+			st.executeUpdate(SentSQL);
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}

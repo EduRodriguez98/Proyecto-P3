@@ -1,9 +1,14 @@
 package modise;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import conexion.BaseDatosModise;
 
 public class FileChooser {
 
@@ -24,7 +29,8 @@ public class FileChooser {
 			final String path = chooser.getSelectedFile().getPath();
 			System.out.println("Path: " + path);
 
-			Principal.Usuariolog.println("Archivo de prenda añadida: " + chooser.getSelectedFile().getName());
+			// Principal.Usuariolog.println("Archivo de prenda añadida: " +
+			// chooser.getSelectedFile().getName());
 		}
 
 		// Nuevo para pruebas
@@ -34,6 +40,23 @@ public class FileChooser {
 			System.out.println("File moved successfully");
 		} else {
 			System.out.println("Failed to move the file");
-		} // Hasta aqui lo de las pruebas
+		}
+
+		// BD
+		Connection conexion = BaseDatosModise.conectar();
+		Statement st = null;
+		try {
+			st = conexion.createStatement();
+		} catch (SQLException e1) {
+
+		}
+
+		BaseDatosModise.subirFoto(st, chooser.getSelectedFile());
+
 	}
+
+	public static void main(String[] args) {
+		Choose();
+	}
+	// Hasta aqui lo de las pruebas
 }
