@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
--- Host: localhost    Database: modise_schema
+-- Host: 127.0.0.1    Database: modise_schema
 -- ------------------------------------------------------
 -- Server version	8.0.18
 
@@ -28,6 +28,7 @@ CREATE TABLE `camisetas` (
   `logotipo` varchar(45) DEFAULT NULL,
   `rayas` tinyint(4) DEFAULT NULL,
   `cuadros` tinyint(4) DEFAULT NULL,
+  `fotocamiseta` longblob,
   PRIMARY KEY (`idcamisetas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,7 +39,6 @@ CREATE TABLE `camisetas` (
 
 LOCK TABLES `camisetas` WRITE;
 /*!40000 ALTER TABLE `camisetas` DISABLE KEYS */;
-INSERT INTO `camisetas` VALUES (1,1,'lacoste',0,0),(2,1,'lacoste',1,0),(3,1,'zara',0,1),(4,1,'h&m',0,0),(5,1,'vitorioylucino',0,1);
 /*!40000 ALTER TABLE `camisetas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,6 +54,7 @@ CREATE TABLE `chaquetas` (
   `idprendas` int(11) NOT NULL,
   `larga` tinyint(4) DEFAULT NULL,
   `lisa` tinyint(4) DEFAULT NULL,
+  `fotochaqueta` longblob,
   PRIMARY KEY (`idchaquetas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -64,7 +65,6 @@ CREATE TABLE `chaquetas` (
 
 LOCK TABLES `chaquetas` WRITE;
 /*!40000 ALTER TABLE `chaquetas` DISABLE KEYS */;
-INSERT INTO `chaquetas` VALUES (1,2,1,1),(2,2,0,1),(3,2,0,0),(4,2,1,0),(5,2,1,1);
 /*!40000 ALTER TABLE `chaquetas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,6 +103,7 @@ CREATE TABLE `gorros` (
   `idgorros` int(11) NOT NULL,
   `idprendas` int(11) NOT NULL,
   `verano` tinyint(4) DEFAULT NULL,
+  `fotogorros` longblob,
   PRIMARY KEY (`idgorros`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -113,31 +114,7 @@ CREATE TABLE `gorros` (
 
 LOCK TABLES `gorros` WRITE;
 /*!40000 ALTER TABLE `gorros` DISABLE KEYS */;
-INSERT INTO `gorros` VALUES (1,3,1),(2,3,0),(3,3,1),(4,3,0),(5,3,0);
 /*!40000 ALTER TABLE `gorros` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `outfit`
---
-
-DROP TABLE IF EXISTS `outfit`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `outfit` (
-  `idoutfit` int(11) NOT NULL AUTO_INCREMENT,
-  `imagen_OF` longblob,
-  PRIMARY KEY (`idoutfit`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `outfit`
---
-
-LOCK TABLES `outfit` WRITE;
-/*!40000 ALTER TABLE `outfit` DISABLE KEYS */;
-/*!40000 ALTER TABLE `outfit` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -152,6 +129,7 @@ CREATE TABLE `pantalones` (
   `idprendas` int(11) NOT NULL,
   `marca` varchar(45) DEFAULT NULL,
   `corto` tinyint(4) DEFAULT NULL,
+  `fotopantalones` longblob,
   PRIMARY KEY (`idpantalones`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -162,7 +140,6 @@ CREATE TABLE `pantalones` (
 
 LOCK TABLES `pantalones` WRITE;
 /*!40000 ALTER TABLE `pantalones` DISABLE KEYS */;
-INSERT INTO `pantalones` VALUES (1,4,'zara',0),(2,4,'berskha',0),(3,4,'zara',1),(4,4,'bersache',0),(5,4,'h&m',1);
 /*!40000 ALTER TABLE `pantalones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,30 +169,6 @@ LOCK TABLES `prendas` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `pruebaimagenes`
---
-
-DROP TABLE IF EXISTS `pruebaimagenes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `pruebaimagenes` (
-  `id_imagen` int(11) NOT NULL AUTO_INCREMENT,
-  `imagen` blob,
-  PRIMARY KEY (`id_imagen`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pruebaimagenes`
---
-
-LOCK TABLES `pruebaimagenes` WRITE;
-/*!40000 ALTER TABLE `pruebaimagenes` DISABLE KEYS */;
-INSERT INTO `pruebaimagenes` VALUES (1,_binary 'C:UsersEneko PérezPictureswp - copia (4).jpg'),(2,_binary 'C:UsersEneko PérezPictureswp - copia (3).jpg'),(3,_binary 'C:UsersEneko PérezPictureswp - copia (5).jpg'),(4,_binary 'C:UsersEneko PérezPictureswp - copia (5).jpg'),(5,_binary 'C:UsersEneko PérezPictureswp - copia (5).jpg');
-/*!40000 ALTER TABLE `pruebaimagenes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `usu_cami`
 --
 
@@ -239,7 +192,6 @@ CREATE TABLE `usu_cami` (
 
 LOCK TABLES `usu_cami` WRITE;
 /*!40000 ALTER TABLE `usu_cami` DISABLE KEYS */;
-INSERT INTO `usu_cami` VALUES (1,1,'2007-05-20'),(1,2,'2022-05-20'),(2,4,'2007-07-20'),(3,5,'2007-11-20'),(1,4,'2007-06-06'),(1,4,'2007-06-06');
 /*!40000 ALTER TABLE `usu_cami` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +219,6 @@ CREATE TABLE `usu_cha` (
 
 LOCK TABLES `usu_cha` WRITE;
 /*!40000 ALTER TABLE `usu_cha` DISABLE KEYS */;
-INSERT INTO `usu_cha` VALUES (10,1,'2014-06-20'),(8,2,'2014-06-20'),(1,3,'2015-06-20'),(5,4,'2017-06-20'),(7,5,'2014-06-20');
 /*!40000 ALTER TABLE `usu_cha` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -295,7 +246,6 @@ CREATE TABLE `usu_gor` (
 
 LOCK TABLES `usu_gor` WRITE;
 /*!40000 ALTER TABLE `usu_gor` DISABLE KEYS */;
-INSERT INTO `usu_gor` VALUES (2,1,'2014-06-20'),(3,1,'2014-06-20'),(10,3,'2014-12-20'),(9,3,'2014-11-20');
 /*!40000 ALTER TABLE `usu_gor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,7 +273,6 @@ CREATE TABLE `usu_pan` (
 
 LOCK TABLES `usu_pan` WRITE;
 /*!40000 ALTER TABLE `usu_pan` DISABLE KEYS */;
-INSERT INTO `usu_pan` VALUES (1,1,'2014-06-20'),(2,3,'2014-06-20'),(6,4,'2014-06-20'),(9,5,'2014-06-20');
 /*!40000 ALTER TABLE `usu_pan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -351,7 +300,6 @@ CREATE TABLE `usu_zap` (
 
 LOCK TABLES `usu_zap` WRITE;
 /*!40000 ALTER TABLE `usu_zap` DISABLE KEYS */;
-INSERT INTO `usu_zap` VALUES (1,1,'2014-06-20'),(3,2,'2014-07-20'),(2,3,'2014-08-20'),(8,5,'2014-01-20');
 /*!40000 ALTER TABLE `usu_zap` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -396,6 +344,7 @@ CREATE TABLE `zapatos` (
   `idprendas` int(11) NOT NULL,
   `deportivos` tinyint(4) DEFAULT NULL,
   `deVestir` tinyint(4) DEFAULT NULL,
+  `fotozapatos` longblob,
   PRIMARY KEY (`idzapatos`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -406,7 +355,6 @@ CREATE TABLE `zapatos` (
 
 LOCK TABLES `zapatos` WRITE;
 /*!40000 ALTER TABLE `zapatos` DISABLE KEYS */;
-INSERT INTO `zapatos` VALUES (1,5,1,1),(2,5,1,0),(3,5,1,0),(4,5,0,1),(5,5,0,1);
 /*!40000 ALTER TABLE `zapatos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -419,4 +367,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-08 20:39:48
+-- Dump completed on 2019-12-10 12:11:10
