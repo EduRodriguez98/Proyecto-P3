@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 
-import PruebasYEjemplos.Conexion;
-
 public class BaseDatosModise {
 
 	private static final String CONTROLADOR = "com.mysql.cj.jdbc.Driver";
@@ -22,8 +20,8 @@ public class BaseDatosModise {
 		try {
 			Class.forName(CONTROLADOR);
 			Connection conexion = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			modise.Principal.BDLogger.log(Level.INFO, "Se ha conectado");
-			
+			// modise.Principal.BDLogger.log(Level.INFO, "Se ha conectado");
+			// HAY QUE MIRAR PORK ESTO DA ERROR!!!!!!!!!!!!!!!!!!!!!!
 			return conexion;
 		} catch (ClassNotFoundException | SQLException e) {
 			modise.Principal.BDLogger.log(Level.SEVERE, "Error en la conexion", e);
@@ -54,7 +52,6 @@ public class BaseDatosModise {
 			e.printStackTrace();
 		}
 	}
-
 
 	public static boolean logIn(Statement st, String user, String passw) {
 		String SentSQL = "select * from usuario where correo = '" + user + "' and contrasena = '" + passw + "'";
@@ -117,8 +114,8 @@ public class BaseDatosModise {
 				System.out.println("NO EXISTE USUARIO");
 				return true;
 			}
-
 		} catch (SQLException e) {
+			// aqui NO es un error, NO ponemos logger de error ni "e.printStackTrace();"
 			System.out.println("catch de -> BaseDatosModise.existeUsuario, por lo que NO EXISTE EL USUARIO");
 			return true;
 		}
@@ -172,10 +169,10 @@ public class BaseDatosModise {
 		}
 	}
 
-	
 	public static void añadirPrenda(Statement st, int idcolor, String estiloPrendas) {
-		String SentSQL ="INSERT INTO prendas (id_color, estiloprendas) VALUES ('" + idcolor + "','" + estiloPrendas + ")";
-				System.out.println(SentSQL);
+		String SentSQL = "INSERT INTO prendas (id_color, estiloprendas) VALUES ('" + idcolor + "','" + estiloPrendas
+				+ ")";
+		System.out.println(SentSQL);
 		try {
 			st.executeUpdate(SentSQL);
 		} catch (SQLException e) {
@@ -183,12 +180,12 @@ public class BaseDatosModise {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public static void eliminarPrenda(Statement st, int idcolor, String estiloPrendas) {
-		//para borrar la prenda en caso de haber cancelado en la ventana Añadir Vestimenta
+		// para borrar la prenda en caso de haber cancelado en la ventana Añadir
+		// Vestimenta
 	}
-	
+
 	public static void añadirVestimenta(Statement st, String corr, String nombreTabla, String[] valores) {
 		String SentSQL = "select * from usuario where correo = '" + corr + "';";
 		int a = 0;
@@ -209,29 +206,29 @@ public class BaseDatosModise {
 		}
 	}
 
-class CrearOutfit {
+	class CrearOutfit {
 
-	/*
-	  JFileChooser archivo = new JFileChooser();
-	  
-	  int ventana = archivo.
-	  
-	  
-	  FileNameExtensionFilter filtro = new
-	  FileNameExtensionFilter("Formatos de archivos JPEG(*.JPG;*.JPEG)", "jpg",
-	  "jpeg");
-	  
-	  
-	  archivo.addChooseableFileFilter(filtro);
-	  archivo.setDialogTitle("Abrir archivo"); File ruta = new File
-	  ("la ruta en la que tengamos la foto"); archivo.setCurrentDirectory(ruta);
-	  int ventana = archivo.showOpenDialog(null); if(ventana ==
-	  JFileChooser.APPROVE_OPTION) { File file = archivo.getSelectedFile();
-	  txtnomimagen.setText(String.valueOf(file)); Image foto =
-	  getToolkit().getImage(txtnomimage.getText()); //importar Image foto =
-	  foto.getScaledInstance(110,110,Image.SCALE_DEFAULT); lblfoto.setIcon(new
-	  ImageIcon(foto));
-	  */
-	  }
-	
+		/*
+		 * JFileChooser archivo = new JFileChooser();
+		 * 
+		 * int ventana = archivo.
+		 * 
+		 * 
+		 * FileNameExtensionFilter filtro = new
+		 * FileNameExtensionFilter("Formatos de archivos JPEG(*.JPG;*.JPEG)", "jpg",
+		 * "jpeg");
+		 * 
+		 * 
+		 * archivo.addChooseableFileFilter(filtro);
+		 * archivo.setDialogTitle("Abrir archivo"); File ruta = new File
+		 * ("la ruta en la que tengamos la foto"); archivo.setCurrentDirectory(ruta);
+		 * int ventana = archivo.showOpenDialog(null); if(ventana ==
+		 * JFileChooser.APPROVE_OPTION) { File file = archivo.getSelectedFile();
+		 * txtnomimagen.setText(String.valueOf(file)); Image foto =
+		 * getToolkit().getImage(txtnomimage.getText()); //importar Image foto =
+		 * foto.getScaledInstance(110,110,Image.SCALE_DEFAULT); lblfoto.setIcon(new
+		 * ImageIcon(foto));
+		 */
+	}
+
 }

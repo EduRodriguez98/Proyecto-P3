@@ -20,7 +20,7 @@ public class EstadisticaFeedback {
 		return ans;
 	}
 
-	public static double siNo(double a, double b, double c) {
+	public static /* double */ void siNo(double a, double b, double c) {
 		if (c == 0) {
 			throw new ArithmeticException("No puedes dividir por cero");
 		}
@@ -31,9 +31,9 @@ public class EstadisticaFeedback {
 		double ans2 = b / c;
 		ans2 = ans2 * 100;
 		System.out.println("No: " + String.format("%.2f", ans2) + " %.");
-		
-		 ans = a+b; return ans;
-		 
+		/*
+		 * ans = a+b; return ans;
+		 */
 	}
 
 	public static void Read() throws RWException {
@@ -105,13 +105,13 @@ public class EstadisticaFeedback {
 		} catch (FileNotFoundException e) {
 			throw new RWException("el archivo no fue encontrado", e);
 		} catch (IOException e) {
-			throw new RWException("Error de input/output al tratar de leer o escribir en archivo", e);
+			throw new RWException("Error de input/output", e);
 		}
 	}
 
 	public static void main(String[] args) throws RWException {
 
-		EstadisticaFeedback.Read();
+		EstadisticaFeedback.Read(); // aqui o ponemos main en su clase??? AQUI NO?
 	}
 
 }
