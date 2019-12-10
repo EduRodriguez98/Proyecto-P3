@@ -16,30 +16,26 @@ public class FileChooser {
 		String userDir = System.getProperty("user.home");
 		JFileChooser chooser = new JFileChooser(userDir + "/Pictures");
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg",
-				"gif"); /*
-						 * La opcion "JPG & GIF Images" seLecciona jpg y gif, IGUAL hay que poner
-						 * tambien png y mas archivos... TAMBIEN hay una opcion que es "Todos los
-						 * archivos
-						 */
+				"gif", "*.png", "png"); 
+		
 		chooser.setFileFilter(filter);
 		int returnVal = chooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+			System.out.println("Has elejido abrir este archivo: " + chooser.getSelectedFile().getName());
 
 			final String path = chooser.getSelectedFile().getPath();
 			System.out.println("Path: " + path);
 
-			// Principal.Usuariolog.println("Archivo de prenda añadida: " +
-			// chooser.getSelectedFile().getName());
+			 Principal.Usuariolog.println("Archivo de prenda añadida: " + chooser.getSelectedFile().getName());
 		}
 
 		// Nuevo para pruebas
 		if (chooser.getSelectedFile().renameTo(new File(userDir
 				+ "\\git\\Proyecto-P3\\src\\PruebasYEjemplos\\imgPruebas\\" + chooser.getSelectedFile().getName()))) {
 			chooser.getSelectedFile().delete();
-			System.out.println("File moved successfully");
+			System.out.println("El archivo se ha movido correctamente");
 		} else {
-			System.out.println("Failed to move the file");
+			System.out.println("No se ha podido mover el archivo");
 		}
 
 		// BD
