@@ -137,20 +137,27 @@ public class Principal {
 	// ventanaAñadirCamisetas
 	JLabel importarFotoCamisetas, camisetasLogotipoLabel, camisetasRayasLabel, camisetasCuadrosLabel;
 	JRadioButton camisetasLogoSiRB, camisetasLogoNoRB, camisetasRayasSiRB, camisetasRayasNoRB, camisetasCuadrosSiRB, camisetasCuadrosNoRB;
+	JButton atrasAñadirCamisetas, siguienteAñadirCamisetas;
+	
 	// ventanaAñadirChaquetas
 	JLabel importarFotoChaquetas, chaquetasLargoLabel, chaquetasLisaLabel;
 	JRadioButton chaquetasLargoSiRB, chaquetasLargoNoRB, chaquetasLisaSiRB, chaquetasLisaNoRB;
+	JButton atrasAñadirChaquetas, siguienteAñadirChaquetas;
+	
 	// ventanaAñadirGorros
 	JLabel importarFotoGorros, gorrosTemporadaLabel;
 	JRadioButton gorrosVeranoSiRB, gorrosVeranoNoRB;
+	JButton atrasAñadirGorros, siguienteAñadirGorros;
+	
 	// ventanaAñadirPantalones
 	JLabel importarFotoPantalones, pantalonesMarcaLabel, pantalonesLargoLabel;
 	JRadioButton pantalonesMarcaSiRB, pantalonesMarcaNoRB, pantalonesLargoSiRB, pantalonesLargoNoRB;
+	JButton atrasAñadirPantalones, siguienteAñadirPantalones;
+	
 	// ventanaAñadirZapatos
 	JLabel importarFotoZapatos, zapatosTipoLabel;
 	JRadioButton zapatosDeportivosRB, zapatosVestirRB;
-	
-	JButton botonAñadirTipoPrenda, botonAtrasVentanaAñadirVestimenta2;
+	JButton atrasAñadirZapatos, siguienteAñadirZapatos;
 	
 
 	// ventanaPideOutfit
@@ -1377,7 +1384,11 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+///////////////////////////////////////////////
 
+/////////////NOOOOO BOOOOORRRAAARRR!!!!!!!!!!//
+
+///////////////////////////////////////////////
 			/*
 			String nombreColorSeleccionado = coloresComboBoxAñadirVestimenta.getSelectedItem().toString();
 			int idColorSeleccionado;
@@ -1402,14 +1413,6 @@ public class Principal {
 			} else {
 				generoPrendas = false;
 			} 
-			
-			
-			///////////////////////////////////////////////
-				//SE VA A USAR EN LA SIGUIENTE VENTANA!! //
-			///////////////////////////////////////////////
-			
-			
-		//	COMENTADO DE MOMENTO PARA EVITAR ANADIRPRENDAS AL PROBAR HACER CAMBIOS A LA VENTANA!	//	
 		
 				
 				Connection conexion = BaseDatosModise.conectar();
@@ -1443,16 +1446,13 @@ public class Principal {
 					mb.setVisible(true);
 					errorVentanaAñadirVestimenta1.setText("");  
 			
-			
-					
+
 			*/
+	
 			
-				
-				
-			
-			
-			//este es temporal
-			CambiarPanel(ventanaAñadirVestimenta1,ventanaAñadirCamisetas);
+			//este es temporal para ir probando las ventas que voy creando, lo comentado funciona pero lo pones luego, ya que cada vez crearía una nueva prenda en la tabla, 
+			//y al no tener el metodo eliminar todavía implementado, se crearian muchisimas prendas vacías.
+			CambiarPanel(ventanaAñadirVestimenta1,ventanaAñadirZapatos);
 			
 			
 			}	
@@ -1469,34 +1469,38 @@ public class Principal {
 		
 		//Añadiendo los componentes de ventanaAñadirCamiseta
 		
-		/*
-		 	JLabel camisetasRayasLabel, camisetasCuadrosLabel;
-			JRadioButton camisetasRayasSiRB, camisetasRayasNoRB, camisetasCuadrosSiRB, camisetasCuadrosNoRB;
-		 */
-		
-			
 		
 			//Importar foto
-			importarFotoCamisetas = new JLabel("Seleccionar foto para importar de la prenda: ");
+			importarFotoCamisetas = new JLabel("Seleccionar foto para importar de la camiseta: ");
 			importarFotoCamisetas.setBounds(40, 50, 300, 40);
 			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
 			
 			camisetasLogotipoLabel = new JLabel("Tiene logotipo la camiseta?: ");
-			camisetasLogotipoLabel.setBounds(40, 150, 300, 40);
+			camisetasLogotipoLabel.setBounds(40, 100, 300, 40);
 			camisetasLogoSiRB = new JRadioButton("Si");
-			camisetasLogoSiRB.setBounds(360, 150, 50, 40);
+			camisetasLogoSiRB.setBounds(360, 100, 50, 40);
 			camisetasLogoNoRB = new JRadioButton("No");
-			camisetasLogoNoRB.setBounds(430, 150, 50, 40);
+			camisetasLogoNoRB.setBounds(430, 100, 50, 40);
 			
 			camisetasRayasLabel = new JLabel("Tiene Rayas la camiseta?: ");
-			camisetasRayasLabel.setBounds(40, 250, 300, 40);
+			camisetasRayasLabel.setBounds(40,150, 300, 40);
 			camisetasRayasSiRB = new JRadioButton("Si");
-			camisetasRayasSiRB.setBounds(430, 250, 50, 40);
+			camisetasRayasSiRB.setBounds(360, 150, 50, 40);
 			camisetasRayasNoRB = new JRadioButton("No");
-			camisetasRayasNoRB.setBounds(430, 250, 50, 40);
+			camisetasRayasNoRB.setBounds(430, 150, 50, 40);
 			
+			camisetasCuadrosLabel = new JLabel("La camiseta es a cuadros?");
+			camisetasCuadrosLabel.setBounds(40, 200, 300, 40);
+			camisetasCuadrosSiRB = new JRadioButton("Si");
+			camisetasCuadrosSiRB.setBounds(360, 200, 50, 40);
+			camisetasCuadrosNoRB = new JRadioButton("No");
+			camisetasCuadrosNoRB.setBounds(430, 200, 50, 40);
 			
+			atrasAñadirCamisetas = new JButton("Atrás");
+			atrasAñadirCamisetas.setBounds(10, 340, 200, 30);
 			
+			siguienteAñadirCamisetas = new JButton("Siguiente");
+			siguienteAñadirCamisetas.setBounds(500, 340, 200, 30);
 			
 			ventanaAñadirCamisetas.add(importarFotoCamisetas);
 			ventanaAñadirCamisetas.add(camisetasLogotipoLabel);
@@ -1505,22 +1509,259 @@ public class Principal {
 			ventanaAñadirCamisetas.add(camisetasRayasLabel);
 			ventanaAñadirCamisetas.add(camisetasRayasSiRB);
 			ventanaAñadirCamisetas.add(camisetasRayasNoRB);
+			ventanaAñadirCamisetas.add(camisetasCuadrosLabel);
+			ventanaAñadirCamisetas.add(camisetasCuadrosSiRB);
+			ventanaAñadirCamisetas.add(camisetasCuadrosNoRB);
+			ventanaAñadirCamisetas.add(atrasAñadirCamisetas);
+			ventanaAñadirCamisetas.add(siguienteAñadirCamisetas);
+			
+			
+			atrasAñadirCamisetas.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					CambiarPanel(ventanaAñadirCamisetas, ventanaAñadirVestimenta1);
+					ventanaAñadirVestimenta1Cancelar.setVisible(true);
+					ventanaAñadirVestimenta1Atras.setVisible(false);
+				}
+			});
+			
+			siguienteAñadirCamisetas.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//implementar metodo Crear camisetas importando foto tmb
+					CambiarPanel(ventanaAñadirCamisetas, ventanaMenuPrincipal);
+				}
+			});
+		
+		//Añadiendo los componentes de ventanaAñadirChaquetas
+			
+			//Importar foto
+			importarFotoChaquetas = new JLabel("Seleccionar foto para importar de la chaqueta: ");
+			importarFotoChaquetas.setBounds(40, 50, 300, 40);
+			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
+			
+			
+			chaquetasLargoLabel = new JLabel("Es larga la chaqueta?: ");
+			chaquetasLargoLabel.setBounds(40, 100, 300, 40);
+			chaquetasLargoSiRB = new JRadioButton("Si");
+			chaquetasLargoSiRB.setBounds(360, 100, 50, 40);
+			chaquetasLargoNoRB = new JRadioButton("No");
+			chaquetasLargoNoRB.setBounds(430, 100, 50, 40);
+			
+			chaquetasLisaLabel = new JLabel("La chaqueta es lisa?: ");
+			chaquetasLisaLabel.setBounds(40,150, 300, 40);
+			chaquetasLisaSiRB = new JRadioButton("Si");
+			chaquetasLisaSiRB.setBounds(360, 150, 50, 40);
+			chaquetasLisaNoRB = new JRadioButton("No");
+			chaquetasLisaNoRB.setBounds(430, 150, 50, 40);
+			
+			atrasAñadirChaquetas = new JButton("Atrás");
+			atrasAñadirChaquetas.setBounds(10, 340, 200, 30);
+			
+			siguienteAñadirChaquetas = new JButton("Siguiente");
+			siguienteAñadirChaquetas.setBounds(500, 340, 200, 30);
+			
+			ventanaAñadirChaquetas.add(importarFotoChaquetas);
+			ventanaAñadirChaquetas.add(chaquetasLargoLabel);
+			ventanaAñadirChaquetas.add(chaquetasLargoSiRB);
+			ventanaAñadirChaquetas.add(chaquetasLargoNoRB);
+			ventanaAñadirChaquetas.add(chaquetasLisaLabel);
+			ventanaAñadirChaquetas.add(chaquetasLisaSiRB);
+			ventanaAñadirChaquetas.add(chaquetasLisaNoRB);
+			ventanaAñadirChaquetas.add(atrasAñadirChaquetas);
+			ventanaAñadirChaquetas.add(siguienteAñadirChaquetas);
+			
+			atrasAñadirChaquetas.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					CambiarPanel(ventanaAñadirChaquetas, ventanaAñadirVestimenta1);
+					ventanaAñadirVestimenta1Cancelar.setVisible(true);
+					ventanaAñadirVestimenta1Atras.setVisible(false);
+					
+				}
+			});			
+			
+			
+			siguienteAñadirChaquetas.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//implementar metodo Crear camisetas importando foto tmb
+					CambiarPanel(ventanaAñadirChaquetas, ventanaMenuPrincipal);
+					
+				}
+			});
 			
 			
 			
+		//Añadiendo los componentes de ventanaAñadirGorros
+			
+			//Importar foto
+			importarFotoGorros = new JLabel("Seleccionar foto para importar de la prenda: ");
+			importarFotoGorros.setBounds(40, 50, 300, 40);
+			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
+			
+			gorrosTemporadaLabel = new JLabel("Es de verano el gorro?: ");
+			gorrosTemporadaLabel.setBounds(40,150, 300, 40);
+			gorrosVeranoSiRB = new JRadioButton("Si");
+			gorrosVeranoSiRB.setBounds(360, 150, 50, 40);
+			gorrosVeranoNoRB = new JRadioButton("No");
+			gorrosVeranoNoRB.setBounds(430, 150, 50, 40);
+			
+			atrasAñadirGorros = new JButton("Atrás");
+			atrasAñadirGorros.setBounds(10, 340, 200, 30);
+			
+			siguienteAñadirGorros = new JButton("Siguiente");
+			siguienteAñadirGorros.setBounds(500, 340, 200, 30);
+			
+			ventanaAñadirGorros.add(importarFotoGorros);
+			ventanaAñadirGorros.add(gorrosTemporadaLabel);
+			ventanaAñadirGorros.add(gorrosVeranoSiRB);
+			ventanaAñadirGorros.add(gorrosVeranoNoRB);
+			ventanaAñadirGorros.add(atrasAñadirGorros);
+			ventanaAñadirGorros.add(siguienteAñadirGorros);
+			ventanaAñadirGorros.add(importarFotoGorros);
+			
+			atrasAñadirGorros.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					CambiarPanel(ventanaAñadirGorros, ventanaAñadirVestimenta1);
+					ventanaAñadirVestimenta1Cancelar.setVisible(true);
+					ventanaAñadirVestimenta1Atras.setVisible(false);
+					
+				}
+			});			
+			
+			
+			siguienteAñadirGorros.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//implementar metodo Crear camisetas importando foto tmb
+					CambiarPanel(ventanaAñadirGorros, ventanaMenuPrincipal);
+					
+				}
+			});
+			
+			
+			
+			
+		//Añadiendo los componentes de ventanaAñadirPantalones
+			
+			//Importar foto
+			importarFotoPantalones = new JLabel("Seleccionar foto para importar de la prenda: ");
+			importarFotoPantalones.setBounds(40, 50, 300, 40);
+			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
+			
+			pantalonesMarcaLabel = new JLabel("De que marca son los pantalones?: ");
+			pantalonesMarcaLabel.setBounds(40, 100, 300, 40);
+			pantalonesMarcaSiRB = new JRadioButton("Si");
+			pantalonesMarcaSiRB.setBounds(360, 100, 50, 40);
+			pantalonesMarcaNoRB = new JRadioButton("No");
+			pantalonesMarcaNoRB.setBounds(430, 100, 50, 40);
+			
+			pantalonesLargoLabel = new JLabel("Son largos los pantalones?: ");
+			pantalonesLargoLabel.setBounds(40,150, 300, 40);
+			pantalonesLargoSiRB = new JRadioButton("Si");
+			pantalonesLargoSiRB.setBounds(360, 150, 50, 40);
+			pantalonesLargoNoRB = new JRadioButton("No");
+			pantalonesLargoNoRB.setBounds(430, 150, 50, 40);
+			
+			atrasAñadirPantalones = new JButton("Atrás");
+			atrasAñadirPantalones.setBounds(10, 340, 200, 30);
+			
+			siguienteAñadirPantalones = new JButton("Siguiente");
+			siguienteAñadirPantalones.setBounds(500, 340, 200, 30);
+			
+			ventanaAñadirPantalones.add(importarFotoPantalones);
+			ventanaAñadirPantalones.add(pantalonesMarcaLabel);
+			ventanaAñadirPantalones.add(pantalonesMarcaSiRB);
+			ventanaAñadirPantalones.add(pantalonesMarcaNoRB);
+			ventanaAñadirPantalones.add(pantalonesLargoLabel);
+			ventanaAñadirPantalones.add(pantalonesLargoSiRB);
+			ventanaAñadirPantalones.add(pantalonesLargoNoRB);
+			ventanaAñadirPantalones.add(atrasAñadirPantalones);
+			ventanaAñadirPantalones.add(siguienteAñadirPantalones);
+			
+			atrasAñadirPantalones.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					CambiarPanel(ventanaAñadirPantalones, ventanaAñadirVestimenta1);
+					ventanaAñadirVestimenta1Cancelar.setVisible(true);
+					ventanaAñadirVestimenta1Atras.setVisible(false);
+					
+				}
+			});			
+			
+			
+			siguienteAñadirPantalones.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//implementar metodo Crear camisetas importando foto tmb
+					CambiarPanel(ventanaAñadirPantalones, ventanaMenuPrincipal);
+					
+				}
+			});
+			
+			
+		//Añadiendo los componentes de ventanaAñadirZapatos
+
+			//Importar foto
+			importarFotoZapatos = new JLabel("Seleccionar foto para importar de la prenda: ");
+			importarFotoZapatos.setBounds(40, 50, 300, 40);
+			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
+			zapatosTipoLabel = new JLabel("De que tipo son los zapatos?: ");
+			zapatosTipoLabel.setBounds(40,150, 300, 40);
+			zapatosDeportivosRB = new JRadioButton("Deportivos");
+			zapatosDeportivosRB.setBounds(360, 150, 100, 40);
+			zapatosVestirRB = new JRadioButton("De Vestir");
+			zapatosVestirRB.setBounds(470, 150, 100, 40);
+			
+			atrasAñadirZapatos = new JButton("Atrás");
+			atrasAñadirZapatos.setBounds(10, 340, 200, 30);
+			
+			siguienteAñadirZapatos = new JButton("Siguiente");
+			siguienteAñadirZapatos.setBounds(500, 340, 200, 30);
+			
+			ventanaAñadirZapatos.add(importarFotoZapatos);
+			ventanaAñadirZapatos.add(zapatosTipoLabel);
+			ventanaAñadirZapatos.add(zapatosDeportivosRB);
+			ventanaAñadirZapatos.add(zapatosVestirRB);
+			ventanaAñadirZapatos.add(atrasAñadirZapatos);
+			ventanaAñadirZapatos.add(siguienteAñadirZapatos);
+			
+			atrasAñadirZapatos.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					CambiarPanel(ventanaAñadirZapatos, ventanaAñadirVestimenta1);
+					ventanaAñadirVestimenta1Cancelar.setVisible(true);
+					ventanaAñadirVestimenta1Atras.setVisible(false);
+					
+				}
+			});			
+			
+			
+			siguienteAñadirZapatos.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//implementar metodo Crear camisetas importando foto tmb
+					CambiarPanel(ventanaAñadirZapatos, ventanaMenuPrincipal);
+					
+				}
+			});
 			
 		
-		//Añadiendo los componentes de ventanaAñadirCamiseta
+		
 			
-		//Añadiendo los componentes de ventanaAñadirCamiseta
 			
-		//Añadiendo los componentes de ventanaAñadirCamiseta
-			
-		//Añadiendo los componentes de ventanaAñadirCamiseta
-		
-		
-		
-		
 		// Añadiendo los componentes de ventanaFeedback
 		nivelSatisfaccion = new JLabel("Nivel de satisfaccion: ");
 		nivelSatisfaccion.setFont(new Font("Monospace", Font.BOLD, 13));
