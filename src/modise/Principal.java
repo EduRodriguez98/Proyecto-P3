@@ -125,22 +125,25 @@ public class Principal {
 	JMenuItem mi1, mi2, mi3, mi4; // mi1 = cerrar sesion
 	JButton botonPideOutfit, botonAñadirVestimenta, botonMasMenosAdmin;
 
-	// ventanaAñadirVestimenta
-	JRadioButton sol, lluvia, nublado;
-	JLabel estilosLabelAñadirVestimenta, colorLabelAñadirVestimenta, tiempoLabelAñadirvestimenta,
-			errorVentanaAñadirVestimenta;
-	boolean escrito5;
-	JButton ventanaAñadirVestimentaAtras, ventanaAñadirVestimentaAñadir;
-
-	JComboBox<String> estilosComboBoxAñadirVestimenta;
-
+	// ventanaAñadirVestimenta1
+	
+	JLabel tipoLabelAñadirVestimenta, estilosLabelAñadirVestimenta, colorLabelAñadirVestimenta, errorVentanaAñadirVestimenta1;
 	JComboBox<String> coloresComboBoxAñadirVestimenta;
+	JComboBox<String> estilosComboBoxAñadirVestimenta;
+	JComboBox<String> tipoComboBoxAñadirVestimenta;
+	JButton ventanaAñadirVestimenta1Atras, ventanaAñadirVestimenta1Siguiente, ventanaAñadirVestimenta1Cancelar;
+	
+	// ventanaAñadirVestimenta2
+	
+
+
 
 	// ventanaPideOutfit
 	JButton botonAtrasPideOutfit, botonBuscar;
 	JRadioButton radioSol, radioLluvia, radioNublado, radioNo;
 	JLabel preguntaEstilo, preguntaTiempo, errorPideOutfit;
 	JComboBox<String> estilosComboBoxPideOutfit;
+	Boolean escrito5;
 
 	// ventanaFeedback
 	JLabel nivelSatisfaccion, gustoColores, errorFeedback;
@@ -260,11 +263,9 @@ public class Principal {
 		mi1 = new JMenuItem("Cerrar sesion");
 		mi2 = new JMenuItem("Ajustes");
 		mi3 = new JMenuItem("Salir sin cerrar sesion");
-		mi4 = new JMenuItem("mi4 - ¿Algo mas?");
 		menu1.add(mi1);
 		menu1.add(mi2);
 		menu1.add(mi3);
-		menu1.add(mi4);
 		mb.add(menu1);
 		frame.setJMenuBar(mb);
 
@@ -294,6 +295,7 @@ public class Principal {
 			}
 		};
 
+		PanelFondo ventanaAñadirVestimenta1 = new PanelFondo();
 		PanelFondo ventanaInicioSesion = new PanelFondo();
 		PanelFondo ventanaCrearCuenta = new PanelFondo();
 		PanelFondo ventanaGenero = new PanelFondo();
@@ -301,7 +303,7 @@ public class Principal {
 		PanelFondo ventanaPerfilGustosUnoF = new PanelFondo();
 		PanelFondo ventanaPerfilGustosDos = new PanelFondo();
 		PanelFondo ventanaCarga = new PanelFondo();
-		PanelFondo ventanaAñadirVestimenta = new PanelFondo();
+		PanelFondo ventanaAñadirVestimenta2 = new PanelFondo();
 		PanelFondo ventanaPideOutfit = new PanelFondo();
 		PanelFondo ventanaFeedback = new PanelFondo();
 		JPanel ventanaMasMenosAdmin = new JPanel(); // dejadla asi. NO, le he cambiado el nombre
@@ -318,7 +320,8 @@ public class Principal {
 		CrearPanel(ventanaPerfilGustosDos);
 		CrearPanel(ventanaMenuPrincipal);
 		CrearPanel(ventanaCarga);
-		CrearPanel(ventanaAñadirVestimenta);
+		CrearPanel(ventanaAñadirVestimenta1);
+		CrearPanel(ventanaAñadirVestimenta2);
 		CrearPanel(ventanaPideOutfit);
 		CrearPanel(ventanaFeedback);
 		CrearPanel(ventanaMasMenosAdmin);
@@ -331,7 +334,8 @@ public class Principal {
 		frame.getContentPane().add(ventanaPerfilGustosDos);
 		frame.getContentPane().add(ventanaMenuPrincipal);
 		frame.getContentPane().add(ventanaCarga);
-		frame.getContentPane().add(ventanaAñadirVestimenta);
+		frame.getContentPane().add(ventanaAñadirVestimenta1);
+		frame.getContentPane().add(ventanaAñadirVestimenta2);
 		frame.getContentPane().add(ventanaPideOutfit);
 		frame.getContentPane().add(ventanaFeedback);
 		frame.getContentPane().add(ventanaMasMenosAdmin);
@@ -1099,7 +1103,7 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaMenuPrincipal, ventanaAñadirVestimenta);
+				CambiarPanel(ventanaMenuPrincipal, ventanaAñadirVestimenta1);
 				mb.setVisible(false);
 				mb.setEnabled(false);
 			}
@@ -1257,25 +1261,26 @@ public class Principal {
 		});
 
 		// Action Listeners
-
-		// Añadiendo los componentes de ventanaAñadirVestimenta
+		
+		
+		// Añadiendo los componentes de ventanaAñadirVestimenta1
+		tipoLabelAñadirVestimenta = new JLabel("Selecione el tipo de prenda que desea añadir: ");
+		tipoLabelAñadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 		estilosLabelAñadirVestimenta = new JLabel("Selecciona un estilo: (F para Femenino y M para masculino)");
 		estilosLabelAñadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 		colorLabelAñadirVestimenta = new JLabel("Selecciona un color: ");
 		colorLabelAñadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
-		tiempoLabelAñadirvestimenta = new JLabel("Selecciona el tiempo: ");
-		tiempoLabelAñadirvestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 
-		sol = new JRadioButton("Sol");
-		sol.setActionCommand("Sol");
-		lluvia = new JRadioButton("Lluvia");
-		lluvia.setActionCommand("Lluvia");
-		nublado = new JRadioButton("Nublado");
-		nublado.setActionCommand("Nublado");
-
+		tipoComboBoxAñadirVestimenta = new JComboBox<String>();
 		estilosComboBoxAñadirVestimenta = new JComboBox<String>();
 		coloresComboBoxAñadirVestimenta = new JComboBox<String>();
 
+		tipoComboBoxAñadirVestimenta.addItem("camisetas");
+		tipoComboBoxAñadirVestimenta.addItem("chaquetas");
+		tipoComboBoxAñadirVestimenta.addItem("gorros");
+		tipoComboBoxAñadirVestimenta.addItem("pantalones");
+		tipoComboBoxAñadirVestimenta.addItem("zapatos");
+		
 		estilosComboBoxAñadirVestimenta.addItem("ClasicoF");
 		estilosComboBoxAñadirVestimenta.addItem("ClasicoM");
 		estilosComboBoxAñadirVestimenta.addItem("UrbanaF");
@@ -1295,94 +1300,95 @@ public class Principal {
 		coloresComboBoxAñadirVestimenta.addItem("Verde");
 		coloresComboBoxAñadirVestimenta.addItem("Negro");
 
-		estilosLabelAñadirVestimenta.setBounds(40, 200, 400, 40);
-		colorLabelAñadirVestimenta.setBounds(450, 200, 200, 40);
-		tiempoLabelAñadirvestimenta.setBounds(40, 50, 200, 40);
+		tipoLabelAñadirVestimenta.setBounds(190, 50, 400, 40);
+		estilosLabelAñadirVestimenta.setBounds(190, 150, 400, 40);
+		colorLabelAñadirVestimenta.setBounds(190, 250, 400, 40);
 
-		sol.setBounds(40, 100, 100, 40);
-		lluvia.setBounds(160, 100, 100, 40);
-		nublado.setBounds(280, 100, 100, 40);
+		tipoComboBoxAñadirVestimenta.setBounds(40, 50, 150, 40);
+		estilosComboBoxAñadirVestimenta.setBounds(40, 150, 150, 40);
+		coloresComboBoxAñadirVestimenta.setBounds(40, 250, 150, 40);
 
-		estilosComboBoxAñadirVestimenta.setBounds(40, 250, 100, 40);
-		coloresComboBoxAñadirVestimenta.setBounds(450, 250, 100, 40);
+		ventanaAñadirVestimenta1Atras = new JButton("Atras");
+		ventanaAñadirVestimenta1.add(ventanaAñadirVestimenta1Atras);
+		ventanaAñadirVestimenta1Atras.setBounds(10, 340, 200, 30);
 
-		ButtonGroup radioButtonsTiempo = new ButtonGroup();
-		radioButtonsTiempo.add(sol);
-		radioButtonsTiempo.add(lluvia);
-		radioButtonsTiempo.add(nublado);
+		ventanaAñadirVestimenta1Siguiente = new JButton("Siguiente");
+		ventanaAñadirVestimenta1.add(ventanaAñadirVestimenta1Siguiente);
+		ventanaAñadirVestimenta1Siguiente.setBounds(500, 340, 200, 30);
 
-		ventanaAñadirVestimentaAtras = new JButton("Atras");
-		ventanaAñadirVestimenta.add(ventanaAñadirVestimentaAtras);
-		ventanaAñadirVestimentaAtras.setBounds(10, 340, 200, 30);
+		errorVentanaAñadirVestimenta1 = new JLabel();
+		ventanaAñadirVestimenta1.add(errorVentanaAñadirVestimenta1);
+		errorVentanaAñadirVestimenta1.setBounds(300, 340, 400, 40);
+		errorVentanaAñadirVestimenta1.setForeground(Color.RED);
 
-		ventanaAñadirVestimentaAñadir = new JButton("Añadir");
-		ventanaAñadirVestimenta.add(ventanaAñadirVestimentaAñadir);
-		ventanaAñadirVestimentaAñadir.setBounds(500, 340, 200, 30);
-
-		errorVentanaAñadirVestimenta = new JLabel();
-		ventanaAñadirVestimenta.add(errorVentanaAñadirVestimenta);
-		errorVentanaAñadirVestimenta.setBounds(300, 340, 400, 40);
-		errorVentanaAñadirVestimenta.setForeground(Color.RED);
-
-		ventanaAñadirVestimenta.add(sol);
-		ventanaAñadirVestimenta.add(lluvia);
-		ventanaAñadirVestimenta.add(nublado);
-		ventanaAñadirVestimenta.add(estilosComboBoxAñadirVestimenta);
-		ventanaAñadirVestimenta.add(coloresComboBoxAñadirVestimenta);
-		ventanaAñadirVestimenta.add(estilosLabelAñadirVestimenta);
-		ventanaAñadirVestimenta.add(colorLabelAñadirVestimenta);
-		ventanaAñadirVestimenta.add(tiempoLabelAñadirvestimenta);
+		ventanaAñadirVestimenta1Cancelar = new JButton("cancelar");
+		ventanaAñadirVestimenta1Cancelar.setVisible(false);
+		ventanaAñadirVestimenta1Cancelar.setBounds(10, 340, 200, 30);
+		
+		ventanaAñadirVestimenta1.add(ventanaAñadirVestimenta1Cancelar);
+		ventanaAñadirVestimenta1.add(tipoLabelAñadirVestimenta);
+		ventanaAñadirVestimenta1.add(tipoComboBoxAñadirVestimenta);
+		ventanaAñadirVestimenta1.add(estilosComboBoxAñadirVestimenta);
+		ventanaAñadirVestimenta1.add(coloresComboBoxAñadirVestimenta);
+		ventanaAñadirVestimenta1.add(estilosLabelAñadirVestimenta);
+		ventanaAñadirVestimenta1.add(colorLabelAñadirVestimenta);
+	
 
 		// actionlisteners ventanaAñadirVestimenta
-		ventanaAñadirVestimentaAtras.addActionListener(new ActionListener() {
+		ventanaAñadirVestimenta1Atras.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaAñadirVestimenta, ventanaMenuPrincipal);
-				radioButtonsTiempo.clearSelection();
-				errorVentanaAñadirVestimenta.setText("");
+				CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirVestimenta2);
+				errorVentanaAñadirVestimenta1.setText("");
 				mb.setVisible(true);
 				mb.setEnabled(true);
 			}
 		});
 
-		ventanaAñadirVestimentaAñadir.addActionListener(new ActionListener() {
+		ventanaAñadirVestimenta1Siguiente.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				Connection conexion = BaseDatosModise.conectar();
+				
+			///////////////////////////////////////////////
+				//SE VA A USAR EN LA SIGUIENTE VENTANA!! //
+			///////////////////////////////////////////////
+				
+			/*	Connection conexion = BaseDatosModise.conectar();
 				Statement st = null;
 				try {
 					st = conexion.createStatement();
 				} catch (SQLException e1) {
 				}
-
-				if (radioButtonsTiempo.isSelected(null)) {
-					errorVentanaAñadirVestimenta.setText("Selecciona el tiempo.");
-				} else {
-					Usuariolog
-							.println("Añade vestimenta, tiempo: " + radioButtonsTiempo.getSelection().getActionCommand()
-									+ ", estilo: " + estilosComboBoxAñadirVestimenta.getSelectedItem() + ", color: "
+					Usuariolog.println("Añade prenda: " + ", estilo: " + estilosComboBoxAñadirVestimenta.getSelectedItem() + ", color: "
 									+ coloresComboBoxAñadirVestimenta.getSelectedItem());
-					FileChooser.Choose();
-
-					// aquiii
 
 					// Metodo BD
 					String[] valores = new String[10]; // 10 por ejemplo
 					BaseDatosModise.añadirVestimenta(st, txtEmail.getText(), "usu_cami", valores);
 
-					// CambiarPanel(ventanaAñadirVestimenta, ???);
-					CambiarPanel(ventanaAñadirVestimenta, ventanaMenuPrincipal);
+					//Cambiar paneles
+					CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirVestimenta2);
 					mb.setEnabled(true);
 					mb.setVisible(true);
-					radioButtonsTiempo.clearSelection();
-					errorVentanaAñadirVestimenta.setText("");
-				}
-			}
+					errorVentanaAñadirVestimenta1.setText("");  */
+				
+			}	
 		});
-
+		
+		
+		
+		//Añadiendo los componentes de ventanaAñadirVestimenta2
+		
+		
+		
+		
+		
+		
+		
+		
 		// Añadiendo los componentes de ventanaFeedback
 		nivelSatisfaccion = new JLabel("Nivel de satisfaccion: ");
 		nivelSatisfaccion.setFont(new Font("Monospace", Font.BOLD, 13));
@@ -1695,9 +1701,6 @@ public class Principal {
 				// ventanaFeedback
 				radioButtonsEstrellas.clearSelection();
 				radioButtonsSiNo.clearSelection();
-
-				// ventanaAñadirVestimenta
-				radioButtonsTiempo.clearSelection();
 
 				// "sobras"
 				// quitar comentario y agregar aqui <-
