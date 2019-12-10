@@ -172,6 +172,23 @@ public class BaseDatosModise {
 		}
 	}
 
+	
+	public static void añadirPrenda(Statement st, int idcolor, String estiloPrendas) {
+		String SentSQL ="INSERT INTO prendas (id_color, estiloprendas) VALUES ('" + idcolor + "','" + estiloPrendas + ")";
+				System.out.println(SentSQL);
+		try {
+			st.executeUpdate(SentSQL);
+		} catch (SQLException e) {
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error añadriVestimenta Query1\n" + SentSQL, e);
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void eliminarPrenda(Statement st, int idcolor, String estiloPrendas) {
+		//para borrar la prenda en caso de haber cancelado en la ventana Añadir Vestimenta
+	}
+	
 	public static void añadirVestimenta(Statement st, String corr, String nombreTabla, String[] valores) {
 		String SentSQL = "select * from usuario where correo = '" + corr + "';";
 		int a = 0;
@@ -187,7 +204,7 @@ public class BaseDatosModise {
 		try {
 			st.executeUpdate(SentSQL2);
 		} catch (SQLException e) {
-			modise.Principal.BDLogger.log(Level.SEVERE, "Error añadriVestimenta Query2\n" + SentSQL2, e);
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error añadirVestimenta Query2\n" + SentSQL2, e);
 			e.printStackTrace();
 		}
 	}

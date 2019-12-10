@@ -1351,34 +1351,55 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				
+			String nombreColorSeleccionado = coloresComboBoxAñadirVestimenta.getSelectedItem().toString();
+			int idColorSeleccionado;
+			if (nombreColorSeleccionado == "Rojo") {
+				idColorSeleccionado = 1;
+			} else if (nombreColorSeleccionado == "Azul") {
+				idColorSeleccionado = 2;
+			} else if (nombreColorSeleccionado == "Amarillo") {
+				idColorSeleccionado = 3;
+			} else if (nombreColorSeleccionado == "Verde") {
+				idColorSeleccionado = 4;
+			} else {
+				idColorSeleccionado = 5;
+			}
+			
+			String estiloPrendasSeleccionado = estilosComboBoxAñadirVestimenta.getSelectedItem().toString();
 			///////////////////////////////////////////////
 				//SE VA A USAR EN LA SIGUIENTE VENTANA!! //
 			///////////////////////////////////////////////
 				
-			/*	Connection conexion = BaseDatosModise.conectar();
+				Connection conexion = BaseDatosModise.conectar();
 				Statement st = null;
 				try {
 					st = conexion.createStatement();
 				} catch (SQLException e1) {
 				}
-					Usuariolog.println("Añade prenda: " + ", estilo: " + estilosComboBoxAñadirVestimenta.getSelectedItem() + ", color: "
+					Usuariolog.println("Añade prenda: " + " tipo: " + tipoComboBoxAñadirVestimenta.getSelectedItem() + ", estilo: " + estilosComboBoxAñadirVestimenta.getSelectedItem() + ", color: "
 									+ coloresComboBoxAñadirVestimenta.getSelectedItem());
 
 					// Metodo BD
 					String[] valores = new String[10]; // 10 por ejemplo
-					BaseDatosModise.añadirVestimenta(st, txtEmail.getText(), "usu_cami", valores);
+					BaseDatosModise.añadirPrenda(st, idColorSeleccionado, estiloPrendasSeleccionado);
 
 					//Cambiar paneles
 					CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirVestimenta2);
 					mb.setEnabled(true);
 					mb.setVisible(true);
-					errorVentanaAñadirVestimenta1.setText("");  */
+					errorVentanaAñadirVestimenta1.setText("");  
 				
 			}	
 		});
 		
-		
+		ventanaAñadirVestimenta1Cancelar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//eliminar la PRENDA creada anteriormente al darle a siguiente1 YA VEREMOS COMO SE HACE ESTO, ES MAS COMPLEJO DE LO QUE PARECE.
+				
+			}
+		});
 		
 		//Añadiendo los componentes de ventanaAñadirVestimenta2
 		

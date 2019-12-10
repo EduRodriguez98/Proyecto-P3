@@ -2813,3 +2813,19 @@ insert into usu_cami values(0,[Ljava.lang.String;@192805f9);</message>
   <message>Se ha conectado</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-12-10T13:27:48.819361800Z</date>
+  <millis>1575984468819</millis>
+  <nanos>361800</nanos>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>INFO</level>
+  <class>conexion.BaseDatosModise</class>
+  <method>conectar</method>
+  <thread>17</thread>
+  <message>Se ha conectado</message>
+</record>
+</log>
