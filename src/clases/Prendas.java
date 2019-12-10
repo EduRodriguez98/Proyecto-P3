@@ -6,27 +6,14 @@ public abstract class Prendas {
 
 	private int id_prendas;
 	private Color colorPrincipal;
-
-	public Prendas(Color colorPrincipal) {
+	private boolean genero;
+	
+	public Prendas(Color colorPrincipal, boolean genero) {
 		super();
 		this.id_prendas = contador;
 		contador++;
 		this.colorPrincipal = colorPrincipal;
-	}
-
-	public Prendas() {
-		super();
-		this.id_prendas = contador;
-		contador++;
-		this.colorPrincipal = null;
-	}
-
-	public int getId_prendas() {
-		return id_prendas;
-	}
-
-	public void setId_prendas(int id_prendas) {
-		this.id_prendas = id_prendas;
+		this.genero = genero;
 	}
 
 	public Color getColorPrincipal() {
@@ -37,9 +24,17 @@ public abstract class Prendas {
 		this.colorPrincipal = colorPrincipal;
 	}
 
+	public boolean isGenero() {
+		return genero;
+	}
+
+	public void setGenero(boolean genero) {
+		this.genero = genero;
+	}
+
 	@Override
 	public String toString() {
-		return "Prendas [id_prendas = " + id_prendas + ", colorPrincipal = " + colorPrincipal + "]";
+		return "Prendas [id_prendas = " + id_prendas + ", colorPrincipal = " + colorPrincipal + ", genero = " + genero + "]";
 	}
 
 }

@@ -169,9 +169,9 @@ public class BaseDatosModise {
 		}
 	}
 
-	public static void añadirPrenda(Statement st, int idcolor, String estiloPrendas) {
-		String SentSQL = "INSERT INTO prendas (id_color, estiloprendas) VALUES ('" + idcolor + "','" + estiloPrendas
-				+ ")";
+	public static void añadirPrenda(Statement st, int idcolor, String estiloPrendas, Boolean genero) {
+		String SentSQL = "INSERT INTO prendas (id_color, estiloprendas, genero) VALUES ('" + idcolor + "','" + estiloPrendas
+				+ "'" +  genero + ")";
 		System.out.println(SentSQL);
 		try {
 			st.executeUpdate(SentSQL);

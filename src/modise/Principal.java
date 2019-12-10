@@ -133,10 +133,25 @@ public class Principal {
 	JComboBox<String> tipoComboBoxAñadirVestimenta;
 	JButton ventanaAñadirVestimenta1Atras, ventanaAñadirVestimenta1Siguiente, ventanaAñadirVestimenta1Cancelar;
 	
-	// ventanaAñadirVestimenta2
 	
-
-
+	// ventanaAñadirCamisetas
+	JLabel importarFotoCamisetas, camisetasLogotipoLabel, camisetasRayasLabel, camisetasCuadrosLabel;
+	JRadioButton camisetasLogoSiRB, camisetasLogoNoRB, camisetasRayasSiRB, camisetasRayasNoRB, camisetasCuadrosSiRB, camisetasCuadrosNoRB;
+	// ventanaAñadirChaquetas
+	JLabel importarFotoChaquetas, chaquetasLargoLabel, chaquetasLisaLabel;
+	JRadioButton chaquetasLargoSiRB, chaquetasLargoNoRB, chaquetasLisaSiRB, chaquetasLisaNoRB;
+	// ventanaAñadirGorros
+	JLabel importarFotoGorros, gorrosTemporadaLabel;
+	JRadioButton gorrosVeranoSiRB, gorrosVeranoNoRB;
+	// ventanaAñadirPantalones
+	JLabel importarFotoPantalones, pantalonesMarcaLabel, pantalonesLargoLabel;
+	JRadioButton pantalonesMarcaSiRB, pantalonesMarcaNoRB, pantalonesLargoSiRB, pantalonesLargoNoRB;
+	// ventanaAñadirZapatos
+	JLabel importarFotoZapatos, zapatosTipoLabel;
+	JRadioButton zapatosDeportivosRB, zapatosVestirRB;
+	
+	JButton botonAñadirTipoPrenda, botonAtrasVentanaAñadirVestimenta2;
+	
 
 	// ventanaPideOutfit
 	JButton botonAtrasPideOutfit, botonBuscar;
@@ -303,7 +318,11 @@ public class Principal {
 		PanelFondo ventanaPerfilGustosUnoF = new PanelFondo();
 		PanelFondo ventanaPerfilGustosDos = new PanelFondo();
 		PanelFondo ventanaCarga = new PanelFondo();
-		PanelFondo ventanaAñadirVestimenta2 = new PanelFondo();
+		PanelFondo ventanaAñadirCamisetas = new PanelFondo();
+		PanelFondo ventanaAñadirChaquetas = new PanelFondo();
+		PanelFondo ventanaAñadirGorros = new PanelFondo();
+		PanelFondo ventanaAñadirPantalones = new PanelFondo();
+		PanelFondo ventanaAñadirZapatos = new PanelFondo();
 		PanelFondo ventanaPideOutfit = new PanelFondo();
 		PanelFondo ventanaFeedback = new PanelFondo();
 		JPanel ventanaMasMenosAdmin = new JPanel(); // dejadla asi. NO, le he cambiado el nombre
@@ -321,7 +340,11 @@ public class Principal {
 		CrearPanel(ventanaMenuPrincipal);
 		CrearPanel(ventanaCarga);
 		CrearPanel(ventanaAñadirVestimenta1);
-		CrearPanel(ventanaAñadirVestimenta2);
+		CrearPanel(ventanaAñadirCamisetas);
+		CrearPanel(ventanaAñadirChaquetas);
+		CrearPanel(ventanaAñadirGorros);
+		CrearPanel(ventanaAñadirPantalones);
+		CrearPanel(ventanaAñadirZapatos);
 		CrearPanel(ventanaPideOutfit);
 		CrearPanel(ventanaFeedback);
 		CrearPanel(ventanaMasMenosAdmin);
@@ -335,7 +358,11 @@ public class Principal {
 		frame.getContentPane().add(ventanaMenuPrincipal);
 		frame.getContentPane().add(ventanaCarga);
 		frame.getContentPane().add(ventanaAñadirVestimenta1);
-		frame.getContentPane().add(ventanaAñadirVestimenta2);
+		frame.getContentPane().add(ventanaAñadirCamisetas);
+		frame.getContentPane().add(ventanaAñadirChaquetas);
+		frame.getContentPane().add(ventanaAñadirGorros);
+		frame.getContentPane().add(ventanaAñadirPantalones);
+		frame.getContentPane().add(ventanaAñadirZapatos);
 		frame.getContentPane().add(ventanaPideOutfit);
 		frame.getContentPane().add(ventanaFeedback);
 		frame.getContentPane().add(ventanaMasMenosAdmin);
@@ -1339,7 +1366,7 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirVestimenta2);
+				CambiarPanel(ventanaAñadirVestimenta1, ventanaMenuPrincipal);
 				errorVentanaAñadirVestimenta1.setText("");
 				mb.setVisible(true);
 				mb.setEnabled(true);
@@ -1351,6 +1378,7 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+			/*
 			String nombreColorSeleccionado = coloresComboBoxAñadirVestimenta.getSelectedItem().toString();
 			int idColorSeleccionado;
 			if (nombreColorSeleccionado == "Rojo") {
@@ -1366,9 +1394,23 @@ public class Principal {
 			}
 			
 			String estiloPrendasSeleccionado = estilosComboBoxAñadirVestimenta.getSelectedItem().toString();
+			Boolean generoPrendas = null;
+			
+			if (estiloPrendasSeleccionado == "ClasicoF" || estiloPrendasSeleccionado == "UrbanaF" || estiloPrendasSeleccionado == "RockF" ||
+					estiloPrendasSeleccionado == "BohoF" || estiloPrendasSeleccionado == "FormalF" || estiloPrendasSeleccionado == "SportyChickF") {
+				generoPrendas = true;
+			} else {
+				generoPrendas = false;
+			} 
+			
+			
 			///////////////////////////////////////////////
 				//SE VA A USAR EN LA SIGUIENTE VENTANA!! //
 			///////////////////////////////////////////////
+			
+			
+		//	COMENTADO DE MOMENTO PARA EVITAR ANADIRPRENDAS AL PROBAR HACER CAMBIOS A LA VENTANA!	//	
+		
 				
 				Connection conexion = BaseDatosModise.conectar();
 				Statement st = null;
@@ -1381,14 +1423,38 @@ public class Principal {
 
 					// Metodo BD
 					String[] valores = new String[10]; // 10 por ejemplo
-					BaseDatosModise.añadirPrenda(st, idColorSeleccionado, estiloPrendasSeleccionado);
+					BaseDatosModise.añadirPrenda(st, idColorSeleccionado, estiloPrendasSeleccionado, generoPrendas);
 
 					//Cambiar paneles
-					CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirVestimenta2);
+					String tipoPrenda = tipoComboBoxAñadirVestimenta.getSelectedItem().toString();
+					if (tipoPrenda == "camisetas") {
+					CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirCamisetas);
+					} else if(tipoPrenda == "chaquetas") {
+						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirChaquetas);
+					} else if(tipoPrenda == "gorros") {
+						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirGorros);
+					} else if(tipoPrenda == "pantalones") {
+						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirPantalones);
+					} else if (tipoPrenda == "zapatos"){
+						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirZapatos);
+					}
+					
 					mb.setEnabled(true);
 					mb.setVisible(true);
 					errorVentanaAñadirVestimenta1.setText("");  
+			
+			
+					
+			*/
+			
 				
+				
+			
+			
+			//este es temporal
+			CambiarPanel(ventanaAñadirVestimenta1,ventanaAñadirCamisetas);
+			
+			
 			}	
 		});
 		
@@ -1401,11 +1467,56 @@ public class Principal {
 			}
 		});
 		
-		//Añadiendo los componentes de ventanaAñadirVestimenta2
+		//Añadiendo los componentes de ventanaAñadirCamiseta
 		
+		/*
+		 	JLabel camisetasRayasLabel, camisetasCuadrosLabel;
+			JRadioButton camisetasRayasSiRB, camisetasRayasNoRB, camisetasCuadrosSiRB, camisetasCuadrosNoRB;
+		 */
 		
+			
 		
+			//Importar foto
+			importarFotoCamisetas = new JLabel("Seleccionar foto para importar de la prenda: ");
+			importarFotoCamisetas.setBounds(40, 50, 300, 40);
+			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
+			
+			camisetasLogotipoLabel = new JLabel("Tiene logotipo la camiseta?: ");
+			camisetasLogotipoLabel.setBounds(40, 150, 300, 40);
+			camisetasLogoSiRB = new JRadioButton("Si");
+			camisetasLogoSiRB.setBounds(360, 150, 50, 40);
+			camisetasLogoNoRB = new JRadioButton("No");
+			camisetasLogoNoRB.setBounds(430, 150, 50, 40);
+			
+			camisetasRayasLabel = new JLabel("Tiene Rayas la camiseta?: ");
+			camisetasRayasLabel.setBounds(40, 250, 300, 40);
+			camisetasRayasSiRB = new JRadioButton("Si");
+			camisetasRayasSiRB.setBounds(430, 250, 50, 40);
+			camisetasRayasNoRB = new JRadioButton("No");
+			camisetasRayasNoRB.setBounds(430, 250, 50, 40);
+			
+			
+			
+			
+			ventanaAñadirCamisetas.add(importarFotoCamisetas);
+			ventanaAñadirCamisetas.add(camisetasLogotipoLabel);
+			ventanaAñadirCamisetas.add(camisetasLogoSiRB);
+			ventanaAñadirCamisetas.add(camisetasLogoNoRB);
+			ventanaAñadirCamisetas.add(camisetasRayasLabel);
+			ventanaAñadirCamisetas.add(camisetasRayasSiRB);
+			ventanaAñadirCamisetas.add(camisetasRayasNoRB);
+			
+			
+			
+			
 		
+		//Añadiendo los componentes de ventanaAñadirCamiseta
+			
+		//Añadiendo los componentes de ventanaAñadirCamiseta
+			
+		//Añadiendo los componentes de ventanaAñadirCamiseta
+			
+		//Añadiendo los componentes de ventanaAñadirCamiseta
 		
 		
 		

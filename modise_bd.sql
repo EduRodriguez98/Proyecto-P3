@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.18, for macos10.14 (x86_64)
 --
--- Host: 127.0.0.1    Database: modise_schema
+-- Host: localhost    Database: modise_schema
 -- ------------------------------------------------------
 -- Server version	8.0.18
 
@@ -118,6 +118,29 @@ LOCK TABLES `gorros` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `outfit`
+--
+
+DROP TABLE IF EXISTS `outfit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `outfit` (
+  `idoutfit` int(11) NOT NULL AUTO_INCREMENT,
+  `imagen_OF` longblob,
+  PRIMARY KEY (`idoutfit`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `outfit`
+--
+
+LOCK TABLES `outfit` WRITE;
+/*!40000 ALTER TABLE `outfit` DISABLE KEYS */;
+/*!40000 ALTER TABLE `outfit` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `pantalones`
 --
 
@@ -153,6 +176,7 @@ DROP TABLE IF EXISTS `prendas`;
 CREATE TABLE `prendas` (
   `idprendas` int(11) NOT NULL,
   `id_color` int(11) NOT NULL,
+  `genero` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`),
   KEY `idcolor_idx` (`id_color`),
   CONSTRAINT `idcolor` FOREIGN KEY (`id_color`) REFERENCES `color` (`idcolor`) ON DELETE CASCADE
@@ -367,4 +391,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-10 12:11:10
+-- Dump completed on 2019-12-10 17:49:14
