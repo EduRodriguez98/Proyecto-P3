@@ -44,10 +44,10 @@ public class BaseDatosModise {
 
 	// por ahora prueba
 	public static void subirFoto(Statement st, File archivo) {
-		String SentSQL = "insert into pruebaimagenes(imagen) values('" + archivo + "');";
-		System.out.println(SentSQL);
+		String sentSQL = "insert into pruebaimagenes(imagen) values('" + archivo + "');";
+		System.out.println(sentSQL);
 		try {
-			st.executeUpdate(SentSQL);
+			st.executeUpdate(sentSQL);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
