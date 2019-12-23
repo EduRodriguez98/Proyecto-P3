@@ -181,7 +181,7 @@ public class BaseDatosModise {
 		}
 	}
 
-	public static void eliminarPrenda(Statement st, int idcolor, String estiloPrendas) {
+	public static void eliminarPrenda(Statement st, int idcolor, String estiloPrendas, Boolean genero) {
 		// para borrar la prenda en caso de haber cancelado en la ventana Añadir
 		// Vestimenta
 	}
