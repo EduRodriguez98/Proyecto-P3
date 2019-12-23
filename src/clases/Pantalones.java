@@ -5,12 +5,13 @@ public class Pantalones extends Prendas {
 	private String marca;
 	private Boolean corto;
 
-	public Pantalones(Color colorPrincipal,Boolean genero, String marca, Boolean corto) {
-		super(colorPrincipal, genero);
+
+	public Pantalones(Color colorPrincipal, boolean genero, int nivelFashion, int nivelImpermeable, String marca,
+			Boolean corto) {
+		super(colorPrincipal, genero, nivelFashion, nivelImpermeable);
 		this.marca = marca;
 		this.corto = corto;
 	}
-
 
 	public String getMarca() {
 		return marca;
@@ -28,12 +29,13 @@ public class Pantalones extends Prendas {
 		this.corto = corto;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Pantalones [marca = " + marca + ", corto = " + corto + ", color = " + getColorPrincipal()
-				+ ", genero = " + isGenero() + "]";
+		return "Pantalones [marca = " + marca + ", corto = " + corto + ", ColorPrincipal = " + getColorPrincipal()
+				+ ", isGenero = " + isGenero() + ", NivelFashion = " + getNivelFashion() + ", NivelImpermeable = "
+				+ getNivelImpermeable() + "]";
 	}
+
 
 	
 

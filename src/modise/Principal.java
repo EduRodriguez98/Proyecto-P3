@@ -53,6 +53,7 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
+import conexion.BDException;
 import conexion.BaseDatosModise;
 
 public class Principal {
@@ -127,11 +128,13 @@ public class Principal {
 
 	// ventanaAñadirVestimenta1
 	
-	JLabel tipoLabelAñadirVestimenta, estilosLabelAñadirVestimenta, colorLabelAñadirVestimenta, errorVentanaAñadirVestimenta1;
+	JLabel tipoLabelAñadirVestimenta, estilosLabelAñadirVestimenta, colorLabelAñadirVestimenta, errorVentanaAñadirVestimenta1, nivelFashionLabelCamiseta, nivelImpermeableLabelCamiseta;
 	JComboBox<String> coloresComboBoxAñadirVestimenta;
 	JComboBox<String> estilosComboBoxAñadirVestimenta;
 	JComboBox<String> tipoComboBoxAñadirVestimenta;
+	JSpinner nivelFashionSpinCamiseta, nivelImpermeableSpinCamiseta;
 	JButton ventanaAñadirVestimenta1Atras, ventanaAñadirVestimenta1Siguiente, ventanaAñadirVestimenta1Cancelar;
+	
 	
 	
 	// ventanaAñadirCamisetas
@@ -1335,12 +1338,12 @@ public class Principal {
 		coloresComboBoxAñadirVestimenta.addItem("Negro");
 
 		tipoLabelAñadirVestimenta.setBounds(190, 50, 400, 40);
-		estilosLabelAñadirVestimenta.setBounds(190, 150, 400, 40);
-		colorLabelAñadirVestimenta.setBounds(190, 250, 400, 40);
+		estilosLabelAñadirVestimenta.setBounds(190, 100, 400, 40);
+		colorLabelAñadirVestimenta.setBounds(190, 150, 400, 40);
 
 		tipoComboBoxAñadirVestimenta.setBounds(40, 50, 150, 40);
-		estilosComboBoxAñadirVestimenta.setBounds(40, 150, 150, 40);
-		coloresComboBoxAñadirVestimenta.setBounds(40, 250, 150, 40);
+		estilosComboBoxAñadirVestimenta.setBounds(40, 100, 150, 40);
+		coloresComboBoxAñadirVestimenta.setBounds(40, 150, 150, 40);
 
 		ventanaAñadirVestimenta1Atras = new JButton("Atras");
 		ventanaAñadirVestimenta1.add(ventanaAñadirVestimenta1Atras);
@@ -1359,6 +1362,22 @@ public class Principal {
 		ventanaAñadirVestimenta1Cancelar.setVisible(false);
 		ventanaAñadirVestimenta1Cancelar.setBounds(10, 340, 200, 30);
 		
+		//NO OLVIDARSE ANYADIR LIMITE PARA LOS SPINNERS LUEGO!!
+		nivelFashionLabelCamiseta = new JLabel("Seleccione nivel de Fashion entre 0-100 (100 en tendencias, 0 no en tendencias)");
+		nivelFashionLabelCamiseta.setFont(new Font("Monospace", Font.BOLD, 13));
+		nivelFashionLabelCamiseta.setBounds(190, 200, 400, 40);
+		nivelFashionSpinCamiseta = new JSpinner();
+		nivelFashionSpinCamiseta.setValue(0);
+		nivelFashionSpinCamiseta.setBounds(40, 200, 150, 40);
+		
+		//NO OLVIDARSE ANYADIR LIMITE PARA LOS SPINNERS LUEGO!!
+		nivelImpermeableLabelCamiseta = new JLabel("Seleccione nivel de impermeabilidad entre 0-100 (100 impermeable, 0 no impermeable)");
+		nivelImpermeableLabelCamiseta.setFont(new Font("Monospace", Font.BOLD, 13));
+		nivelImpermeableLabelCamiseta.setBounds(190, 250, 400, 40);
+		nivelImpermeableSpinCamiseta = new JSpinner();
+		nivelImpermeableSpinCamiseta.setValue(0);
+		nivelImpermeableSpinCamiseta.setBounds(40, 250, 150, 40);
+		
 		ventanaAñadirVestimenta1.add(ventanaAñadirVestimenta1Cancelar);
 		ventanaAñadirVestimenta1.add(tipoLabelAñadirVestimenta);
 		ventanaAñadirVestimenta1.add(tipoComboBoxAñadirVestimenta);
@@ -1366,6 +1385,10 @@ public class Principal {
 		ventanaAñadirVestimenta1.add(coloresComboBoxAñadirVestimenta);
 		ventanaAñadirVestimenta1.add(estilosLabelAñadirVestimenta);
 		ventanaAñadirVestimenta1.add(colorLabelAñadirVestimenta);
+		ventanaAñadirVestimenta1.add(nivelFashionLabelCamiseta);
+		ventanaAñadirVestimenta1.add(nivelImpermeableLabelCamiseta);
+		ventanaAñadirVestimenta1.add(nivelFashionSpinCamiseta);
+		ventanaAñadirVestimenta1.add(nivelImpermeableSpinCamiseta);
 	
 
 		// actionlisteners ventanaAñadirVestimenta
@@ -1384,12 +1407,7 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-///////////////////////////////////////////////
 
-/////////////NOOOOO BOOOOORRRAAARRR!!!!!!!!!!//
-
-///////////////////////////////////////////////
-			/*
 			String nombreColorSeleccionado = coloresComboBoxAñadirVestimenta.getSelectedItem().toString();
 			int idColorSeleccionado;
 			if (nombreColorSeleccionado == "Rojo") {
@@ -1404,6 +1422,9 @@ public class Principal {
 				idColorSeleccionado = 5;
 			}
 			
+			int nivelFashionCamisetaSeleccionada = (int)nivelFashionSpinCamiseta.getValue();
+			int nivelImpermeableCamisetaSeleccionada = (int)nivelImpermeableSpinCamiseta.getValue();
+			
 			String estiloPrendasSeleccionado = estilosComboBoxAñadirVestimenta.getSelectedItem().toString();
 			Boolean generoPrendas = null;
 			
@@ -1415,23 +1436,15 @@ public class Principal {
 			} 
 		
 				
-				Connection conexion = BaseDatosModise.conectar();
-				Statement st = null;
 				try {
-					st = conexion.createStatement();
-				} catch (SQLException e1) {
-				}
-					Usuariolog.println("Añade prenda: " + " tipo: " + tipoComboBoxAñadirVestimenta.getSelectedItem() + ", estilo: " + estilosComboBoxAñadirVestimenta.getSelectedItem() + ", color: "
-									+ coloresComboBoxAñadirVestimenta.getSelectedItem());
-
-					// Metodo BD
-					String[] valores = new String[10]; // 10 por ejemplo
-					BaseDatosModise.añadirPrenda(st, idColorSeleccionado, estiloPrendasSeleccionado, generoPrendas);
+					
+					//Metodo BD para anyadir prenda
+					BaseDatosModise.añadirPrenda(idColorSeleccionado, estiloPrendasSeleccionado, generoPrendas, nivelFashionCamisetaSeleccionada, nivelImpermeableCamisetaSeleccionada);
 
 					//Cambiar paneles
 					String tipoPrenda = tipoComboBoxAñadirVestimenta.getSelectedItem().toString();
 					if (tipoPrenda == "camisetas") {
-					CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirCamisetas);
+						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirCamisetas);
 					} else if(tipoPrenda == "chaquetas") {
 						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirChaquetas);
 					} else if(tipoPrenda == "gorros") {
@@ -1441,18 +1454,14 @@ public class Principal {
 					} else if (tipoPrenda == "zapatos"){
 						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirZapatos);
 					}
-					
+			
 					mb.setEnabled(true);
 					mb.setVisible(true);
 					errorVentanaAñadirVestimenta1.setText("");  
-			
-
-			*/
-	
-			
-			//este es temporal para ir probando las ventas que voy creando, lo comentado funciona pero lo pones luego, ya que cada vez crearía una nueva prenda en la tabla, 
-			//y al no tener el metodo eliminar todavía implementado, se crearian muchisimas prendas vacías.
-			CambiarPanel(ventanaAñadirVestimenta1,ventanaAñadirZapatos);
+					
+				} catch (BDException e1) {
+					e1.printStackTrace();
+				}
 			
 			
 			}	

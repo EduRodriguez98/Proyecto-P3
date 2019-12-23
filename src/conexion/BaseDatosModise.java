@@ -3,6 +3,7 @@ package conexion;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -169,23 +170,38 @@ public class BaseDatosModise {
 		}
 	}
 
-	public static void añadirPrenda(Statement st, int idcolor, String estiloPrendas, Boolean genero) {
-		String SentSQL = "INSERT INTO prendas (id_color, estiloprendas, genero) VALUES ('" + idcolor + "','" + estiloPrendas
-				+ "'" +  genero + ")";
-		System.out.println(SentSQL);
+	
+	//CAMBIAR A PREPAREDSTATEMENT
+	public static void añadirPrenda(int idcolor, String estiloPrendas, Boolean genero, int nivelFashion, int nivelImpermeable) throws BDException {
+		
 		try {
-			st.executeUpdate(SentSQL);
+		// 1.PrepareStatement
+		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+		
+		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO prendas (id_color, estiloprendas, genero, nivelFash, nivelImp) VALUES ('" + idcolor + "','" + estiloPrendas
+				+ "','" +  genero + "','" + nivelFashion + "','" + nivelImpermeable + ")");
+		
+		// 2.Execute SQL query
+		ResultSet rs = Stmt.executeQuery();
+		modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + rs);
 		} catch (SQLException e) {
-			modise.Principal.BDLogger.log(Level.SEVERE, "Error añadriVestimenta Query1\n" + SentSQL, e);
-			e.printStackTrace();
+			
+			throw new BDException("Error al ejecutar SQL Stmt para anyadir prenda", e);
 		}
-	}
-
-	public static void eliminarPrenda(Statement st, int idcolor, String estiloPrendas, Boolean genero) {
-		// para borrar la prenda en caso de haber cancelado en la ventana Añadir
-		// Vestimenta
-	}
-
+	}	
+		
+	public static void eliminarPrenda(int idcolor, String estiloPrendas, Boolean genero, int nivelFashion, int nivelImpermeable) throws BDException {
+		
+		try {
+			
+		} catch (Exception e) {
+			
+			 throw new BDException ("Error al ejecutar SQL Stmt para eliminar prenda", e);
+		}		
+		
+		
+	}	
+		
 	public static void añadirVestimenta(Statement st, String corr, String nombreTabla, String[] valores) {
 		String SentSQL = "select * from usuario where correo = '" + corr + "';";
 		int a = 0;

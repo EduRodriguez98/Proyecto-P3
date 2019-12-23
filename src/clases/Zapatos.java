@@ -5,8 +5,9 @@ public class Zapatos extends Prendas {
 	private Boolean deportivos;
 	private Boolean deVestir;
 
-	public Zapatos(Color colorPrincipal,Boolean genero, Boolean deportivos, Boolean deVestir) {
-		super(colorPrincipal, genero);
+	public Zapatos(Color colorPrincipal, boolean genero, int nivelFashion, int nivelImpermeable, Boolean deportivos,
+			Boolean deVestir) {
+		super(colorPrincipal, genero, nivelFashion, nivelImpermeable);
 		this.deportivos = deportivos;
 		this.deVestir = deVestir;
 	}
@@ -29,10 +30,12 @@ public class Zapatos extends Prendas {
 
 	@Override
 	public String toString() {
-		return "Zapatos [deportivos = " + deportivos + ", de Vestir =" + deVestir + ", color = "
-				+ getColorPrincipal() + ", genero = " + isGenero() + "]";
+		return "Zapatos [deportivos = " + deportivos + ", deVestir = " + deVestir + ", getColorPrincipal = "
+				+ getColorPrincipal() + ", isGenero = " + isGenero() + ", getNivelFashion = " + getNivelFashion()
+				+ ", getNivelImpermeable = " + getNivelImpermeable() + "]";
 	}
 
+	
 	
 
 }
