@@ -30,12 +30,10 @@ public class Zapatos extends Prendas {
 
 	@Override
 	public String toString() {
-		return "Zapatos [deportivos = " + deportivos + ", deVestir = " + deVestir + ", getColorPrincipal = "
-				+ getColorPrincipal() + ", isGenero = " + isGenero() + ", getNivelFashion = " + getNivelFashion()
-				+ ", getNivelImpermeable = " + getNivelImpermeable() + "]";
+		return "Zapatos [deportivos = " + deportivos + ", deVestir = " + deVestir + ", Id_prendas = " + getId_prendas()
+				+ ", ColorPrincipal = " + getColorPrincipal() + ", isGenero()=" + isGenero() + ", NivelFashion = "
+				+ getNivelFashion() + ", NivelImpermeable = " + getNivelImpermeable() + "]";
 	}
-
-	
 	
 
 }

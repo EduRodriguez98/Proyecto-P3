@@ -169,16 +169,32 @@ public class BaseDatosModise {
 			e.printStackTrace();
 		}
 	}
-
-	
-	//CAMBIAR A PREPAREDSTATEMENT
+	//FUNCIONAAAAAAA!!!! LETS GOOOO
 	public static void añadirPrenda(int idcolor, String estiloPrendas, Boolean genero, int nivelFashion, int nivelImpermeable) throws BDException {
 		
 		try {
 		// 1.PrepareStatement
 		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 		
-		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO prendas (id_color, estiloprendas, genero, nivelFash, nivelImp) VALUES ('" + idcolor + "','" + estiloPrendas
+		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO prendas (id_color, estiloPrendas, genero, nivelFash, nivelImp) VALUES ('" + idcolor + "','" + estiloPrendas
+				+ "'," +  genero + ",'" + nivelFashion + "','" + nivelImpermeable + "')");
+		
+		// 2.Execute SQL query
+		Stmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			
+			throw new BDException("Error al ejecutar SQL Stmt para anyadir prenda", e);
+		}
+	}
+	
+	public static void añadirCamiseta(int idcolor, String estiloPrendas, Boolean genero, int nivelFashion, int nivelImpermeable) throws BDException {
+		
+		try {
+		// 1.PrepareStatement
+		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+		
+		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO camiseta (id_color, estiloprendas, genero, nivelFash, nivelImp) VALUES ('" + idcolor + "','" + estiloPrendas
 				+ "','" +  genero + "','" + nivelFashion + "','" + nivelImpermeable + ")");
 		
 		// 2.Execute SQL query
@@ -188,8 +204,8 @@ public class BaseDatosModise {
 			
 			throw new BDException("Error al ejecutar SQL Stmt para anyadir prenda", e);
 		}
-	}	
-		
+	}
+	
 	public static void eliminarPrenda(int idcolor, String estiloPrendas, Boolean genero, int nivelFashion, int nivelImpermeable) throws BDException {
 		
 		try {

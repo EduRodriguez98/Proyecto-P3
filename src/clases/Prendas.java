@@ -20,6 +20,14 @@ public abstract class Prendas {
 		this.nivelImpermeable = nivelImpermeable;
 	}
 
+	public int getId_prendas() {
+		return id_prendas;
+	}
+
+	public void setId_prendas(int id_prendas) {
+		this.id_prendas = id_prendas;
+	}
+
 	public Color getColorPrincipal() {
 		return colorPrincipal;
 	}

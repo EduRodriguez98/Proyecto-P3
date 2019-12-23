@@ -19,13 +19,10 @@ public class Gorros extends Prendas {
 
 	@Override
 	public String toString() {
-		return "Gorros [verano = " + verano + ", ColorPrincipal = " + getColorPrincipal() + ", isGenero = "
-				+ isGenero() + ", NivelFashion = " + getNivelFashion() + ", NivelImpermeable = "
-				+ getNivelImpermeable() + "]";
+		return "Gorros [verano = " + verano + ", Id_prendas = " + getId_prendas() + ", ColorPrincipal = "
+				+ getColorPrincipal() + ", isGenero = " + isGenero() + ", NivelFashion = " + getNivelFashion()
+				+ ", NivelImpermeable = " + getNivelImpermeable() + "]";
 	}
-
 	
-
 	
-
 }

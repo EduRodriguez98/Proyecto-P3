@@ -31,12 +31,9 @@ public class Pantalones extends Prendas {
 
 	@Override
 	public String toString() {
-		return "Pantalones [marca = " + marca + ", corto = " + corto + ", ColorPrincipal = " + getColorPrincipal()
-				+ ", isGenero = " + isGenero() + ", NivelFashion = " + getNivelFashion() + ", NivelImpermeable = "
-				+ getNivelImpermeable() + "]";
+		return "Pantalones [marca = " + marca + ", corto = " + corto + ", Id_prendas = " + getId_prendas()
+				+ ", ColorPrincipal = " + getColorPrincipal() + ", isGenero = " + isGenero() + ", NivelFashion = "
+				+ getNivelFashion() + ", NivelImpermeable = " + getNivelImpermeable() + "]";
 	}
-
-
-	
 
 }

@@ -174,13 +174,16 @@ DROP TABLE IF EXISTS `prendas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prendas` (
-  `idprendas` int(11) NOT NULL,
+  `idprendas` int(11) NOT NULL AUTO_INCREMENT,
   `id_color` int(11) NOT NULL,
+  `nivelFash` int(11) DEFAULT NULL,
+  `nivelImp` int(11) DEFAULT NULL,
+  `estiloPrendas` char(15) DEFAULT NULL,
   `genero` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`),
   KEY `idcolor_idx` (`id_color`),
   CONSTRAINT `idcolor` FOREIGN KEY (`id_color`) REFERENCES `color` (`idcolor`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -391,4 +394,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-10 17:49:14
+-- Dump completed on 2019-12-23 21:09:17

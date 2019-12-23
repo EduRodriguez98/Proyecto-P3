@@ -128,11 +128,11 @@ public class Principal {
 
 	// ventanaAñadirVestimenta1
 	
-	JLabel tipoLabelAñadirVestimenta, estilosLabelAñadirVestimenta, colorLabelAñadirVestimenta, errorVentanaAñadirVestimenta1, nivelFashionLabelCamiseta, nivelImpermeableLabelCamiseta;
+	JLabel tipoLabelAñadirVestimenta, estilosLabelAñadirVestimenta, colorLabelAñadirVestimenta, errorVentanaAñadirVestimenta1, nivelFashionLabel, nivelImpermeableLabel;
 	JComboBox<String> coloresComboBoxAñadirVestimenta;
 	JComboBox<String> estilosComboBoxAñadirVestimenta;
 	JComboBox<String> tipoComboBoxAñadirVestimenta;
-	JSpinner nivelFashionSpinCamiseta, nivelImpermeableSpinCamiseta;
+	JSpinner nivelFashionSpin, nivelImpermeableSpin;
 	JButton ventanaAñadirVestimenta1Atras, ventanaAñadirVestimenta1Siguiente, ventanaAñadirVestimenta1Cancelar;
 	
 	
@@ -1363,20 +1363,20 @@ public class Principal {
 		ventanaAñadirVestimenta1Cancelar.setBounds(10, 340, 200, 30);
 		
 		//NO OLVIDARSE ANYADIR LIMITE PARA LOS SPINNERS LUEGO!!
-		nivelFashionLabelCamiseta = new JLabel("Seleccione nivel de Fashion entre 0-100 (100 en tendencias, 0 no en tendencias)");
-		nivelFashionLabelCamiseta.setFont(new Font("Monospace", Font.BOLD, 13));
-		nivelFashionLabelCamiseta.setBounds(190, 200, 400, 40);
-		nivelFashionSpinCamiseta = new JSpinner();
-		nivelFashionSpinCamiseta.setValue(0);
-		nivelFashionSpinCamiseta.setBounds(40, 200, 150, 40);
+		nivelFashionLabel = new JLabel("Seleccione nivel de Fashion entre 0-100 (100 en tendencias, 0 no en tendencias)");
+		nivelFashionLabel.setFont(new Font("Monospace", Font.BOLD, 11));
+		nivelFashionLabel.setBounds(190, 200, 500, 40);
+		nivelFashionSpin = new JSpinner();
+		nivelFashionSpin.setValue(0);
+		nivelFashionSpin.setBounds(40, 200, 150, 40);
 		
 		//NO OLVIDARSE ANYADIR LIMITE PARA LOS SPINNERS LUEGO!!
-		nivelImpermeableLabelCamiseta = new JLabel("Seleccione nivel de impermeabilidad entre 0-100 (100 impermeable, 0 no impermeable)");
-		nivelImpermeableLabelCamiseta.setFont(new Font("Monospace", Font.BOLD, 13));
-		nivelImpermeableLabelCamiseta.setBounds(190, 250, 400, 40);
-		nivelImpermeableSpinCamiseta = new JSpinner();
-		nivelImpermeableSpinCamiseta.setValue(0);
-		nivelImpermeableSpinCamiseta.setBounds(40, 250, 150, 40);
+		nivelImpermeableLabel = new JLabel("Seleccione nivel de impermeabilidad entre 0-100 (100 impermeable, 0 no impermeable)");
+		nivelImpermeableLabel.setFont(new Font("Monospace", Font.BOLD, 11));
+		nivelImpermeableLabel.setBounds(190, 250, 500, 40);
+		nivelImpermeableSpin = new JSpinner();
+		nivelImpermeableSpin.setValue(0);
+		nivelImpermeableSpin.setBounds(40, 250, 150, 40);
 		
 		ventanaAñadirVestimenta1.add(ventanaAñadirVestimenta1Cancelar);
 		ventanaAñadirVestimenta1.add(tipoLabelAñadirVestimenta);
@@ -1385,10 +1385,10 @@ public class Principal {
 		ventanaAñadirVestimenta1.add(coloresComboBoxAñadirVestimenta);
 		ventanaAñadirVestimenta1.add(estilosLabelAñadirVestimenta);
 		ventanaAñadirVestimenta1.add(colorLabelAñadirVestimenta);
-		ventanaAñadirVestimenta1.add(nivelFashionLabelCamiseta);
-		ventanaAñadirVestimenta1.add(nivelImpermeableLabelCamiseta);
-		ventanaAñadirVestimenta1.add(nivelFashionSpinCamiseta);
-		ventanaAñadirVestimenta1.add(nivelImpermeableSpinCamiseta);
+		ventanaAñadirVestimenta1.add(nivelFashionLabel);
+		ventanaAñadirVestimenta1.add(nivelImpermeableLabel);
+		ventanaAñadirVestimenta1.add(nivelFashionSpin);
+		ventanaAñadirVestimenta1.add(nivelImpermeableSpin);
 	
 
 		// actionlisteners ventanaAñadirVestimenta
@@ -1422,8 +1422,8 @@ public class Principal {
 				idColorSeleccionado = 5;
 			}
 			
-			int nivelFashionCamisetaSeleccionada = (int)nivelFashionSpinCamiseta.getValue();
-			int nivelImpermeableCamisetaSeleccionada = (int)nivelImpermeableSpinCamiseta.getValue();
+			int nivelFashionSeleccionado = (int)nivelFashionSpin.getValue();
+			int nivelImpermeableSeleccionado = (int)nivelImpermeableSpin.getValue();
 			
 			String estiloPrendasSeleccionado = estilosComboBoxAñadirVestimenta.getSelectedItem().toString();
 			Boolean generoPrendas = null;
@@ -1431,6 +1431,7 @@ public class Principal {
 			if (estiloPrendasSeleccionado == "ClasicoF" || estiloPrendasSeleccionado == "UrbanaF" || estiloPrendasSeleccionado == "RockF" ||
 					estiloPrendasSeleccionado == "BohoF" || estiloPrendasSeleccionado == "FormalF" || estiloPrendasSeleccionado == "SportyChickF") {
 				generoPrendas = true;
+	
 			} else {
 				generoPrendas = false;
 			} 
@@ -1439,7 +1440,8 @@ public class Principal {
 				try {
 					
 					//Metodo BD para anyadir prenda
-					BaseDatosModise.añadirPrenda(idColorSeleccionado, estiloPrendasSeleccionado, generoPrendas, nivelFashionCamisetaSeleccionada, nivelImpermeableCamisetaSeleccionada);
+					
+					BaseDatosModise.añadirPrenda(idColorSeleccionado, estiloPrendasSeleccionado, generoPrendas, nivelFashionSeleccionado, nivelImpermeableSeleccionado);
 
 					//Cambiar paneles
 					String tipoPrenda = tipoComboBoxAñadirVestimenta.getSelectedItem().toString();

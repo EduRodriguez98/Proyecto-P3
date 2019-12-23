@@ -35,21 +35,17 @@ public class Camisetas extends Prendas {
 		return cuadros;
 	}
 
-	@Override
-	public String toString() {
-		return "Camisetas [logotipo = " + logotipo + ", rayas = " + rayas + ", cuadros = " + cuadros
-				+ ", ColorPrincipal = " + getColorPrincipal() + ", isGenero = " + isGenero() + ", NivelFashion = "
-				+ getNivelFashion() + ", NivelImpermeable = " + getNivelImpermeable() + "]";
-	}
 
 	public void setCuadros(Boolean cuadros) {
 		this.cuadros = cuadros;
 	}
 
-	
-
-	
-	
+	@Override
+	public String toString() {
+		return "Camisetas [logotipo = " + logotipo + ", rayas = " + rayas + ", cuadros = " + cuadros + ", Id_prendas = "
+				+ getId_prendas() + ", getColorPrincipal = " + getColorPrincipal() + ", isGenero = " + isGenero()
+				+ ", getNivelFashion = " + getNivelFashion() + ", getNivelImpermeable = " + getNivelImpermeable() + "]";
+	}
 
 
 }

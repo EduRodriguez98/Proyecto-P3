@@ -30,13 +30,10 @@ public class Chaquetas extends Prendas {
 
 	@Override
 	public String toString() {
-		return "Chaquetas [larga = " + larga + ", lisa = " + lisa + ", ColorPrincipal = " + getColorPrincipal()
-				+ ", isGenero = " + isGenero() + ", NivelFashion = " + getNivelFashion() + ", NivelImpermeable = "
-				+ getNivelImpermeable() + "]";
+		return "Chaquetas [larga = " + larga + ", lisa = " + lisa + ", Id_prendas = " + getId_prendas()
+				+ ", ColorPrincipal = " + getColorPrincipal() + ", isGenero = " + isGenero() + ", NivelFashion = "
+				+ getNivelFashion() + ", NivelImpermeable = " + getNivelImpermeable() + "]";
 	}
-
-	
-	
 
 	
 
