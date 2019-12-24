@@ -1466,20 +1466,28 @@ public class Principal {
 				}
 			
 			
-			}	
+			}	 
 		});
 		
 		ventanaAñadirVestimenta1Cancelar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//eliminar la PRENDA creada anteriormente al darle a siguiente1 YA VEREMOS COMO SE HACE ESTO, ES MAS COMPLEJO DE LO QUE PARECE.
 				
+				try {
+					BaseDatosModise.eliminarUltimaPrenda();
+				} catch (BDException e1) {
+					e1.printStackTrace();
+				}
+				
+				CambiarPanel(ventanaAñadirVestimenta1, ventanaMenuPrincipal);
 			}
 		});
 		
-		//Añadiendo los componentes de ventanaAñadirCamiseta
 		
+		
+		
+		//Añadiendo los componentes de ventanaAñadirCamiseta
 		
 			//Importar foto
 			importarFotoCamisetas = new JLabel("Seleccionar foto para importar de la camiseta: ");

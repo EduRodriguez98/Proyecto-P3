@@ -169,7 +169,7 @@ public class BaseDatosModise {
 			e.printStackTrace();
 		}
 	}
-	//FUNCIONAAAAAAA!!!! LETS GOOOO
+	
 	public static void añadirPrenda(int idcolor, String estiloPrendas, Boolean genero, int nivelFashion, int nivelImpermeable) throws BDException {
 		
 		try {
@@ -187,7 +187,7 @@ public class BaseDatosModise {
 			throw new BDException("Error al ejecutar SQL Stmt para anyadir prenda", e);
 		}
 	}
-	
+	//EN PROCESO, TODAVIA NO ESTÁ
 	public static void añadirCamiseta(int idcolor, String estiloPrendas, Boolean genero, int nivelFashion, int nivelImpermeable) throws BDException {
 		
 		try {
@@ -202,17 +202,23 @@ public class BaseDatosModise {
 		modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + rs);
 		} catch (SQLException e) {
 			
-			throw new BDException("Error al ejecutar SQL Stmt para anyadir prenda", e);
+			throw new BDException("Error al ejecutar SQL Stmt para añadir prenda", e);
 		}
 	}
 	
-	public static void eliminarPrenda(int idcolor, String estiloPrendas, Boolean genero, int nivelFashion, int nivelImpermeable) throws BDException {
+	public static void eliminarUltimaPrenda() throws BDException {
 		
 		try {
+			// 1.PrepareStatement
+			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
+			PreparedStatement Stmt = conn.prepareStatement("DELETE FROM prendas ORDER BY idprendas DESC LIMIT 1");
+			
+			// 2.Execute SQL query
+			Stmt.executeUpdate();
 		} catch (Exception e) {
 			
-			 throw new BDException ("Error al ejecutar SQL Stmt para eliminar prenda", e);
+			 throw new BDException ("Error al ejecutar SQL Stmt para eliminar la ULTIMA prenda", e);
 		}		
 		
 		
