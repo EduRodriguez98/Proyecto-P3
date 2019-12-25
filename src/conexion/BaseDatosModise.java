@@ -210,41 +210,7 @@ public class BaseDatosModise {
 	}	
 		
 	
-		public static void añadirCamiseta(Boolean logotipo, Boolean rayas, Boolean cuadros, ImageIcon foto) throws BDException {
-			int idprend = 0;
 			
-			try {
-				// 1.PrepareStatement
-				Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-				
-				PreparedStatement Stmt = conn.prepareStatement("SELECT FROM prendas ORDER BY idprendas DESC LIMIT 1");
-				
-				// 2.Execute SQL query and return value of id_prendas to idprend to use, allowing a link between prendas and camisetas to be created
-				ResultSet rs = Stmt.executeQuery();
-				idprend = rs.getInt("idprendas");
-				
-				modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt + ", idprendas obtenido: " + rs);
-				} catch (SQLException e) {
-					
-					throw new BDException("Error al ejecutar SQL Stmt para seleccionar idprendas en la tabla prendas", e);
-				}
-			
-			try {
-			// 1.PrepareStatement
-			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			
-			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO camiseta (id_prendas, logotipo, rayas, cuadros, fotocamiseta) VALUES ('" + idprend + "','" + logotipo
-					+ "','" +  rayas + "','" + cuadros + "','" + foto + ")");
-			
-			// 2.Execute SQL Update
-			Stmt.executeUpdate();
-			modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt);
-			} catch (SQLException e) {
-				
-				throw new BDException("Error al ejecutar SQL Stmt para añadir camisetas", e);
-			}
-			}
-	
 	class CrearOutfit {
 
 		/*
