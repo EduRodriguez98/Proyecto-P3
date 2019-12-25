@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 
+import javax.swing.ImageIcon;
+
 public class BaseDatosModise {
 
 	private static final String CONTROLADOR = "com.mysql.cj.jdbc.Driver";
@@ -187,24 +189,7 @@ public class BaseDatosModise {
 			throw new BDException("Error al ejecutar SQL Stmt para anyadir prenda", e);
 		}
 	}
-	//EN PROCESO, TODAVIA NO ESTÁ
-	public static void añadirCamiseta(int idcolor, String estiloPrendas, Boolean genero, int nivelFashion, int nivelImpermeable) throws BDException {
-		
-		try {
-		// 1.PrepareStatement
-		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-		
-		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO camiseta (id_color, estiloprendas, genero, nivelFash, nivelImp) VALUES ('" + idcolor + "','" + estiloPrendas
-				+ "','" +  genero + "','" + nivelFashion + "','" + nivelImpermeable + ")");
-		
-		// 2.Execute SQL query
-		ResultSet rs = Stmt.executeQuery();
-		modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + rs);
-		} catch (SQLException e) {
-			
-			throw new BDException("Error al ejecutar SQL Stmt para añadir prenda", e);
-		}
-	}
+	
 	
 	public static void eliminarUltimaPrenda() throws BDException {
 		
@@ -214,7 +199,7 @@ public class BaseDatosModise {
 			
 			PreparedStatement Stmt = conn.prepareStatement("DELETE FROM prendas ORDER BY idprendas DESC LIMIT 1");
 			
-			// 2.Execute SQL query
+			// 2.Execute SQL Update
 			Stmt.executeUpdate();
 		} catch (Exception e) {
 			
@@ -224,26 +209,42 @@ public class BaseDatosModise {
 		
 	}	
 		
-	public static void añadirVestimenta(Statement st, String corr, String nombreTabla, String[] valores) {
-		String SentSQL = "select * from usuario where correo = '" + corr + "';";
-		int a = 0;
-		try {
-			ResultSet rs = st.executeQuery(SentSQL);
-			a = rs.getInt("idusuario");
-		} catch (SQLException e) {
-			modise.Principal.BDLogger.log(Level.SEVERE, "Error añadriVestimenta Query1\n" + SentSQL, e);
-			e.printStackTrace();
-		}
-
-		String SentSQL2 = "insert into " + nombreTabla + " values(" + a + "," + valores + ");";
-		try {
-			st.executeUpdate(SentSQL2);
-		} catch (SQLException e) {
-			modise.Principal.BDLogger.log(Level.SEVERE, "Error añadirVestimenta Query2\n" + SentSQL2, e);
-			e.printStackTrace();
-		}
-	}
-
+	
+		public static void añadirCamiseta(Boolean logotipo, Boolean rayas, Boolean cuadros, ImageIcon foto) throws BDException {
+			int idprend = 0;
+			
+			try {
+				// 1.PrepareStatement
+				Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+				
+				PreparedStatement Stmt = conn.prepareStatement("SELECT FROM prendas ORDER BY idprendas DESC LIMIT 1");
+				
+				// 2.Execute SQL query and return value of id_prendas to idprend to use, allowing a link between prendas and camisetas to be created
+				ResultSet rs = Stmt.executeQuery();
+				idprend = rs.getInt("idprendas");
+				
+				modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt + ", idprendas obtenido: " + rs);
+				} catch (SQLException e) {
+					
+					throw new BDException("Error al ejecutar SQL Stmt para seleccionar idprendas en la tabla prendas", e);
+				}
+			
+			try {
+			// 1.PrepareStatement
+			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+			
+			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO camiseta (id_prendas, logotipo, rayas, cuadros, fotocamiseta) VALUES ('" + idprend + "','" + logotipo
+					+ "','" +  rayas + "','" + cuadros + "','" + foto + ")");
+			
+			// 2.Execute SQL Update
+			Stmt.executeUpdate();
+			modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt);
+			} catch (SQLException e) {
+				
+				throw new BDException("Error al ejecutar SQL Stmt para añadir camisetas", e);
+			}
+			}
+	
 	class CrearOutfit {
 
 		/*

@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.18, for macos10.14 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
 -- Host: localhost    Database: modise_schema
 -- ------------------------------------------------------
@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `camisetas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `camisetas` (
-  `idcamisetas` int(11) NOT NULL,
+  `idcamisetas` int(11) NOT NULL AUTO_INCREMENT,
   `idprendas` int(11) NOT NULL,
   `logotipo` varchar(45) DEFAULT NULL,
   `rayas` tinyint(4) DEFAULT NULL,
@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS `chaquetas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chaquetas` (
-  `idchaquetas` int(11) NOT NULL,
+  `idchaquetas` int(11) NOT NULL AUTO_INCREMENT,
   `idprendas` int(11) NOT NULL,
   `larga` tinyint(4) DEFAULT NULL,
   `lisa` tinyint(4) DEFAULT NULL,
@@ -100,7 +100,7 @@ DROP TABLE IF EXISTS `gorros`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `gorros` (
-  `idgorros` int(11) NOT NULL,
+  `idgorros` int(11) NOT NULL AUTO_INCREMENT,
   `idprendas` int(11) NOT NULL,
   `verano` tinyint(4) DEFAULT NULL,
   `fotogorros` longblob,
@@ -148,7 +148,7 @@ DROP TABLE IF EXISTS `pantalones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pantalones` (
-  `idpantalones` int(11) NOT NULL,
+  `idpantalones` int(11) NOT NULL AUTO_INCREMENT,
   `idprendas` int(11) NOT NULL,
   `marca` varchar(45) DEFAULT NULL,
   `corto` tinyint(4) DEFAULT NULL,
@@ -183,7 +183,7 @@ CREATE TABLE `prendas` (
   PRIMARY KEY (`idprendas`),
   KEY `idcolor_idx` (`id_color`),
   CONSTRAINT `idcolor` FOREIGN KEY (`id_color`) REFERENCES `color` (`idcolor`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -367,7 +367,7 @@ DROP TABLE IF EXISTS `zapatos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `zapatos` (
-  `idzapatos` int(11) NOT NULL,
+  `idzapatos` int(11) NOT NULL AUTO_INCREMENT,
   `idprendas` int(11) NOT NULL,
   `deportivos` tinyint(4) DEFAULT NULL,
   `deVestir` tinyint(4) DEFAULT NULL,
@@ -394,4 +394,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-23 21:09:17
+-- Dump completed on 2019-12-25 12:59:35
