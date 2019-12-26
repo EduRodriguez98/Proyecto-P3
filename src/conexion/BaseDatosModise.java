@@ -1,6 +1,8 @@
 package conexion;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,6 +12,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 
 import javax.swing.ImageIcon;
+
+import modise.RWException;
 
 public class BaseDatosModise {
 
@@ -209,7 +213,7 @@ public class BaseDatosModise {
 		
 	}	
 		
-	public static void añadirCamiseta(String logotipo, Boolean rayas, Boolean cuadros, ImageIcon foto) throws BDException {
+	public static void añadirCamiseta(String logotipo, Boolean rayas, Boolean cuadros) throws BDException, FileNotFoundException {
 		int idprend = 0;
 		
 		try {
@@ -232,21 +236,24 @@ public class BaseDatosModise {
 		// 1.PrepareStatement
 		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 		
-		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO camiseta (id_prendas, logotipo, rayas, cuadros, fotocamiseta) VALUES ('" + idprend + "','" + logotipo
-				+ "','" +  rayas + "','" + cuadros + "','" + foto + ")");
+		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO camiseta values (?,?,?,?)");
 		
-		// 2.Execute SQL Update
+		Stmt.setInt(1, idprend);
+		Stmt.setBoolean(2, rayas);
+		Stmt.setBoolean(3, cuadros);
+		
+		FileInputStream fotoCamiseta = new FileInputStream("");
+		Stmt.setBinaryStream(4, fotoCamiseta);
+		
 		Stmt.executeUpdate();
-		modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt);
-		} catch (SQLException e) {
-			
-			throw new BDException("Error al ejecutar SQL Stmt para añadir camisetas", e);
+		} catch (SQLException e2) {
+			throw new BDException("Error en el codigo SQL al insertar los datos en la Base de Datos", e2);
 		}
-		}
-
-	public static void añadirChaquetas(Boolean larga, Boolean lisa, ImageIcon fotoChaquetas) throws BDException {
+	}
+	
+	public static void añadirChaquetas(Boolean larga, Boolean lisa) throws BDException, FileNotFoundException {
 		int idprend = 0;
-		
+			
 		try {
 			// 1.PrepareStatement
 			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
@@ -259,27 +266,31 @@ public class BaseDatosModise {
 			
 			modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt + ", idprendas obtenido: " + rs);
 			} catch (SQLException e) {
-				
+			
 				throw new BDException("Error al ejecutar SQL Stmt para seleccionar idprendas en la tabla prendas", e);
 			}
-		
-		try {
-		// 1.PrepareStatement
-		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-		
-		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO chaquetas (id_prendas, larga, lisa, fotochaqueta) VALUES ('" + idprend + "','" + larga
-				+ "','" +  lisa + "','" + fotoChaquetas + ")");
-		
-		// 2.Execute SQL Update
-		Stmt.executeUpdate();
-		modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt);
-		} catch (SQLException e) {
 			
-			throw new BDException("Error al ejecutar SQL Stmt para añadir chaquetas", e);
-		}
-		}
-	
-	public static void añadirGorros(Boolean verano, ImageIcon fotoGorros) throws BDException {
+		try {
+			// 1.PrepareStatement
+			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+			
+			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO camiseta values (?,?,?,?)");
+			
+			Stmt.setInt(1, idprend);
+			Stmt.setBoolean(2, larga);
+			Stmt.setBoolean(3, lisa);
+			
+			
+			FileInputStream fotoChaqueta = new FileInputStream("");
+			Stmt.setBinaryStream(4, fotoChaqueta);
+			
+			Stmt.executeUpdate();
+			} catch (SQLException e2) {
+				throw new BDException("Error en el codigo SQL al insertar los datos en la Base de Datos", e2);
+			}
+		}	
+			
+	public static void añadirGorros(Boolean verano) throws BDException, FileNotFoundException {
 		int idprend = 0;
 		
 		try {
@@ -288,7 +299,44 @@ public class BaseDatosModise {
 			
 			PreparedStatement Stmt = conn.prepareStatement("SELECT FROM prendas ORDER BY idprendas DESC LIMIT 1");
 			
-			// 2.Execute SQL query and return value of id_prendas to idprend to use, allowing a link between prendas and camisetas to be created
+			// 2.Execute SQL query and return value of id_prendas to idprend to use, allowing a link between prendas and gorros to be created
+			ResultSet rs = Stmt.executeQuery();
+			idprend = rs.getInt("idprendas");
+			
+			modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt + ", idprendas obtenido: " + rs);
+			} catch (SQLException e) {
+				
+				throw new BDException("Error al ejecutar SQL Stmt para seleccionar idprendas en la tabla prendas", e);
+			}
+			
+		try {
+			// 1.PrepareStatement
+			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+			
+			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO gorros values (?,?,?)");
+			
+			Stmt.setInt(1, idprend);
+			Stmt.setBoolean(2, verano);
+	
+			FileInputStream fotoGorros = new FileInputStream("");
+			Stmt.setBinaryStream(3, fotoGorros);
+			
+			Stmt.executeUpdate();
+			} catch (SQLException e2) {
+				throw new BDException("Error en el codigo SQL al insertar los datos en la Base de Datos", e2);
+			}
+		}
+	
+	public static void añadirPantalones(String marca, Boolean corto) throws BDException, FileNotFoundException {
+		int idprend = 0;
+		
+		try {
+			// 1.PrepareStatement
+			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+			
+			PreparedStatement Stmt = conn.prepareStatement("SELECT FROM prendas ORDER BY idprendas DESC LIMIT 1");
+			
+			// 2.Execute SQL query and return value of id_prendas to idprend to use, allowing a link between prendas and pantalones to be created
 			ResultSet rs = Stmt.executeQuery();
 			idprend = rs.getInt("idprendas");
 			
@@ -299,22 +347,26 @@ public class BaseDatosModise {
 			}
 		
 		try {
-		// 1.PrepareStatement
-		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-		
-		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO gorros (id_prendas, verano, fotogorros) VALUES ('" + idprend + "','" + verano
-				+ "','" + fotoGorros + ")");
-		
-		// 2.Execute SQL Update
-		Stmt.executeUpdate();
-		modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt);
-		} catch (SQLException e) {
+			// 1.PrepareStatement
+			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
-			throw new BDException("Error al ejecutar SQL Stmt para añadir gorros", e);
-		}
+			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO gorros values (?,?,?)");
+			
+			Stmt.setInt(1, idprend);
+			Stmt.setString(2, marca);
+			Stmt.setBoolean(3, corto);
+	
+			FileInputStream fotoPantalones = new FileInputStream("");
+			Stmt.setBinaryStream(4, fotoPantalones);
+			
+			Stmt.executeUpdate();
+			} catch (SQLException e2) {
+				throw new BDException("Error en el codigo SQL al insertar los datos en la Base de Datos", e2);
+			}
 		}
 	
-	public static void añadirPantalones(String marca, Boolean corto, ImageIcon fotoPantalones) throws BDException {
+	
+	public static void añadirZapatos(Boolean deportivos, Boolean devestir) throws BDException, FileNotFoundException {
 		int idprend = 0;
 		
 		try {
@@ -323,7 +375,7 @@ public class BaseDatosModise {
 			
 			PreparedStatement Stmt = conn.prepareStatement("SELECT FROM prendas ORDER BY idprendas DESC LIMIT 1");
 			
-			// 2.Execute SQL query and return value of id_prendas to idprend to use, allowing a link between prendas and camisetas to be created
+			// 2.Execute SQL query and return value of id_prendas to idprend to use, allowing a link between prendas and zapatos to be created
 			ResultSet rs = Stmt.executeQuery();
 			idprend = rs.getInt("idprendas");
 			
@@ -334,60 +386,27 @@ public class BaseDatosModise {
 			}
 		
 		try {
-		// 1.PrepareStatement
-		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-		
-		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO pantalones (id_prendas, marca, corto, fotopantalones) VALUES ('" + idprend + "','" + marca
-				+ "','" +  corto + "','" + fotoPantalones + ")");
-		
-		// 2.Execute SQL Update
-		Stmt.executeUpdate();
-		modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt);
-		} catch (SQLException e) {
-			
-			throw new BDException("Error al ejecutar SQL Stmt para añadir pantalones", e);
-		}
-		}
-	
-	
-	public static void añadirZapatos(Boolean deportivos, Boolean devestir, ImageIcon fotoZapatos) throws BDException {
-		int idprend = 0;
-		
-		try {
 			// 1.PrepareStatement
 			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
-			PreparedStatement Stmt = conn.prepareStatement("SELECT FROM prendas ORDER BY idprendas DESC LIMIT 1");
+			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO gorros values (?,?,?)");
 			
-			// 2.Execute SQL query and return value of id_prendas to idprend to use, allowing a link between prendas and camisetas to be created
-			ResultSet rs = Stmt.executeQuery();
-			idprend = rs.getInt("idprendas");
+			Stmt.setInt(1, idprend);
+			Stmt.setBoolean(2, deportivos);
+			Stmt.setBoolean(3, devestir);
 			
-			modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt + ", idprendas obtenido: " + rs);
-			} catch (SQLException e) {
-				
-				throw new BDException("Error al ejecutar SQL Stmt para seleccionar idprendas en la tabla prendas", e);
+			FileInputStream fotoZapatos = new FileInputStream("");
+			Stmt.setBinaryStream(4, fotoZapatos);
+			
+			Stmt.executeUpdate();
+			} catch (SQLException e2) {
+				throw new BDException("Error en el codigo SQL al insertar los datos en la Base de Datos", e2);
 			}
-		
-		try {
-		// 1.PrepareStatement
-		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-		
-		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO zapatos (id_prendas, logotipo, deportivos, deVestir, fotozapatos) VALUES ('" + idprend + "','" + deportivos
-				+ "','" +  devestir + "','" + fotoZapatos + ")");
-		
-		// 2.Execute SQL Update
-		Stmt.executeUpdate();
-		modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt);
-		} catch (SQLException e) {
-			
-			throw new BDException("Error al ejecutar SQL Stmt para añadir zapatos", e);
-		}
 		}
 	
-			
+	
 	class CrearOutfit {
-
+	
 		/*
 		 * JFileChooser archivo = new JFileChooser();
 		 * 
