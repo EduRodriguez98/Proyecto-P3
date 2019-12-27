@@ -1492,6 +1492,7 @@ public class Principal {
 			//Importar foto
 			importarFotoCamisetas = new JLabel("Seleccionar foto para importar de la camiseta: ");
 			importarFotoCamisetas.setBounds(40, 50, 300, 40);
+			
 			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
 			
 			camisetasLogotipoLabel = new JLabel("Tiene logotipo la camiseta?: ");
