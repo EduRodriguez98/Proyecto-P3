@@ -1,8 +1,13 @@
 package conexion;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,7 +16,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
+import com.mysql.cj.jdbc.Blob;
 
 import modise.RWException;
 
@@ -213,7 +221,7 @@ public class BaseDatosModise {
 		
 	}	
 		
-	public static void añadirCamiseta(String logotipo, Boolean rayas, Boolean cuadros) throws BDException, FileNotFoundException {
+	public static void añadirCamiseta(String logotipo, Boolean rayas, Boolean cuadros, String pathCamiseta) throws BDException, FileNotFoundException {
 		int idprend = 0;
 		
 		try {
@@ -241,9 +249,8 @@ public class BaseDatosModise {
 		Stmt.setInt(1, idprend);
 		Stmt.setBoolean(2, rayas);
 		Stmt.setBoolean(3, cuadros);
-		
-		FileInputStream fotoCamiseta = new FileInputStream("");
-		Stmt.setBinaryStream(4, fotoCamiseta);
+		InputStream fotoCamisetaIS = new FileInputStream(new File(pathCamiseta));
+		Stmt.setBlob(4, fotoCamisetaIS);
 		
 		Stmt.executeUpdate();
 		} catch (SQLException e2) {
@@ -251,7 +258,7 @@ public class BaseDatosModise {
 		}
 	}
 	
-	public static void añadirChaquetas(Boolean larga, Boolean lisa) throws BDException, FileNotFoundException {
+	public static void añadirChaquetas(Boolean larga, Boolean lisa, String pathChaquetas) throws BDException, FileNotFoundException {
 		int idprend = 0;
 			
 		try {
@@ -279,10 +286,8 @@ public class BaseDatosModise {
 			Stmt.setInt(1, idprend);
 			Stmt.setBoolean(2, larga);
 			Stmt.setBoolean(3, lisa);
-			
-			
-			FileInputStream fotoChaqueta = new FileInputStream("");
-			Stmt.setBinaryStream(4, fotoChaqueta);
+			InputStream fotoChaquetasIS = new FileInputStream(new File(pathChaquetas));
+			Stmt.setBlob(4, fotoChaquetasIS);
 			
 			Stmt.executeUpdate();
 			} catch (SQLException e2) {
@@ -290,7 +295,7 @@ public class BaseDatosModise {
 			}
 		}	
 			
-	public static void añadirGorros(Boolean verano) throws BDException, FileNotFoundException {
+	public static void añadirGorros(Boolean verano, String pathGorros) throws BDException, FileNotFoundException {
 		int idprend = 0;
 		
 		try {
@@ -317,9 +322,8 @@ public class BaseDatosModise {
 			
 			Stmt.setInt(1, idprend);
 			Stmt.setBoolean(2, verano);
-	
-			FileInputStream fotoGorros = new FileInputStream("");
-			Stmt.setBinaryStream(3, fotoGorros);
+			InputStream fotoGorrosIS = new FileInputStream(new File(pathGorros));
+			Stmt.setBlob(3, fotoGorrosIS);
 			
 			Stmt.executeUpdate();
 			} catch (SQLException e2) {
@@ -327,7 +331,7 @@ public class BaseDatosModise {
 			}
 		}
 	
-	public static void añadirPantalones(String marca, Boolean corto) throws BDException, FileNotFoundException {
+	public static void añadirPantalones(String marca, Boolean corto, String pathPantalones) throws BDException, FileNotFoundException {
 		int idprend = 0;
 		
 		try {
@@ -355,9 +359,8 @@ public class BaseDatosModise {
 			Stmt.setInt(1, idprend);
 			Stmt.setString(2, marca);
 			Stmt.setBoolean(3, corto);
-	
-			FileInputStream fotoPantalones = new FileInputStream("");
-			Stmt.setBinaryStream(4, fotoPantalones);
+			InputStream fotoPantalonesIS = new FileInputStream(new File(pathPantalones));
+			Stmt.setBlob(4, fotoPantalonesIS);
 			
 			Stmt.executeUpdate();
 			} catch (SQLException e2) {
@@ -366,7 +369,7 @@ public class BaseDatosModise {
 		}
 	
 	
-	public static void añadirZapatos(Boolean deportivos, Boolean devestir) throws BDException, FileNotFoundException {
+	public static void añadirZapatos(Boolean deportivos, Boolean devestir, String pathZapatos) throws BDException, FileNotFoundException {
 		int idprend = 0;
 		
 		try {
@@ -394,9 +397,8 @@ public class BaseDatosModise {
 			Stmt.setInt(1, idprend);
 			Stmt.setBoolean(2, deportivos);
 			Stmt.setBoolean(3, devestir);
-			
-			FileInputStream fotoZapatos = new FileInputStream("");
-			Stmt.setBinaryStream(4, fotoZapatos);
+			InputStream fotoZapatoIS = new FileInputStream(new File(pathZapatos));
+			Stmt.setBlob(4, fotoZapatoIS);
 			
 			Stmt.executeUpdate();
 			} catch (SQLException e2) {

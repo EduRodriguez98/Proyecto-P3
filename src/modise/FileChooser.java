@@ -1,6 +1,9 @@
 package modise;
 
+import java.io.File;
+
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FileChooser {
@@ -20,6 +23,7 @@ public class FileChooser {
 
 			final String path = chooser.getSelectedFile().getPath();
 			System.out.println("Path: " + path);
+			JOptionPane.showMessageDialog(chooser, "Archivo seleccionado: " + chooser.getSelectedFile().getName());
 
 			Principal.Usuariolog.println("Archivo de prenda añadida: " + chooser.getSelectedFile().getName());
 		}
