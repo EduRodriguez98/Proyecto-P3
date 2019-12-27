@@ -1604,11 +1604,9 @@ public class Principal {
 					
 						try {
 							BaseDatosModise.añadirCamiseta(logotipoCamisetaTextField.getSelectedText(), rayasSiNo, cuadrosSiNo, camisetaChooserPreview.getText());
-						} catch (FileNotFoundException e1) {
+						} catch (FileNotFoundException | BDException e1) {
 							e1.printStackTrace();
-						} catch (BDException e2) {
-							e2.printStackTrace();
-						} 
+						}
 				
 						CambiarPanel(ventanaAñadirCamisetas, ventanaMenuPrincipal);
 				}
@@ -1648,7 +1646,7 @@ public class Principal {
 			siguienteAñadirChaquetas.setBounds(500, 340, 200, 30);
 			
 			ventanaAñadirChaquetas.add(importarFotoChaquetas);
-			ventanaAñadirChaquetas.add(importarFotoChaquetaChooser);
+			ventanaAñadirChaquetas.add(importarFotoChaquetasChooser);
 			ventanaAñadirChaquetas.add(chaquetasChooserPreview);
 			ventanaAñadirChaquetas.add(chaquetasLargoLabel);
 			ventanaAñadirChaquetas.add(chaquetasLargoSiRB);
@@ -1713,11 +1711,9 @@ public class Principal {
 					
 						try {
 							BaseDatosModise.añadirChaquetas(largaSiNo, lisaSiNo, chaquetasChooserPreview.getText());
-						} catch (FileNotFoundException e1) {
+						} catch (FileNotFoundException | BDException e1) {
 							e1.printStackTrace();
-						} catch (BDException e2) {
-							e2.printStackTrace();
-						} 
+						}
 					
 					
 					
@@ -1807,10 +1803,8 @@ public class Principal {
 					
 						try {
 							BaseDatosModise.añadirGorros(veranoSiNo, gorrosChooserPreview.getText());
-						} catch (FileNotFoundException e1) {
+						} catch (FileNotFoundException | BDException e1) {
 							e1.printStackTrace();
-						} catch (BDException e2) {
-							e2.printStackTrace();
 						}
 					
 					CambiarPanel(ventanaAñadirGorros, ventanaMenuPrincipal);
@@ -1906,10 +1900,8 @@ public class Principal {
 					
 						try {
 							BaseDatosModise.añadirPantalones(pantalonesMarcaText.getText() ,pantalonesLargoSiNo, gorrosChooserPreview.getText());
-						} catch (FileNotFoundException e1) {
+						} catch (FileNotFoundException | BDException e1) {
 							e1.printStackTrace();
-						} catch (BDException e2) {
-							e2.printStackTrace();
 						}
 					
 					
@@ -2003,10 +1995,8 @@ public class Principal {
 					
 						try {
 							BaseDatosModise.añadirZapatos(deportivoSiNo, devestirSiNo, zapatosChooserPreview.getText());
-						} catch (FileNotFoundException e1) {
+						} catch (FileNotFoundException | BDException e1) {
 							e1.printStackTrace();
-						} catch (BDException e2) {
-							e2.printStackTrace();
 						} 
 					
 					CambiarPanel(ventanaAñadirZapatos, ventanaMenuPrincipal);
