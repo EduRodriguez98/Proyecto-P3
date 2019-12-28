@@ -99,6 +99,13 @@ public class BaseDatosModise {
 		} catch (SQLException e) {
 		}
 	}
+	
+	public static void cancelarNuevoUsuario (Statement st, int id, String nom, String corr, int admin, Object ed, String contr,
+			int gen){
+		
+		String sql = "delete usuario where ";
+		
+	}
 
 	public static void BuscarUsuario() {
 
