@@ -126,7 +126,11 @@ DROP TABLE IF EXISTS `outfit`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `outfit` (
   `idoutfit` int(11) NOT NULL AUTO_INCREMENT,
-  `imagen_OF` longblob,
+  `imagen_OFG` longblob,
+  `imagen_OFCH` longblob,
+  `imagen_OFC` longblob,
+  `imagen_OFP` longblob,
+  `imagen_OFZ` longblob,
   PRIMARY KEY (`idoutfit`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -183,7 +187,7 @@ CREATE TABLE `prendas` (
   PRIMARY KEY (`idprendas`),
   KEY `idcolor_idx` (`id_color`),
   CONSTRAINT `idcolor` FOREIGN KEY (`id_color`) REFERENCES `color` (`idcolor`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -394,4 +398,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-28 13:39:00
+-- Dump completed on 2019-12-28 16:41:04
