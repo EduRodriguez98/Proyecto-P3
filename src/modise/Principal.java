@@ -138,7 +138,6 @@ public class Principal {
 	JButton ventanaAñadirVestimenta1Atras, ventanaAñadirVestimenta1Siguiente, ventanaAñadirVestimenta1Cancelar;
 	
 	
-	
 	// ventanaAñadirCamisetas
 	JLabel importarFotoCamisetas, camisetasLogotipoLabel, camisetasRayasLabel, camisetasCuadrosLabel, camisetaChooserPreview;
 	JRadioButton camisetasRayasSiRB, camisetasRayasNoRB, camisetasCuadrosSiRB, camisetasCuadrosNoRB;
@@ -1648,7 +1647,7 @@ public class Principal {
 			siguienteAñadirChaquetas.setBounds(500, 340, 200, 30);
 			
 			ventanaAñadirChaquetas.add(importarFotoChaquetas);
-			ventanaAñadirChaquetas.add(importarFotoChaquetaChooser);
+			ventanaAñadirChaquetas.add(importarFotoChaquetasChooser);
 			ventanaAñadirChaquetas.add(chaquetasChooserPreview);
 			ventanaAñadirChaquetas.add(chaquetasLargoLabel);
 			ventanaAñadirChaquetas.add(chaquetasLargoSiRB);
