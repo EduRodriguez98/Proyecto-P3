@@ -183,7 +183,7 @@ CREATE TABLE `prendas` (
   PRIMARY KEY (`idprendas`),
   KEY `idcolor_idx` (`id_color`),
   CONSTRAINT `idcolor` FOREIGN KEY (`id_color`) REFERENCES `color` (`idcolor`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -394,4 +394,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-27 13:23:01
+-- Dump completed on 2019-12-28 13:39:00
