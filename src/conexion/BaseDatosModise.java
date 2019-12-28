@@ -232,7 +232,9 @@ public class BaseDatosModise {
 			
 			// 2.Execute SQL query and return value of id_prendas to idprend to use, allowing a link between prendas and camisetas to be created
 			ResultSet rs = Stmt.executeQuery();
-			idprend = rs.getInt("idprendas");
+			while (rs.next()) {
+				idprend = rs.getInt("idprendas");
+			}
 			
 			modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt + ", idprendas obtenido: " + rs);
 			} catch (SQLException e) {
@@ -269,7 +271,9 @@ public class BaseDatosModise {
 			
 			// 2.Execute SQL query and return value of id_prendas to idprend to use, allowing a link between prendas and chaquetas to be created
 			ResultSet rs = Stmt.executeQuery();
-			idprend = rs.getInt("idprendas");
+			while (rs.next()) {
+				idprend = rs.getInt("idprendas");
+			}
 			
 			modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt + ", idprendas obtenido: " + rs);
 			} catch (SQLException e) {
@@ -281,7 +285,7 @@ public class BaseDatosModise {
 			// 1.PrepareStatement
 			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
-			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO camiseta values (?,?,?,?)");
+			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO chaquetas values (?,?,?,?)");
 			
 			Stmt.setInt(1, idprend);
 			Stmt.setBoolean(2, larga);
@@ -306,7 +310,9 @@ public class BaseDatosModise {
 			
 			// 2.Execute SQL query and return value of id_prendas to idprend to use, allowing a link between prendas and gorros to be created
 			ResultSet rs = Stmt.executeQuery();
-			idprend = rs.getInt("idprendas");
+			while (rs.next()) {
+				idprend = rs.getInt("idprendas");
+			}
 			
 			modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt + ", idprendas obtenido: " + rs);
 			} catch (SQLException e) {
@@ -342,7 +348,9 @@ public class BaseDatosModise {
 			
 			// 2.Execute SQL query and return value of id_prendas to idprend to use, allowing a link between prendas and pantalones to be created
 			ResultSet rs = Stmt.executeQuery();
-			idprend = rs.getInt("idprendas");
+			while (rs.next()) {
+				idprend = rs.getInt("idprendas");
+			}
 			
 			modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt + ", idprendas obtenido: " + rs);
 			} catch (SQLException e) {
@@ -354,7 +362,7 @@ public class BaseDatosModise {
 			// 1.PrepareStatement
 			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
-			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO gorros values (?,?,?,?)");
+			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO pantalones values (?,?,?,?)");
 			
 			Stmt.setInt(1, idprend);
 			Stmt.setString(2, marca);
@@ -380,20 +388,22 @@ public class BaseDatosModise {
 			
 			// 2.Execute SQL query and return value of id_prendas to idprend to use, allowing a link between prendas and zapatos to be created
 			ResultSet rs = Stmt.executeQuery();
-			System.out.println(rs);
-			idprend = rs.getInt("idprendas");
+			while (rs.next()) {
+				idprend = rs.getInt("idprendas");
+			}
+			
 			
 			modise.Principal.BDLogger.log(Level.FINE, "Codigo ejecutado SQL: " + Stmt + ", idprendas obtenido: " + rs);
 			} catch (SQLException e) {
 				
-				throw new BDException("Error al ejecutar SQL Stmt para seleccionar idprendas en la tabla prendas", e);
+				e.printStackTrace();
 			}
 		
 		try {
 			// 1.PrepareStatement
 			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
-			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO gorros values (?,?,?,?)");
+			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO zapatos values (?,?,?,?)");
 			
 			Stmt.setInt(1, idprend);
 			Stmt.setBoolean(2, deportivos);
