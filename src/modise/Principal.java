@@ -138,7 +138,6 @@ public class Principal {
 	JButton ventanaAñadirVestimenta1Atras, ventanaAñadirVestimenta1Siguiente, ventanaAñadirVestimenta1Cancelar;
 	
 	
-	
 	// ventanaAñadirCamisetas
 	JLabel importarFotoCamisetas, camisetasLogotipoLabel, camisetasRayasLabel, camisetasCuadrosLabel, camisetaChooserPreview;
 	JRadioButton camisetasRayasSiRB, camisetasRayasNoRB, camisetasCuadrosSiRB, camisetasCuadrosNoRB;
