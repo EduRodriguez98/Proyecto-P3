@@ -4,14 +4,9 @@ public class Gorros extends Prendas {
 
 	private Boolean verano;
 
-	public Gorros(Color colorPrincipal, Boolean verano) {
-		super(colorPrincipal);
+	public Gorros(Color colorPrincipal, boolean genero, int nivelFashion, int nivelImpermeable, Boolean verano) {
+		super(colorPrincipal, genero, nivelFashion, nivelImpermeable);
 		this.verano = verano;
-	}
-
-	public Gorros() {
-		super();
-		this.verano = null;
 	}
 
 	public Boolean getVerano() {
@@ -24,8 +19,10 @@ public class Gorros extends Prendas {
 
 	@Override
 	public String toString() {
-		return "Gorros [Id_prendas = " + getId_prendas() + ", ColorPrincipal = " + getColorPrincipal() + "verano = "
-				+ verano + "]";
+		return "Gorros [verano = " + verano + ", Id_prendas = " + getId_prendas() + ", ColorPrincipal = "
+				+ getColorPrincipal() + ", isGenero = " + isGenero() + ", NivelFashion = " + getNivelFashion()
+				+ ", NivelImpermeable = " + getNivelImpermeable() + "]";
 	}
-
+	
+	
 }

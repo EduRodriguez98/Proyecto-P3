@@ -23,11 +23,12 @@ DROP TABLE IF EXISTS `camisetas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `camisetas` (
-  `idcamisetas` int(11) NOT NULL,
+  `idcamisetas` int(11) NOT NULL AUTO_INCREMENT,
   `idprendas` int(11) NOT NULL,
   `logotipo` varchar(45) DEFAULT NULL,
   `rayas` tinyint(4) DEFAULT NULL,
   `cuadros` tinyint(4) DEFAULT NULL,
+  `fotocamiseta` longblob,
   PRIMARY KEY (`idcamisetas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,7 +39,6 @@ CREATE TABLE `camisetas` (
 
 LOCK TABLES `camisetas` WRITE;
 /*!40000 ALTER TABLE `camisetas` DISABLE KEYS */;
-INSERT INTO `camisetas` VALUES (1,1,'lacoste',0,0),(2,1,'lacoste',1,0),(3,1,'zara',0,1),(4,1,'h&m',0,0),(5,1,'vitorioylucino',0,1);
 /*!40000 ALTER TABLE `camisetas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,10 +50,11 @@ DROP TABLE IF EXISTS `chaquetas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chaquetas` (
-  `idchaquetas` int(11) NOT NULL,
+  `idchaquetas` int(11) NOT NULL AUTO_INCREMENT,
   `idprendas` int(11) NOT NULL,
   `larga` tinyint(4) DEFAULT NULL,
   `lisa` tinyint(4) DEFAULT NULL,
+  `fotochaqueta` longblob,
   PRIMARY KEY (`idchaquetas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -64,7 +65,6 @@ CREATE TABLE `chaquetas` (
 
 LOCK TABLES `chaquetas` WRITE;
 /*!40000 ALTER TABLE `chaquetas` DISABLE KEYS */;
-INSERT INTO `chaquetas` VALUES (1,2,1,1),(2,2,0,1),(3,2,0,0),(4,2,1,0),(5,2,1,1);
 /*!40000 ALTER TABLE `chaquetas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,9 +100,10 @@ DROP TABLE IF EXISTS `gorros`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `gorros` (
-  `idgorros` int(11) NOT NULL,
+  `idgorros` int(11) NOT NULL AUTO_INCREMENT,
   `idprendas` int(11) NOT NULL,
   `verano` tinyint(4) DEFAULT NULL,
+  `fotogorros` longblob,
   PRIMARY KEY (`idgorros`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -113,7 +114,6 @@ CREATE TABLE `gorros` (
 
 LOCK TABLES `gorros` WRITE;
 /*!40000 ALTER TABLE `gorros` DISABLE KEYS */;
-INSERT INTO `gorros` VALUES (1,3,1),(2,3,0),(3,3,1),(4,3,0),(5,3,0);
 /*!40000 ALTER TABLE `gorros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,10 +148,11 @@ DROP TABLE IF EXISTS `pantalones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pantalones` (
-  `idpantalones` int(11) NOT NULL,
+  `idpantalones` int(11) NOT NULL AUTO_INCREMENT,
   `idprendas` int(11) NOT NULL,
   `marca` varchar(45) DEFAULT NULL,
   `corto` tinyint(4) DEFAULT NULL,
+  `fotopantalones` longblob,
   PRIMARY KEY (`idpantalones`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -162,7 +163,6 @@ CREATE TABLE `pantalones` (
 
 LOCK TABLES `pantalones` WRITE;
 /*!40000 ALTER TABLE `pantalones` DISABLE KEYS */;
-INSERT INTO `pantalones` VALUES (1,4,'zara',0),(2,4,'berskha',0),(3,4,'zara',1),(4,4,'bersache',0),(5,4,'h&m',1);
 /*!40000 ALTER TABLE `pantalones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,12 +174,16 @@ DROP TABLE IF EXISTS `prendas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prendas` (
-  `idprendas` int(11) NOT NULL,
+  `idprendas` int(11) NOT NULL AUTO_INCREMENT,
   `id_color` int(11) NOT NULL,
+  `nivelFash` int(11) DEFAULT NULL,
+  `nivelImp` int(11) DEFAULT NULL,
+  `estiloPrendas` char(15) DEFAULT NULL,
+  `genero` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`),
   KEY `idcolor_idx` (`id_color`),
   CONSTRAINT `idcolor` FOREIGN KEY (`id_color`) REFERENCES `color` (`idcolor`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,7 +209,7 @@ CREATE TABLE `usu_cami` (
   KEY `idcamisetas_idx` (`idcamisetas`),
   KEY `idusuario_idx` (`idusuario`),
   CONSTRAINT `idcamisetas` FOREIGN KEY (`idcamisetas`) REFERENCES `camisetas` (`idcamisetas`) ON DELETE CASCADE,
-  CONSTRAINT `idusuario_cami` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
+  CONSTRAINT `idusuario_cami` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -215,7 +219,6 @@ CREATE TABLE `usu_cami` (
 
 LOCK TABLES `usu_cami` WRITE;
 /*!40000 ALTER TABLE `usu_cami` DISABLE KEYS */;
-INSERT INTO `usu_cami` VALUES (1,1,'2007-05-20'),(1,2,'2022-05-20'),(2,4,'2007-07-20'),(3,5,'2007-11-20'),(4,2,'2007-05-20');
 /*!40000 ALTER TABLE `usu_cami` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -243,7 +246,6 @@ CREATE TABLE `usu_cha` (
 
 LOCK TABLES `usu_cha` WRITE;
 /*!40000 ALTER TABLE `usu_cha` DISABLE KEYS */;
-INSERT INTO `usu_cha` VALUES (10,1,'2014-06-20'),(8,2,'2014-06-20'),(1,3,'2015-06-20'),(5,4,'2017-06-20'),(7,5,'2014-06-20');
 /*!40000 ALTER TABLE `usu_cha` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,7 +273,6 @@ CREATE TABLE `usu_gor` (
 
 LOCK TABLES `usu_gor` WRITE;
 /*!40000 ALTER TABLE `usu_gor` DISABLE KEYS */;
-INSERT INTO `usu_gor` VALUES (2,1,'2014-06-20'),(3,1,'2014-06-20'),(4,2,'2014-04-20'),(10,3,'2014-12-20'),(9,3,'2014-11-20');
 /*!40000 ALTER TABLE `usu_gor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -299,7 +300,6 @@ CREATE TABLE `usu_pan` (
 
 LOCK TABLES `usu_pan` WRITE;
 /*!40000 ALTER TABLE `usu_pan` DISABLE KEYS */;
-INSERT INTO `usu_pan` VALUES (1,1,'2014-06-20'),(2,3,'2014-06-20'),(6,4,'2014-06-20'),(9,5,'2014-06-20'),(4,1,'2014-06-20');
 /*!40000 ALTER TABLE `usu_pan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -327,7 +327,6 @@ CREATE TABLE `usu_zap` (
 
 LOCK TABLES `usu_zap` WRITE;
 /*!40000 ALTER TABLE `usu_zap` DISABLE KEYS */;
-INSERT INTO `usu_zap` VALUES (1,1,'2014-06-20'),(3,2,'2014-07-20'),(2,3,'2014-08-20'),(4,4,'2014-09-20'),(8,5,'2014-01-20');
 /*!40000 ALTER TABLE `usu_zap` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -339,7 +338,7 @@ DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
-  `idusuario` int(11) NOT NULL,
+  `idusuario` int(11) NOT NULL AUTO_INCREMENT,
   `nom_usuario` varchar(45) DEFAULT NULL,
   `correo` varchar(45) DEFAULT NULL,
   `administrador` tinyint(4) DEFAULT NULL,
@@ -347,7 +346,7 @@ CREATE TABLE `usuario` (
   `contrasena` varchar(45) NOT NULL,
   `genero` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`idusuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -356,7 +355,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'eneko','enekop@gmail.com',1,20,'prog',1),(2,'eduj','edudor@gmail.com',1,20,'clash',1),(3,'acvelap','acvelap@gmail.com',1,28,'lol',1),(4,'laura','lauram@gmail.com',0,21,'123',0),(5,'barbara','barbarae@gmail.com',0,19,'456',0),(6,'francisco','francis@gmail.com',0,24,'789',1),(7,'paula','paulaf@gmail.com',0,45,'987',0),(8,'ernesto','ernestos@gmail.com',0,18,'654',1),(9,'marta','martasa@gmail.com',0,24,'321',0),(10,'maripili','mpili@gmail.com',0,20,'abc',0);
+INSERT INTO `usuario` VALUES (1,'a','a',1,50,'a',1),(2,'eduj','edudor@gmail.com',1,20,'clash',1),(3,'acvelap','acvelap@gmail.com',1,28,'lol',1),(5,'barbara','barbarae@gmail.com',0,19,'456',0),(6,'francisco','francis@gmail.com',0,24,'789',1),(7,'paula','paulaf@gmail.com',0,45,'987',0),(8,'ernesto','ernestos@gmail.com',0,18,'654',1),(9,'marta','martasa@gmail.com',0,24,'321',0),(10,'maripili','mpili@gmail.com',0,20,'abc',0),(26,'Eneko','eneko.perez23@gmail.com',0,20,'12345',1),(27,'nombre','ejemplo@gmail.com',0,18,'qwerty',0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -368,10 +367,11 @@ DROP TABLE IF EXISTS `zapatos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `zapatos` (
-  `idzapatos` int(11) NOT NULL,
+  `idzapatos` int(11) NOT NULL AUTO_INCREMENT,
   `idprendas` int(11) NOT NULL,
   `deportivos` tinyint(4) DEFAULT NULL,
   `deVestir` tinyint(4) DEFAULT NULL,
+  `fotozapatos` longblob,
   PRIMARY KEY (`idzapatos`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -382,7 +382,6 @@ CREATE TABLE `zapatos` (
 
 LOCK TABLES `zapatos` WRITE;
 /*!40000 ALTER TABLE `zapatos` DISABLE KEYS */;
-INSERT INTO `zapatos` VALUES (1,5,1,1),(2,5,1,0),(3,5,1,0),(4,5,0,1),(5,5,0,1);
 /*!40000 ALTER TABLE `zapatos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -395,4 +394,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-25 11:14:29
+-- Dump completed on 2019-12-27 13:23:01

@@ -16,7 +16,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.sql.Connection;
@@ -25,12 +27,15 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -50,8 +55,8 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
+import conexion.BDException;
 import conexion.BaseDatosModise;
-import conexion.Conexion;
 
 public class Principal {
 
@@ -120,25 +125,54 @@ public class Principal {
 	// ventanaMenuPrincipal
 	JMenuBar mb;
 	JMenu menu1;
-	JMenuItem mi1, mi2, mi3; // mi1 = cerrar sesion
+	JMenuItem mi1, mi2, mi3, mi4; // mi1 = cerrar sesion
 	JButton botonPideOutfit, botonAñadirVestimenta, botonMasMenosAdmin;
 
-	// ventanaAñadirVestimenta
-	JRadioButton sol, lluvia, nublado;
-	JLabel estilosLabelAñadirVestimenta, colorLabelAñadirVestimenta, tiempoLabelAñadirvestimenta,
-			errorVentanaAñadirVestimenta;
-	boolean escrito5;
-	JButton ventanaAñadirVestimentaAtras, ventanaAñadirVestimentaAñadir;
-
-	JComboBox<String> estilosComboBoxAñadirVestimenta;
-
+	// ventanaAñadirVestimenta1
+	
+	JLabel tipoLabelAñadirVestimenta, estilosLabelAñadirVestimenta, colorLabelAñadirVestimenta, errorVentanaAñadirVestimenta1, nivelFashionLabel, nivelImpermeableLabel;
 	JComboBox<String> coloresComboBoxAñadirVestimenta;
+	JComboBox<String> estilosComboBoxAñadirVestimenta;
+	JComboBox<String> tipoComboBoxAñadirVestimenta;
+	JSpinner nivelFashionSpin, nivelImpermeableSpin;
+	JButton ventanaAñadirVestimenta1Atras, ventanaAñadirVestimenta1Siguiente, ventanaAñadirVestimenta1Cancelar;
+	
+	
+	
+	// ventanaAñadirCamisetas
+	JLabel importarFotoCamisetas, camisetasLogotipoLabel, camisetasRayasLabel, camisetasCuadrosLabel, camisetaChooserPreview;
+	JRadioButton camisetasRayasSiRB, camisetasRayasNoRB, camisetasCuadrosSiRB, camisetasCuadrosNoRB;
+	JButton atrasAñadirCamisetas, siguienteAñadirCamisetas, importarFotoCamisetaChooser;
+	JTextField logotipoCamisetaTextField;
+	
+	// ventanaAñadirChaquetas
+	JLabel importarFotoChaquetas, chaquetasLargoLabel, chaquetasLisaLabel, chaquetasChooserPreview;
+	JRadioButton chaquetasLargoSiRB, chaquetasLargoNoRB, chaquetasLisaSiRB, chaquetasLisaNoRB;
+	JButton atrasAñadirChaquetas, siguienteAñadirChaquetas, importarFotoChaquetaChooser, importarFotoChaquetasChooser;
+	
+	// ventanaAñadirGorros
+	JLabel importarFotoGorros, gorrosTemporadaLabel, gorrosChooserPreview;
+	JRadioButton gorrosVeranoSiRB, gorrosVeranoNoRB;
+	JButton atrasAñadirGorros, siguienteAñadirGorros, importarFotoGorrosChooser;
+	
+	// ventanaAñadirPantalones
+	JLabel importarFotoPantalones, pantalonesMarcaLabel, pantalonesLargoLabel, pantalonesChooserPreview;
+	JRadioButton pantalonesLargoSiRB, pantalonesLargoNoRB;
+	JTextField pantalonesMarcaText;
+	JButton atrasAñadirPantalones, siguienteAñadirPantalones, importarFotoPantalonesChooser;
+	
+	// ventanaAñadirZapatos
+	JLabel importarFotoZapatos, zapatosTipoLabel, zapatosChooserPreview;
+	JRadioButton zapatosDeportivosRB, zapatosVestirRB;
+	JButton atrasAñadirZapatos, siguienteAñadirZapatos, importarFotoZapatosChooser;
+	
 
 	// ventanaPideOutfit
 	JButton botonAtrasPideOutfit, botonBuscar;
 	JRadioButton radioSol, radioLluvia, radioNublado, radioNo;
 	JLabel preguntaEstilo, preguntaTiempo, errorPideOutfit;
 	JComboBox<String> estilosComboBoxPideOutfit;
+	Boolean escrito5;
 
 	// ventanaFeedback
 	JLabel nivelSatisfaccion, gustoColores, errorFeedback;
@@ -160,6 +194,7 @@ public class Principal {
 
 	// mas
 	static PrintStream Feedbacklog, Usuariolog;
+	public static Logger BDLogger;
 
 	// Metodo Cambiar Paneles
 	public void CambiarPanel(JPanel g, JPanel h) {
@@ -193,13 +228,14 @@ public class Principal {
 	 * 
 	 * @param Username nombre del usuario a escribir
 	 */
-	public static void setProp(String Username) {
-		File archivo = new File("config.properties");
+	public static void setProp(String mail, String password) {
+		File archivo = new File("account.properties");
 		try {
 			FileOutputStream fos = new FileOutputStream(archivo);
 			Properties propConfig = new Properties();
 
-			propConfig.setProperty("username", Username);
+			propConfig.setProperty("correo", mail);
+			propConfig.setProperty("contrasena", password);
 			propConfig.store(fos, "program Settings");
 			fos.close();
 		} catch (IOException e) {
@@ -207,15 +243,30 @@ public class Principal {
 		}
 	}
 
-	public static String getProp() {
-		File archivo = new File("config.properties");
+	public static String getProp1() {
+		File archivo = new File("account.properties");
 		try {
 			FileInputStream fis = new FileInputStream(archivo);
 			Properties propConfig = new Properties();
 			propConfig.load(fis);
 			// cojemos las properties
-			String nombre = propConfig.getProperty("username");
+			String nombre = propConfig.getProperty("correo");
 			return nombre;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static String getProp2() {
+		File archivo = new File("account.properties");
+		try {
+			FileInputStream fis = new FileInputStream(archivo);
+			Properties propConfig = new Properties();
+			propConfig.load(fis);
+			// cojemos las properties
+			String contr = propConfig.getProperty("contrasena");
+			return contr;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
@@ -240,7 +291,7 @@ public class Principal {
 		menu1 = new JMenu("Menu");
 		mi1 = new JMenuItem("Cerrar sesion");
 		mi2 = new JMenuItem("Ajustes");
-		mi3 = new JMenuItem("mi3 - ¿Algo mas?");
+		mi3 = new JMenuItem("Salir sin cerrar sesion");
 		menu1.add(mi1);
 		menu1.add(mi2);
 		menu1.add(mi3);
@@ -273,6 +324,7 @@ public class Principal {
 			}
 		};
 
+		PanelFondo ventanaAñadirVestimenta1 = new PanelFondo();
 		PanelFondo ventanaInicioSesion = new PanelFondo();
 		PanelFondo ventanaCrearCuenta = new PanelFondo();
 		PanelFondo ventanaGenero = new PanelFondo();
@@ -280,7 +332,11 @@ public class Principal {
 		PanelFondo ventanaPerfilGustosUnoF = new PanelFondo();
 		PanelFondo ventanaPerfilGustosDos = new PanelFondo();
 		PanelFondo ventanaCarga = new PanelFondo();
-		PanelFondo ventanaAñadirVestimenta = new PanelFondo();
+		PanelFondo ventanaAñadirCamisetas = new PanelFondo();
+		PanelFondo ventanaAñadirChaquetas = new PanelFondo();
+		PanelFondo ventanaAñadirGorros = new PanelFondo();
+		PanelFondo ventanaAñadirPantalones = new PanelFondo();
+		PanelFondo ventanaAñadirZapatos = new PanelFondo();
 		PanelFondo ventanaPideOutfit = new PanelFondo();
 		PanelFondo ventanaFeedback = new PanelFondo();
 		JPanel ventanaMasMenosAdmin = new JPanel(); // dejadla asi. NO, le he cambiado el nombre
@@ -297,7 +353,12 @@ public class Principal {
 		CrearPanel(ventanaPerfilGustosDos);
 		CrearPanel(ventanaMenuPrincipal);
 		CrearPanel(ventanaCarga);
-		CrearPanel(ventanaAñadirVestimenta);
+		CrearPanel(ventanaAñadirVestimenta1);
+		CrearPanel(ventanaAñadirCamisetas);
+		CrearPanel(ventanaAñadirChaquetas);
+		CrearPanel(ventanaAñadirGorros);
+		CrearPanel(ventanaAñadirPantalones);
+		CrearPanel(ventanaAñadirZapatos);
 		CrearPanel(ventanaPideOutfit);
 		CrearPanel(ventanaFeedback);
 		CrearPanel(ventanaMasMenosAdmin);
@@ -310,7 +371,12 @@ public class Principal {
 		frame.getContentPane().add(ventanaPerfilGustosDos);
 		frame.getContentPane().add(ventanaMenuPrincipal);
 		frame.getContentPane().add(ventanaCarga);
-		frame.getContentPane().add(ventanaAñadirVestimenta);
+		frame.getContentPane().add(ventanaAñadirVestimenta1);
+		frame.getContentPane().add(ventanaAñadirCamisetas);
+		frame.getContentPane().add(ventanaAñadirChaquetas);
+		frame.getContentPane().add(ventanaAñadirGorros);
+		frame.getContentPane().add(ventanaAñadirPantalones);
+		frame.getContentPane().add(ventanaAñadirZapatos);
 		frame.getContentPane().add(ventanaPideOutfit);
 		frame.getContentPane().add(ventanaFeedback);
 		frame.getContentPane().add(ventanaMasMenosAdmin);
@@ -323,7 +389,9 @@ public class Principal {
 		ventanaInicioSesion.add(labelEmail);
 		labelEmail.setBounds(60, 62, 100, 40);
 
-		txtEmail = new JTextField("ejemplo@gmail.com");
+		// txtEmail = new JTextField("ejemplo@gmail.com");
+		txtEmail = new JTextField();
+		txtEmail.setText(getProp1());
 		ventanaInicioSesion.add(txtEmail);
 		txtEmail.setBounds(160, 70, 300, 30);
 		escrito1 = false;
@@ -342,7 +410,9 @@ public class Principal {
 		ventanaInicioSesion.add(labelContraseña);
 		labelContraseña.setBounds(60, 133, 100, 40);
 
-		contraseña = new JPasswordField("12345"); // cambiado
+		// contraseña = new JPasswordField("12345"); // cambiado
+		contraseña = new JPasswordField();
+		contraseña.setText(getProp2());
 		contraseña.setEchoChar('*'); // hacer checkbox isSelected para ver contraseña, HECHO
 		ventanaInicioSesion.add(contraseña);
 		contraseña.setBounds(160, 140, 300, 30);
@@ -394,7 +464,10 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Connection conexion = Conexion.conectar();
+				String valorPass = new String(contraseña.getPassword());
+				// setProp(txtEmail.getText(), valorPass);
+
+				Connection conexion = BaseDatosModise.conectar();
 				Statement st = null;
 				try {
 					st = conexion.createStatement();
@@ -402,21 +475,20 @@ public class Principal {
 
 				}
 				// Pasa el valor del JPassword a String
-				String valorPass = new String(contraseña.getPassword());
-				if (BaseDatosModise.logIn(st, txtEmail.getText(), valorPass, 0) == true) {
-					System.out.println("VA NO ADMIN");
+				// String valorPass = new String(contraseña.getPassword()); UNAS LINEAS MAS
+				// ARRIBA
+				if (BaseDatosModise.logIn(st, txtEmail.getText(), valorPass) == true) {
 					CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
 					Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + "	, " + (new Date()));
 					mb.setVisible(true);
 					mb.setEnabled(true);
-					botonMasMenosAdmin.setVisible(false);
-				} else if (BaseDatosModise.logIn(st, txtEmail.getText(), valorPass, 1) == true) {
-					System.out.println("VA SI ADMIN");
-					CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
-					Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + "	, " + (new Date()));
-					mb.setVisible(true);
-					mb.setEnabled(true);
-					botonMasMenosAdmin.setVisible(true);
+					if (BaseDatosModise.esAdmin(st, txtEmail.getText()) == true) {
+						botonMasMenosAdmin.setVisible(true);
+						System.out.println("VA ADMIN");
+					} else if (BaseDatosModise.esAdmin(st, txtEmail.getText()) == false) {
+						botonMasMenosAdmin.setVisible(false);
+						System.out.println("VA NO ADMIN");
+					}
 				} else {
 					System.out.println("no va");
 					JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.");
@@ -533,11 +605,19 @@ public class Principal {
 				errorEmail.setText("");
 				errorContraseña.setText("");
 
+				Connection conexion = BaseDatosModise.conectar();
+				Statement st = null;
+				try {
+					st = conexion.createStatement();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
 				if (CrearNombre.matches("^[a-zA-Z]*$") && !CrearNombre.isEmpty()
-						&& CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" // Dos lineas para validar si es
-								+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") // un correo o no, FUNCIONA 100%
-																						// ??
-						&& !CrearEmail.isEmpty() && !CrearContraseña.isEmpty() && CrearEdad.matches("^[0-9]*$")) {
+						&& CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+								+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+						&& !CrearEmail.isEmpty() && !CrearContraseña.isEmpty() && CrearEdad.matches("^[0-9]*$")
+						&& BaseDatosModise.existeUsuario(st, txtCrearEmail.getText()) == true) {
 					CambiarPanel(ventanaCrearCuenta, ventanaGenero);
 					errorNombre.setText("");
 					errorEmail.setText("");
@@ -552,10 +632,10 @@ public class Principal {
 					errorNombre.setText("Nombre NO valido");
 					spinCrearEdad.setValue(EdadSeleccionada);
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdad + ", Nombre NO valido");
-				} else if (!CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" // Dos lineas para validar si
-																							// es
-						+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$") // un correo o no, FUNCIONA 100% ??
-						|| CrearEmail.isEmpty()) {
+				} else if (!CrearEmail.matches(
+						"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+						|| CrearEmail.isEmpty()
+						|| BaseDatosModise.existeUsuario(st, txtCrearEmail.getText()) == false) {
 					errorEmail.setText("Email NO valido");
 					spinCrearEdad.setValue(EdadSeleccionada);
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdad + ", Email NO valido");
@@ -907,24 +987,24 @@ public class Principal {
 
 								// bd nuevoUsuario
 								// TIRA ADELANTE, PERO NO HACE EL INSERT EL LAS TABLAS
-								Connection conexion = Conexion.conectar();
+								Connection conexion = BaseDatosModise.conectar();
 								Statement st = null;
 								try {
 									st = conexion.createStatement();
 								} catch (SQLException e1) {
-
+									e1.printStackTrace();
 								}
 
-								String valorPass = new String(contraseña.getPassword());
+								// String valorPass = new String(txtCrearContraseña.getPassword());
 
 								if (radioMasculino.isSelected() == true) {
-									BaseDatosModise.nuevoUsuario(st, 99, txtCrearNombre.getText(),
-											txtCrearEmail.getText(), 0, spinCrearEdad.getValue(), valorPass, 1);
+									BaseDatosModise.nuevoUsuario(st, txtCrearNombre.getText(), txtCrearEmail.getText(),
+											0, spinCrearEdad.getValue(), txtCrearContraseña.getText(), 1);
 									System.out.println("nuevo chico");
 									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 								} else if (radioFemenino.isSelected() == true) {
-									BaseDatosModise.nuevoUsuario(st, 99, txtCrearNombre.getText(),
-											txtCrearEmail.getText(), 0, spinCrearEdad.getValue(), valorPass, 0);
+									BaseDatosModise.nuevoUsuario(st, txtCrearNombre.getText(), txtCrearEmail.getText(),
+											0, spinCrearEdad.getValue(), txtCrearContraseña.getText(), 0);
 									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 									System.out.println("nueva chica");
 								} // hasta aqui bd nuevoUsuario
@@ -1064,7 +1144,7 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaMenuPrincipal, ventanaAñadirVestimenta);
+				CambiarPanel(ventanaMenuPrincipal, ventanaAñadirVestimenta1);
 				mb.setVisible(false);
 				mb.setEnabled(false);
 			}
@@ -1222,25 +1302,26 @@ public class Principal {
 		});
 
 		// Action Listeners
-
-		// Añadiendo los componentes de ventanaAñadirVestimenta
+		
+		
+		// Añadiendo los componentes de ventanaAñadirVestimenta1
+		tipoLabelAñadirVestimenta = new JLabel("Selecione el tipo de prenda que desea añadir: ");
+		tipoLabelAñadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 		estilosLabelAñadirVestimenta = new JLabel("Selecciona un estilo: (F para Femenino y M para masculino)");
 		estilosLabelAñadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 		colorLabelAñadirVestimenta = new JLabel("Selecciona un color: ");
 		colorLabelAñadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
-		tiempoLabelAñadirvestimenta = new JLabel("Selecciona el tiempo: ");
-		tiempoLabelAñadirvestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
 
-		sol = new JRadioButton("Sol");
-		sol.setActionCommand("Sol");
-		lluvia = new JRadioButton("Lluvia");
-		lluvia.setActionCommand("Lluvia");
-		nublado = new JRadioButton("Nublado");
-		nublado.setActionCommand("Nublado");
-
+		tipoComboBoxAñadirVestimenta = new JComboBox<String>();
 		estilosComboBoxAñadirVestimenta = new JComboBox<String>();
 		coloresComboBoxAñadirVestimenta = new JComboBox<String>();
 
+		tipoComboBoxAñadirVestimenta.addItem("camisetas");
+		tipoComboBoxAñadirVestimenta.addItem("chaquetas");
+		tipoComboBoxAñadirVestimenta.addItem("gorros");
+		tipoComboBoxAñadirVestimenta.addItem("pantalones");
+		tipoComboBoxAñadirVestimenta.addItem("zapatos");
+		
 		estilosComboBoxAñadirVestimenta.addItem("ClasicoF");
 		estilosComboBoxAñadirVestimenta.addItem("ClasicoM");
 		estilosComboBoxAñadirVestimenta.addItem("UrbanaF");
@@ -1260,79 +1341,673 @@ public class Principal {
 		coloresComboBoxAñadirVestimenta.addItem("Verde");
 		coloresComboBoxAñadirVestimenta.addItem("Negro");
 
-		estilosLabelAñadirVestimenta.setBounds(40, 200, 400, 40);
-		colorLabelAñadirVestimenta.setBounds(450, 200, 200, 40);
-		tiempoLabelAñadirvestimenta.setBounds(40, 50, 200, 40);
+		tipoLabelAñadirVestimenta.setBounds(190, 50, 400, 40);
+		estilosLabelAñadirVestimenta.setBounds(190, 100, 400, 40);
+		colorLabelAñadirVestimenta.setBounds(190, 150, 400, 40);
 
-		sol.setBounds(40, 100, 100, 40);
-		lluvia.setBounds(160, 100, 100, 40);
-		nublado.setBounds(280, 100, 100, 40);
+		tipoComboBoxAñadirVestimenta.setBounds(40, 50, 150, 40);
+		estilosComboBoxAñadirVestimenta.setBounds(40, 100, 150, 40);
+		coloresComboBoxAñadirVestimenta.setBounds(40, 150, 150, 40);
 
-		estilosComboBoxAñadirVestimenta.setBounds(40, 250, 100, 40);
-		coloresComboBoxAñadirVestimenta.setBounds(450, 250, 100, 40);
+		ventanaAñadirVestimenta1Atras = new JButton("Atras");
+		ventanaAñadirVestimenta1.add(ventanaAñadirVestimenta1Atras);
+		ventanaAñadirVestimenta1Atras.setBounds(10, 340, 200, 30);
 
-		ButtonGroup radioButtonsTiempo = new ButtonGroup();
-		radioButtonsTiempo.add(sol);
-		radioButtonsTiempo.add(lluvia);
-		radioButtonsTiempo.add(nublado);
+		ventanaAñadirVestimenta1Siguiente = new JButton("Siguiente");
+		ventanaAñadirVestimenta1.add(ventanaAñadirVestimenta1Siguiente);
+		ventanaAñadirVestimenta1Siguiente.setBounds(500, 340, 200, 30);
 
-		ventanaAñadirVestimentaAtras = new JButton("Atras");
-		ventanaAñadirVestimenta.add(ventanaAñadirVestimentaAtras);
-		ventanaAñadirVestimentaAtras.setBounds(10, 340, 200, 30);
+		errorVentanaAñadirVestimenta1 = new JLabel();
+		ventanaAñadirVestimenta1.add(errorVentanaAñadirVestimenta1);
+		errorVentanaAñadirVestimenta1.setBounds(300, 340, 400, 40);
+		errorVentanaAñadirVestimenta1.setForeground(Color.RED);
 
-		ventanaAñadirVestimentaAñadir = new JButton("Añadir");
-		ventanaAñadirVestimenta.add(ventanaAñadirVestimentaAñadir);
-		ventanaAñadirVestimentaAñadir.setBounds(500, 340, 200, 30);
-
-		errorVentanaAñadirVestimenta = new JLabel();
-		ventanaAñadirVestimenta.add(errorVentanaAñadirVestimenta);
-		errorVentanaAñadirVestimenta.setBounds(300, 340, 400, 40);
-		errorVentanaAñadirVestimenta.setForeground(Color.RED);
-
-		ventanaAñadirVestimenta.add(sol);
-		ventanaAñadirVestimenta.add(lluvia);
-		ventanaAñadirVestimenta.add(nublado);
-		ventanaAñadirVestimenta.add(estilosComboBoxAñadirVestimenta);
-		ventanaAñadirVestimenta.add(coloresComboBoxAñadirVestimenta);
-		ventanaAñadirVestimenta.add(estilosLabelAñadirVestimenta);
-		ventanaAñadirVestimenta.add(colorLabelAñadirVestimenta);
-		ventanaAñadirVestimenta.add(tiempoLabelAñadirvestimenta);
+		ventanaAñadirVestimenta1Cancelar = new JButton("cancelar");
+		ventanaAñadirVestimenta1Cancelar.setVisible(false);
+		ventanaAñadirVestimenta1Cancelar.setBounds(10, 340, 200, 30);
+		
+		//NO OLVIDARSE ANYADIR LIMITE PARA LOS SPINNERS LUEGO!!
+		nivelFashionLabel = new JLabel("Seleccione nivel de Fashion entre 0-100 (100 en tendencias, 0 no en tendencias)");
+		nivelFashionLabel.setFont(new Font("Monospace", Font.BOLD, 11));
+		nivelFashionLabel.setBounds(190, 200, 500, 40);
+		nivelFashionSpin = new JSpinner();
+		nivelFashionSpin.setValue(0);
+		nivelFashionSpin.setBounds(40, 200, 150, 40);
+		
+		//NO OLVIDARSE ANYADIR LIMITE PARA LOS SPINNERS LUEGO!!
+		nivelImpermeableLabel = new JLabel("Seleccione nivel de impermeabilidad entre 0-100 (100 impermeable, 0 no impermeable)");
+		nivelImpermeableLabel.setFont(new Font("Monospace", Font.BOLD, 11));
+		nivelImpermeableLabel.setBounds(190, 250, 500, 40);
+		nivelImpermeableSpin = new JSpinner();
+		nivelImpermeableSpin.setValue(0);
+		nivelImpermeableSpin.setBounds(40, 250, 150, 40);
+		
+		ventanaAñadirVestimenta1.add(ventanaAñadirVestimenta1Cancelar);
+		ventanaAñadirVestimenta1.add(tipoLabelAñadirVestimenta);
+		ventanaAñadirVestimenta1.add(tipoComboBoxAñadirVestimenta);
+		ventanaAñadirVestimenta1.add(estilosComboBoxAñadirVestimenta);
+		ventanaAñadirVestimenta1.add(coloresComboBoxAñadirVestimenta);
+		ventanaAñadirVestimenta1.add(estilosLabelAñadirVestimenta);
+		ventanaAñadirVestimenta1.add(colorLabelAñadirVestimenta);
+		ventanaAñadirVestimenta1.add(nivelFashionLabel);
+		ventanaAñadirVestimenta1.add(nivelImpermeableLabel);
+		ventanaAñadirVestimenta1.add(nivelFashionSpin);
+		ventanaAñadirVestimenta1.add(nivelImpermeableSpin);
+	
 
 		// actionlisteners ventanaAñadirVestimenta
-		ventanaAñadirVestimentaAtras.addActionListener(new ActionListener() {
+		ventanaAñadirVestimenta1Atras.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaAñadirVestimenta, ventanaMenuPrincipal);
-				radioButtonsTiempo.clearSelection();
-				errorVentanaAñadirVestimenta.setText("");
+				CambiarPanel(ventanaAñadirVestimenta1, ventanaMenuPrincipal);
+				errorVentanaAñadirVestimenta1.setText("");
 				mb.setVisible(true);
 				mb.setEnabled(true);
 			}
 		});
 
-		ventanaAñadirVestimentaAñadir.addActionListener(new ActionListener() {
+		ventanaAñadirVestimenta1Siguiente.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (radioButtonsTiempo.isSelected(null)) {
-					errorVentanaAñadirVestimenta.setText("Selecciona el tiempo.");
-				} else {
-					Usuariolog
-							.println("Añade vestimenta, tiempo: " + radioButtonsTiempo.getSelection().getActionCommand()
-									+ ", estilo: " + estilosComboBoxAñadirVestimenta.getSelectedItem() + ", color: "
-									+ coloresComboBoxAñadirVestimenta.getSelectedItem());
-					// CambiarPanel(ventanaAñadirVestimenta, ???);
-					FileChooser.Choose();
-					CambiarPanel(ventanaAñadirVestimenta, ventanaMenuPrincipal);
+
+			String nombreColorSeleccionado = coloresComboBoxAñadirVestimenta.getSelectedItem().toString();
+			int idColorSeleccionado;
+			if (nombreColorSeleccionado == "Rojo") {
+				idColorSeleccionado = 1;
+			} else if (nombreColorSeleccionado == "Azul") {
+				idColorSeleccionado = 2;
+			} else if (nombreColorSeleccionado == "Amarillo") {
+				idColorSeleccionado = 3;
+			} else if (nombreColorSeleccionado == "Verde") {
+				idColorSeleccionado = 4;
+			} else {
+				idColorSeleccionado = 5;
+			}
+			
+			int nivelFashionSeleccionado = (int)nivelFashionSpin.getValue();
+			int nivelImpermeableSeleccionado = (int)nivelImpermeableSpin.getValue();
+			
+			String estiloPrendasSeleccionado = estilosComboBoxAñadirVestimenta.getSelectedItem().toString();
+			Boolean generoPrendas = null;
+			
+			if (estiloPrendasSeleccionado == "ClasicoF" || estiloPrendasSeleccionado == "UrbanaF" || estiloPrendasSeleccionado == "RockF" ||
+					estiloPrendasSeleccionado == "BohoF" || estiloPrendasSeleccionado == "FormalF" || estiloPrendasSeleccionado == "SportyChickF") {
+				generoPrendas = true;
+	
+			} else {
+				generoPrendas = false;
+			} 
+		
+				
+				try {
+					
+					//Metodo BD para anyadir prenda
+					
+					BaseDatosModise.añadirPrenda(idColorSeleccionado, estiloPrendasSeleccionado, generoPrendas, nivelFashionSeleccionado, nivelImpermeableSeleccionado);
+
+					//Cambiar paneles
+					String tipoPrenda = tipoComboBoxAñadirVestimenta.getSelectedItem().toString();
+					if (tipoPrenda == "camisetas") {
+						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirCamisetas);
+					} else if(tipoPrenda == "chaquetas") {
+						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirChaquetas);
+					} else if(tipoPrenda == "gorros") {
+						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirGorros);
+					} else if(tipoPrenda == "pantalones") {
+						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirPantalones);
+					} else if (tipoPrenda == "zapatos"){
+						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirZapatos);
+					}
+			
 					mb.setEnabled(true);
 					mb.setVisible(true);
-					radioButtonsTiempo.clearSelection();
-					errorVentanaAñadirVestimenta.setText("");
+					errorVentanaAñadirVestimenta1.setText("");  
+					
+				} catch (BDException e1) {
+					e1.printStackTrace();
 				}
+			
+			
+			}	 
+		});
+		
+		ventanaAñadirVestimenta1Cancelar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					BaseDatosModise.eliminarUltimaPrenda();
+				} catch (BDException e1) {
+					e1.printStackTrace();
+				}
+				
+				CambiarPanel(ventanaAñadirVestimenta1, ventanaMenuPrincipal);
 			}
 		});
+		
+		
+		
+		
+		//Añadiendo los componentes de ventanaAñadirCamiseta
+		
+			//Importar foto
+		
+			
+			importarFotoCamisetas = new JLabel("Seleccionar foto para importar de la camiseta: ");
+			importarFotoCamisetas.setBounds(40, 50, 300, 40);
+			
+			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
+			importarFotoCamisetaChooser = new JButton("Seleccionar Foto");
+			importarFotoCamisetaChooser.setBounds(360, 60, 140, 30);
+			
+			camisetaChooserPreview = new JLabel(" ");
+			camisetaChooserPreview.setBounds(40, 100, 550, 30);
+			
+			camisetasLogotipoLabel = new JLabel("Tiene logotipo la camiseta?: ");
+			camisetasLogotipoLabel.setBounds(40, 130, 300, 40);
+			logotipoCamisetaTextField = new JTextField();
+			logotipoCamisetaTextField.setBounds(360, 140, 200, 30);
+			
+			
+			camisetasRayasLabel = new JLabel("Tiene Rayas la camiseta?: ");
+			camisetasRayasLabel.setBounds(40,190, 300, 40);
+			camisetasRayasSiRB = new JRadioButton("Si");
+			camisetasRayasSiRB.setBounds(360, 190, 50, 40);
+			camisetasRayasNoRB = new JRadioButton("No");
+			camisetasRayasNoRB.setBounds(430, 190, 50, 40);
+			ButtonGroup radioRayasBG = new ButtonGroup();
+			radioRayasBG.add(camisetasRayasSiRB);
+			radioRayasBG.add(camisetasRayasNoRB);
+			
+			camisetasCuadrosLabel = new JLabel("La camiseta es a cuadros?");
+			camisetasCuadrosLabel.setBounds(40, 240, 300, 40);
+			camisetasCuadrosSiRB = new JRadioButton("Si");
+			camisetasCuadrosSiRB.setBounds(360, 240, 50, 40);
+			camisetasCuadrosNoRB = new JRadioButton("No");
+			camisetasCuadrosNoRB.setBounds(430, 240, 50, 40);
+			ButtonGroup radioCuadrosBG = new ButtonGroup();
+			radioCuadrosBG.add(camisetasCuadrosSiRB);
+			radioCuadrosBG.add(camisetasCuadrosNoRB);
+			
+			atrasAñadirCamisetas = new JButton("Atrás");
+			atrasAñadirCamisetas.setBounds(10, 340, 200, 30);
+			
+			siguienteAñadirCamisetas = new JButton("Siguiente");
+			siguienteAñadirCamisetas.setBounds(500, 340, 200, 30);
+			
+			ventanaAñadirCamisetas.add(importarFotoCamisetas);
+			ventanaAñadirCamisetas.add(camisetaChooserPreview);
+			ventanaAñadirCamisetas.add(camisetasLogotipoLabel);
+			ventanaAñadirCamisetas.add(importarFotoCamisetaChooser);
+			ventanaAñadirCamisetas.add(logotipoCamisetaTextField);
+			ventanaAñadirCamisetas.add(camisetasRayasLabel);
+			ventanaAñadirCamisetas.add(camisetasRayasSiRB);
+			ventanaAñadirCamisetas.add(camisetasRayasNoRB);
+			ventanaAñadirCamisetas.add(camisetasCuadrosLabel);
+			ventanaAñadirCamisetas.add(camisetasCuadrosSiRB);
+			ventanaAñadirCamisetas.add(camisetasCuadrosNoRB);
+			ventanaAñadirCamisetas.add(atrasAñadirCamisetas);
+			ventanaAñadirCamisetas.add(siguienteAñadirCamisetas);
+			
+			importarFotoCamisetaChooser.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JFileChooser chooser = new JFileChooser();
+					chooser.showOpenDialog(null);
+					File f = chooser.getSelectedFile();
+					String filename = f.getAbsolutePath();
+					
+					camisetaChooserPreview.setText(filename);
+					
+				}
+			});
+			
+			atrasAñadirCamisetas.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
 
+					
+					CambiarPanel(ventanaAñadirCamisetas, ventanaAñadirVestimenta1);
+					ventanaAñadirVestimenta1Cancelar.setVisible(true);
+					ventanaAñadirVestimenta1Atras.setVisible(false);
+				}
+			});
+			
+			siguienteAñadirCamisetas.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					Boolean rayasSiNo = null;
+					if ( camisetasRayasSiRB.isSelected()) {
+						rayasSiNo = true;
+					} else if (camisetasRayasNoRB.isSelected()){
+						rayasSiNo = false;
+					} else {
+						JOptionPane.showMessageDialog(ventanaAñadirCamisetas, "Debes seleccionar si tiene rayas o no la camiseta");
+					}
+					
+					Boolean cuadrosSiNo = null;
+					if (camisetasCuadrosSiRB.isSelected()) {
+						cuadrosSiNo = true;
+					} else if (camisetasCuadrosNoRB.isSelected()) {
+						cuadrosSiNo = false;
+					} else {
+						JOptionPane.showMessageDialog(ventanaAñadirCamisetas, "Debes seleccionar si tiene cuadros o no la camiseta");
+
+					}
+					
+						try {
+							BaseDatosModise.añadirCamiseta(logotipoCamisetaTextField.getSelectedText(), rayasSiNo, cuadrosSiNo, camisetaChooserPreview.getText());
+						} catch (FileNotFoundException | BDException e1) {
+							e1.printStackTrace();
+						}
+				
+						CambiarPanel(ventanaAñadirCamisetas, ventanaMenuPrincipal);
+				}
+			});
+		
+		//Añadiendo los componentes de ventanaAñadirChaquetas
+			
+			importarFotoChaquetas = new JLabel("Seleccionar foto para importar de la chaqueta: ");
+			importarFotoChaquetas.setBounds(40, 50, 300, 40);
+			
+			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
+			importarFotoChaquetasChooser = new JButton("Seleccionar Foto");
+			importarFotoChaquetasChooser.setBounds(360, 60, 140, 30);
+			
+			chaquetasChooserPreview = new JLabel(" ");
+			chaquetasChooserPreview.setBounds(40, 100, 550, 30);
+	
+			
+			chaquetasLargoLabel = new JLabel("Es larga la chaqueta?: ");
+			chaquetasLargoLabel.setBounds(40, 150, 300, 40);
+			chaquetasLargoSiRB = new JRadioButton("Si");
+			chaquetasLargoSiRB.setBounds(360, 150, 50, 40);
+			chaquetasLargoNoRB = new JRadioButton("No");
+			chaquetasLargoNoRB.setBounds(430, 150, 50, 40);
+			
+			chaquetasLisaLabel = new JLabel("La chaqueta es lisa?: ");
+			chaquetasLisaLabel.setBounds(40,200, 300, 40);
+			chaquetasLisaSiRB = new JRadioButton("Si");
+			chaquetasLisaSiRB.setBounds(360, 200, 50, 40);
+			chaquetasLisaNoRB = new JRadioButton("No");
+			chaquetasLisaNoRB.setBounds(430, 200, 50, 40);
+			
+			atrasAñadirChaquetas = new JButton("Atrás");
+			atrasAñadirChaquetas.setBounds(10, 340, 200, 30);
+			
+			siguienteAñadirChaquetas = new JButton("Siguiente");
+			siguienteAñadirChaquetas.setBounds(500, 340, 200, 30);
+			
+			ventanaAñadirChaquetas.add(importarFotoChaquetas);
+			ventanaAñadirChaquetas.add(importarFotoChaquetasChooser);
+			ventanaAñadirChaquetas.add(chaquetasChooserPreview);
+			ventanaAñadirChaquetas.add(chaquetasLargoLabel);
+			ventanaAñadirChaquetas.add(chaquetasLargoSiRB);
+			ventanaAñadirChaquetas.add(chaquetasLargoNoRB);
+			ventanaAñadirChaquetas.add(chaquetasLisaLabel);
+			ventanaAñadirChaquetas.add(chaquetasLisaSiRB);
+			ventanaAñadirChaquetas.add(chaquetasLisaNoRB);
+			ventanaAñadirChaquetas.add(atrasAñadirChaquetas);
+			ventanaAñadirChaquetas.add(siguienteAñadirChaquetas);
+			
+			
+			importarFotoChaquetasChooser.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JFileChooser chooser = new JFileChooser();
+					chooser.showOpenDialog(null);
+					File f = chooser.getSelectedFile();
+					String filename = f.getAbsolutePath();
+					
+					chaquetasChooserPreview.setText(filename);
+					
+				}
+			});
+			
+			atrasAñadirChaquetas.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					CambiarPanel(ventanaAñadirChaquetas, ventanaAñadirVestimenta1);
+					ventanaAñadirVestimenta1Cancelar.setVisible(true);
+					ventanaAñadirVestimenta1Atras.setVisible(false);
+					
+				}
+			});			
+			
+			
+			siguienteAñadirChaquetas.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					
+					Boolean largaSiNo = null;
+					if ( chaquetasLargoSiRB.isSelected()) {
+						largaSiNo = true;
+					} else if (chaquetasLargoNoRB.isSelected()){
+						largaSiNo = false;
+					} else {
+						JOptionPane.showMessageDialog(ventanaAñadirChaquetas, "Debes seleccionar si es larga o no la chaqueta");
+					}
+					
+					Boolean lisaSiNo = null;
+					if (chaquetasLisaSiRB.isSelected()) {
+						lisaSiNo = true;
+					} else if (chaquetasLisaNoRB.isSelected()) {
+						lisaSiNo = false;
+					} else {
+						JOptionPane.showMessageDialog(ventanaAñadirChaquetas, "Debes seleccionar si es lisa o no la chaqueta");
+
+					}
+					
+						try {
+							BaseDatosModise.añadirChaquetas(largaSiNo, lisaSiNo, chaquetasChooserPreview.getText());
+						} catch (FileNotFoundException | BDException e1) {
+							e1.printStackTrace();
+						}
+					
+					
+					
+					CambiarPanel(ventanaAñadirChaquetas, ventanaMenuPrincipal);
+					
+				}
+			});
+			
+			
+			
+		//Añadiendo los componentes de ventanaAñadirGorros
+			
+			//Importar foto
+			importarFotoGorros = new JLabel("Seleccionar foto para importar de la prenda: ");
+			importarFotoGorros.setBounds(40, 50, 300, 40);
+			
+			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
+			importarFotoGorrosChooser = new JButton("Seleccionar Foto");
+			importarFotoGorrosChooser.setBounds(360, 60, 140, 30);
+			
+			gorrosChooserPreview = new JLabel(" ");
+			gorrosChooserPreview.setBounds(40, 100, 550, 30);
+			
+			gorrosTemporadaLabel = new JLabel("Es de verano el gorro?: ");
+			gorrosTemporadaLabel.setBounds(40,200, 300, 40);
+			gorrosVeranoSiRB = new JRadioButton("Si");
+			gorrosVeranoSiRB.setBounds(360, 200, 50, 40);
+			gorrosVeranoNoRB = new JRadioButton("No");
+			gorrosVeranoNoRB.setBounds(430, 200, 50, 40);
+			
+			atrasAñadirGorros = new JButton("Atrás");
+			atrasAñadirGorros.setBounds(10, 340, 200, 30);
+			
+			siguienteAñadirGorros = new JButton("Siguiente");
+			siguienteAñadirGorros.setBounds(500, 340, 200, 30);
+			
+			ventanaAñadirGorros.add(importarFotoGorros);
+			ventanaAñadirGorros.add(importarFotoGorrosChooser);
+			ventanaAñadirGorros.add(gorrosChooserPreview);
+			ventanaAñadirGorros.add(gorrosTemporadaLabel);
+			ventanaAñadirGorros.add(gorrosVeranoSiRB);
+			ventanaAñadirGorros.add(gorrosVeranoNoRB);
+			ventanaAñadirGorros.add(atrasAñadirGorros);
+			ventanaAñadirGorros.add(siguienteAñadirGorros);
+			ventanaAñadirGorros.add(importarFotoGorros);
+			
+			importarFotoGorrosChooser.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+						JFileChooser chooser = new JFileChooser();
+						chooser.showOpenDialog(null);
+						File f = chooser.getSelectedFile();
+						String filename = f.getAbsolutePath();
+						
+						gorrosChooserPreview.setText(filename);
+					
+				}
+			});
+			
+			atrasAñadirGorros.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					CambiarPanel(ventanaAñadirGorros, ventanaAñadirVestimenta1);
+					ventanaAñadirVestimenta1Cancelar.setVisible(true);
+					ventanaAñadirVestimenta1Atras.setVisible(false);
+					
+				}
+			});			
+			
+			
+			siguienteAñadirGorros.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					Boolean veranoSiNo = null;
+					if (chaquetasLisaSiRB.isSelected()) {
+						veranoSiNo = true;
+					} else if (chaquetasLisaNoRB.isSelected()) {
+						veranoSiNo = false;
+					} else {
+						JOptionPane.showMessageDialog(ventanaAñadirChaquetas, "Debes seleccionar si es para verano o no el gorro");
+
+					}
+					
+						try {
+							BaseDatosModise.añadirGorros(veranoSiNo, gorrosChooserPreview.getText());
+						} catch (FileNotFoundException | BDException e1) {
+							e1.printStackTrace();
+						}
+					
+					CambiarPanel(ventanaAñadirGorros, ventanaMenuPrincipal);
+					
+				}
+			});
+			
+			
+			
+			
+		//Añadiendo los componentes de ventanaAñadirPantalones
+			
+			//Importar foto
+			importarFotoPantalones = new JLabel("Seleccionar foto para importar de la prenda: ");
+			importarFotoPantalones.setBounds(40, 50, 300, 40);
+			
+			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
+			importarFotoPantalonesChooser = new JButton("Seleccionar Foto");
+			importarFotoPantalonesChooser.setBounds(360, 60, 140, 30);
+			
+			pantalonesChooserPreview = new JLabel(" ");
+			pantalonesChooserPreview.setBounds(40, 100, 550, 30);
+			
+			pantalonesMarcaLabel = new JLabel("De que marca son los pantalones?: ");
+			pantalonesMarcaLabel.setBounds(40, 150, 300, 40);
+			pantalonesMarcaText = new JTextField();
+			pantalonesMarcaText.setBounds(360, 160, 100, 30);
+			
+			pantalonesLargoLabel = new JLabel("Son largos los pantalones?: ");
+			pantalonesLargoLabel.setBounds(40,200, 300, 40);
+			pantalonesLargoSiRB = new JRadioButton("Si");
+			pantalonesLargoSiRB.setBounds(360, 200, 50, 40);
+			pantalonesLargoNoRB = new JRadioButton("No");
+			pantalonesLargoNoRB.setBounds(430, 200, 50, 40);
+			
+			atrasAñadirPantalones = new JButton("Atrás");
+			atrasAñadirPantalones.setBounds(10, 340, 200, 30);
+			
+			siguienteAñadirPantalones = new JButton("Siguiente");
+			siguienteAñadirPantalones.setBounds(500, 340, 200, 30);
+			
+			ventanaAñadirPantalones.add(importarFotoPantalones);
+			ventanaAñadirPantalones.add(pantalonesMarcaLabel);
+			ventanaAñadirPantalones.add(pantalonesMarcaText);
+			ventanaAñadirPantalones.add(pantalonesLargoLabel);
+			ventanaAñadirPantalones.add(pantalonesLargoSiRB);
+			ventanaAñadirPantalones.add(pantalonesLargoNoRB);
+			ventanaAñadirPantalones.add(atrasAñadirPantalones);
+			ventanaAñadirPantalones.add(siguienteAñadirPantalones);
+			
+			importarFotoPantalonesChooser.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JFileChooser chooser = new JFileChooser();
+					chooser.showOpenDialog(null);
+					File f = chooser.getSelectedFile();
+					String filename = f.getAbsolutePath();
+					
+					pantalonesChooserPreview.setText(filename);
+					
+				}
+			});
+			
+			atrasAñadirPantalones.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					
+					CambiarPanel(ventanaAñadirPantalones, ventanaAñadirVestimenta1);
+					ventanaAñadirVestimenta1Cancelar.setVisible(true);
+					ventanaAñadirVestimenta1Atras.setVisible(false);
+					
+				}
+			});			
+			
+			
+			siguienteAñadirPantalones.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					Boolean pantalonesLargoSiNo = null;
+					if (pantalonesLargoSiRB.isSelected()) {
+						pantalonesLargoSiNo = true;
+					} else if (pantalonesLargoNoRB.isSelected()) {
+						pantalonesLargoSiNo = false;
+					} else {
+						JOptionPane.showMessageDialog(ventanaAñadirChaquetas, "Debes seleccionar si es largo o no el pantalon");
+
+					}
+					
+						try {
+							BaseDatosModise.añadirPantalones(pantalonesMarcaText.getText() ,pantalonesLargoSiNo, gorrosChooserPreview.getText());
+						} catch (FileNotFoundException | BDException e1) {
+							e1.printStackTrace();
+						}
+					
+					
+					CambiarPanel(ventanaAñadirPantalones, ventanaMenuPrincipal);
+					
+				}
+			});
+			
+			
+		//Añadiendo los componentes de ventanaAñadirZapatos
+
+			//Importar foto
+			importarFotoZapatos = new JLabel("Seleccionar foto para importar de la prenda: ");
+			importarFotoZapatos.setBounds(40, 50, 300, 40);
+			
+			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
+			importarFotoZapatosChooser = new JButton("Seleccionar Foto");
+			importarFotoZapatosChooser.setBounds(360, 60, 140, 30);
+			
+			zapatosChooserPreview = new JLabel(" ");
+			zapatosChooserPreview.setBounds(40, 100, 550, 30);
+			
+			zapatosTipoLabel = new JLabel("De que tipo son los zapatos?: ");
+			zapatosTipoLabel.setBounds(40,150, 300, 40);
+			zapatosDeportivosRB = new JRadioButton("Deportivos");
+			zapatosDeportivosRB.setBounds(360, 150, 100, 40);
+			zapatosVestirRB = new JRadioButton("De Vestir");
+			zapatosVestirRB.setBounds(470, 150, 100, 40);
+			
+			atrasAñadirZapatos = new JButton("Atrás");
+			atrasAñadirZapatos.setBounds(10, 340, 200, 30);
+			
+			siguienteAñadirZapatos = new JButton("Siguiente");
+			siguienteAñadirZapatos.setBounds(500, 340, 200, 30);
+			
+			ventanaAñadirZapatos.add(importarFotoZapatosChooser);
+			ventanaAñadirZapatos.add(zapatosChooserPreview);
+			ventanaAñadirZapatos.add(importarFotoZapatos);
+			ventanaAñadirZapatos.add(zapatosTipoLabel);
+			ventanaAñadirZapatos.add(zapatosDeportivosRB);
+			ventanaAñadirZapatos.add(zapatosVestirRB);
+			ventanaAñadirZapatos.add(atrasAñadirZapatos);
+			ventanaAñadirZapatos.add(siguienteAñadirZapatos);
+			
+			importarFotoZapatosChooser.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					JFileChooser chooser = new JFileChooser();
+					chooser.showOpenDialog(null);
+					File f = chooser.getSelectedFile();
+					String filename = f.getAbsolutePath();
+					
+					zapatosChooserPreview.setText(filename);
+					
+				}
+			});
+			
+			atrasAñadirZapatos.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					CambiarPanel(ventanaAñadirZapatos, ventanaAñadirVestimenta1);
+					ventanaAñadirVestimenta1Cancelar.setVisible(true);
+					ventanaAñadirVestimenta1Atras.setVisible(false);
+					
+				}
+			});			
+			
+			
+			siguienteAñadirZapatos.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					Boolean deportivoSiNo = null;
+					if (zapatosDeportivosRB.isSelected()) {
+						deportivoSiNo = true;
+					} else {
+						deportivoSiNo = false;
+					}
+					
+					Boolean devestirSiNo = null;
+					if (zapatosVestirRB.isSelected()) {
+						devestirSiNo = true;
+					} else {
+						devestirSiNo = false;
+					}
+					
+					
+					
+						try {
+							BaseDatosModise.añadirZapatos(deportivoSiNo, devestirSiNo, zapatosChooserPreview.getText());
+						} catch (FileNotFoundException | BDException e1) {
+							e1.printStackTrace();
+						} 
+					
+					CambiarPanel(ventanaAñadirZapatos, ventanaMenuPrincipal);
+					
+				}
+			});
+			
+		
+		
+			
+			
 		// Añadiendo los componentes de ventanaFeedback
 		nivelSatisfaccion = new JLabel("Nivel de satisfaccion: ");
 		nivelSatisfaccion.setFont(new Font("Monospace", Font.BOLD, 13));
@@ -1444,7 +2119,24 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Cambiar contraseña");
+
+				String input = JOptionPane.showInputDialog(null, "Nueva contraseña:", "Cambiar contraseña.", 2);
+
+				Connection conexion = BaseDatosModise.conectar();
+				Statement st = null;
+				try {
+					st = conexion.createStatement();
+				} catch (SQLException e1) {
+
+				}
+				if (!input.equals("")) {
+					BaseDatosModise.cambiarContraseña(st, input, txtEmail.getText());
+					System.out.println("Cambiar contraseña - nueva contraseña: " + input);
+				} else {
+					JOptionPane.showMessageDialog(null, "No se acepta contraseña vacia.", "Error",
+							JOptionPane.ERROR_MESSAGE);
+					System.out.println("Contraseña vacia o null, NO CAMBIADA");
+				}
 			}
 		});
 
@@ -1470,7 +2162,7 @@ public class Principal {
 		ventanaMasMenosAdmin.add(labelEmailMasMenosAdmin);
 		labelEmailMasMenosAdmin.setBounds(25, 100, 350, 40);
 
-		txtEmailMasMenosAdmin = new JTextField();
+		txtEmailMasMenosAdmin = new JTextField("");
 		ventanaMasMenosAdmin.add(txtEmailMasMenosAdmin);
 		txtEmailMasMenosAdmin.setBounds(375, 100, 300, 40);
 
@@ -1479,8 +2171,9 @@ public class Principal {
 		labelSelecionOperacionMasMenosAdmin.setBounds(25, 200, 300, 40);
 
 		comboMasMenosAdministrador = new JComboBox<String>();
-		comboMasMenosAdministrador.addItem("Hacer Administrador");
-		comboMasMenosAdministrador.addItem("Quitar privilegios de Administrador");
+		comboMasMenosAdministrador.addItem("Hacer Administrador.");
+		comboMasMenosAdministrador.addItem("Quitar privilegios de Administrador.");
+		comboMasMenosAdministrador.addItem("Eliminar cuenta.");
 		ventanaMasMenosAdmin.add(comboMasMenosAdministrador);
 		comboMasMenosAdministrador.setBounds(375, 200, 300, 40);
 
@@ -1492,13 +2185,13 @@ public class Principal {
 		ventanaMasMenosAdmin.add(botonatrasMasMenosAdmin);
 		botonatrasMasMenosAdmin.setBounds(25, 350, 200, 40);
 
-		labelErrorMasMenosAdmin = new JLabel("Error, email no valido, porfavor reviselo e intentelo otra vez.");
+		labelErrorMasMenosAdmin = new JLabel();
 		ventanaMasMenosAdmin.add(labelErrorMasMenosAdmin);
 		labelErrorMasMenosAdmin.setVisible(false);
 		labelErrorMasMenosAdmin.setBounds(25, 400, 350, 40);
 		labelErrorMasMenosAdmin.setForeground(Color.red);
 
-		labelSuccessMasMenosAdmin = new JLabel("Cambio realizado con Exito!");
+		labelSuccessMasMenosAdmin = new JLabel();
 		ventanaMasMenosAdmin.add(labelSuccessMasMenosAdmin);
 		labelSuccessMasMenosAdmin.setVisible(false);
 		labelSuccessMasMenosAdmin.setBounds(25, 400, 300, 40);
@@ -1506,33 +2199,40 @@ public class Principal {
 		// Action Lsiteners
 		botonGuardarCambiosMasMenosAdmin.addActionListener(new ActionListener() {
 
-			String editarEmail = txtEmailMasMenosAdmin.getText();
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("boton Realizar Cambios");
+				System.out.println("botonGuardarCambiosMasMenosAdmin");
+				labelSuccessMasMenosAdmin.setText("");
+				labelErrorMasMenosAdmin.setText("");
 
-				if (editarEmail.matches(
-						"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
-						&& !editarEmail.isEmpty()) {
+				Connection conexion = BaseDatosModise.conectar();
+				Statement st = null;
+				try {
+					st = conexion.createStatement();
 
-					// if (escrito1) {
-					// comprobacion de que el email exista en la base de datos!
+					if (!txtEmailMasMenosAdmin.getText().equals("a")) {
+						if (BaseDatosModise.existeUsuario(st, txtEmailMasMenosAdmin.getText()) == false) {
+							if (comboMasMenosAdministrador.getSelectedIndex() == 0) {
+								BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 1);
+								labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
+							} else if (comboMasMenosAdministrador.getSelectedIndex() == 1) {
+								BaseDatosModise.cambiarAdmin(st, txtEmailMasMenosAdmin.getText(), 0);
+								labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
+							} else if (comboMasMenosAdministrador.getSelectedIndex() == 2) {
+								BaseDatosModise.eliminarUsuario(st, txtEmailMasMenosAdmin.getText());
+								labelSuccessMasMenosAdmin.setText("Cambio realizado con Exito!");
+							}
+						} else if (BaseDatosModise.existeUsuario(st, txtEmailMasMenosAdmin.getText()) == true) {
+							labelErrorMasMenosAdmin
+									.setText("Error, email no valido, porfavor reviselo e intentelo otra vez.");
+						}
+					} else {
+						labelErrorMasMenosAdmin
+								.setText("Error, email no valido, porfavor reviselo e intentelo otra vez.");
 
-					if (comboMasMenosAdministrador.getSelectedItem() == "Hacer Administrador") {
-						// hacer el usuario en la base de datos y en la clase de usuarios administrador
-						// (dejarlo en true el boolean admin)
-						labelSuccessMasMenosAdmin.setVisible(true);
-
-					} else if (comboMasMenosAdministrador.getSelectedItem() == "Quitar privilegios de Administrado") {
-						// Hacer el boolean Admin de la BD y clase False
-						labelSuccessMasMenosAdmin.setVisible(true);
 					}
-					// }
-				} else {
-					labelErrorMasMenosAdmin.setVisible(true);
+				} catch (SQLException e1) {
 				}
-
 			}
 		});
 
@@ -1546,6 +2246,8 @@ public class Principal {
 				mb.setVisible(true);
 				mb.setEnabled(true);
 				txtEmailMasMenosAdmin.setText("");
+				labelErrorMasMenosAdmin.setText("");
+				labelSuccessMasMenosAdmin.setText("");
 			}
 		});
 
@@ -1554,6 +2256,8 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// propeties
+
 				// Menu
 				mb.setVisible(false);
 				mb.setEnabled(false);
@@ -1617,9 +2321,6 @@ public class Principal {
 				radioButtonsEstrellas.clearSelection();
 				radioButtonsSiNo.clearSelection();
 
-				// ventanaAñadirVestimenta
-				radioButtonsTiempo.clearSelection();
-
 				// "sobras"
 				// quitar comentario y agregar aqui <-
 
@@ -1627,6 +2328,7 @@ public class Principal {
 				Usuariolog.println("Sesion cerrada.");
 				CambiarPanel(ventanaMenuPrincipal, ventanaInicioSesion);
 				System.out.println("Sesion cerrada.");
+				setProp("ejemplo@gmail.com", "12345");
 
 			}
 		});
@@ -1642,11 +2344,54 @@ public class Principal {
 			}
 		});
 
+		mi3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String valorPass = new String(contraseña.getPassword());
+				setProp(txtEmail.getText(), valorPass);
+				System.out.println("X");
+				Usuariolog.println("Fin del programa.\n");
+				Usuariolog.close();
+				frame.dispose();
+			}
+		});
+
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				setProp("ejemplo@gmail.com", "12345");
+				System.out.println("windowClosing");
 				Usuariolog.println("Fin del programa.\n");
 				Usuariolog.close();
+			}
+
+			@Override
+			public void windowOpened(WindowEvent we) {
+				System.out.println("windowOpened");
+				File archivo = new File("account.properties");
+				if (archivo.length() == 0) {
+					System.out.println("File is empty ...");
+					FileWriter writer;
+					try {
+						writer = new FileWriter(archivo);
+						writer.write("#program Settings\r\n" + "#Sun Dec 08 18:32:29 CET 2019\r\n"
+								+ "correo=ejemplo@gmail.com\r\n" + "contrasena=12345\r\n" + "");
+						writer.flush();
+						writer.close();
+						frame.dispose();
+						SwingUtilities.invokeLater(new Runnable() {
+							@Override
+							public void run() {
+								new Principal();
+							}
+						});
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				} else {
+					System.out.println("File is not empty ...");
+				}
 			}
 		});
 
@@ -1679,15 +2424,28 @@ public class Principal {
 		Usuariolog.println("Inicio del programa.");
 		// fin de log1
 
+		// logger1
+		try {
+			BDLogger = Logger.getLogger("BDLogger");
+			BDLogger.addHandler(new FileHandler("BDLogger.xml", true));
+		} catch (Exception e) {
+		}
+		// ->en esta misma clase
+		// BDLogger.log(Level.X, " Message ");
+
+		// -> en otra clase de este paquete
+		// TestConexion.BDLogger.log(Level.X [Por ahora Level.INFO], "Message");
+
+		// fin logger1
+
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
 				new Principal();
-
 			}
 		});
-		System.out.println(new Date());
 
+		System.out.println(new Date());
 	}
 
 }
