@@ -253,7 +253,7 @@ public class BaseDatosModise {
 		// 1.PrepareStatement
 		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 		
-		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO camiseta values (?,?,?,?)");
+		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO camisetas values (?,?,?,?)");
 		
 		Stmt.setInt(1, idprend);
 		Stmt.setBoolean(2, rayas);
