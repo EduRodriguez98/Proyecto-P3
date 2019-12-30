@@ -88,7 +88,7 @@ CREATE TABLE `color` (
 
 LOCK TABLES `color` WRITE;
 /*!40000 ALTER TABLE `color` DISABLE KEYS */;
-INSERT INTO `color` VALUES (1,'rojo'),(2,'azul'),(3,'amarillo'),(4,'verde'),(5,'negro');
+INSERT INTO `color` VALUES (1,'rojo'),(2,'azul'),(3,'amarillo'),(4,'verde'),(5,'negro'),(6,'rosa'),(7,'multicolor'),(8,'Blanco'),(9,'Gris');
 /*!40000 ALTER TABLE `color` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,4 +398,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-30 10:10:54
+-- Dump completed on 2019-12-30 11:19:55
