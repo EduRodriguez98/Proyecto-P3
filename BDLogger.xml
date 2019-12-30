@@ -5401,6 +5401,7 @@ select * from usuario where correo = 'a' and contrasena = '1'</message>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
+<<<<<<< HEAD
 <record>
   <date>2019-12-28T16:12:31.707347Z</date>
   <millis>1577549551707</millis>
@@ -5637,3 +5638,14 @@ select * from usuario where correo = 'a' and contrasena = '1a'</message>
     </frame>
   </exception>
 </record>
+=======
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
