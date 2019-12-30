@@ -1634,6 +1634,9 @@ public class Principal {
 			chaquetasLargoSiRB.setBounds(360, 150, 50, 40);
 			chaquetasLargoNoRB = new JRadioButton("No");
 			chaquetasLargoNoRB.setBounds(430, 150, 50, 40);
+			ButtonGroup radioLargoBG = new ButtonGroup();
+			radioLargoBG.add(chaquetasLargoSiRB);
+			radioLargoBG.add(chaquetasLargoNoRB);
 			
 			chaquetasLisaLabel = new JLabel("La chaqueta es lisa?: ");
 			chaquetasLisaLabel.setBounds(40,200, 300, 40);
@@ -1641,6 +1644,9 @@ public class Principal {
 			chaquetasLisaSiRB.setBounds(360, 200, 50, 40);
 			chaquetasLisaNoRB = new JRadioButton("No");
 			chaquetasLisaNoRB.setBounds(430, 200, 50, 40);
+			ButtonGroup radioLisaBG = new ButtonGroup();
+			radioLisaBG.add(chaquetasLisaSiRB);
+			radioLisaBG.add(chaquetasLisaNoRB);
 			
 			atrasAñadirChaquetas = new JButton("Atrás");
 			atrasAñadirChaquetas.setBounds(10, 340, 200, 30);
@@ -1746,6 +1752,9 @@ public class Principal {
 			gorrosVeranoSiRB.setBounds(360, 200, 50, 40);
 			gorrosVeranoNoRB = new JRadioButton("No");
 			gorrosVeranoNoRB.setBounds(430, 200, 50, 40);
+			ButtonGroup radioVeranoBG = new ButtonGroup();
+			radioVeranoBG.add(gorrosVeranoSiRB);
+			radioVeranoBG.add(gorrosVeranoNoRB);
 			
 			atrasAñadirGorros = new JButton("Atrás");
 			atrasAñadirGorros.setBounds(10, 340, 200, 30);
@@ -1939,6 +1948,9 @@ public class Principal {
 			zapatosDeportivosRB.setBounds(360, 150, 100, 40);
 			zapatosVestirRB = new JRadioButton("De Vestir");
 			zapatosVestirRB.setBounds(470, 150, 100, 40);
+			ButtonGroup radioTipoZapatosBG = new ButtonGroup();
+			radioTipoZapatosBG.add(zapatosDeportivosRB);
+			radioTipoZapatosBG.add(zapatosVestirRB);
 			
 			atrasAñadirZapatos = new JButton("Atrás");
 			atrasAñadirZapatos.setBounds(10, 340, 200, 30);
