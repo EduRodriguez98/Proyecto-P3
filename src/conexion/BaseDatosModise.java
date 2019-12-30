@@ -253,13 +253,14 @@ public class BaseDatosModise {
 		// 1.PrepareStatement
 		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 		
-		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO camisetas values (?,?,?,?)");
+		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO camisetas (idprendas, logotipo, rayas, cuadros, fotocamiseta) values (?,?,?,?,?)");
 		
 		Stmt.setInt(1, idprend);
-		Stmt.setBoolean(2, rayas);
-		Stmt.setBoolean(3, cuadros);
+		Stmt.setString(2, logotipo);
+		Stmt.setBoolean(3, rayas);
+		Stmt.setBoolean(4, cuadros);
 		InputStream fotoCamisetaIS = new FileInputStream(new File(pathCamiseta));
-		Stmt.setBlob(4, fotoCamisetaIS);
+		Stmt.setBlob(5, fotoCamisetaIS);
 		
 		Stmt.executeUpdate();
 		} catch (SQLException e2) {
@@ -292,13 +293,13 @@ public class BaseDatosModise {
 			// 1.PrepareStatement
 			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
-			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO chaquetas values (?,?,?,?)");
+			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO chaquetas (idprendas, larga, lisa, fotochaqueta) values (?,?,?,?)");
 			
 			Stmt.setInt(1, idprend);
 			Stmt.setBoolean(2, larga);
 			Stmt.setBoolean(3, lisa);
-			InputStream fotoChaquetasIS = new FileInputStream(new File(pathChaquetas));
-			Stmt.setBlob(4, fotoChaquetasIS);
+			InputStream fotoChaquetaIS = new FileInputStream(new File(pathChaquetas));
+			Stmt.setBlob(4, fotoChaquetaIS);
 			
 			Stmt.executeUpdate();
 			} catch (SQLException e2) {
@@ -331,7 +332,7 @@ public class BaseDatosModise {
 			// 1.PrepareStatement
 			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
-			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO gorros values (?,?,?)");
+			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO gorros (idprendas, verano, fotogorros) values (?,?,?)");
 			
 			Stmt.setInt(1, idprend);
 			Stmt.setBoolean(2, verano);
@@ -369,7 +370,7 @@ public class BaseDatosModise {
 			// 1.PrepareStatement
 			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
-			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO pantalones values (?,?,?,?)");
+			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO pantalones (idprendas, marca, corto, fotopantalones) values (?,?,?,?)");
 			
 			Stmt.setInt(1, idprend);
 			Stmt.setString(2, marca);
@@ -410,7 +411,7 @@ public class BaseDatosModise {
 			// 1.PrepareStatement
 			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
-			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO zapatos values (?,?,?,?)");
+			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO zapatos (idprendas, deportivos, deVestir, fotozapatos) values (?,?,?,?)");
 			
 			Stmt.setInt(1, idprend);
 			Stmt.setBoolean(2, deportivos);

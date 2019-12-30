@@ -1339,6 +1339,10 @@ public class Principal {
 		coloresComboBoxAñadirVestimenta.addItem("Amarillo");
 		coloresComboBoxAñadirVestimenta.addItem("Verde");
 		coloresComboBoxAñadirVestimenta.addItem("Negro");
+		coloresComboBoxAñadirVestimenta.addItem("Rosa");
+		coloresComboBoxAñadirVestimenta.addItem("Multicolor");
+		coloresComboBoxAñadirVestimenta.addItem("Blanco");
+		coloresComboBoxAñadirVestimenta.addItem("Gris");
 
 		tipoLabelAñadirVestimenta.setBounds(190, 50, 400, 40);
 		estilosLabelAñadirVestimenta.setBounds(190, 100, 400, 40);
@@ -1838,6 +1842,10 @@ public class Principal {
 			pantalonesLargoSiRB.setBounds(360, 200, 50, 40);
 			pantalonesLargoNoRB = new JRadioButton("No");
 			pantalonesLargoNoRB.setBounds(430, 200, 50, 40);
+			ButtonGroup pantalonesBG = new ButtonGroup();
+			pantalonesBG.add(pantalonesLargoNoRB);
+			pantalonesBG.add(pantalonesLargoSiRB);
+
 			
 			atrasAñadirPantalones = new JButton("Atrás");
 			atrasAñadirPantalones.setBounds(10, 340, 200, 30);
@@ -1846,6 +1854,8 @@ public class Principal {
 			siguienteAñadirPantalones.setBounds(500, 340, 200, 30);
 			
 			ventanaAñadirPantalones.add(importarFotoPantalones);
+			ventanaAñadirPantalones.add(importarFotoPantalonesChooser);
+			ventanaAñadirPantalones.add(pantalonesChooserPreview);
 			ventanaAñadirPantalones.add(pantalonesMarcaLabel);
 			ventanaAñadirPantalones.add(pantalonesMarcaText);
 			ventanaAñadirPantalones.add(pantalonesLargoLabel);
@@ -1898,7 +1908,7 @@ public class Principal {
 					}
 					
 						try {
-							BaseDatosModise.añadirPantalones(pantalonesMarcaText.getText() ,pantalonesLargoSiNo, gorrosChooserPreview.getText());
+							BaseDatosModise.añadirPantalones(pantalonesMarcaText.getText() ,pantalonesLargoSiNo, pantalonesChooserPreview.getText());
 						} catch (FileNotFoundException | BDException e1) {
 							e1.printStackTrace();
 						}
