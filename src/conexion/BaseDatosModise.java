@@ -1,6 +1,7 @@
 package conexion;
 
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -425,30 +426,53 @@ public class BaseDatosModise {
 			}
 		}
 	
+	//Sin terminar, necesito el CODIGO SQL para hacer el metodo de extracción de fotos
 	
-	class CrearOutfit {
+		// 1. Tiene que mirar en la BD en tabla prendas, que camiseta, chaqueta, gorro, pantalon, zapatos tiene como valor nivelImp > 40 para outfit soleado y usar el id para sacar cada TIPO
+			
+				//se me ocurre  ("SELECT p.idprendas, c.fotocamiseta FROM prendas p, camisetas c LEFT JOIN outfitSolC osc on p.idprendas = osc.idprendas WHERE p.nivelImp < 40")
+				//				("SELECT p.idprendas, ch.fotochaqueta FROM prendas p, chaquetas ch LEFT JOIN outfitSolCh osc on p.idprendas = osch.idprendas WHERE p.nivelImp < 40")
+				//				("SELECT p.idprendas, g.fotogorros FROM prendas p, gorros g LEFT JOIN outfitSolG osc on p.idprendas = osg.idprendas WHERE p.nivelImp < 40")
+				//				("SELECT p.idprendas, pa.fotopantalones FROM prendas p, pantalones pa ch LEFT JOIN outfitSolPa ospa on p.idprendas = osch.idprendas WHERE p.nivelImp < 40")
+				//				("SELECT p.idprendas, z.fotozapatos FROM prendas p, zapatos z ch LEFT JOIN outfitSolZ osz on p.idprendas = osz.idprendas WHERE p.nivelImp < 40")
+
+								
+				// booleans 0 = false, 1 = true para genero!
 	
-		/*
-		 * JFileChooser archivo = new JFileChooser();
-		 * 
-		 * int ventana = archivo.
-		 * 
-		 * 
-		 * FileNameExtensionFilter filtro = new
-		 * FileNameExtensionFilter("Formatos de archivos JPEG(*.JPG;*.JPEG)", "jpg",
-		 * "jpeg");
-		 * 
-		 * 
-		 * archivo.addChooseableFileFilter(filtro);
-		 * archivo.setDialogTitle("Abrir archivo"); File ruta = new File
-		 * ("la ruta en la que tengamos la foto"); archivo.setCurrentDirectory(ruta);
-		 * int ventana = archivo.showOpenDialog(null); if(ventana ==
-		 * JFileChooser.APPROVE_OPTION) { File file = archivo.getSelectedFile();
-		 * txtnomimagen.setText(String.valueOf(file)); Image foto =
-		 * getToolkit().getImage(txtnomimage.getText()); //importar Image foto =
-		 * foto.getScaledInstance(110,110,Image.SCALE_DEFAULT); lblfoto.setIcon(new
-		 * ImageIcon(foto));
-		 */
+	
+				//luego una vez obtenido las tablas join, sacar 1 foto de cada una de estas para poder ir añadiendo una por una a la ventana JAVA en principal.java
+				//hay un String estilo y Boolean genero para poder hacer condiciones de seleccionar WHERE genero = 0,1 y estiloPrendas = ""
+				//Si hacemos un estilo IN = estiloseleccionado ya lo tendriamos, pero si se selecciona no tengo estilo en mente hacemos 1 metodo mas para prendas que no miren 1 estilo especifico
+				// que son los sql que ya tenemos arriba. Eso cubriría todas las condiciones que nos hacen falta.
+	
+		// 2. Tiene que devolver la foto de cada una de estas prendas como un objeto que podamos añadir a la ventana en Principal.java
+		// 3. Mi recomendacion es hacer varias conexiones en el metodo (5, una para cada prenda) para ir sacando foto por foto con PreparedStatements
+		// 4. Habrá que hacer 1 metodo outfitsoleado, 1 metodo outfitLluvia, 1 metodo OutfitNublado
+		// 5. las condiciones (soleado nivelImp < 40) (nublado pantalones = largos ^ chaquetas largas)
+		// 6. Hacemos metodos para cada estilo, o creamos 1 metodo para cada tiempo? res: hacemos 1 metodo para cada tiempo en un principio, y también el mismo metodo para Masculino y Femenino
+	
+	public static void crearOutfitSoleado(String estilo, Boolean genero) throws BDException{
+	
+		try {
+			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+			
+			PreparedStatement Stmt = conn.prepareStatement("SELECT ");
+			
+			ResultSet rs = Stmt.executeQuery();
+			
+			while(rs.next()) {
+				java.sql.Blob b = rs.getBlob(2);
+				byte bt[] = b.getBytes(1, (int)b.length());
+				Image img = Toolkit.getDefaultToolkit().createImage(bt);
+				//photoL.setIcon(new ImageIcon(img));
+			}
+			
+			
+		} catch (SQLException e) {
+			throw new BDException ("error al conectar con la BD", e);
+		}
+		
+		
 	}
 
 }

@@ -1268,6 +1268,10 @@ public class Principal {
 					estilosComboBoxPideOutfit.setSelectedIndex(0);
 
 					// LLamar a la clase Crear Outfit
+					
+					
+					
+					
 
 				} else {
 					errorPideOutfit.setText("Rellena todos los campos requeridos.");
