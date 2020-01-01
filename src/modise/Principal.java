@@ -1165,27 +1165,19 @@ public class Principal {
 		ventanaPideOutfit.add(preguntaTiempo);
 		preguntaTiempo.setBounds(50, 0, 300, 100);
 
-		radioSol = new JRadioButton("Soleado");
-		radioSol.setActionCommand("Sol");
+		radioSol = new JRadioButton("Sol");
 		radioSol.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioSol);
 		radioSol.setBounds(50, 80, 100, 40);
-		radioLluvia = new JRadioButton("Llueve");
-		radioLluvia.setActionCommand("Llueve");
+		radioLluvia = new JRadioButton("Lluvia");
 		radioLluvia.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioLluvia);
 		radioLluvia.setBounds(50, 120, 100, 40);
-		radioNublado = new JRadioButton("Nublado");
-		radioNublado.setActionCommand("Nublado");
-		radioNublado.setFont(new Font("Monospace", Font.PLAIN, 12));
-		ventanaPideOutfit.add(radioNublado);
-		radioNublado.setBounds(50, 160, 100, 40);
-
+		
 		ButtonGroup bgPideOutfit = new ButtonGroup();
 		bgPideOutfit.add(radioSol);
 		bgPideOutfit.add(radioLluvia);
-		bgPideOutfit.add(radioNublado);
-
+		
 		preguntaEstilo = new JLabel("Tienes algun estilo en mente para tu outfit?");
 		preguntaEstilo.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPideOutfit.add(preguntaEstilo);
