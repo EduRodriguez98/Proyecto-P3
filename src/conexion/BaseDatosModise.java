@@ -425,26 +425,18 @@ public class BaseDatosModise {
 				throw new BDException("Error en el codigo SQL al insertar los datos en la Base de Datos", e2);
 			}
 		}
-	
-	//Sin terminar, necesito el CODIGO SQL para hacer el metodo de extracción de fotos
-	
-		// 1. Tiene que mirar en la BD en tabla prendas, que camiseta, chaqueta, gorro, pantalon, zapatos tiene como valor nivelImp < 50 para outfit soleado y usar el id para sacar cada TIPO
-			
-				//se me ocurre  ("SELECT p.idprendas, c.fotocamiseta FROM prendas p, camisetas c LEFT JOIN outfitSolC osc on p.idprendas = osc.idprendas WHERE p.nivelImp < 50")
-				//				("SELECT p.idprendas, ch.fotochaqueta FROM prendas p, chaquetas ch LEFT JOIN outfitSolCh osc on p.idprendas = osch.idprendas WHERE p.nivelImp < 50")
-				//				("SELECT p.idprendas, g.fotogorros FROM prendas p, gorros g LEFT JOIN outfitSolG osc on p.idprendas = osg.idprendas WHERE p.nivelImp < 50")
-				//				("SELECT p.idprendas, pa.fotopantalones FROM prendas p, pantalones pa ch LEFT JOIN outfitSolPa ospa on p.idprendas = osch.idprendas WHERE p.nivelImp < 50")
-				//				("SELECT p.idprendas, z.fotozapatos FROM prendas p, zapatos z ch LEFT JOIN outfitSolZ osz on p.idprendas = osz.idprendas WHERE p.nivelImp < 50")
 
+	//Sin terminar, necesito el CODIGO SQL para hacer el metodo de extracción de fotos
+
+		// 1. Tiene que mirar en la BD en tabla prendas, que camiseta, chaqueta, gorro, pantalon, zapatos tiene como valor nivelImp < 50 para outfit soleado y usar el id para sacar cada TIPO
 
 				// booleans 0 = false, 1 = true para genero! 0 male 1 female
-	
 	
 				//luego una vez obtenido las tablas join, sacar 1 foto de cada una de estas para poder ir añadiendo una por una a la ventana JAVA en principal.java
 				//hay un String estilo y Boolean genero para poder hacer condiciones de seleccionar WHERE genero = 0,1 y estiloPrendas = ""
 				//Si hacemos un estilo IN = estiloseleccionado ya lo tendriamos, pero si se selecciona no tengo estilo en mente hacemos 1 metodo mas para prendas que no miren 1 estilo especifico
 				// que son los sql que ya tenemos arriba. Eso cubriría todas las condiciones que nos hacen falta.
-	
+		
 		// 2. Tiene que devolver la foto de cada una de estas prendas como un objeto que podamos añadir a la ventana en Principal.java
 		// 3. Mi recomendacion es hacer varias conexiones en el metodo (5, una para cada prenda) para ir sacando foto por foto con PreparedStatements
 		// 4. Habrá que hacer 1 metodo outfitsoleado, 1 metodo outfitLluvia
