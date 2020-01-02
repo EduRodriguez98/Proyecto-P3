@@ -597,5 +597,6 @@ public class BaseDatosModise {
 		}
 	}
 	
+	//falta el metodo outfitguay que va a ser recursivo con nivelimp y nivelfash.
 	
 }
