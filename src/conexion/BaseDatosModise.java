@@ -426,31 +426,13 @@ public class BaseDatosModise {
 			}
 		}
 
-	//Sin terminar, necesito el CODIGO SQL para hacer el metodo de extracción de fotos
-
-		// 1. Tiene que mirar en la BD en tabla prendas, que camiseta, chaqueta, gorro, pantalon, zapatos tiene como valor nivelImp < 50 para outfit soleado y usar el id para sacar cada TIPO
-
-				// booleans 0 = false, 1 = true para genero! 0 male 1 female
 	
-				//luego una vez obtenido las tablas join, sacar 1 foto de cada una de estas para poder ir añadiendo una por una a la ventana JAVA en principal.java
-				//hay un String estilo y Boolean genero para poder hacer condiciones de seleccionar WHERE genero = 0,1 y estiloPrendas = ""
-				//Si hacemos un estilo IN = estiloseleccionado ya lo tendriamos, pero si se selecciona no tengo estilo en mente hacemos 1 metodo mas para prendas que no miren 1 estilo especifico
-				// que son los sql que ya tenemos arriba. Eso cubriría todas las condiciones que nos hacen falta.
-		
-		// 2. Tiene que devolver la foto de cada una de estas prendas como un objeto que podamos añadir a la ventana en Principal.java
-		// 3. Mi recomendacion es hacer varias conexiones en el metodo (5, una para cada prenda) para ir sacando foto por foto con PreparedStatements
-		// 4. Habrá que hacer 1 metodo outfitsoleado, 1 metodo outfitLluvia
-		// 5. las condiciones (soleado nivelImp < 40) (nublado pantalones = largos ^ chaquetas largas)
-		// 6. Hacemos metodos para cada estilo, o creamos 1 metodo para cada tiempo? res: hacemos 1 metodo para cada tiempo en un principio, y también el mismo metodo para Masculino y Femenino
-
-		// 7. Para el metodo recursivo no hacer join
-	
-	public static void crearOutfitSoleado(String estilo, Boolean genero) throws BDException{
+	public static void crearOutfitSoleado(String estiloj, Boolean generoj, int colorj) throws BDException{
 	
 		try {
 			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
-			PreparedStatement Stmt = conn.prepareStatement(" ");
+			PreparedStatement Stmt = conn.prepareStatement("'SELECT fotocamiseta ORDERY BY RAND() LIMIT 1 WHERE genero = '" + generoj + "' AND estiloPrendas = '" + estiloj + "' AND id_color = '" + colorj + " '");          
 			
 			ResultSet rs = Stmt.executeQuery();
 			
