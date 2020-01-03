@@ -30,13 +30,13 @@ CREATE TABLE `camisetaguay` (
   `fotocamiseta` longblob,
   `nivelImp` int(11) DEFAULT NULL,
   `nivelFash` int(11) DEFAULT NULL,
+  `generocg` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idcamisetas`,`idcolor`),
   KEY `idcamisetas_idx` (`idcamisetas`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idcamisetasguay` FOREIGN KEY (`idcamisetas`) REFERENCES `camisetas` (`idcamisetas`),
   CONSTRAINT `idcolorcguay` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
-  CONSTRAINT `idprendascguay` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `camisetaguay_chk_2` CHECK ((`nivelFash` > 50))
+  CONSTRAINT `idprendascguay` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -63,13 +63,13 @@ CREATE TABLE `camisetalluvia` (
   `estiloPrendas` char(15) DEFAULT NULL,
   `fotocamiseta` longblob,
   `nivelImp` int(11) DEFAULT NULL,
+  `generocll` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idcamisetas`,`idcolor`),
   KEY `idcamisetas_idx` (`idcamisetas`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idcamisetaslluvia` FOREIGN KEY (`idcamisetas`) REFERENCES `camisetas` (`idcamisetas`),
   CONSTRAINT `idcolorclluvia` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
-  CONSTRAINT `idprendaslluvia` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `camisetalluvia_chk_1` CHECK ((`nivelImp` > 49))
+  CONSTRAINT `idprendaslluvia` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -124,13 +124,13 @@ CREATE TABLE `camisetasol` (
   `estiloPrendas` char(15) DEFAULT NULL,
   `fotocamiseta` longblob,
   `nivelImp` int(11) DEFAULT NULL,
+  `generocs` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idcamisetas`,`idcolor`),
   KEY `idcamisetas_idx` (`idcamisetas`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idcamisetassol` FOREIGN KEY (`idcamisetas`) REFERENCES `camisetas` (`idcamisetas`),
   CONSTRAINT `idcolorcsol` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
-  CONSTRAINT `idprendassol` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `camisetasol_chk_1` CHECK ((`nivelImp` < 50))
+  CONSTRAINT `idprendassol` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -158,13 +158,13 @@ CREATE TABLE `chaquetaguay` (
   `fotochaqueta` longblob,
   `nivelImp` int(11) DEFAULT NULL,
   `nivelFash` int(11) DEFAULT NULL,
+  `generochg` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idchaquetas`,`idcolor`),
   KEY `idchaquetas_idx` (`idchaquetas`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idchaquetasguay` FOREIGN KEY (`idchaquetas`) REFERENCES `chaquetas` (`idchaquetas`),
   CONSTRAINT `idcolorchguay` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
-  CONSTRAINT `idprendaschguay` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `chaquetaguay_chk_1` CHECK ((`nivelFash` > 50))
+  CONSTRAINT `idprendaschguay` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -191,13 +191,13 @@ CREATE TABLE `chaquetalluvia` (
   `estiloPrendas` char(15) DEFAULT NULL,
   `fotochaqueta` longblob,
   `nivelImp` int(11) DEFAULT NULL,
+  `generochll` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idchaquetas`,`idcolor`),
   KEY `idchaquetas_idx` (`idchaquetas`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idchaquetaslluvia` FOREIGN KEY (`idchaquetas`) REFERENCES `chaquetas` (`idchaquetas`),
   CONSTRAINT `idcolorchlluvia` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
-  CONSTRAINT `idprendaschlluvia` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `chaquetalluvia_chk_1` CHECK ((`nivelImp` > 49))
+  CONSTRAINT `idprendaschlluvia` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -251,13 +251,13 @@ CREATE TABLE `chaquetasol` (
   `estiloPrendas` char(15) DEFAULT NULL,
   `fotochaqueta` longblob,
   `nivelImp` int(11) DEFAULT NULL,
+  `generochs` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idchaquetas`,`idcolor`),
   KEY `idchaquetas_idx` (`idchaquetas`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idchaquetassol` FOREIGN KEY (`idchaquetas`) REFERENCES `chaquetas` (`idchaquetas`),
   CONSTRAINT `idcolorchsol` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
-  CONSTRAINT `idprendaschsol` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `chaquetasol_chk_1` CHECK ((`nivelImp` < 50))
+  CONSTRAINT `idprendaschsol` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -309,13 +309,13 @@ CREATE TABLE `gorroguay` (
   `fotogorros` longblob,
   `nivelImp` int(11) DEFAULT NULL,
   `nivelFash` int(11) DEFAULT NULL,
+  `generogg` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idgorros`,`idcolor`),
   KEY `idgorros_idx` (`idgorros`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idcolorgguay` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
   CONSTRAINT `idgorrosguay` FOREIGN KEY (`idgorros`) REFERENCES `gorros` (`idgorros`),
-  CONSTRAINT `idprendasgguay` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `gorroguay_chk_1` CHECK ((`nivelFash` > 50))
+  CONSTRAINT `idprendasgguay` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -342,13 +342,13 @@ CREATE TABLE `gorrolluvia` (
   `estiloPrendas` char(15) DEFAULT NULL,
   `fotogorros` longblob,
   `nivelImp` int(11) DEFAULT NULL,
+  `generogll` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idgorros`,`idcolor`),
   KEY `idgorros_idx` (`idgorros`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idcolorglluvia` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
   CONSTRAINT `idgorroslluvia` FOREIGN KEY (`idgorros`) REFERENCES `gorros` (`idgorros`),
-  CONSTRAINT `idprendasglluvia` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `gorrolluvia_chk_1` CHECK ((`nivelImp` > 49))
+  CONSTRAINT `idprendasglluvia` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -401,13 +401,13 @@ CREATE TABLE `gorrosol` (
   `estiloPrendas` char(15) DEFAULT NULL,
   `fotogorros` longblob,
   `nivelImp` int(11) DEFAULT NULL,
+  `generogs` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idgorros`,`idcolor`),
   KEY `idgorros_idx` (`idgorros`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idcolorgsol` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
   CONSTRAINT `idgorrossol` FOREIGN KEY (`idgorros`) REFERENCES `gorros` (`idgorros`),
-  CONSTRAINT `idprendasgsol` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `gorrosol_chk_1` CHECK ((`nivelImp` < 50))
+  CONSTRAINT `idprendasgsol` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -489,13 +489,13 @@ CREATE TABLE `pantalonguay` (
   `fotopantalones` longblob,
   `nivelImp` int(11) DEFAULT NULL,
   `nivelFash` int(11) DEFAULT NULL,
+  `generopg` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idpantalones`,`idcolor`),
   KEY `idpantalones_idx` (`idpantalones`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idcolorpguay` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
   CONSTRAINT `idpantalonesguay` FOREIGN KEY (`idpantalones`) REFERENCES `pantalones` (`idpantalones`),
-  CONSTRAINT `idprendaspguay` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `pantalonguay_chk_1` CHECK ((`nivelFash` > 50))
+  CONSTRAINT `idprendaspguay` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -522,13 +522,13 @@ CREATE TABLE `pantalonlluvia` (
   `estiloPrendas` char(15) DEFAULT NULL,
   `fotopantalones` longblob,
   `nivelImp` int(11) DEFAULT NULL,
+  `generopll` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idpantalones`,`idcolor`),
   KEY `idpantalones_idx` (`idpantalones`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idcolorplluvia` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
   CONSTRAINT `idpantaloneslluvia` FOREIGN KEY (`idpantalones`) REFERENCES `pantalones` (`idpantalones`),
-  CONSTRAINT `idprendasplluvia` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `pantalonlluvia_chk_1` CHECK ((`nivelImp` > 49))
+  CONSTRAINT `idprendasplluvia` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -555,13 +555,13 @@ CREATE TABLE `pantalonsol` (
   `estiloPrendas` char(15) DEFAULT NULL,
   `fotopantalones` longblob,
   `nivelImp` int(11) DEFAULT NULL,
+  `generops` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idpantalones`,`idcolor`),
   KEY `idpantalones_idx` (`idpantalones`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idcolorpsol` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
   CONSTRAINT `idpantalonessol` FOREIGN KEY (`idpantalones`) REFERENCES `pantalones` (`idpantalones`),
-  CONSTRAINT `idprendaspsol` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `pantalonsol_chk_1` CHECK ((`nivelImp` < 50))
+  CONSTRAINT `idprendaspsol` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -810,13 +810,13 @@ CREATE TABLE `zapatosguay` (
   `fotozapatos` longblob,
   `nivelImp` int(11) DEFAULT NULL,
   `nivelFash` int(11) DEFAULT NULL,
+  `generozg` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idzapatos`,`idcolor`),
   KEY `idzapatos_idx` (`idzapatos`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idcolorzguay` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
   CONSTRAINT `idprendaszguay` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `idzapatosguay` FOREIGN KEY (`idzapatos`) REFERENCES `zapatos` (`idzapatos`),
-  CONSTRAINT `zapatosguay_chk_1` CHECK ((`nivelFash` > 50))
+  CONSTRAINT `idzapatosguay` FOREIGN KEY (`idzapatos`) REFERENCES `zapatos` (`idzapatos`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -843,13 +843,13 @@ CREATE TABLE `zapatoslluvia` (
   `estiloPrendas` char(15) DEFAULT NULL,
   `fotozapatos` longblob,
   `nivelImp` int(11) DEFAULT NULL,
+  `generozll` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idzapatos`,`idcolor`),
   KEY `idzapatos_idx` (`idzapatos`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idcolorzlluvia` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
   CONSTRAINT `idprendaszlluvia` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `idzapatoslluvia` FOREIGN KEY (`idzapatos`) REFERENCES `zapatos` (`idzapatos`),
-  CONSTRAINT `zapatoslluvia_chk_1` CHECK ((`nivelImp` > 49))
+  CONSTRAINT `idzapatoslluvia` FOREIGN KEY (`idzapatos`) REFERENCES `zapatos` (`idzapatos`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -876,13 +876,13 @@ CREATE TABLE `zapatosol` (
   `estiloPrendas` char(15) DEFAULT NULL,
   `fotozapatos` longblob,
   `nivelImp` int(11) DEFAULT NULL,
+  `generozs` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idprendas`,`idzapatos`,`idcolor`),
   KEY `idzapatos_idx` (`idzapatos`),
   KEY `idcolor_idx` (`idcolor`),
   CONSTRAINT `idcolorzsol` FOREIGN KEY (`idcolor`) REFERENCES `prendas` (`id_color`),
   CONSTRAINT `idprendaszsol` FOREIGN KEY (`idprendas`) REFERENCES `prendas` (`idprendas`),
-  CONSTRAINT `idzapatossol` FOREIGN KEY (`idzapatos`) REFERENCES `zapatos` (`idzapatos`),
-  CONSTRAINT `zapatosol_chk_1` CHECK ((`nivelImp` < 50))
+  CONSTRAINT `idzapatossol` FOREIGN KEY (`idzapatos`) REFERENCES `zapatos` (`idzapatos`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -904,4 +904,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-01 20:51:27
+-- Dump completed on 2020-01-03 16:29:13
