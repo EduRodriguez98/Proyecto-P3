@@ -431,16 +431,6 @@ public class BaseDatosModise {
 	// booleans 0 = false, 1 = true para genero! 0 male 1 female
 
 	
-	public void mecagoenmiputavida() {
-		try {
-			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			
-			PreparedStatement Stmt = conn.prepareStatement("INSERT INTO camisetasol (idprendas, idcamisetas, idcolor, nivelImp, fotocamiseta, estiloPrenda, generocs) FROM prendas p, camisetas c VALUES(p.idprendas, c.idcamisetas, p.id_color, p.nivelImp, c.fotocamiseta, p.estiloPrenda, p.genero) WHERE (nivelImp < 50)");
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-	}
 	
 	
 	public static void crearOutfitSoleado(String estiloj, Boolean generoj, int colorj) throws BDException, SQLException{
