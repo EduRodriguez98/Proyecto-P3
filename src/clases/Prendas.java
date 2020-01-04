@@ -1,6 +1,6 @@
 package clases;
 
-public abstract class Prendas {
+public class Prendas {
 
 	private static int contador = 0;
 

@@ -426,13 +426,98 @@ public class BaseDatosModise {
 			}
 		}
 
+
 	
-	public static void crearOutfitSoleado(String estiloj, Boolean generoj, int colorj) throws BDException{
 	
+	public static void crearOutfitSoleado(String estiloj, Boolean generoj, int colorj) throws BDException, SQLException{
+		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 		try {
-			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
-			PreparedStatement Stmt = conn.prepareStatement("'SELECT fotocamiseta ORDERY BY RAND() LIMIT 1 WHERE genero = '" + generoj + "' AND estiloPrendas = '" + estiloj + "' AND id_color = '" + colorj + " '");          
+			PreparedStatement Stmt = conn.prepareStatement("'SELECT fotocamiseta FROM camisetasol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			
+			ResultSet rs = Stmt.executeQuery();
+			
+			while(rs.next()) {
+				java.sql.Blob b = rs.getBlob(5);
+				byte bt[] = b.getBytes(1, (int)b.length());
+				Image img = Toolkit.getDefaultToolkit().createImage(bt);
+				//camisetaTemp.setIcon(new ImageIcon(img));
+			}
+			rs.close();
+			Stmt.close();
+			
+			
+			
+			Stmt = conn.prepareStatement("'SELECT fotochaqueta FROM chaquetasol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			
+			rs = Stmt.executeQuery();
+			
+			while(rs.next()) {
+				java.sql.Blob b = rs.getBlob(5);
+				byte bt[] = b.getBytes(1, (int)b.length());
+				Image img2 = Toolkit.getDefaultToolkit().createImage(bt);
+				//chaquetaTemp.setIcon(new ImageIcon(img2));
+			}
+			rs.close();
+			conn.close();
+			
+			
+			
+			Stmt = conn.prepareStatement("'SELECT fotogorros FROM gorrosol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			
+			rs = Stmt.executeQuery();
+			
+			while(rs.next()) {
+				java.sql.Blob b = rs.getBlob(5);
+				byte bt[] = b.getBytes(1, (int)b.length());
+				Image img3 = Toolkit.getDefaultToolkit().createImage(bt);
+				//gorroTemp.setIcon(new ImageIcon(img3));
+			}
+			rs.close();
+			conn.close();
+			
+			
+			
+			Stmt = conn.prepareStatement("'SELECT fotopantalones FROM pantalonsol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			
+			rs = Stmt.executeQuery();
+			
+			while(rs.next()) {
+				java.sql.Blob b = rs.getBlob(5);
+				byte bt[] = b.getBytes(1, (int)b.length());
+				Image img4 = Toolkit.getDefaultToolkit().createImage(bt);
+				//pantalonTemp.setIcon(new ImageIcon(img4));
+			}
+			rs.close();
+			conn.close();
+			
+			
+			
+			Stmt = conn.prepareStatement("'SELECT fotozapatos FROM zapatosol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			
+			rs = Stmt.executeQuery();
+			
+			while(rs.next()) {
+				java.sql.Blob b = rs.getBlob(5);
+				byte bt[] = b.getBytes(1, (int)b.length());
+				Image img5 = Toolkit.getDefaultToolkit().createImage(bt);
+				//pantalonTemp.setIcon(new ImageIcon(img5));
+			}
+			rs.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			throw new BDException ("error al conectar con la BD", e);
+		}
+	}
+	
+	public static void crearOutfitLluvioso(String estiloj, Boolean generoj, int colorj) throws BDException, SQLException{
+		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+		try {
+			
+			
+			PreparedStatement Stmt = conn.prepareStatement("'SELECT fotocamiseta FROM camisetalluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+
 			
 			ResultSet rs = Stmt.executeQuery();
 			
@@ -440,15 +525,76 @@ public class BaseDatosModise {
 				java.sql.Blob b = rs.getBlob(2);
 				byte bt[] = b.getBytes(1, (int)b.length());
 				Image img = Toolkit.getDefaultToolkit().createImage(bt);
-				//photoL.setIcon(new ImageIcon(img));
+				//camisetaTemp.setIcon(new ImageIcon(img));
 			}
+			rs.close();
+			Stmt.close();
 			
+			
+			
+			Stmt = conn.prepareStatement("'SELECT fotochaqueta FROM chaquetalluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			
+			rs = Stmt.executeQuery();
+			
+			while(rs.next()) {
+				java.sql.Blob b = rs.getBlob(5);
+				byte bt[] = b.getBytes(1, (int)b.length());
+				Image img2 = Toolkit.getDefaultToolkit().createImage(bt);
+				//chaquetaTemp.setIcon(new ImageIcon(img2));
+			}
+			rs.close();
+			conn.close();
+			
+			
+			
+			Stmt = conn.prepareStatement("'SELECT fotogorros FROM gorrolluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			
+			rs = Stmt.executeQuery();
+			
+			while(rs.next()) {
+				java.sql.Blob b = rs.getBlob(5);
+				byte bt[] = b.getBytes(1, (int)b.length());
+				Image img3 = Toolkit.getDefaultToolkit().createImage(bt);
+				//gorroTemp.setIcon(new ImageIcon(img3));
+			}
+			rs.close();
+			conn.close();
+			
+			
+			
+			Stmt = conn.prepareStatement("'SELECT fotopantalones FROM pantalonlluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			
+			rs = Stmt.executeQuery();
+			
+			while(rs.next()) {
+				java.sql.Blob b = rs.getBlob(5);
+				byte bt[] = b.getBytes(1, (int)b.length());
+				Image img4 = Toolkit.getDefaultToolkit().createImage(bt);
+				//pantalonTemp.setIcon(new ImageIcon(img4));
+			}
+			rs.close();
+			conn.close();
+			
+			
+			
+			Stmt = conn.prepareStatement("'SELECT fotozapatos FROM zapatolluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			
+			rs = Stmt.executeQuery();
+			
+			while(rs.next()) {
+				java.sql.Blob b = rs.getBlob(5);
+				byte bt[] = b.getBytes(1, (int)b.length());
+				Image img5 = Toolkit.getDefaultToolkit().createImage(bt);
+				//pantalonTemp.setIcon(new ImageIcon(img5));
+			}
+			rs.close();
+			conn.close();
 			
 		} catch (SQLException e) {
 			throw new BDException ("error al conectar con la BD", e);
 		}
-		
-		
 	}
-
+	
+	//falta el metodo outfitguay que va a ser recursivo con nivelimp y nivelfash.
+	
 }
