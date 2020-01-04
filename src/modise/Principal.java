@@ -75,7 +75,7 @@ public class Principal {
 	JPasswordField contraseña;
 	JCheckBox view;
 	boolean escrito1, escrito2;
-
+ 
 	private JLabel clockLabel;
 	public final static int ONE_SECOND = 1000;
 	private final SimpleDateFormat clockFormat = new SimpleDateFormat("H:mm:ss");
