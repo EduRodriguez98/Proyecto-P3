@@ -431,6 +431,8 @@ public class BaseDatosModise {
 	// booleans 0 = false, 1 = true para genero! 0 male 1 female
 
 	
+	
+	
 	public static void crearOutfitSoleado(String estiloj, Boolean generoj, int colorj) throws BDException, SQLException{
 		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 		try {
