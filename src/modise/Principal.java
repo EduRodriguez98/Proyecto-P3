@@ -1068,7 +1068,7 @@ public class Principal {
 										+ spinCrearEdad.getValue() + ", Genero: "
 										+ radioButtonsGenero.getSelection().getActionCommand() + "\nGustos:" + g1 + g2
 										+ g3 + g4 + g5 + g6 + g7 + g8 + g9 + g10 + g11 + g12);
-
+								
 								// se cambia? SI GUD JOB
 								mb.setVisible(true);
 								mb.setEnabled(true);
