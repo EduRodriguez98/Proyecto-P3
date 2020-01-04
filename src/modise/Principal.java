@@ -80,14 +80,6 @@ public class Principal {
 	public final static int ONE_SECOND = 1000;
 	private final SimpleDateFormat clockFormat = new SimpleDateFormat("H:mm:ss");
 
-	// VentanaCrearCuenta
-	JLabel labelCrearNombre, labelCrearEmail, labelCrearContraseña, labelCrearEdad, errorNombre, errorEmail,
-			errorContraseña;
-	JTextField txtCrearNombre, txtCrearEmail, txtCrearContraseña;
-	JSpinner spinCrearEdad;
-	SpinnerModel model;
-	JButton botonCrearSiguiente, botonCrearAtras;
-	boolean escrito3, escrito4;
 
 	// VentanaGenero
 	JRadioButton radioMasculino, radioFemenino;
@@ -95,26 +87,33 @@ public class Principal {
 	JButton botonGeneroSiguiente, botonGeneroAtras;
 
 	// VentanaPerfilGustosUnoM
+	JLabel labelCrearNombreM, labelCrearEmailM, labelCrearContraseñaM, labelCrearEdadM, errorNombreM, errorEmailM,
+	errorContraseñaM, labelEstiloFavoritoM;
+	JTextField txtCrearNombreM, txtCrearEmailM, txtCrearContraseñaM;
+	JSpinner spinCrearEdadM;
+	SpinnerModel modelM;
+	JButton botonCrearSiguienteM, botonCrearAtrasM;
+	boolean escrito3M, escrito4M;
 	JButton botonPerfilGustosUnoMSiguiente, botonPerfilGustosUnoMAtras;
-	JCheckBox clasicoM, urbanaM, rockM, smartM, formalM, casualChickM;
-	JLabel errorPerfilGustosUnoM;
+	JRadioButton clasicoM, urbanaM, rockM, smartM, formalM, casualChickM;
+	JLabel errorPerfilGustosUnoM, labelColorPreferidoM;
+	JComboBox<String> comboColorPreferidoM;
+	
 
 	// VentanaPerfilGustosUnoF
-	JButton botonPerfilGustosUnoFSiguiente, botonPerfilGustosUnoFAtras;
-	JCheckBox clasicoF, urbanaF, rockF, bohoF, formalF, sportyChickF;
-	JLabel errorPerfilGustosUnoF;
+	JLabel labelCrearNombreF, labelCrearEmailF, labelCrearContraseñaF, labelCrearEdadF, errorNombreF, errorEmailF,
+	errorContraseñaF, labelEstiloFavoritoF;
+	JTextField txtCrearNombreF, txtCrearEmailF, txtCrearContraseñaF;
+	JSpinner spinCrearEdadF;
+	SpinnerModel modelF;
+	JButton botonCrearSiguienteF, botonCrearAtrasF;
+	boolean escrito3F, escrito4F;
+	JButton botonPerfilGustosUnoFSiguienteF, botonPerfilGustosUnoFAtrasF;
+	
+	JRadioButton clasicoF, urbanaF, rockF, bohoF, formalF, sportyChickF;
+	JLabel errorPerfilGustosUnoF, labelColorPreferidoF;
+	JComboBox<String> comboColorPreferidoF;
 
-	// VentanaPerfilGustosUno
-	/*
-	 * String g1 = ""; String g7 = ""; String g2 = ""; String g8 = ""; String g3 =
-	 * ""; String g9 = ""; String g4 = ""; String g10 = ""; String g5 = ""; String
-	 * g11 = ""; String g6 = ""; String g12 = "";
-	 */
-
-	// VentanaPerfilGustos2
-	JLabel labelEscoge, errorPerfilGustosDos;
-	JButton botonPerfilGustosDosAtras, botonPerfilGustosDosSiguiente;
-	JRadioButton radioPrendaIzq, radioPrendaDer;
 
 	// VentanaCarga
 	JProgressBar progressCargando;
@@ -326,11 +325,9 @@ public class Principal {
 
 		PanelFondo ventanaAñadirVestimenta1 = new PanelFondo();
 		PanelFondo ventanaInicioSesion = new PanelFondo();
-		PanelFondo ventanaCrearCuenta = new PanelFondo();
 		PanelFondo ventanaGenero = new PanelFondo();
 		PanelFondo ventanaPerfilGustosUnoM = new PanelFondo();
 		PanelFondo ventanaPerfilGustosUnoF = new PanelFondo();
-		PanelFondo ventanaPerfilGustosDos = new PanelFondo();
 		PanelFondo ventanaCarga = new PanelFondo();
 		PanelFondo ventanaAñadirCamisetas = new PanelFondo();
 		PanelFondo ventanaAñadirChaquetas = new PanelFondo();
@@ -346,11 +343,9 @@ public class Principal {
 		JPanel ventanaEmergenteOutfit = new JPanel();
 
 		CrearPanel(ventanaInicioSesion);
-		CrearPanel(ventanaCrearCuenta);
 		CrearPanel(ventanaGenero);
 		CrearPanel(ventanaPerfilGustosUnoM);
 		CrearPanel(ventanaPerfilGustosUnoF);
-		CrearPanel(ventanaPerfilGustosDos);
 		CrearPanel(ventanaMenuPrincipal);
 		CrearPanel(ventanaCarga);
 		CrearPanel(ventanaAñadirVestimenta1);
@@ -364,11 +359,9 @@ public class Principal {
 		CrearPanel(ventanaMasMenosAdmin);
 
 		frame.getContentPane().add(ventanaInicioSesion);
-		frame.getContentPane().add(ventanaCrearCuenta);
 		frame.getContentPane().add(ventanaGenero);
 		frame.getContentPane().add(ventanaPerfilGustosUnoM);
 		frame.getContentPane().add(ventanaPerfilGustosUnoF);
-		frame.getContentPane().add(ventanaPerfilGustosDos);
 		frame.getContentPane().add(ventanaMenuPrincipal);
 		frame.getContentPane().add(ventanaCarga);
 		frame.getContentPane().add(ventanaAñadirVestimenta1);
@@ -455,7 +448,7 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaInicioSesion, ventanaCrearCuenta);
+				CambiarPanel(ventanaInicioSesion, ventanaGenero);
 
 			}
 		});
@@ -508,172 +501,11 @@ public class Principal {
 			}
 		});
 
-		// Añadiendo los componentes de ventanaCrearCuenta
-		labelCrearNombre = new JLabel("Introduzca su nombre: ");
-		labelCrearNombre.setFont(new Font("Monospace", Font.BOLD, 13));
-		ventanaCrearCuenta.add(labelCrearNombre);
-		labelCrearNombre.setBounds(80, 50, 200, 30);
+	
 
-		txtCrearNombre = new JTextField("nombre");
-		ventanaCrearCuenta.add(txtCrearNombre);
-		txtCrearNombre.setBounds(250, 50, 300, 30);
-		escrito3 = false;
-		txtCrearNombre.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (escrito3 == false) {
-					txtCrearNombre.setText("");
-					escrito3 = true;
-				}
-			}
-		});
-
-		labelCrearEmail = new JLabel("Introduzca su email: ");
-		labelCrearEmail.setFont(new Font("Monospace", Font.BOLD, 13));
-		ventanaCrearCuenta.add(labelCrearEmail);
-		labelCrearEmail.setBounds(80, 125, 200, 30);
-
-		txtCrearEmail = new JTextField("ejemplo@gmail.com");
-		ventanaCrearCuenta.add(txtCrearEmail);
-		txtCrearEmail.setBounds(250, 125, 300, 30);
-		escrito4 = false;
-		txtCrearEmail.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (escrito4 == false) {
-					txtCrearEmail.setText("");
-					escrito4 = true;
-				}
-			}
-		});
-
-		labelCrearContraseña = new JLabel("Cree una contrasena: ");
-		labelCrearContraseña.setFont(new Font("Monospace", Font.BOLD, 13));
-		ventanaCrearCuenta.add(labelCrearContraseña);
-		labelCrearContraseña.setBounds(80, 200, 200, 30);
-
-		txtCrearContraseña = new JTextField("");
-		ventanaCrearCuenta.add(txtCrearContraseña);
-		txtCrearContraseña.setBounds(250, 200, 300, 30);
-
-		labelCrearEdad = new JLabel("Seleccione su edad: ");
-		labelCrearEdad.setFont(new Font("Monospace", Font.BOLD, 13));
-		ventanaCrearCuenta.add(labelCrearEdad);
-		labelCrearEdad.setBounds(80, 275, 200, 30);
-
-		SpinnerModel model = new SpinnerNumberModel(18, 0, 99, 1); // default 18, min 0, max 99, +-1
-		// spinCrearEdad.setValue(18);
-		spinCrearEdad = new JSpinner(model);
-		ventanaCrearCuenta.add(spinCrearEdad);
-		spinCrearEdad.setBounds(250, 275, 80, 30);
-
-		botonCrearSiguiente = new JButton("Siguiente");
-		ventanaCrearCuenta.add(botonCrearSiguiente);
-		botonCrearSiguiente.setBounds(500, 340, 200, 30);
-
-		botonCrearAtras = new JButton("Atras");
-		ventanaCrearCuenta.add(botonCrearAtras);
-		botonCrearAtras.setBounds(10, 340, 200, 30);
-
-		errorNombre = new JLabel();
-		ventanaCrearCuenta.add(errorNombre);
-		errorNombre.setBounds(250, 80, 150, 30);
-		errorNombre.setForeground(Color.RED);
-
-		errorEmail = new JLabel();
-		ventanaCrearCuenta.add(errorEmail);
-		errorEmail.setBounds(250, 155, 150, 30);
-		errorEmail.setForeground(Color.RED);
-
-		errorContraseña = new JLabel();
-		ventanaCrearCuenta.add(errorContraseña);
-		errorContraseña.setBounds(250, 230, 150, 30);
-		errorContraseña.setForeground(Color.RED);
-
-		// Action Listeners
-		botonCrearSiguiente.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String CrearNombre = txtCrearNombre.getText();
-				String CrearEmail = txtCrearEmail.getText();
-				String CrearContraseña = txtCrearContraseña.getText();
-				String CrearEdad = spinCrearEdad.getValue().toString();
-				int EdadSeleccionada = (int) spinCrearEdad.getValue();
-
-				errorNombre.setText("");
-				errorEmail.setText("");
-				errorContraseña.setText("");
-
-				Connection conexion = BaseDatosModise.conectar();
-				Statement st = null;
-				try {
-					st = conexion.createStatement();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-
-				if (CrearNombre.matches("^[a-zA-Z]*$") && !CrearNombre.isEmpty()
-						&& CrearEmail.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-								+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
-						&& !CrearEmail.isEmpty() && !CrearContraseña.isEmpty() && CrearEdad.matches("^[0-9]*$")
-						&& BaseDatosModise.existeUsuario(st, txtCrearEmail.getText()) == true) {
-					CambiarPanel(ventanaCrearCuenta, ventanaGenero);
-					errorNombre.setText("");
-					errorEmail.setText("");
-					errorContraseña.setText("");
-					System.out.println("Edad marcado al crear cuenta:" + CrearEdad); // para comporbar que guarda
-					/*
-					 * } else { errorCrearCuenta.setText("Error al insertar datos.");
-					 * spinCrearEdad.setValue(EdadSeleccionada);
-					 * System.out.println("Edad marcado al crear cuenta:"+CrearEdad); }
-					 */
-				} else if (!CrearNombre.matches("^[a-zA-Z]*$") || CrearNombre.isEmpty()) {
-					errorNombre.setText("Nombre NO valido");
-					spinCrearEdad.setValue(EdadSeleccionada);
-					System.out.println("Edad marcado al crear cuenta:" + CrearEdad + ", Nombre NO valido");
-				} else if (!CrearEmail.matches(
-						"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
-						|| CrearEmail.isEmpty()
-						|| BaseDatosModise.existeUsuario(st, txtCrearEmail.getText()) == false) {
-					errorEmail.setText("Email NO valido");
-					spinCrearEdad.setValue(EdadSeleccionada);
-					System.out.println("Edad marcado al crear cuenta:" + CrearEdad + ", Email NO valido");
-				} else if (CrearContraseña.isEmpty()) {
-					errorContraseña.setText("Contraseña NO valida");
-					spinCrearEdad.setValue(EdadSeleccionada);
-					System.out.println("Edad marcado al crear cuenta:" + CrearEdad + ", Contraseña NO valida");
-				}
-			}
-		});
-
-		// Crear Usuario
-
-		// BaseDatosModise.CrearUsuario(txtCrearNombre.getText(),
-		// txtCrearEmail.getText(), spinCrearEdad.getValue(),
-		// txtCrearContraseña.getText());
-
-		botonCrearAtras.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaCrearCuenta, ventanaInicioSesion);
-				txtCrearNombre.setText("nombre");
-				txtCrearEmail.setText("ejemplo@gmail.com");
-				txtCrearContraseña.setText("");
-				spinCrearEdad.setValue(18);
-				errorNombre.setText("");
-				escrito3 = false;
-				escrito4 = false;
-				errorEmail.setText("");
-				errorContraseña.setText("");
-
-				txtEmail.setText("ejemplo@gmail.com");
-				contraseña.setText("12345");
-				escrito1 = false;
-				escrito2 = false;
-			}
-		});
+		
+		
+		
 
 		// Añadiendo los componentes de ventanaGenero
 		labelEscogerGenero = new JLabel("Seleccione su genero: ");
@@ -734,34 +566,145 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaGenero, ventanaCrearCuenta);
+				CambiarPanel(ventanaGenero, ventanaInicioSesion);
 				radioButtonsGenero.clearSelection();
 				errorGenero.setText("");
-				txtCrearContraseña.setText("");
+				txtCrearContraseñaM.setText("");
 			}
 		});
 
+		
+		
+		
 		// Añadiendo los componentes de ventanaPerfilGustosUnoM
+		
+		labelCrearNombreM = new JLabel("Introduzca su nombre: ");
+		labelCrearNombreM.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoM.add(labelCrearNombreM);
+		labelCrearNombreM.setBounds(20, 10, 200, 30);
 
-		clasicoM = new JCheckBox("Clasico");
+		txtCrearNombreM = new JTextField("nombre");
+		ventanaPerfilGustosUnoM.add(txtCrearNombreM);
+		txtCrearNombreM.setBounds(230, 10, 200, 30);
+		escrito3M = false;
+		txtCrearNombreM.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (escrito3M == false) {
+					txtCrearNombreM.setText("");
+					escrito3M = true;
+				}
+			}
+		});
+
+		labelCrearEmailM = new JLabel("Introduzca su email: ");
+		labelCrearEmailM.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoM.add(labelCrearEmailM);
+		labelCrearEmailM.setBounds(20, 45, 200, 30);
+
+		txtCrearEmailM = new JTextField("ejemplo@gmail.com");
+		ventanaPerfilGustosUnoM.add(txtCrearEmailM);
+		txtCrearEmailM.setBounds(230, 45, 200, 30);
+		escrito4M = false;
+		txtCrearEmailM.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (escrito4M == false) {
+					txtCrearEmailM.setText("");
+					escrito4M = true;
+				}
+			}
+		});
+
+		labelCrearContraseñaM = new JLabel("Cree una contrasena: ");
+		labelCrearContraseñaM.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoM.add(labelCrearContraseñaM);
+		labelCrearContraseñaM.setBounds(20, 80, 200, 30);
+
+		txtCrearContraseñaM = new JTextField("");
+		ventanaPerfilGustosUnoM.add(txtCrearContraseñaM);
+		txtCrearContraseñaM.setBounds(230, 80, 200, 30);
+
+		labelCrearEdadM = new JLabel("Seleccione su edad: ");
+		labelCrearEdadM.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoM.add(labelCrearEdadM);
+		labelCrearEdadM.setBounds(20, 115, 200, 30);
+
+		SpinnerModel model = new SpinnerNumberModel(18, 0, 99, 1); // default 18, min 0, max 99, +-1
+		// spinCrearEdad.setValue(18);
+		spinCrearEdadM = new JSpinner(model);
+		ventanaPerfilGustosUnoM.add(spinCrearEdadM);
+		spinCrearEdadM.setBounds(230, 115, 80, 30);
+
+		errorNombreM = new JLabel();
+		ventanaPerfilGustosUnoM.add(errorNombreM);
+		errorNombreM.setFont(new Font("Monospace", Font.BOLD, 11));
+		errorNombreM.setBounds(230, 10, 150, 30);
+		errorNombreM.setForeground(Color.RED);
+
+		errorEmailM = new JLabel();
+		errorEmailM.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoM.add(errorEmailM);
+		errorEmailM.setBounds(230, 45, 150, 30);
+		errorEmailM.setForeground(Color.RED);
+
+		errorContraseñaM = new JLabel();
+		errorContraseñaM.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoM.add(errorContraseñaM);
+		errorContraseñaM.setBounds(230, 80, 150, 30);
+		errorContraseñaM.setForeground(Color.RED);
+		
+		
+		labelEstiloFavoritoM = new JLabel("Selecciona tu estilo favorito:");
+		labelEstiloFavoritoM.setFont(new Font("Monospace", Font.BOLD, 11));
+		labelEstiloFavoritoM.setBounds(20, 150, 200, 30);
+		ventanaPerfilGustosUnoM.add(labelEstiloFavoritoM);
+		
+		clasicoM = new JRadioButton("Clasico");
 		ventanaPerfilGustosUnoM.add(clasicoM);
-		clasicoM.setBounds(200, 70, 150, 40);
-		urbanaM = new JCheckBox("Urbana");
+		clasicoM.setBounds(20, 185, 150, 30);
+		urbanaM = new JRadioButton("Urbana");
 		ventanaPerfilGustosUnoM.add(urbanaM);
-		urbanaM.setBounds(400, 70, 150, 40);
-		rockM = new JCheckBox("Rock");
+		urbanaM.setBounds(170, 185, 150, 30);
+		rockM = new JRadioButton("Rock");
 		ventanaPerfilGustosUnoM.add(rockM);
-		rockM.setBounds(200, 140, 150, 40);
-		smartM = new JCheckBox("Smart");
+		rockM.setBounds(320, 185, 150, 30);
+		smartM = new JRadioButton("Smart");
 		ventanaPerfilGustosUnoM.add(smartM);
-		smartM.setBounds(400, 140, 150, 40);
-		formalM = new JCheckBox("Formal");
+		smartM.setBounds(20, 215, 150, 30);
+		formalM = new JRadioButton("Formal");
 		ventanaPerfilGustosUnoM.add(formalM);
-		formalM.setBounds(200, 210, 150, 40);
-		casualChickM = new JCheckBox("Casual Chick");
+		formalM.setBounds(170, 215, 150, 30);
+		casualChickM = new JRadioButton("Casual Chick");
 		ventanaPerfilGustosUnoM.add(casualChickM);
-		casualChickM.setBounds(400, 210, 150, 40);
-
+		casualChickM.setBounds(320, 215, 150, 30);
+		
+		ButtonGroup bgM = new ButtonGroup();
+		bgM.add(clasicoM);
+		bgM.add(urbanaM);
+		bgM.add(rockM);
+		bgM.add(smartM);
+		bgM.add(formalM);
+		bgM.add(casualChickM);
+		
+		
+		labelColorPreferidoM = new JLabel("Seleccione su color preferido");
+		labelColorPreferidoM.setFont(new Font("Monospace", Font.BOLD, 11));
+		labelColorPreferidoM.setBounds(20, 250, 200, 40);
+		ventanaPerfilGustosUnoM.add(labelColorPreferidoM);
+		
+		comboColorPreferidoM = new JComboBox<String>();
+		comboColorPreferidoM.setBounds(20, 285, 100, 40);
+		comboColorPreferidoM.addItem("Rojo");
+		comboColorPreferidoM.addItem("Amarillo");
+		comboColorPreferidoM.addItem("Verde");
+		comboColorPreferidoM.addItem("Negro");
+		comboColorPreferidoM.addItem("Rosa");
+		comboColorPreferidoM.addItem("Multicolor");
+		comboColorPreferidoM.addItem("Blanco");
+		comboColorPreferidoM.addItem("Gris");
+		ventanaPerfilGustosUnoM.add(comboColorPreferidoM);
+		
 		botonPerfilGustosUnoMAtras = new JButton("Atras");
 		ventanaPerfilGustosUnoM.add(botonPerfilGustosUnoMAtras);
 		botonPerfilGustosUnoMAtras.setBounds(10, 340, 200, 30);
@@ -771,6 +714,7 @@ public class Principal {
 		botonPerfilGustosUnoMSiguiente.setBounds(500, 340, 200, 30);
 
 		errorPerfilGustosUnoM = new JLabel();
+		errorPerfilGustosUnoM.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoM.add(errorPerfilGustosUnoM);
 		errorPerfilGustosUnoM.setBounds(300, 340, 400, 40);
 		errorPerfilGustosUnoM.setForeground(Color.RED);
@@ -783,33 +727,43 @@ public class Principal {
 
 				if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() || smartM.isSelected()
 						|| formalM.isSelected() || casualChickM.isSelected()) {
-					CambiarPanel(ventanaPerfilGustosUnoM, ventanaPerfilGustosDos);
+					
 					errorPerfilGustosUnoM.setText("");
 
-					// Esto es para comprobar que y como funciona
-					if (clasicoM.isSelected()) {
-						System.out.println("clasicoM");
-					}
-					if (urbanaM.isSelected()) {
-						System.out.println("urbanaM");
-					}
-					if (rockM.isSelected()) {
-						System.out.println("rockM");
-					}
-					if (smartM.isSelected()) {
-						System.out.println("smartM");
-					}
-					if (formalM.isSelected()) {
-						System.out.println("formalM");
-					}
-					if (casualChickM.isSelected()) {
-						System.out.println("casualChickM");
-					}
-					System.out.println("- - - - -");
-
 				} else {
-					errorPerfilGustosUnoM.setText("Selecciona al menos 1.");
+					errorPerfilGustosUnoM.setText("Selecciona 1 estilo");
 				}
+				
+				// JProgressBar
+
+				Thread t = new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+
+						for (counter = 0; !stop && counter <= MAX_STEPS; counter++) {
+							System.out.println(counter);
+
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									progressCargando.setValue(counter);
+
+								}
+							});
+						}
+						
+						if (stop = true) {
+							
+							//bd = nuevo usuario
+							
+							
+						}
+					}
+				});  
+				CambiarPanel(ventanaPerfilGustosUnoM, ventanaMenuPrincipal);
+				t.start();
 			}
 		});
 
@@ -834,75 +788,110 @@ public class Principal {
 
 		// Añadiendo los componentes de ventanaPerfilGustosUnoF
 
-		clasicoF = new JCheckBox("Clasico");
+		clasicoF = new JRadioButton("Clasico");
 		ventanaPerfilGustosUnoF.add(clasicoF);
-		clasicoF.setBounds(200, 70, 150, 40);
-		urbanaF = new JCheckBox("Urbana");
+		clasicoF.setBounds(100, 50, 150, 40);
+		urbanaF = new JRadioButton("Urbana");
 		ventanaPerfilGustosUnoF.add(urbanaF);
-		urbanaF.setBounds(400, 70, 150, 40);
-		rockF = new JCheckBox("Rock");
+		urbanaF.setBounds(250, 50, 150, 40);
+		rockF = new JRadioButton("Rock");
 		ventanaPerfilGustosUnoF.add(rockF);
-		rockF.setBounds(200, 140, 150, 40);
-		bohoF = new JCheckBox("Boho");
+		rockF.setBounds(400, 50, 150, 40);
+		bohoF = new JRadioButton("Boho");
 		ventanaPerfilGustosUnoF.add(bohoF);
-		bohoF.setBounds(400, 140, 150, 40);
-		formalF = new JCheckBox("Formal");
+		bohoF.setBounds(100, 110, 150, 40);
+		formalF = new JRadioButton("Formal");
 		ventanaPerfilGustosUnoF.add(formalF);
-		formalF.setBounds(200, 210, 150, 40);
-		sportyChickF = new JCheckBox("Sporty Chick");
+		formalF.setBounds(250, 110, 150, 40);
+		sportyChickF = new JRadioButton("Sporty Chick");
 		ventanaPerfilGustosUnoF.add(sportyChickF);
-		sportyChickF.setBounds(400, 210, 150, 40);
+		sportyChickF.setBounds(400, 110, 150, 40);
 
-		botonPerfilGustosUnoFAtras = new JButton("Atras");
-		ventanaPerfilGustosUnoF.add(botonPerfilGustosUnoFAtras);
-		botonPerfilGustosUnoFAtras.setBounds(10, 340, 200, 30);
+		ButtonGroup bgF = new ButtonGroup();
+		bgF.add(clasicoF);
+		bgF.add(urbanaF);
+		bgF.add(rockF);
+		bgF.add(bohoF);
+		bgF.add(formalF);
+		bgF.add(sportyChickF);
+		
+		labelColorPreferidoM = new JLabel("Seleccione su color preferido");
+		labelColorPreferidoM.setBounds(100, 175, 200, 40);
+		ventanaPerfilGustosUnoF.add(labelColorPreferidoM);
+		
+		comboColorPreferidoF = new JComboBox<String>();
+		comboColorPreferidoF.setBounds(100, 230, 200, 40);
+		comboColorPreferidoF.addItem("Rojo");
+		comboColorPreferidoF.addItem("Amarillo");
+		comboColorPreferidoF.addItem("Verde");
+		comboColorPreferidoF.addItem("Negro");
+		comboColorPreferidoF.addItem("Rosa");
+		comboColorPreferidoF.addItem("Multicolor");
+		comboColorPreferidoF.addItem("Blanco");
+		comboColorPreferidoF.addItem("Gris");
+		ventanaPerfilGustosUnoF.add(comboColorPreferidoF);
+		
+		botonPerfilGustosUnoFAtrasF = new JButton("Atras");
+		ventanaPerfilGustosUnoF.add(botonPerfilGustosUnoFAtrasF);
+		botonPerfilGustosUnoFAtrasF.setBounds(10, 340, 200, 30);
 
-		botonPerfilGustosUnoFSiguiente = new JButton("Siguiente");
-		ventanaPerfilGustosUnoF.add(botonPerfilGustosUnoFSiguiente);
-		botonPerfilGustosUnoFSiguiente.setBounds(500, 340, 200, 30);
+		botonPerfilGustosUnoFSiguienteF = new JButton("Siguiente");
+		ventanaPerfilGustosUnoF.add(botonPerfilGustosUnoFSiguienteF);
+		botonPerfilGustosUnoFSiguienteF.setBounds(500, 340, 200, 30);
 
 		errorPerfilGustosUnoF = new JLabel();
 		ventanaPerfilGustosUnoF.add(errorPerfilGustosUnoF);
 		errorPerfilGustosUnoF.setBounds(300, 340, 400, 40);
 		errorPerfilGustosUnoF.setForeground(Color.RED);
 
-		botonPerfilGustosUnoFSiguiente.addActionListener(new ActionListener() {
+		botonPerfilGustosUnoFSiguienteF.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) { // qwe
+			public void actionPerformed(ActionEvent e) {
 				if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() || bohoF.isSelected()
 						|| formalF.isSelected() || sportyChickF.isSelected()) {
-					CambiarPanel(ventanaPerfilGustosUnoF, ventanaPerfilGustosDos);
+					
 					errorPerfilGustosUnoF.setText("");
-
-					// Esto es para comprobar que y como funciona
-					if (clasicoF.isSelected()) {
-						System.out.println("clasicoF");
-					}
-					if (urbanaF.isSelected()) {
-						System.out.println("urbanaF");
-					}
-					if (rockF.isSelected()) {
-						System.out.println("rockF");
-					}
-					if (bohoF.isSelected()) {
-						System.out.println("bohoF");
-					}
-					if (formalF.isSelected()) {
-						System.out.println("formalF");
-					}
-					if (sportyChickF.isSelected()) {
-						System.out.println("sportyChickF");
-					}
-					System.out.println("- - - - -");
-
 				} else {
-					errorPerfilGustosUnoF.setText("Selecciona al menos 1.");
+					errorPerfilGustosUnoF.setText("Selecciona 1 estilo");
 				}
+				
+				// JProgressBar
+
+				Thread t = new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+
+						for (counter = 0; !stop && counter <= MAX_STEPS; counter++) {
+							System.out.println(counter);
+
+							SwingUtilities.invokeLater(new Runnable() {
+
+								@Override
+								public void run() {
+									progressCargando.setValue(counter);
+
+								}
+							});
+						}
+						
+						if (stop = true) {
+							
+							//bd = nuevo usuario
+							
+							
+						}
+					}
+				});  
+				CambiarPanel(ventanaPerfilGustosUnoF, ventanaMenuPrincipal);
+				t.start();
 			}
+			
+			
 		});
 
-		botonPerfilGustosUnoFAtras.addActionListener(new ActionListener() {
+		botonPerfilGustosUnoFAtrasF.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -920,191 +909,8 @@ public class Principal {
 				CambiarPanel(ventanaPerfilGustosUnoF, ventanaGenero);
 			}
 		});
-
-		// Añadiendo los componentes de ventanaPerfilGustosDos
-		labelEscoge = new JLabel("Cual de las siguientes prendas te gusta mas para ti?");
-		labelEscoge.setFont(new Font("Monospace", Font.BOLD, 13));
-		ventanaPerfilGustosDos.add(labelEscoge);
-		labelEscoge.setBounds(200, 30, 350, 40);
-
-		radioPrendaIzq = new JRadioButton("Opcion 1");
-		ventanaPerfilGustosDos.add(radioPrendaIzq);
-		radioPrendaIzq.setBounds(200, 280, 100, 30);
-
-		radioPrendaDer = new JRadioButton("Opcion 2");
-		ventanaPerfilGustosDos.add(radioPrendaDer);
-		radioPrendaDer.setBounds(420, 280, 100, 30);
-
-		ButtonGroup bgPerfilGustosDos = new ButtonGroup();
-		bgPerfilGustosDos.add(radioPrendaIzq);
-		bgPerfilGustosDos.add(radioPrendaDer);
-
-		botonPerfilGustosDosAtras = new JButton("Atras");
-		ventanaPerfilGustosDos.add(botonPerfilGustosDosAtras);
-		botonPerfilGustosDosAtras.setBounds(10, 340, 200, 30);
-
-		botonPerfilGustosDosSiguiente = new JButton("Siguiente");
-		ventanaPerfilGustosDos.add(botonPerfilGustosDosSiguiente);
-		botonPerfilGustosDosSiguiente.setBounds(500, 340, 200, 30);
-
-		errorPerfilGustosDos = new JLabel();
-		ventanaPerfilGustosDos.add(errorPerfilGustosDos);
-		errorPerfilGustosDos.setBounds(300, 340, 400, 40);
-		errorPerfilGustosDos.setForeground(Color.RED);
-
-		// Action Listeners
-		botonPerfilGustosDosSiguiente.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				if (bgPerfilGustosDos.getSelection() != null) {
-
-					CambiarPanel(ventanaPerfilGustosDos, ventanaCarga);
-					errorPerfilGustosDos.setText("");
-
-					// JProgressBar
-
-					Thread t = new Thread(new Runnable() {
-
-						@Override
-						public void run() {
-
-							for (counter = 0; !stop && counter <= MAX_STEPS; counter++) {
-								System.out.println(counter);
-
-								SwingUtilities.invokeLater(new Runnable() {
-
-									@Override
-									public void run() {
-										progressCargando.setValue(counter);
-
-									}
-								});
-							}
-
-							if (stop = true) {
-
-								// bd nuevoUsuario
-								// TIRA ADELANTE, PERO NO HACE EL INSERT EL LAS TABLAS
-								Connection conexion = BaseDatosModise.conectar();
-								Statement st = null;
-								try {
-									st = conexion.createStatement();
-								} catch (SQLException e1) {
-									e1.printStackTrace();
-								}
-
-								// String valorPass = new String(txtCrearContraseña.getPassword());
-
-								if (radioMasculino.isSelected() == true) {
-									BaseDatosModise.nuevoUsuario(st, txtCrearNombre.getText(), txtCrearEmail.getText(),
-											0, spinCrearEdad.getValue(), txtCrearContraseña.getText(), 1);
-									System.out.println("nuevo chico");
-									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
-								} else if (radioFemenino.isSelected() == true) {
-									BaseDatosModise.nuevoUsuario(st, txtCrearNombre.getText(), txtCrearEmail.getText(),
-											0, spinCrearEdad.getValue(), txtCrearContraseña.getText(), 0);
-									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
-									System.out.println("nueva chica");
-								} // hasta aqui bd nuevoUsuario
-
-								// CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
-
-								String g1 = "";
-								String g7 = "";
-								String g2 = "";
-								String g8 = "";
-								String g3 = "";
-								String g9 = "";
-								String g4 = "";
-								String g10 = "";
-								String g5 = "";
-								String g11 = "";
-								String g6 = "";
-								String g12 = "";
-
-								// log crear cuenta
-								if (clasicoM.isSelected()) {
-									g1 = " clasicoM ";
-								}
-								if (urbanaM.isSelected()) {
-									g2 = " urbanaM ";
-								}
-								if (rockM.isSelected()) {
-									g3 = " rockM ";
-								}
-								if (smartM.isSelected()) {
-									g4 = " smartM ";
-								}
-								if (formalM.isSelected()) {
-									g5 = " formalM ";
-								}
-								if (casualChickM.isSelected()) {
-									g6 = " casualChickM ";
-								}
-
-								if (clasicoF.isSelected()) {
-									g7 = " clasicoF ";
-								}
-								if (urbanaF.isSelected()) {
-									g8 = " urbanF ";
-								}
-								if (rockF.isSelected()) {
-									g9 = " rockF ";
-								}
-								if (bohoF.isSelected()) {
-									g10 = " bohoF ";
-								}
-								if (formalF.isSelected()) {
-									g11 = " formalF ";
-								}
-								if (sportyChickF.isSelected()) {
-									g12 = " sportyChickF ";
-								}
-
-								Usuariolog.println("Creacion de cuenta: " + (new Date()) + "\n" + "Nombre: "
-										+ txtCrearNombre.getText() + ", Email: " + txtCrearEmail.getText() + ", Edad: "
-										+ spinCrearEdad.getValue() + ", Genero: "
-										+ radioButtonsGenero.getSelection().getActionCommand() + "\nGustos:" + g1 + g2
-										+ g3 + g4 + g5 + g6 + g7 + g8 + g9 + g10 + g11 + g12);
-
-								// se cambia? SI GUD JOB
-								mb.setVisible(true);
-								mb.setEnabled(true);
-								UIManager.put("OptionPane.minimumSize", new Dimension(600, 700));
-								JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!",
-										JOptionPane.DEFAULT_OPTION);
-							}
-						}
-					});
-
-					t.start();
-
-				} else {
-					errorPerfilGustosDos.setText("Selecciona al menos 1.");
-				}
-
-			}
-		});
-
-		botonPerfilGustosDosAtras.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (radioMasculino.isSelected()) {
-					CambiarPanel(ventanaPerfilGustosDos, ventanaPerfilGustosUnoM);
-				} else if (radioFemenino.isSelected()) {
-					CambiarPanel(ventanaPerfilGustosDos, ventanaPerfilGustosUnoF);
-				}
-
-				errorPerfilGustosUnoM.setText("");
-				errorPerfilGustosUnoF.setText("");
-				errorPerfilGustosDos.setText("");
-				bgPerfilGustosDos.clearSelection();
-			}
-		});
-
+ 
+							
 		// Añadiendo los componentes de ventanaCarga
 		labelCargando = new JLabel("Cargando");
 		ventanaCarga.add(labelCargando);
@@ -2288,12 +2094,18 @@ public class Principal {
 				escrito2 = false;
 
 				// ventanaCrearCuenta
-				txtCrearNombre.setText("nombre");
-				txtCrearEmail.setText("ejemplo@gmail.com");
-				txtCrearContraseña.setText("");
-				spinCrearEdad.setValue(18);
-				escrito3 = false;
-				escrito4 = false;
+				txtCrearNombreM.setText("nombre");
+				txtCrearEmailM.setText("ejemplo@gmail.com");
+				txtCrearContraseñaM.setText("");
+				spinCrearEdadM.setValue(18);
+				escrito3M = false;
+				escrito4M = false;
+				txtCrearNombreF.setText("nombre");
+				txtCrearEmailF.setText("ejemplo@gmail.com");
+				txtCrearContraseñaF.setText("");
+				spinCrearEdadM.setValue(18);
+				escrito3F = false;
+				escrito4F = false;
 
 				// ventanaGenero
 				radioButtonsGenero.clearSelection();
@@ -2318,10 +2130,6 @@ public class Principal {
 				sportyChickF.setSelected(false);
 
 				errorPerfilGustosUnoF.setText("");
-
-				// ventanaPerfilGustosDos
-				bgPerfilGustosDos.clearSelection();
-				errorPerfilGustosDos.setText("");
 
 				// ventanaCarga
 				counter = 0;
