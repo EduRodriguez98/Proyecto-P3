@@ -924,7 +924,7 @@ public class Principal {
 		botonPideOutfit = new JButton("Pide un Outfit!");
 		botonPideOutfit.setBounds(250, 150, 200, 50);
 		ventanaMenuPrincipal.add(botonPideOutfit);
-
+ 
 		botonAñadirVestimenta = new JButton("Añade tu propia Vestimenta");
 		botonAñadirVestimenta.setBounds(250, 250, 200, 50);
 		ventanaMenuPrincipal.add(botonAñadirVestimenta);
