@@ -67,11 +67,11 @@ public class BaseDatosModiseTest {
 	}
 
 	@Test
-	public void nuevoUsuarioTest() {
+	public void nuevoUsuarioTest() throws BDException {
 		Statement st;
 		try {
 			st = conexion.createStatement();
-			BaseDatosModise.nuevoUsuario(st, "eneko", "lauram@gmail.com", 0, 20, "123", 1);
+			BaseDatosModise.nuevoUsuario("eneko", "lauram@gmail.com", 0, 20, "123", 1, 2, "rockF" );
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

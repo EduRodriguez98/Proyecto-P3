@@ -724,7 +724,8 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
+				
 				if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() || smartM.isSelected()
 						|| formalM.isSelected() || casualChickM.isSelected()) {
 					
@@ -749,20 +750,64 @@ public class Principal {
 								@Override
 								public void run() {
 									progressCargando.setValue(counter);
-
+									
 								}
 							});
 						}
 						
 						if (stop = true) {
 							
-							//bd = nuevo usuario
-							
-							
+							try {
+								
+								int colorseleccionado = 0;
+								String estiloseleccionado = null;
+								
+								if(comboColorPreferidoM.getSelectedItem().toString() == "Rojo") {
+									colorseleccionado = 1;
+								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Amarillo") {
+									colorseleccionado = 2;
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Verde") {
+									colorseleccionado = 3;
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Negro") {
+									colorseleccionado = 4;
+								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Rosa") {
+									colorseleccionado = 5;
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Multicolor") {
+									colorseleccionado = 6;
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Blanco") {
+									colorseleccionado = 7;
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Gris") {
+									colorseleccionado = 8;
+								} else {
+									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM, "Debes escoger un color para continuar");
+								}
+								
+								if (clasicoM.isSelected()) {
+									estiloseleccionado = "clasicoM";
+								} else if (urbanaM.isSelected()) {
+									estiloseleccionado = "urbanaM";
+								} else if (rockM.isSelected()) {
+									estiloseleccionado = "rockM";
+								} else if (smartM.isSelected()) {
+									estiloseleccionado = "smartM";
+								} else if (formalM.isSelected()) {
+									estiloseleccionado = "formalM";
+								} else if (casualChickM.isSelected()) {
+									estiloseleccionado = "casualChickM";
+								} else {
+									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM, "Debes seleccionar un estilo favorito");
+								}
+								BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(), txtCrearEmailM.getText(), 0, (int)spinCrearEdadM.getValue(), txtCrearContraseñaM.getText(), 0, colorseleccionado, estiloseleccionado);
+								
+							} catch (BDException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							CambiarPanel(ventanaPerfilGustosUnoM, ventanaMenuPrincipal);
 						}
 					}
 				});  
-				CambiarPanel(ventanaPerfilGustosUnoM, ventanaMenuPrincipal);
+				
 				t.start();
 			}
 		});
@@ -856,8 +901,6 @@ public class Principal {
 					errorPerfilGustosUnoF.setText("Selecciona 1 estilo");
 				}
 				
-				// JProgressBar
-
 				Thread t = new Thread(new Runnable() {
 
 					@Override
@@ -871,24 +914,66 @@ public class Principal {
 								@Override
 								public void run() {
 									progressCargando.setValue(counter);
-
+									
 								}
 							});
 						}
 						
 						if (stop = true) {
 							
-							//bd = nuevo usuario
-							
-							
+							try {
+								
+								int colorseleccionado = 0;
+								String estiloseleccionado = null;
+								
+								if(comboColorPreferidoF.getSelectedItem().toString() == "Rojo") {
+									colorseleccionado = 1;
+								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Amarillo") {
+									colorseleccionado = 2;
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Verde") {
+									colorseleccionado = 3;
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Negro") {
+									colorseleccionado = 4;
+								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Rosa") {
+									colorseleccionado = 5;
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Multicolor") {
+									colorseleccionado = 6;
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Blanco") {
+									colorseleccionado = 7;
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Gris") {
+									colorseleccionado = 8;
+								} else {
+									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM, "Debes escoger un color para continuar");
+								}
+								
+								if (clasicoF.isSelected()) {
+									estiloseleccionado = "clasicoF";
+								} else if (urbanaF.isSelected()) {
+									estiloseleccionado = "urbanaF";
+								} else if (rockF.isSelected()) {
+									estiloseleccionado = "rockF";
+								} else if (bohoF.isSelected()) {
+									estiloseleccionado = "bohoF";
+								} else if (formalF.isSelected()) {
+									estiloseleccionado = "formalF";
+								} else if (sportyChickF.isSelected()) {
+									estiloseleccionado = "sportyChickF";
+								} else {
+									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM, "Debes seleccionar un estilo favorito");
+								}
+								BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(), txtCrearEmailF.getText(), 0, (int)spinCrearEdadF.getValue(), txtCrearContraseñaF.getText(), 1, colorseleccionado, estiloseleccionado);
+								
+							} catch (BDException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							CambiarPanel(ventanaPerfilGustosUnoF, ventanaMenuPrincipal);
 						}
 					}
 				});  
-				CambiarPanel(ventanaPerfilGustosUnoF, ventanaMenuPrincipal);
+				
 				t.start();
 			}
-			
-			
 		});
 
 		botonPerfilGustosUnoFAtrasF.addActionListener(new ActionListener() {

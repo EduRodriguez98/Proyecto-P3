@@ -136,24 +136,31 @@ public class BaseDatosModise {
 			return true;
 		}
 	}
-	
-	public static void cancelarNuevoUsuario (Statement st, int id, String nom, String corr, int admin, Object ed, String contr,
-			int gen){
-		
-		String sql = "delete usuario where ";
-		
-	}
 
-	public static void nuevoUsuario(Statement st, String nom, String corr, int admin, Object ed, String contr,
-			int gen) {
-		String SentSQL = "insert into usuario(nom_usuario,correo,administrador,edad,contrasena,genero) values('" + nom
-				+ "','" + corr + "'," + admin + "," + ed + ",'" + contr + "'," + gen + ");";
-		System.out.println(SentSQL);
+	public static void nuevoUsuario(String nom, String corr, int admin, int ed, String contr, int gen, int colorFavorito, String estilo) throws BDException {
+		String forLog = null;
+		
 		try {
-			st.executeUpdate(SentSQL);
+			
+		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+		PreparedStatement Stmt = conn.prepareStatement("INSERT INTO USUARIO (nom_usuario, correo, administrador, edad, contrasena, genero, colorFav, estiloFav) values(?,?,?,?,?,?,?,?)");
+		
+		Stmt.setString(1, nom);
+		Stmt.setString(2, corr);
+		Stmt.setInt(3, admin);
+		Stmt.setInt(4, ed);
+		Stmt.setString(5, contr);
+		Stmt.setInt(6, gen);
+		Stmt.setInt(7, colorFavorito);
+		Stmt.setString(8, estilo);
+		
+		Stmt.executeUpdate();
+		
+		forLog = Stmt.toString();
+			
 		} catch (SQLException e) {
-			modise.Principal.BDLogger.log(Level.SEVERE, "Error nuevoUsuario\n" + SentSQL, e);
-			e.printStackTrace();
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error nuevoUsuario\n" + forLog , e);
+			throw new BDException ("error en el codigo SQL al ejecutar update", e);
 		}
 	}
 
