@@ -2,13 +2,10 @@ package conexion;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,13 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-
-import com.mysql.cj.jdbc.Blob;
-
-import modise.RWException;
 
 public class BaseDatosModise {
 
@@ -448,7 +438,7 @@ public class BaseDatosModise {
 				java.sql.Blob b = rs.getBlob(5);
 				byte bt[] = b.getBytes(1, (int)b.length());
 				Image img = Toolkit.getDefaultToolkit().createImage(bt);
-				//camisetaTemp.setIcon(new ImageIcon(img));
+				//camisetaSol.setIcon(new ImageIcon(img));
 			}
 			rs.close();
 			Stmt.close();
@@ -463,7 +453,7 @@ public class BaseDatosModise {
 				java.sql.Blob b = rs.getBlob(5);
 				byte bt[] = b.getBytes(1, (int)b.length());
 				Image img2 = Toolkit.getDefaultToolkit().createImage(bt);
-				//chaquetaTemp.setIcon(new ImageIcon(img2));
+				//chaquetaSol.setIcon(new ImageIcon(img2));
 			}
 			rs.close();
 			conn.close();
@@ -478,7 +468,7 @@ public class BaseDatosModise {
 				java.sql.Blob b = rs.getBlob(5);
 				byte bt[] = b.getBytes(1, (int)b.length());
 				Image img3 = Toolkit.getDefaultToolkit().createImage(bt);
-				//gorroTemp.setIcon(new ImageIcon(img3));
+				//gorroSol.setIcon(new ImageIcon(img3));
 			}
 			rs.close();
 			conn.close();
@@ -493,7 +483,7 @@ public class BaseDatosModise {
 				java.sql.Blob b = rs.getBlob(5);
 				byte bt[] = b.getBytes(1, (int)b.length());
 				Image img4 = Toolkit.getDefaultToolkit().createImage(bt);
-				//pantalonTemp.setIcon(new ImageIcon(img4));
+				//pantalonSol.setIcon(new ImageIcon(img4));
 			}
 			rs.close();
 			conn.close();
@@ -508,7 +498,7 @@ public class BaseDatosModise {
 				java.sql.Blob b = rs.getBlob(5);
 				byte bt[] = b.getBytes(1, (int)b.length());
 				Image img5 = Toolkit.getDefaultToolkit().createImage(bt);
-				//pantalonTemp.setIcon(new ImageIcon(img5));
+				//zapatosSol.setIcon(new ImageIcon(img5));
 			}
 			rs.close();
 			conn.close();
@@ -532,7 +522,7 @@ public class BaseDatosModise {
 				java.sql.Blob b = rs.getBlob(2);
 				byte bt[] = b.getBytes(1, (int)b.length());
 				Image img = Toolkit.getDefaultToolkit().createImage(bt);
-				//camisetaTemp.setIcon(new ImageIcon(img));
+				//camisetaLluvia.setIcon(new ImageIcon(img));
 			}
 			rs.close();
 			Stmt.close();
@@ -547,7 +537,7 @@ public class BaseDatosModise {
 				java.sql.Blob b = rs.getBlob(5);
 				byte bt[] = b.getBytes(1, (int)b.length());
 				Image img2 = Toolkit.getDefaultToolkit().createImage(bt);
-				//chaquetaTemp.setIcon(new ImageIcon(img2));
+				//chaquetaLluvia.setIcon(new ImageIcon(img2));
 			}
 			rs.close();
 			conn.close();
@@ -562,7 +552,7 @@ public class BaseDatosModise {
 				java.sql.Blob b = rs.getBlob(5);
 				byte bt[] = b.getBytes(1, (int)b.length());
 				Image img3 = Toolkit.getDefaultToolkit().createImage(bt);
-				//gorroTemp.setIcon(new ImageIcon(img3));
+				//gorroLluvia.setIcon(new ImageIcon(img3));
 			}
 			rs.close();
 			conn.close();
@@ -577,7 +567,7 @@ public class BaseDatosModise {
 				java.sql.Blob b = rs.getBlob(5);
 				byte bt[] = b.getBytes(1, (int)b.length());
 				Image img4 = Toolkit.getDefaultToolkit().createImage(bt);
-				//pantalonTemp.setIcon(new ImageIcon(img4));
+				//pantalonLluvia.setIcon(new ImageIcon(img4));
 			}
 			rs.close();
 			conn.close();
@@ -592,7 +582,7 @@ public class BaseDatosModise {
 				java.sql.Blob b = rs.getBlob(5);
 				byte bt[] = b.getBytes(1, (int)b.length());
 				Image img5 = Toolkit.getDefaultToolkit().createImage(bt);
-				//pantalonTemp.setIcon(new ImageIcon(img5));
+				//zapatosLluvia.setIcon(new ImageIcon(img5));
 			}
 			rs.close();
 			conn.close();

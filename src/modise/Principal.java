@@ -22,7 +22,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
@@ -725,6 +724,7 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+				CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
 				
 				if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() || smartM.isSelected()
 						|| formalM.isSelected() || casualChickM.isSelected()) {
@@ -800,10 +800,9 @@ public class Principal {
 								BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(), txtCrearEmailM.getText(), 0, (int)spinCrearEdadM.getValue(), txtCrearContraseñaM.getText(), 0, colorseleccionado, estiloseleccionado);
 								
 							} catch (BDException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							CambiarPanel(ventanaPerfilGustosUnoM, ventanaMenuPrincipal);
+							CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 						}
 					}
 				});  
@@ -833,25 +832,107 @@ public class Principal {
 
 		// Añadiendo los componentes de ventanaPerfilGustosUnoF
 
+		labelCrearNombreF = new JLabel("Introduzca su nombre: ");
+		labelCrearNombreF.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoF.add(labelCrearNombreF);
+		labelCrearNombreF.setBounds(20, 10, 200, 30);
+
+		txtCrearNombreF = new JTextField("nombre");
+		ventanaPerfilGustosUnoF.add(txtCrearNombreF);
+		txtCrearNombreF.setBounds(230, 10, 200, 30);
+		escrito3F = false;
+		txtCrearNombreF.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (escrito3F == false) {
+					txtCrearNombreF.setText("");
+					escrito3F = true;
+				}
+			}
+		});
+
+		labelCrearEmailF = new JLabel("Introduzca su email: ");
+		labelCrearEmailF.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoF.add(labelCrearEmailF);
+		labelCrearEmailF.setBounds(20, 45, 200, 30);
+
+		txtCrearEmailF = new JTextField("ejemplo@gmail.com");
+		ventanaPerfilGustosUnoF.add(txtCrearEmailF);
+		txtCrearEmailF.setBounds(230, 45, 200, 30);
+		escrito4F = false;
+		txtCrearEmailF.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (escrito4F == false) {
+					txtCrearEmailF.setText("");
+					escrito4F = true;
+				}
+			}
+		});
+
+		labelCrearContraseñaF = new JLabel("Cree una contrasena: ");
+		labelCrearContraseñaF.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoF.add(labelCrearContraseñaM);
+		labelCrearContraseñaF.setBounds(20, 80, 200, 30);
+
+		txtCrearContraseñaF = new JTextField("");
+		ventanaPerfilGustosUnoF.add(txtCrearContraseñaF);
+		txtCrearContraseñaF.setBounds(230, 80, 200, 30);
+
+		labelCrearEdadF = new JLabel("Seleccione su edad: ");
+		labelCrearEdadF.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoF.add(labelCrearEdadF);
+		labelCrearEdadF.setBounds(20, 115, 200, 30);
+
+		SpinnerModel model2 = new SpinnerNumberModel(18, 0, 99, 1); // default 18, min 0, max 99, +-1
+		// spinCrearEdad.setValue(18);
+		spinCrearEdadF = new JSpinner(model2);
+		ventanaPerfilGustosUnoF.add(spinCrearEdadF);
+		spinCrearEdadF.setBounds(230, 115, 80, 30);
+
+		errorNombreF = new JLabel();
+		ventanaPerfilGustosUnoF.add(errorNombreF);
+		errorNombreF.setFont(new Font("Monospace", Font.BOLD, 11));
+		errorNombreF.setBounds(230, 10, 150, 30);
+		errorNombreF.setForeground(Color.RED);
+
+		errorEmailF = new JLabel();
+		errorEmailF.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoF.add(errorEmailF);
+		errorEmailF.setBounds(230, 45, 150, 30);
+		errorEmailF.setForeground(Color.RED);
+
+		errorContraseñaF = new JLabel();
+		errorContraseñaF.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoF.add(errorContraseñaF);
+		errorContraseñaF.setBounds(230, 80, 150, 30);
+		errorContraseñaF.setForeground(Color.RED);
+		
+		
+		labelEstiloFavoritoF = new JLabel("Selecciona tu estilo favorito:");
+		labelEstiloFavoritoF.setFont(new Font("Monospace", Font.BOLD, 11));
+		labelEstiloFavoritoF.setBounds(20, 150, 200, 30);
+		ventanaPerfilGustosUnoF.add(labelEstiloFavoritoF);
+		
 		clasicoF = new JRadioButton("Clasico");
 		ventanaPerfilGustosUnoF.add(clasicoF);
-		clasicoF.setBounds(100, 50, 150, 40);
+		clasicoF.setBounds(20, 185, 150, 30);
 		urbanaF = new JRadioButton("Urbana");
 		ventanaPerfilGustosUnoF.add(urbanaF);
-		urbanaF.setBounds(250, 50, 150, 40);
+		urbanaF.setBounds(170, 185, 150, 30);
 		rockF = new JRadioButton("Rock");
 		ventanaPerfilGustosUnoF.add(rockF);
-		rockF.setBounds(400, 50, 150, 40);
-		bohoF = new JRadioButton("Boho");
+		rockF.setBounds(320, 185, 150, 30);
+		bohoF = new JRadioButton("Smart");
 		ventanaPerfilGustosUnoF.add(bohoF);
-		bohoF.setBounds(100, 110, 150, 40);
+		bohoF.setBounds(20, 215, 150, 30);
 		formalF = new JRadioButton("Formal");
 		ventanaPerfilGustosUnoF.add(formalF);
-		formalF.setBounds(250, 110, 150, 40);
+		formalF.setBounds(170, 215, 150, 30);
 		sportyChickF = new JRadioButton("Sporty Chick");
 		ventanaPerfilGustosUnoF.add(sportyChickF);
-		sportyChickF.setBounds(400, 110, 150, 40);
-
+		sportyChickF.setBounds(320, 215, 150, 30);
+		
 		ButtonGroup bgF = new ButtonGroup();
 		bgF.add(clasicoF);
 		bgF.add(urbanaF);
@@ -860,12 +941,14 @@ public class Principal {
 		bgF.add(formalF);
 		bgF.add(sportyChickF);
 		
-		labelColorPreferidoM = new JLabel("Seleccione su color preferido");
-		labelColorPreferidoM.setBounds(100, 175, 200, 40);
-		ventanaPerfilGustosUnoF.add(labelColorPreferidoM);
+		
+		labelColorPreferidoF = new JLabel("Seleccione su color preferido");
+		labelColorPreferidoF.setFont(new Font("Monospace", Font.BOLD, 11));
+		labelColorPreferidoF.setBounds(20, 250, 200, 40);
+		ventanaPerfilGustosUnoF.add(labelColorPreferidoF);
 		
 		comboColorPreferidoF = new JComboBox<String>();
-		comboColorPreferidoF.setBounds(100, 230, 200, 40);
+		comboColorPreferidoF.setBounds(20, 285, 100, 40);
 		comboColorPreferidoF.addItem("Rojo");
 		comboColorPreferidoF.addItem("Amarillo");
 		comboColorPreferidoF.addItem("Verde");
@@ -885,14 +968,19 @@ public class Principal {
 		botonPerfilGustosUnoFSiguienteF.setBounds(500, 340, 200, 30);
 
 		errorPerfilGustosUnoF = new JLabel();
+		errorPerfilGustosUnoF.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoF.add(errorPerfilGustosUnoF);
 		errorPerfilGustosUnoF.setBounds(300, 340, 400, 40);
 		errorPerfilGustosUnoF.setForeground(Color.RED);
+		
+		//ActionListeners ventanaPerfilGustosUnoF
 
 		botonPerfilGustosUnoFSiguienteF.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaPerfilGustosUnoF, ventanaCarga);
+				
 				if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() || bohoF.isSelected()
 						|| formalF.isSelected() || sportyChickF.isSelected()) {
 					
@@ -943,7 +1031,7 @@ public class Principal {
 								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Gris") {
 									colorseleccionado = 8;
 								} else {
-									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM, "Debes escoger un color para continuar");
+									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoF, "Debes escoger un color para continuar");
 								}
 								
 								if (clasicoF.isSelected()) {
@@ -959,15 +1047,14 @@ public class Principal {
 								} else if (sportyChickF.isSelected()) {
 									estiloseleccionado = "sportyChickF";
 								} else {
-									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM, "Debes seleccionar un estilo favorito");
+									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoF, "Debes seleccionar un estilo favorito");
 								}
 								BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(), txtCrearEmailF.getText(), 0, (int)spinCrearEdadF.getValue(), txtCrearContraseñaF.getText(), 1, colorseleccionado, estiloseleccionado);
 								
 							} catch (BDException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							CambiarPanel(ventanaPerfilGustosUnoF, ventanaMenuPrincipal);
+							CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 						}
 					}
 				});  
