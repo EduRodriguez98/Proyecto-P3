@@ -47,6 +47,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
@@ -54,6 +55,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
 
 import conexion.BDException;
 import conexion.BaseDatosModise;
@@ -167,10 +169,11 @@ public class Principal {
 
 	// ventanaPideOutfit
 	JButton botonAtrasPideOutfit, botonBuscar;
-	JRadioButton radioSol, radioLluvia, radioNublado, radioNo;
-	JLabel preguntaEstilo, preguntaTiempo, errorPideOutfit;
-	JComboBox<String> estilosComboBoxPideOutfit;
+	JRadioButton radioSol, radioLluvia, radioNublado, radioNo, generoOutfitM, generoOutfitF;
+	JLabel preguntaEstilo, preguntaTiempo, errorPideOutfit, preguntaColor, generoPregunta;
+	JComboBox<String> estilosComboBoxPideOutfit, colorMenteComboBox;
 	Boolean escrito5;
+	
 
 	// ventanaFeedback
 	JLabel nivelSatisfaccion, gustoColores, errorFeedback;
@@ -1136,21 +1139,42 @@ public class Principal {
 				CambiarPanel(ventanaMenuPrincipal, ventanaMasMenosAdmin);
 			}
 		});
-
+		
+		
+		
 		// Añadiendo los compenentes de ventanaPideOutfit
 		preguntaTiempo = new JLabel("Que tiempo hace hoy?");
 		preguntaTiempo.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPideOutfit.add(preguntaTiempo);
-		preguntaTiempo.setBounds(50, 0, 300, 100);
+		preguntaTiempo.setBounds(30, 0, 300, 40);
 
 		radioSol = new JRadioButton("Sol");
 		radioSol.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioSol);
-		radioSol.setBounds(50, 80, 100, 40);
+		radioSol.setBounds(30, 50, 100, 40);
 		radioLluvia = new JRadioButton("Lluvia");
 		radioLluvia.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioLluvia);
-		radioLluvia.setBounds(50, 120, 100, 40);
+		radioLluvia.setBounds(30, 100, 100, 40);
+		
+		preguntaColor = new JLabel("Tienes algun color en mente?");
+		preguntaColor.setFont(new Font("Monospace", Font.BOLD, 13));
+		ventanaPideOutfit.add(preguntaColor);
+		preguntaColor.setBounds(370, 0, 300, 40);
+		ventanaPideOutfit.add(preguntaColor);
+		
+		colorMenteComboBox = new JComboBox<String>();
+		colorMenteComboBox.addItem("rojo");
+		colorMenteComboBox.addItem("azul");
+		colorMenteComboBox.addItem("amarillo");
+		colorMenteComboBox.addItem("verde");
+		colorMenteComboBox.addItem("negro");
+		colorMenteComboBox.addItem("rosa");
+		colorMenteComboBox.addItem("multicolor");
+		colorMenteComboBox.addItem("blanco");
+		colorMenteComboBox.addItem("gris");
+		colorMenteComboBox.setBounds(370, 50, 190, 30);
+		ventanaPideOutfit.add(colorMenteComboBox);
 		
 		ButtonGroup bgPideOutfit = new ButtonGroup();
 		bgPideOutfit.add(radioSol);
@@ -1159,12 +1183,12 @@ public class Principal {
 		preguntaEstilo = new JLabel("Tienes algun estilo en mente para tu outfit?");
 		preguntaEstilo.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPideOutfit.add(preguntaEstilo);
-		preguntaEstilo.setBounds(50, 210, 300, 60);
+		preguntaEstilo.setBounds(30, 200, 300, 30);
 
 		radioNo = new JRadioButton("No");
 		radioNo.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioNo);
-		radioNo.setBounds(50, 260, 50, 30);
+		radioNo.setBounds(30, 240, 50, 30);
 
 		estilosComboBoxPideOutfit = new JComboBox<String>();
 		ventanaPideOutfit.add(estilosComboBoxPideOutfit);
@@ -1181,8 +1205,25 @@ public class Principal {
 		estilosComboBoxPideOutfit.addItem("FormalM");
 		estilosComboBoxPideOutfit.addItem("SportyChickF");
 		estilosComboBoxPideOutfit.addItem("CasualChickM"); // 12
-		estilosComboBoxPideOutfit.setBounds(150, 260, 200, 30);
+		estilosComboBoxPideOutfit.setBounds(120, 240, 180, 30);
 
+		generoPregunta = new JLabel("Seleccione el genero");
+		generoPregunta.setFont(new Font("Monospace", Font.BOLD, 13));
+		generoPregunta.setBounds(370, 200, 200, 30);
+		ventanaPideOutfit.add(generoPregunta);
+		generoOutfitM = new JRadioButton("M");
+		generoOutfitM.setFont(new Font("Monospace", Font.PLAIN, 12));
+		generoOutfitM.setBounds(370, 240, 50, 30);
+		generoOutfitF = new JRadioButton("F");
+		generoOutfitF.setFont(new Font("Monospace", Font.PLAIN, 12));
+		generoOutfitF.setBounds(420, 240, 50, 30);
+		ButtonGroup bgGenero = new ButtonGroup();
+		bgGenero.add(generoOutfitM);
+		bgGenero.add(generoOutfitF);
+		ventanaPideOutfit.add(generoOutfitM);
+		ventanaPideOutfit.add(generoOutfitF);
+		
+		
 		botonAtrasPideOutfit = new JButton("Atras");
 		ventanaPideOutfit.add(botonAtrasPideOutfit);
 		botonAtrasPideOutfit.setBounds(10, 340, 200, 30);
@@ -1228,9 +1269,71 @@ public class Principal {
 
 					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
 
-					UIManager.put("OptionPane.minimumSize", new Dimension(600, 700));
+					UIManager.put("OptionPane.minimumSize", new Dimension(500, 800));
+					
+					//ventanaEmergentePideOutfit
+					
+					JTable jt = new JTable();
+						jt.setPreferredSize(new Dimension(400, 850));
+						jt.setRowHeight(0, 50);
+						jt.setRowHeight(1, 150);
+						jt.setRowHeight(2, 150);
+						jt.setRowHeight(3, 150);
+						jt.setRowHeight(4, 150);
+						jt.setRowHeight(5, 150);
+						
+						String [] cols = {"idprendas", "foto"};
+						Object [][] rowsData = {};
+						
+						
+						DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
+						dtm.setDataVector(rowsData, cols);
+					int color = 0;
+					
+					if(colorMenteComboBox.getSelectedItem() == "rojo") {
+						color = 1;
+					} else if (colorMenteComboBox.getSelectedItem() == "azul") {
+						color = 2;
+					} else if (colorMenteComboBox.getSelectedItem() == "amarillo") {
+						color = 3;
+					} else if (colorMenteComboBox.getSelectedItem() == "verde") {
+						color = 4;
+					} else if (colorMenteComboBox.getSelectedItem() == "negro") {
+						color = 5;
+					} else if (colorMenteComboBox.getSelectedItem() == "rosa") {
+						color = 6;
+					} else if (colorMenteComboBox.getSelectedItem() == "multicolor") {
+						color = 7;
+					} else if (colorMenteComboBox.getSelectedItem() == "blanco") {
+						color = 8;
+					} else if (colorMenteComboBox.getSelectedItem() == "gris") {
+						color = 8;
+					}
+						Boolean generoElegido = null;
+					if (generoOutfitM.isSelected()) {
+						generoElegido = false;
+					} else if (generoOutfitF.isSelected()) {
+						generoElegido = true;
+					} else {
+						JOptionPane.showMessageDialog(ventanaPideOutfit, "debe seleccionar el genero");
+					}
+					
+					if(radioSol.isSelected() && !radioNo.isSelected()) {
+						
+						try {
+							BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), generoElegido, color);
+						} catch (BDException | SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}	
+						
+					ventanaEmergenteOutfit.add(jt);
+					
+					
 					JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!",
 							JOptionPane.DEFAULT_OPTION);
+					
 					escrito5 = false;
 					bgPideOutfit.clearSelection();
 					radioNo.setSelected(false);

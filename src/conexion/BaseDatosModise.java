@@ -1,7 +1,5 @@
 package conexion;
 
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,7 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
+
+import com.mysql.cj.util.StringUtils;
 
 public class BaseDatosModise {
 
@@ -426,79 +429,301 @@ public class BaseDatosModise {
 
 	
 	
-	public static void crearOutfitSoleado(String estiloj, Boolean generoj, int colorj) throws BDException, SQLException{
+	public static HashMap<Integer, byte[]> crearOutfitSoleado(String estiloj, Boolean generoj, int colorj) throws BDException, SQLException{
+		//Utilizamos un HashMap para almacenar el resultado de la Query, y procedemos a meterlo en una JTable para mostrar el resultado en el panel!
+		//Al usar idprendas como key, nos aseguramos de que no hay duplicados ya que es una primary key de prendas, y tipos de prendas heredan de ella!
+		
+		HashMap<Integer, byte[]> mapOutfitSol = new HashMap<Integer, byte[]>();
+		
+		List<Integer> listaColoresUsados = new ArrayList<Integer>();
+		
+		List<Integer> listaColoresDisponibles = new ArrayList<Integer>();
+		listaColoresDisponibles.add(1);
+		listaColoresDisponibles.add(2);
+		listaColoresDisponibles.add(3);
+		listaColoresDisponibles.add(4);
+		listaColoresDisponibles.add(5);
+		listaColoresDisponibles.add(6);
+		listaColoresDisponibles.add(7);
+		listaColoresDisponibles.add(8);
+		listaColoresDisponibles.add(9);
+		
 		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 		try {
 			
-			PreparedStatement Stmt = conn.prepareStatement("'SELECT fotocamiseta FROM camisetasol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			PreparedStatement Stmt = conn.prepareStatement("'SELECT fotocamiseta, idprendas FROM camisetasol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
 			
 			ResultSet rs = Stmt.executeQuery();
 			
 			while(rs.next()) {
-				java.sql.Blob b = rs.getBlob(5);
-				byte bt[] = b.getBytes(1, (int)b.length());
-				Image img = Toolkit.getDefaultToolkit().createImage(bt);
-				//camisetaSol.setIcon(new ImageIcon(img));
+				listaColoresUsados.add(rs.getInt("idcolor"));
+				
+				for (Integer integer : listaColoresUsados) {
+					int currentColor = listaColoresUsados.get(integer);
+					
+					if (currentColor == 1) {
+							listaColoresDisponibles.remove(3);
+							listaColoresDisponibles.remove(4);
+							listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 2) {
+						listaColoresDisponibles.remove(3);
+						listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 3) {
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+
+					} else if (currentColor == 4) {
+						listaColoresDisponibles.remove(6);
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(3);
+
+					} else if (currentColor == 6) {
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+						listaColoresDisponibles.remove(1);
+						
+					} else if (currentColor == 7) {
+						listaColoresDisponibles.remove(9);		
+
+					} else if (currentColor == 9) {
+						listaColoresDisponibles.remove(7);
+						
+					} else {
+						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+					}
+				}
+				
+				Integer idCamiseta = rs.getInt("idprendas");
+				byte[] fotobytesCamisetas = rs.getBytes("fotocamiseta");
+				
+				mapOutfitSol.put(idCamiseta, fotobytesCamisetas);
 			}
 			rs.close();
 			Stmt.close();
 			
 			
 			
-			Stmt = conn.prepareStatement("'SELECT fotochaqueta FROM chaquetasol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			
+			Stmt = conn.prepareStatement("'SELECT fotochaqueta, idprendas FROM chaquetasol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
 			
 			rs = Stmt.executeQuery();
 			
 			while(rs.next()) {
-				java.sql.Blob b = rs.getBlob(5);
-				byte bt[] = b.getBytes(1, (int)b.length());
-				Image img2 = Toolkit.getDefaultToolkit().createImage(bt);
-				//chaquetaSol.setIcon(new ImageIcon(img2));
+				
+				listaColoresUsados.add(rs.getInt("idcolor"));
+				
+				for (Integer integer : listaColoresUsados) {
+					int currentColor = listaColoresUsados.get(integer);
+					
+					if (currentColor == 1) {
+							listaColoresDisponibles.remove(3);
+							listaColoresDisponibles.remove(4);
+							listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 2) {
+						listaColoresDisponibles.remove(3);
+						listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 3) {
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+
+					} else if (currentColor == 4) {
+						listaColoresDisponibles.remove(6);
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(3);
+
+					} else if (currentColor == 6) {
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+						listaColoresDisponibles.remove(1);
+						
+					} else if (currentColor == 7) {
+						listaColoresDisponibles.remove(9);		
+
+					} else if (currentColor == 9) {
+						listaColoresDisponibles.remove(7);
+						
+					} else {
+						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+					}
+				}
+				
+				Integer idChaqueta = rs.getInt("idprendas");
+				byte[] fotobytesChaquetas = rs.getBytes("fotochaqueta");
+				
+				mapOutfitSol.put(idChaqueta, fotobytesChaquetas);
 			}
 			rs.close();
 			conn.close();
 			
 			
 			
-			Stmt = conn.prepareStatement("'SELECT fotogorros FROM gorrosol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			Stmt = conn.prepareStatement("'SELECT fotogorros, idprendas FROM gorrosol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
 			
 			rs = Stmt.executeQuery();
 			
 			while(rs.next()) {
-				java.sql.Blob b = rs.getBlob(5);
-				byte bt[] = b.getBytes(1, (int)b.length());
-				Image img3 = Toolkit.getDefaultToolkit().createImage(bt);
-				//gorroSol.setIcon(new ImageIcon(img3));
+				
+				listaColoresUsados.add(rs.getInt("idcolor"));
+				
+				for (Integer integer : listaColoresUsados) {
+					int currentColor = listaColoresUsados.get(integer);
+					
+					if (currentColor == 1) {
+							listaColoresDisponibles.remove(3);
+							listaColoresDisponibles.remove(4);
+							listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 2) {
+						listaColoresDisponibles.remove(3);
+						listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 3) {
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+
+					} else if (currentColor == 4) {
+						listaColoresDisponibles.remove(6);
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(3);
+
+					} else if (currentColor == 6) {
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+						listaColoresDisponibles.remove(1);
+						
+					} else if (currentColor == 7) {
+						listaColoresDisponibles.remove(9);		
+
+					} else if (currentColor == 9) {
+						listaColoresDisponibles.remove(7);
+						
+					} else {
+						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+					}
+				}
+				
+				Integer idGorros = rs.getInt("idprendas");
+				byte[] fotobytesGorros = rs.getBytes("fotogorros");
+				
+				mapOutfitSol.put(idGorros, fotobytesGorros);
 			}
 			rs.close();
 			conn.close();
 			
 			
 			
-			Stmt = conn.prepareStatement("'SELECT fotopantalones FROM pantalonsol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			Stmt = conn.prepareStatement("'SELECT fotopantalones, idprendas FROM pantalonsol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
 			
 			rs = Stmt.executeQuery();
 			
 			while(rs.next()) {
-				java.sql.Blob b = rs.getBlob(5);
-				byte bt[] = b.getBytes(1, (int)b.length());
-				Image img4 = Toolkit.getDefaultToolkit().createImage(bt);
-				//pantalonSol.setIcon(new ImageIcon(img4));
+				listaColoresUsados.add(rs.getInt("idcolor"));
+				
+				for (Integer integer : listaColoresUsados) {
+					int currentColor = listaColoresUsados.get(integer);
+					
+					if (currentColor == 1) {
+							listaColoresDisponibles.remove(3);
+							listaColoresDisponibles.remove(4);
+							listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 2) {
+						listaColoresDisponibles.remove(3);
+						listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 3) {
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+
+					} else if (currentColor == 4) {
+						listaColoresDisponibles.remove(6);
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(3);
+
+					} else if (currentColor == 6) {
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+						listaColoresDisponibles.remove(1);
+						
+					} else if (currentColor == 7) {
+						listaColoresDisponibles.remove(9);		
+
+					} else if (currentColor == 9) {
+						listaColoresDisponibles.remove(7);
+						
+					} else {
+						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+					}
+				}
+				
+				Integer idPantalones = rs.getInt("idprendas");
+				byte[] fotobytesPantalones = rs.getBytes("fotopantalones");
+				
+				mapOutfitSol.put(idPantalones, fotobytesPantalones);
 			}
 			rs.close();
 			conn.close();
 			
 			
 			
-			Stmt = conn.prepareStatement("'SELECT fotozapatos FROM zapatosol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			Stmt = conn.prepareStatement("'SELECT fotozapatos FROM zapatosol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
 			
 			rs = Stmt.executeQuery();
 			
 			while(rs.next()) {
-				java.sql.Blob b = rs.getBlob(5);
-				byte bt[] = b.getBytes(1, (int)b.length());
-				Image img5 = Toolkit.getDefaultToolkit().createImage(bt);
-				//zapatosSol.setIcon(new ImageIcon(img5));
+				
+				listaColoresUsados.add(rs.getInt("idcolor"));
+				
+				for (Integer integer : listaColoresUsados) {
+					int currentColor = listaColoresUsados.get(integer);
+					
+					if (currentColor == 1) {
+							listaColoresDisponibles.remove(3);
+							listaColoresDisponibles.remove(4);
+							listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 2) {
+						listaColoresDisponibles.remove(3);
+						listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 3) {
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+
+					} else if (currentColor == 4) {
+						listaColoresDisponibles.remove(6);
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(3);
+
+					} else if (currentColor == 6) {
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+						listaColoresDisponibles.remove(1);
+						
+					} else if (currentColor == 7) {
+						listaColoresDisponibles.remove(9);		
+
+					} else if (currentColor == 9) {
+						listaColoresDisponibles.remove(7);
+						
+					} else {
+						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+					}
+				}
+				
+				Integer idZapatos = rs.getInt("idprendas");
+				byte[] fotobytesZapatos = rs.getBytes("fotozapatos");
+				
+				mapOutfitSol.put(idZapatos, fotobytesZapatos);
 			}
 			rs.close();
 			conn.close();
@@ -506,83 +731,309 @@ public class BaseDatosModise {
 		} catch (SQLException e) {
 			throw new BDException ("error al conectar con la BD", e);
 		}
+		return mapOutfitSol;
 	}
 	
-	public static void crearOutfitLluvioso(String estiloj, Boolean generoj, int colorj) throws BDException, SQLException{
-		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+		
+	public static HashMap<Integer, byte[]> crearOutfitLluvioso(String estiloj, Boolean generoj, int colorj) throws BDException, SQLException{
+		//Utilizamos un HashMap para almacenar el resultado de la Query, y procedemos a meterlo en una JTable para mostrar el resultado en el panel!
+		//Al usar idprendas como key, nos aseguramos de que no hay duplicados ya que es una primary key de prendas, y tipos de prendas heredan de ella!
+		
+		HashMap<Integer, byte[]> mapOutfitLluvioso = new HashMap<Integer, byte[]>();
+		
+		List<Integer> listaColoresUsados = new ArrayList<Integer>();
+		
+		List<Integer> listaColoresDisponibles = new ArrayList<Integer>();
+		listaColoresDisponibles.add(1);
+		listaColoresDisponibles.add(2);
+		listaColoresDisponibles.add(3);
+		listaColoresDisponibles.add(4);
+		listaColoresDisponibles.add(5);
+		listaColoresDisponibles.add(6);
+		listaColoresDisponibles.add(7);
+		listaColoresDisponibles.add(8);
+		listaColoresDisponibles.add(9);
 		try {
+			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
-			
-			PreparedStatement Stmt = conn.prepareStatement("'SELECT fotocamiseta FROM camisetalluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			PreparedStatement Stmt = conn.prepareStatement("'SELECT fotocamiseta FROM camisetalluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
 
 			
 			ResultSet rs = Stmt.executeQuery();
 			
 			while(rs.next()) {
-				java.sql.Blob b = rs.getBlob(2);
-				byte bt[] = b.getBytes(1, (int)b.length());
-				Image img = Toolkit.getDefaultToolkit().createImage(bt);
-				//camisetaLluvia.setIcon(new ImageIcon(img));
+				
+				listaColoresUsados.add(rs.getInt("idcolor"));
+				
+				for (Integer integer : listaColoresUsados) {
+					int currentColor = listaColoresUsados.get(integer);
+					
+					if (currentColor == 1) {
+							listaColoresDisponibles.remove(3);
+							listaColoresDisponibles.remove(4);
+							listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 2) {
+						listaColoresDisponibles.remove(3);
+						listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 3) {
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+
+					} else if (currentColor == 4) {
+						listaColoresDisponibles.remove(6);
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(3);
+
+					} else if (currentColor == 6) {
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+						listaColoresDisponibles.remove(1);
+						
+					} else if (currentColor == 7) {
+						listaColoresDisponibles.remove(9);		
+
+					} else if (currentColor == 9) {
+						listaColoresDisponibles.remove(7);
+						
+					} else {
+						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+					}
+				}
+				
+				Integer idCamiseta = rs.getInt("idprendas");
+				byte[] fotobytesCamisetas = rs.getBytes("fotocamiseta");
+				
+				mapOutfitLluvioso.put(idCamiseta, fotobytesCamisetas);
 			}
 			rs.close();
 			Stmt.close();
 			
 			
 			
-			Stmt = conn.prepareStatement("'SELECT fotochaqueta FROM chaquetalluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			Stmt = conn.prepareStatement("'SELECT fotochaqueta FROM chaquetalluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
 			
 			rs = Stmt.executeQuery();
 			
 			while(rs.next()) {
-				java.sql.Blob b = rs.getBlob(5);
-				byte bt[] = b.getBytes(1, (int)b.length());
-				Image img2 = Toolkit.getDefaultToolkit().createImage(bt);
-				//chaquetaLluvia.setIcon(new ImageIcon(img2));
+				
+				listaColoresUsados.add(rs.getInt("idcolor"));
+				
+				for (Integer integer : listaColoresUsados) {
+					int currentColor = listaColoresUsados.get(integer);
+					
+					if (currentColor == 1) {
+							listaColoresDisponibles.remove(3);
+							listaColoresDisponibles.remove(4);
+							listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 2) {
+						listaColoresDisponibles.remove(3);
+						listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 3) {
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+
+					} else if (currentColor == 4) {
+						listaColoresDisponibles.remove(6);
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(3);
+
+					} else if (currentColor == 6) {
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+						listaColoresDisponibles.remove(1);
+						
+					} else if (currentColor == 7) {
+						listaColoresDisponibles.remove(9);		
+
+					} else if (currentColor == 9) {
+						listaColoresDisponibles.remove(7);
+						
+					} else {
+						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+					}
+				}
+				
+				Integer idChaqueta = rs.getInt("idprendas");
+				byte[] fotobytesChaquetas = rs.getBytes("fotochaqueta");
+				
+				mapOutfitLluvioso.put(idChaqueta, fotobytesChaquetas);
 			}
 			rs.close();
 			conn.close();
 			
 			
 			
-			Stmt = conn.prepareStatement("'SELECT fotogorros FROM gorrolluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			Stmt = conn.prepareStatement("'SELECT fotogorros FROM gorrolluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
 			
 			rs = Stmt.executeQuery();
 			
 			while(rs.next()) {
-				java.sql.Blob b = rs.getBlob(5);
-				byte bt[] = b.getBytes(1, (int)b.length());
-				Image img3 = Toolkit.getDefaultToolkit().createImage(bt);
-				//gorroLluvia.setIcon(new ImageIcon(img3));
+				
+				listaColoresUsados.add(rs.getInt("idcolor"));
+				
+				for (Integer integer : listaColoresUsados) {
+					int currentColor = listaColoresUsados.get(integer);
+					
+					if (currentColor == 1) {
+							listaColoresDisponibles.remove(3);
+							listaColoresDisponibles.remove(4);
+							listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 2) {
+						listaColoresDisponibles.remove(3);
+						listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 3) {
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+
+					} else if (currentColor == 4) {
+						listaColoresDisponibles.remove(6);
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(3);
+
+					} else if (currentColor == 6) {
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+						listaColoresDisponibles.remove(1);
+						
+					} else if (currentColor == 7) {
+						listaColoresDisponibles.remove(9);		
+
+					} else if (currentColor == 9) {
+						listaColoresDisponibles.remove(7);
+						
+					} else {
+						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+					}
+				}
+				
+				Integer idGorros = rs.getInt("idprendas");
+				byte[] fotobytesGorros = rs.getBytes("fotogorros");
+				
+				mapOutfitLluvioso.put(idGorros, fotobytesGorros);
+				
 			}
 			rs.close();
 			conn.close();
 			
 			
 			
-			Stmt = conn.prepareStatement("'SELECT fotopantalones FROM pantalonlluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			Stmt = conn.prepareStatement("'SELECT fotopantalones FROM pantalonlluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+")");
 			
 			rs = Stmt.executeQuery();
 			
 			while(rs.next()) {
-				java.sql.Blob b = rs.getBlob(5);
-				byte bt[] = b.getBytes(1, (int)b.length());
-				Image img4 = Toolkit.getDefaultToolkit().createImage(bt);
-				//pantalonLluvia.setIcon(new ImageIcon(img4));
+				
+				listaColoresUsados.add(rs.getInt("idcolor"));
+				
+				for (Integer integer : listaColoresUsados) {
+					int currentColor = listaColoresUsados.get(integer);
+					
+					if (currentColor == 1) {
+							listaColoresDisponibles.remove(3);
+							listaColoresDisponibles.remove(4);
+							listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 2) {
+						listaColoresDisponibles.remove(3);
+						listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 3) {
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+
+					} else if (currentColor == 4) {
+						listaColoresDisponibles.remove(6);
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(3);
+
+					} else if (currentColor == 6) {
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+						listaColoresDisponibles.remove(1);
+						
+					} else if (currentColor == 7) {
+						listaColoresDisponibles.remove(9);		
+
+					} else if (currentColor == 9) {
+						listaColoresDisponibles.remove(7);
+						
+					} else {
+						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+					}
+				}
+				
+				Integer idPantalones = rs.getInt("idprendas");
+				byte[] fotobytesPantalones = rs.getBytes("fotopantalones");
+				
+				mapOutfitLluvioso.put(idPantalones, fotobytesPantalones);
+				
 			}
 			rs.close();
 			conn.close();
 			
 			
 			
-			Stmt = conn.prepareStatement("'SELECT fotozapatos FROM zapatolluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color = " + colorj + ")");
+			Stmt = conn.prepareStatement("'SELECT fotozapatos FROM zapatolluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
 			
 			rs = Stmt.executeQuery();
 			
 			while(rs.next()) {
-				java.sql.Blob b = rs.getBlob(5);
-				byte bt[] = b.getBytes(1, (int)b.length());
-				Image img5 = Toolkit.getDefaultToolkit().createImage(bt);
-				//zapatosLluvia.setIcon(new ImageIcon(img5));
+				
+				listaColoresUsados.add(rs.getInt("idcolor"));
+				
+				for (Integer integer : listaColoresUsados) {
+					int currentColor = listaColoresUsados.get(integer);
+					
+					if (currentColor == 1) {
+							listaColoresDisponibles.remove(3);
+							listaColoresDisponibles.remove(4);
+							listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 2) {
+						listaColoresDisponibles.remove(3);
+						listaColoresDisponibles.remove(6);
+
+					} else if (currentColor == 3) {
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+
+					} else if (currentColor == 4) {
+						listaColoresDisponibles.remove(6);
+						listaColoresDisponibles.remove(1);
+						listaColoresDisponibles.remove(3);
+
+					} else if (currentColor == 6) {
+						listaColoresDisponibles.remove(2);
+						listaColoresDisponibles.remove(4);
+						listaColoresDisponibles.remove(1);
+						
+					} else if (currentColor == 7) {
+						listaColoresDisponibles.remove(9);		
+
+					} else if (currentColor == 9) {
+						listaColoresDisponibles.remove(7);
+						
+					} else {
+						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+					}
+				}
+				
+				Integer idZapatos = rs.getInt("idprendas");
+				byte[] fotobytesZapatos = rs.getBytes("fotozapatos");
+				
+				mapOutfitLluvioso.put(idZapatos, fotobytesZapatos);
+				
 			}
 			rs.close();
 			conn.close();
@@ -590,6 +1041,7 @@ public class BaseDatosModise {
 		} catch (SQLException e) {
 			throw new BDException ("error al conectar con la BD", e);
 		}
+		return mapOutfitLluvioso;
 	}
 	
 	//falta el metodo outfitguay que va a ser recursivo con nivelimp y nivelfash.
