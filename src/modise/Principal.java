@@ -1257,7 +1257,6 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(estilosComboBoxPideOutfit.getSelectedIndex());
 
 				if (bgPideOutfit.getSelection() != null
 						&& (radioNo.isSelected() || estilosComboBoxPideOutfit.getSelectedIndex() != -1)) {
@@ -1292,25 +1291,28 @@ public class Principal {
 						
 						DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
 						dtm.setDataVector(rowsData, cols);
-					int color = 0;
+					int color = 1;
 					
-					if(colorMenteComboBox.getSelectedItem() == "rojo") {
+					
+					String nombreColorSeleccionadoPO = colorMenteComboBox.getSelectedItem().toString();
+					
+					if(nombreColorSeleccionadoPO == "rojo") {
 						color = 1;
-					} else if (colorMenteComboBox.getSelectedItem() == "azul") {
+					} else if (nombreColorSeleccionadoPO == "azul") {
 						color = 2;
-					} else if (colorMenteComboBox.getSelectedItem() == "amarillo") {
+					} else if (nombreColorSeleccionadoPO == "amarillo") {
 						color = 3;
-					} else if (colorMenteComboBox.getSelectedItem() == "verde") {
+					} else if (nombreColorSeleccionadoPO == "verde") {
 						color = 4;
-					} else if (colorMenteComboBox.getSelectedItem() == "negro") {
+					} else if (nombreColorSeleccionadoPO == "negro") {
 						color = 5;
-					} else if (colorMenteComboBox.getSelectedItem() == "rosa") {
+					} else if (nombreColorSeleccionadoPO == "rosa") {
 						color = 6;
-					} else if (colorMenteComboBox.getSelectedItem() == "multicolor") {
+					} else if (nombreColorSeleccionadoPO == "multicolor") {
 						color = 7;
-					} else if (colorMenteComboBox.getSelectedItem() == "blanco") {
+					} else if (nombreColorSeleccionadoPO == "blanco") {
 						color = 8;
-					} else if (colorMenteComboBox.getSelectedItem() == "gris") {
+					} else {
 						color = 8;
 					}
 						Boolean generoElegido = null;
@@ -1326,8 +1328,9 @@ public class Principal {
 						
 						try {
 							
-							HashMap<Integer, byte[] > outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), generoElegido, color);
-							System.out.println(outfitSolMap.size());
+							HashMap<Integer, byte[]> outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), generoElegido, color);
+							
+							
 							Object[][] arrOutfitSol = new Object[outfitSolMap.size()][2];
 							@SuppressWarnings("rawtypes")
 							Set entries = outfitSolMap.entrySet();
@@ -1342,15 +1345,14 @@ public class Principal {
 								
 								arrOutfitSol [i][0] = mapping.getKey();
 								arrOutfitSol  [i][1]= mapping.getValue();
-							
-								rowsData = arrOutfitSol;
 								
-								
+								i++;
 							}
 							
+							rowsData = arrOutfitSol;
 							
 						} catch (BDException | SQLException e1) {
-							// TODO Auto-generated catch block
+							
 							e1.printStackTrace();
 						}
 					}	
