@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 import com.mysql.cj.util.StringUtils;
 
@@ -451,7 +452,14 @@ public class BaseDatosModise {
 		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 		try {
 			
-			PreparedStatement Stmt = conn.prepareStatement("'SELECT fotocamiseta, idprendas FROM camisetasol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
+			
+			String sql = "SELECT fotocamiseta, idprendas FROM camisetasol "
+					+ "WHERE (estiloPrendas = '" + estiloj + "' AND genero = '" + generoj + "' AND id_color IN (?))" + " ORDER BY RAND() LIMIT 1";
+			
+			String sqlIn = listaColoresDisponibles.stream().map(x -> String.valueOf(x)).collect(Collectors.joining(",", "(", ")"));
+			sql = sql.replace("(?)", sqlIn);
+			
+			PreparedStatement Stmt = conn.prepareStatement(sql); 
 			
 			ResultSet rs = Stmt.executeQuery();
 			
@@ -506,8 +514,13 @@ public class BaseDatosModise {
 			
 			
 			
+			String sql2 = "SELECT fotochaqueta, idprendas FROM chaquetasol"
+					+ "WHERE (estiloPrendas = '" + estiloj + "' AND genero = '" + generoj + "' AND id_color IN (?))" + " ORDER BY RAND() LIMIT 1";
 			
-			Stmt = conn.prepareStatement("'SELECT fotochaqueta, idprendas FROM chaquetasol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
+			String sqlIn2 = listaColoresDisponibles.stream().map(x -> String.valueOf(x)).collect(Collectors.joining(",", "(", ")"));
+			sql2 = sql2.replace("(?)", sqlIn2);
+			
+			Stmt = conn.prepareStatement(sql2); 
 			
 			rs = Stmt.executeQuery();
 			
@@ -563,7 +576,13 @@ public class BaseDatosModise {
 			
 			
 			
-			Stmt = conn.prepareStatement("'SELECT fotogorros, idprendas FROM gorrosol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
+			String sql3 = "SELECT fotogorros, idprendas FROM gorrosol "
+					+ "WHERE (estiloPrendas = '" + estiloj + "' AND genero = '" + generoj + "' AND id_color IN (?))" + " ORDER BY RAND() LIMIT 1";
+			
+			String sqlIn3 = listaColoresDisponibles.stream().map(x -> String.valueOf(x)).collect(Collectors.joining(",", "(", ")"));
+			sql3 = sql3.replace("(?)", sqlIn3);
+			
+			Stmt = conn.prepareStatement(sql3);
 			
 			rs = Stmt.executeQuery();
 			
@@ -618,8 +637,14 @@ public class BaseDatosModise {
 			conn.close();
 			
 			
+			String sql4 = "SELECT fotopantalones, idprendas FROM pantalonsol "
+					+ "WHERE (estiloPrendas = '" + estiloj + "' AND genero = '" + generoj + "' AND id_color IN (?))" + " ORDER BY RAND() LIMIT 1";
 			
-			Stmt = conn.prepareStatement("'SELECT fotopantalones, idprendas FROM pantalonsol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
+			String sqlIn4 = listaColoresDisponibles.stream().map(x -> String.valueOf(x)).collect(Collectors.joining(",", "(", ")"));
+			sql4 = sql4.replace("(?)", sqlIn4);
+			
+			Stmt = conn.prepareStatement(sql4);
+			
 			
 			rs = Stmt.executeQuery();
 			
@@ -673,8 +698,13 @@ public class BaseDatosModise {
 			conn.close();
 			
 			
+			String sql5 = "SELECT fotozapatos, idprendas FROM zapatosol "
+					+ "WHERE (estiloPrendas = '" + estiloj + "' AND genero = '" + generoj + "' AND id_color IN (?))" + " ORDER BY RAND() LIMIT 1";
 			
-			Stmt = conn.prepareStatement("'SELECT fotozapatos FROM zapatosol ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
+			String sqlIn5 = listaColoresDisponibles.stream().map(x -> String.valueOf(x)).collect(Collectors.joining(",", "(", ")"));
+			sql5 = sql5.replace("(?)", sqlIn5);
+			
+			Stmt = conn.prepareStatement(sql5);
 			
 			rs = Stmt.executeQuery();
 			
@@ -729,7 +759,7 @@ public class BaseDatosModise {
 			conn.close();
 			
 		} catch (SQLException e) {
-			throw new BDException ("error al conectar con la BD", e);
+			e.printStackTrace();
 		}
 		return mapOutfitSol;
 	}
@@ -756,7 +786,7 @@ public class BaseDatosModise {
 		try {
 			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			
-			PreparedStatement Stmt = conn.prepareStatement("'SELECT fotocamiseta FROM camisetalluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
+			PreparedStatement Stmt = conn.prepareStatement("SELECT fotocamiseta FROM camisetalluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
 
 			
 			ResultSet rs = Stmt.executeQuery();
@@ -813,7 +843,7 @@ public class BaseDatosModise {
 			
 			
 			
-			Stmt = conn.prepareStatement("'SELECT fotochaqueta FROM chaquetalluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
+			Stmt = conn.prepareStatement("SELECT fotochaqueta FROM chaquetalluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
 			
 			rs = Stmt.executeQuery();
 			
@@ -869,7 +899,7 @@ public class BaseDatosModise {
 			
 			
 			
-			Stmt = conn.prepareStatement("'SELECT fotogorros FROM gorrolluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
+			Stmt = conn.prepareStatement("SELECT fotogorros FROM gorrolluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
 			
 			rs = Stmt.executeQuery();
 			
@@ -926,7 +956,7 @@ public class BaseDatosModise {
 			
 			
 			
-			Stmt = conn.prepareStatement("'SELECT fotopantalones FROM pantalonlluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+")");
+			Stmt = conn.prepareStatement("SELECT fotopantalones FROM pantalonlluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+")");
 			
 			rs = Stmt.executeQuery();
 			
@@ -983,7 +1013,7 @@ public class BaseDatosModise {
 			
 			
 			
-			Stmt = conn.prepareStatement("'SELECT fotozapatos FROM zapatolluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
+			Stmt = conn.prepareStatement("SELECT fotozapatos FROM zapatolluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
 			
 			rs = Stmt.executeQuery();
 			

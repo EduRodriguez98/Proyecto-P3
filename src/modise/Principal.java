@@ -26,7 +26,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
@@ -1321,7 +1325,30 @@ public class Principal {
 					if(radioSol.isSelected() && !radioNo.isSelected()) {
 						
 						try {
-							BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), generoElegido, color);
+							
+							HashMap<Integer, byte[] > outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), generoElegido, color);
+							System.out.println(outfitSolMap.size());
+							Object[][] arrOutfitSol = new Object[outfitSolMap.size()][2];
+							@SuppressWarnings("rawtypes")
+							Set entries = outfitSolMap.entrySet();
+							@SuppressWarnings("rawtypes")
+							Iterator entriesIterator = entries.iterator();
+							
+							int i = 0;
+							
+							while(entriesIterator.hasNext()) {
+								@SuppressWarnings("unchecked")
+								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator.next();
+								
+								arrOutfitSol [i][0] = mapping.getKey();
+								arrOutfitSol  [i][1]= mapping.getValue();
+							
+								rowsData = arrOutfitSol;
+								
+								
+							}
+							
+							
 						} catch (BDException | SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
