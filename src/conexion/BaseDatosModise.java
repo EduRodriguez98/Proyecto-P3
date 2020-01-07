@@ -1033,6 +1033,9 @@ public class BaseDatosModise {
 				byte[] fotobytesZapatos = rs.getBytes("fotozapatos");
 				
 				mapOutfitLluvioso.put(idZapatos, fotobytesZapatos);
+				//Una vez sacado las 5 prendas y metidas en el hashmap, se vacian estas listas
+				listaColoresUsados.clear();
+				listaColoresDisponibles.clear();
 				
 			}
 			rs.close();
@@ -1042,6 +1045,8 @@ public class BaseDatosModise {
 			throw new BDException ("error al conectar con la BD", e);
 		}
 		return mapOutfitLluvioso;
+		
+		
 	}
 	
 	//falta el metodo outfitguay que va a ser recursivo con nivelimp y nivelfash.
