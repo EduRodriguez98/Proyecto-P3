@@ -1269,9 +1269,11 @@ public class Principal {
 					}
 					Usuariolog.println("Pide Outfit, tiempo: " + bgPideOutfit.getSelection().getActionCommand()
 							+ ", estilo: " + l);
-
-					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
-
+				} else {
+					errorPideOutfit.setText("Rellena todos los campos requeridos.");	
+				}
+				
+				CambiarPanel(ventanaPideOutfit, ventanaFeedback);
 					UIManager.put("OptionPane.minimumSize", new Dimension(500, 800));
 					
 					//ventanaEmergentePideOutfit
@@ -1313,22 +1315,16 @@ public class Principal {
 					} else if (nombreColorSeleccionadoPO == "blanco") {
 						color = 8;
 					} else {
-						color = 8;
+						color = 9;
 					}
-						Boolean generoElegido = null;
-					if (generoOutfitM.isSelected()) {
-						generoElegido = false;
-					} else if (generoOutfitF.isSelected()) {
-						generoElegido = true;
-					} else {
-						JOptionPane.showMessageDialog(ventanaPideOutfit, "debe seleccionar el genero");
-					}
+						
+						HashMap<Integer, byte[]> outfitSolMap=null;
 					
-					if(radioSol.isSelected() && !radioNo.isSelected()) {
+					if(radioSol.isSelected() && !radioNo.isSelected() && generoOutfitM.isSelected()) {
 						
 						try {
+							outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), false, color);
 							
-							HashMap<Integer, byte[]> outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), generoElegido, color);
 							
 							
 							Object[][] arrOutfitSol = new Object[outfitSolMap.size()][2];
@@ -1355,7 +1351,74 @@ public class Principal {
 							
 							e1.printStackTrace();
 						}
-					}	
+						
+					} else if (radioSol.isSelected() && !radioNo.isSelected() && generoOutfitF.isSelected()) {
+						
+						try {
+							outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), true, color);
+							//funciona, si pide un outfit Femenino
+							
+							
+							Object[][] arrOutfitSol = new Object[outfitSolMap.size()][2];
+							@SuppressWarnings("rawtypes")
+							Set entries = outfitSolMap.entrySet();
+							@SuppressWarnings("rawtypes")
+							Iterator entriesIterator = entries.iterator();
+							
+							int i = 0;
+							
+							while(entriesIterator.hasNext()) {
+								@SuppressWarnings("unchecked")
+								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator.next();
+								
+								arrOutfitSol [i][0] = mapping.getKey();
+								arrOutfitSol  [i][1]= mapping.getValue();
+								
+								i++;
+							}
+							
+							rowsData = arrOutfitSol;
+							
+						} catch (BDException | SQLException e1) {
+							
+							e1.printStackTrace();
+						}
+						
+					}	else if (radioLluvia.isSelected() && !radioNo.isSelected()) {
+						HashMap<Integer, byte[]> outfitLluviaMap = null;
+						try {
+							
+							if (generoOutfitM.isSelected()) {
+								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(estilosComboBoxPideOutfit.getSelectedItem().toString(), false, color);
+							} else if (generoOutfitF.isSelected()) {
+								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(estilosComboBoxPideOutfit.getSelectedItem().toString(), true, color);
+							} 
+							
+							Object[][] arrOutfitLluvia = new Object[outfitLluviaMap.size()][2];
+							@SuppressWarnings("rawtypes")
+							Set entries = outfitLluviaMap.entrySet();
+							@SuppressWarnings("rawtypes")
+							Iterator entriesIterator = entries.iterator();
+							
+							int i = 0;
+							
+							while(entriesIterator.hasNext()) {
+								@SuppressWarnings("unchecked")
+								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator.next();
+								
+								arrOutfitLluvia [i][0] = mapping.getKey();
+								arrOutfitLluvia  [i][1]= mapping.getValue();
+								
+								i++;
+							}
+							
+							rowsData = arrOutfitLluvia;
+							
+						} catch (BDException | SQLException e1) {
+							
+							e1.printStackTrace();
+						}
+					}
 						
 					ventanaEmergenteOutfit.add(jt);
 					
@@ -1369,16 +1432,9 @@ public class Principal {
 					errorPideOutfit.setText("");
 					estilosComboBoxPideOutfit.setSelectedIndex(0);
 
-					// LLamar a la clase Crear Outfit
-					
-					
-					
-					
-
-				} else {
-					errorPideOutfit.setText("Rellena todos los campos requeridos.");
+				
 				}
-			}
+			
 		});
 
 		botonAtrasPideOutfit.addActionListener(new ActionListener() {
