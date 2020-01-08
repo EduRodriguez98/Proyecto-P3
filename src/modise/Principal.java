@@ -711,6 +711,8 @@ public class Principal {
 		comboColorPreferidoM.addItem("Multicolor");
 		comboColorPreferidoM.addItem("Blanco");
 		comboColorPreferidoM.addItem("Gris");
+		comboColorPreferidoM.addItem("Marron");
+
 		ventanaPerfilGustosUnoM.add(comboColorPreferidoM);
 		
 		botonPerfilGustosUnoMAtras = new JButton("Atras");
@@ -773,20 +775,24 @@ public class Principal {
 								
 								if(comboColorPreferidoM.getSelectedItem().toString() == "Rojo") {
 									colorseleccionado = 1;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Amarillo") {
+								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Azul") {
 									colorseleccionado = 2;
-								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Verde") {
+								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Amarillo") {
 									colorseleccionado = 3;
-								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Negro") {
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Verde") {
 									colorseleccionado = 4;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Rosa") {
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Negro") {
 									colorseleccionado = 5;
-								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Multicolor") {
+								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Rosa") {
 									colorseleccionado = 6;
-								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Blanco") {
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Multicolor") {
 									colorseleccionado = 7;
-								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Gris") {
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Blanco") {
 									colorseleccionado = 8;
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Gris") {
+									colorseleccionado = 9;
+								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Marron") {
+									colorseleccionado = 10;
 								} else {
 									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM, "Debes escoger un color para continuar");
 								}
@@ -966,6 +972,8 @@ public class Principal {
 		comboColorPreferidoF.addItem("Multicolor");
 		comboColorPreferidoF.addItem("Blanco");
 		comboColorPreferidoF.addItem("Gris");
+		comboColorPreferidoF.addItem("Marron");
+
 		ventanaPerfilGustosUnoF.add(comboColorPreferidoF);
 		
 		botonPerfilGustosUnoFAtrasF = new JButton("Atras");
@@ -1025,21 +1033,25 @@ public class Principal {
 								
 								if(comboColorPreferidoF.getSelectedItem().toString() == "Rojo") {
 									colorseleccionado = 1;
-								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Amarillo") {
+								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Azul") {
 									colorseleccionado = 2;
-								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Verde") {
+								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Amarillo") {
 									colorseleccionado = 3;
-								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Negro") {
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Verde") {
 									colorseleccionado = 4;
-								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Rosa") {
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Negro") {
 									colorseleccionado = 5;
-								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Multicolor") {
+								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Rosa") {
 									colorseleccionado = 6;
-								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Blanco") {
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Multicolor") {
 									colorseleccionado = 7;
-								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Gris") {
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Blanco") {
 									colorseleccionado = 8;
-								} else {
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Gris") {
+									colorseleccionado = 9;
+								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Marron") {
+									colorseleccionado = 10;
+								}else {
 									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoF, "Debes escoger un color para continuar");
 								}
 								
@@ -1179,6 +1191,9 @@ public class Principal {
 		colorMenteComboBox.addItem("multicolor");
 		colorMenteComboBox.addItem("blanco");
 		colorMenteComboBox.addItem("gris");
+		colorMenteComboBox.addItem("marron");
+
+		
 		colorMenteComboBox.setBounds(370, 50, 190, 30);
 		ventanaPideOutfit.add(colorMenteComboBox);
 		
@@ -1316,6 +1331,8 @@ public class Principal {
 						color = 8;
 					} else if (nombreColorSeleccionadoPO == "Gris") {
 						color = 9;
+					} else if (nombreColorSeleccionadoPO == "Marron") {
+						color = 10;
 					} else if (nombreColorSeleccionadoPO == "Default") {
 						color = 999;
 					}
@@ -1496,6 +1513,7 @@ public class Principal {
 		coloresComboBoxAñadirVestimenta.addItem("Multicolor");
 		coloresComboBoxAñadirVestimenta.addItem("Blanco");
 		coloresComboBoxAñadirVestimenta.addItem("Gris");
+		coloresComboBoxAñadirVestimenta.addItem("Marron");
 		coloresComboBoxAñadirVestimenta.addItem("Default");
 
 
@@ -1590,6 +1608,8 @@ public class Principal {
 				idColorSeleccionado = 8;
 			} else if (nombreColorSeleccionado == "Gris"){
 				idColorSeleccionado = 9;
+			} else if (nombreColorSeleccionado == "Marron"){
+				idColorSeleccionado = 10;
 			} else if (nombreColorSeleccionado == "Default"){
 				idColorSeleccionado = 999;
 			}

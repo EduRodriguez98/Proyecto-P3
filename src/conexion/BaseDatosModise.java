@@ -451,6 +451,8 @@ public class BaseDatosModise {
 		listaColoresDisponibles.add(7);
 		listaColoresDisponibles.add(8);
 		listaColoresDisponibles.add(9);
+		listaColoresDisponibles.add(10);
+
 		
 		
 		
@@ -497,7 +499,10 @@ public class BaseDatosModise {
 						listaColoresDisponibles.remove(Integer.valueOf(1));
 						listaColoresDisponibles.remove(Integer.valueOf(3));
 
-					} else if (currentColor == (Integer)6) {
+					} else if (currentColor == (Integer)5) {
+						listaColoresDisponibles.remove(Integer.valueOf(10));
+
+					}else if (currentColor == (Integer)6) {
 						listaColoresDisponibles.remove(Integer.valueOf(2));
 						listaColoresDisponibles.remove(Integer.valueOf(4));
 						listaColoresDisponibles.remove(Integer.valueOf(1));
@@ -507,6 +512,9 @@ public class BaseDatosModise {
 
 					} else if (currentColor == (Integer)9) {
 						listaColoresDisponibles.remove(Integer.valueOf(7));
+					
+					} else if (currentColor == (Integer)10) {
+						listaColoresDisponibles.remove(Integer.valueOf(5));
 					
 					} else {
 						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
@@ -563,6 +571,9 @@ public class BaseDatosModise {
 					listaColoresDisponibles.remove(Integer.valueOf(1));
 					listaColoresDisponibles.remove(Integer.valueOf(3));
 
+				} else if (currentColor == (Integer)5) {
+					listaColoresDisponibles.remove(Integer.valueOf(10));
+
 				} else if (currentColor == (Integer)6) {
 					listaColoresDisponibles.remove(Integer.valueOf(2));
 					listaColoresDisponibles.remove(Integer.valueOf(4));
@@ -573,10 +584,13 @@ public class BaseDatosModise {
 
 				} else if (currentColor == (Integer)9) {
 					listaColoresDisponibles.remove(Integer.valueOf(7));
-						
+				
+				} else if (currentColor == (Integer)10) {
+					listaColoresDisponibles.remove(Integer.valueOf(5));
+				
 				} else {
-						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
-					}
+					//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+				}
 				
 				
 				Integer idChaqueta = rs.getInt("idprendas");
@@ -628,6 +642,9 @@ public class BaseDatosModise {
 					listaColoresDisponibles.remove(Integer.valueOf(1));
 					listaColoresDisponibles.remove(Integer.valueOf(3));
 
+				} else if (currentColor == (Integer)5) {
+					listaColoresDisponibles.remove(Integer.valueOf(10));
+
 				} else if (currentColor == (Integer)6) {
 					listaColoresDisponibles.remove(Integer.valueOf(2));
 					listaColoresDisponibles.remove(Integer.valueOf(4));
@@ -638,10 +655,13 @@ public class BaseDatosModise {
 
 				} else if (currentColor == (Integer)9) {
 					listaColoresDisponibles.remove(Integer.valueOf(7));
-						
-					} else {
-						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
-					}
+				
+				} else if (currentColor == (Integer)10) {
+					listaColoresDisponibles.remove(Integer.valueOf(5));
+				
+				} else {
+					//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+				}
 				
 				
 				Integer idGorros = rs.getInt("idprendas");
@@ -692,6 +712,9 @@ public class BaseDatosModise {
 					listaColoresDisponibles.remove(Integer.valueOf(1));
 					listaColoresDisponibles.remove(Integer.valueOf(3));
 
+				} else if (currentColor == (Integer)5) {
+					listaColoresDisponibles.remove(Integer.valueOf(10));
+
 				} else if (currentColor == (Integer)6) {
 					listaColoresDisponibles.remove(Integer.valueOf(2));
 					listaColoresDisponibles.remove(Integer.valueOf(4));
@@ -702,11 +725,13 @@ public class BaseDatosModise {
 
 				} else if (currentColor == (Integer)9) {
 					listaColoresDisponibles.remove(Integer.valueOf(7));
-					
-					} else {
-						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
-					}
-					
+				
+				} else if (currentColor == (Integer)10) {
+					listaColoresDisponibles.remove(Integer.valueOf(5));
+				
+				} else {
+					//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+				}
 				
 				Integer idPantalones = rs.getInt("idprendas");
 				byte[] fotobytesPantalones = rs.getBytes("fotopantalones");
@@ -754,6 +779,9 @@ public class BaseDatosModise {
 					listaColoresDisponibles.remove(Integer.valueOf(1));
 					listaColoresDisponibles.remove(Integer.valueOf(3));
 
+				} else if (currentColor == (Integer)5) {
+					listaColoresDisponibles.remove(Integer.valueOf(10));
+
 				} else if (currentColor == (Integer)6) {
 					listaColoresDisponibles.remove(Integer.valueOf(2));
 					listaColoresDisponibles.remove(Integer.valueOf(4));
@@ -764,11 +792,13 @@ public class BaseDatosModise {
 
 				} else if (currentColor == (Integer)9) {
 					listaColoresDisponibles.remove(Integer.valueOf(7));
-					
-				} else {
-						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
-					}
 				
+				} else if (currentColor == (Integer)10) {
+					listaColoresDisponibles.remove(Integer.valueOf(5));
+				
+				} else {
+					//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+				}
 				
 				Integer idZapatos = rs.getInt("idprendas");
 				byte[] fotobytesZapatos = rs.getBytes("fotozapatos");
@@ -809,6 +839,8 @@ public class BaseDatosModise {
 		listaColoresDisponibles.add(7);
 		listaColoresDisponibles.add(8);
 		listaColoresDisponibles.add(9);
+		listaColoresDisponibles.add(10);
+
 		
 		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 
@@ -856,7 +888,10 @@ public class BaseDatosModise {
 						listaColoresDisponibles.remove(Integer.valueOf(1));
 						listaColoresDisponibles.remove(Integer.valueOf(3));
 
-					} else if (currentColor == (Integer)6) {
+					} else if (currentColor == (Integer)5) {
+						listaColoresDisponibles.remove(Integer.valueOf(10));
+
+					}else if (currentColor == (Integer)6) {
 						listaColoresDisponibles.remove(Integer.valueOf(2));
 						listaColoresDisponibles.remove(Integer.valueOf(4));
 						listaColoresDisponibles.remove(Integer.valueOf(1));
@@ -864,10 +899,13 @@ public class BaseDatosModise {
 					} else if (currentColor == (Integer)7) {
 						listaColoresDisponibles.remove(Integer.valueOf(9));		
 
-					} else if (colorCamiseta == (Integer)9) {
+					} else if (currentColor == (Integer)9) {
 						listaColoresDisponibles.remove(Integer.valueOf(7));
 					
-				} else {
+					} else if (currentColor == (Integer)10) {
+						listaColoresDisponibles.remove(Integer.valueOf(5));
+					
+					} else {
 						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
 					}
 					
@@ -924,7 +962,10 @@ public class BaseDatosModise {
 					listaColoresDisponibles.remove(Integer.valueOf(1));
 					listaColoresDisponibles.remove(Integer.valueOf(3));
 
-				} else if (currentColor == (Integer)6) {
+				} else if (currentColor == (Integer)5) {
+					listaColoresDisponibles.remove(Integer.valueOf(10));
+
+				}else if (currentColor == (Integer)6) {
 					listaColoresDisponibles.remove(Integer.valueOf(2));
 					listaColoresDisponibles.remove(Integer.valueOf(4));
 					listaColoresDisponibles.remove(Integer.valueOf(1));
@@ -934,10 +975,13 @@ public class BaseDatosModise {
 
 				} else if (currentColor == (Integer)9) {
 					listaColoresDisponibles.remove(Integer.valueOf(7));
-						
+				
+				} else if (currentColor == (Integer)10) {
+					listaColoresDisponibles.remove(Integer.valueOf(5));
+				
 				} else {
-						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
-					}
+					//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+				}
 				
 				
 				Integer idChaqueta = rs.getInt("idprendas");
@@ -989,7 +1033,10 @@ public class BaseDatosModise {
 					listaColoresDisponibles.remove(Integer.valueOf(1));
 					listaColoresDisponibles.remove(Integer.valueOf(3));
 
-				} else if (currentColor == (Integer)6) {
+				} else if (currentColor == (Integer)5) {
+					listaColoresDisponibles.remove(Integer.valueOf(10));
+
+				}else if (currentColor == (Integer)6) {
 					listaColoresDisponibles.remove(Integer.valueOf(2));
 					listaColoresDisponibles.remove(Integer.valueOf(4));
 					listaColoresDisponibles.remove(Integer.valueOf(1));
@@ -999,10 +1046,13 @@ public class BaseDatosModise {
 
 				} else if (currentColor == (Integer)9) {
 					listaColoresDisponibles.remove(Integer.valueOf(7));
-						
-					} else {
-						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
-					}
+				
+				} else if (currentColor == (Integer)10) {
+					listaColoresDisponibles.remove(Integer.valueOf(5));
+				
+				} else {
+					//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+				}
 				
 				
 				Integer idGorros = rs.getInt("idprendas");
@@ -1053,7 +1103,10 @@ public class BaseDatosModise {
 					listaColoresDisponibles.remove(Integer.valueOf(1));
 					listaColoresDisponibles.remove(Integer.valueOf(3));
 
-				} else if (currentColor == (Integer)6) {
+				} else if (currentColor == (Integer)5) {
+					listaColoresDisponibles.remove(Integer.valueOf(10));
+
+				}else if (currentColor == (Integer)6) {
 					listaColoresDisponibles.remove(Integer.valueOf(2));
 					listaColoresDisponibles.remove(Integer.valueOf(4));
 					listaColoresDisponibles.remove(Integer.valueOf(1));
@@ -1063,10 +1116,13 @@ public class BaseDatosModise {
 
 				} else if (currentColor == (Integer)9) {
 					listaColoresDisponibles.remove(Integer.valueOf(7));
-					
-					} else {
-						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
-					}
+				
+				} else if (currentColor == (Integer)10) {
+					listaColoresDisponibles.remove(Integer.valueOf(5));
+				
+				} else {
+					//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+				}
 					
 				
 				Integer idPantalones = rs.getInt("idprendas");
@@ -1115,7 +1171,10 @@ public class BaseDatosModise {
 					listaColoresDisponibles.remove(Integer.valueOf(1));
 					listaColoresDisponibles.remove(Integer.valueOf(3));
 
-				} else if (currentColor == (Integer)6) {
+				} else if (currentColor == (Integer)5) {
+					listaColoresDisponibles.remove(Integer.valueOf(10));
+
+				}else if (currentColor == (Integer)6) {
 					listaColoresDisponibles.remove(Integer.valueOf(2));
 					listaColoresDisponibles.remove(Integer.valueOf(4));
 					listaColoresDisponibles.remove(Integer.valueOf(1));
@@ -1125,10 +1184,13 @@ public class BaseDatosModise {
 
 				} else if (currentColor == (Integer)9) {
 					listaColoresDisponibles.remove(Integer.valueOf(7));
-					
+				
+				} else if (currentColor == (Integer)10) {
+					listaColoresDisponibles.remove(Integer.valueOf(5));
+				
 				} else {
-						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
-					}
+					//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
+				}
 				
 				
 				Integer idZapatos = rs.getInt("idprendas");
