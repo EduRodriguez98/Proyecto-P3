@@ -1259,7 +1259,7 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 
 				if (bgPideOutfit.getSelection() != null
-						&& (radioNo.isSelected() || estilosComboBoxPideOutfit.getSelectedIndex() != -1)) {
+						&& (radioNo.isSelected() || estilosComboBoxPideOutfit.getSelectedIndex() != -1) && bgGenero.getSelection() != null && colorMenteComboBox.getSelectedItem() != null) {
 
 					Object l;
 					if (radioNo.isSelected()) {
@@ -1268,12 +1268,10 @@ public class Principal {
 						l = estilosComboBoxAñadirVestimenta.getSelectedItem();
 					}
 					Usuariolog.println("Pide Outfit, tiempo: " + bgPideOutfit.getSelection().getActionCommand()
-							+ ", estilo: " + l);
-				} else {
-					errorPideOutfit.setText("Rellena todos los campos requeridos.");	
-				}
-				
-				CambiarPanel(ventanaPideOutfit, ventanaFeedback);
+							+ ", estilo: " + l + "genero: " + bgGenero.getSelection().getActionCommand() + "color: " + colorMenteComboBox.getSelectedItem().toString());
+					
+					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
+
 					UIManager.put("OptionPane.minimumSize", new Dimension(500, 800));
 					
 					//ventanaEmergentePideOutfit
@@ -1432,9 +1430,16 @@ public class Principal {
 					errorPideOutfit.setText("");
 					estilosComboBoxPideOutfit.setSelectedIndex(0);
 
-				
+					// LLamar a la clase Crear Outfit
+					
+					
+					
+					
+
+				} else {
+					errorPideOutfit.setText("Rellena todos los campos requeridos.");
 				}
-			
+			}
 		});
 
 		botonAtrasPideOutfit.addActionListener(new ActionListener() {
