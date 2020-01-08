@@ -429,7 +429,7 @@ public class BaseDatosModise {
 
 	
 	
-	public static HashMap<Integer, byte[]> crearOutfitSoleado(String estiloj, Boolean generoj, int colorj) throws BDException, SQLException{
+	public static HashMap<Integer, byte[]> crearOutfitSoleado(String estiloj, int generoj, int colorj) throws BDException, SQLException{
 		//Utilizamos un HashMap para almacenar el resultado de la Query, y procedemos a meterlo en una JTable para mostrar el resultado en el panel!
 		//Al usar idprendas como key, nos aseguramos de que no hay duplicados ya que es una primary key de prendas, y tipos de prendas heredan de ella!
 		
@@ -460,6 +460,7 @@ public class BaseDatosModise {
 			String sql = "SELECT fotocamiseta, idprendas, idcolor, generocs FROM camisetasol "
 					+ "WHERE estiloPrendas = '" + estiloj + "' AND generocs = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() LIMIT 1";
 			//Si que recibe False y True cuando se le insertan en Principal.java
+			
 			System.out.println("estilo: " + estiloj + ", genero: "+ generoj + ", colorid: "+colorj);
 			
 			PreparedStatement Stmt = conn.prepareStatement(sql);
@@ -472,8 +473,8 @@ public class BaseDatosModise {
 				int colorCamiseta = rs.getInt("idcolor");
 				System.out.println("color camiseta: " + colorCamiseta);
 				listaColoresUsados.add(colorCamiseta);
-					
 				
+					
 					
 					int currentColor = listaColoresUsados.get(0);
 					
@@ -515,9 +516,12 @@ public class BaseDatosModise {
 				Integer idCamiseta = rs.getInt("idprendas");
 				byte[] fotobytesCamisetas = rs.getBytes("fotocamiseta");
 				
+				
+				
 				mapOutfitSol.put(idCamiseta, fotobytesCamisetas);
 				
 			}
+			
 			rs.close();
 			Stmt.close();
 			
@@ -787,7 +791,7 @@ public class BaseDatosModise {
 	}
 	
 		
-	public static HashMap<Integer, byte[]> crearOutfitLluvioso(String estiloj, Boolean generoj, int colorj) throws BDException, SQLException{
+	public static HashMap<Integer, byte[]> crearOutfitLluvioso(String estiloj, int generoj, int colorj) throws BDException, SQLException{
 		//Utilizamos un HashMap para almacenar el resultado de la Query, y procedemos a meterlo en una JTable para mostrar el resultado en el panel!
 		//Al usar idprendas como key, nos aseguramos de que no hay duplicados ya que es una primary key de prendas, y tipos de prendas heredan de ella!
 		

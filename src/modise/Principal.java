@@ -1318,13 +1318,16 @@ public class Principal {
 						
 						HashMap<Integer, byte[]> outfitSolMap=null;
 					
-					if(radioSol.isSelected() && !radioNo.isSelected() && generoOutfitM.isSelected()) {
+					if(radioSol.isSelected() && !radioNo.isSelected()) {
 						
 						try {
-							outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), false, color);
 							
-							
-							
+							if (generoOutfitM.isSelected()) {
+							outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), 0, color);
+							} else if (generoOutfitF.isSelected()) {
+								outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), 1, color);
+
+							}
 							Object[][] arrOutfitSol = new Object[outfitSolMap.size()][2];
 							@SuppressWarnings("rawtypes")
 							Set entries = outfitSolMap.entrySet();
@@ -1349,47 +1352,16 @@ public class Principal {
 							
 							e1.printStackTrace();
 						}
-						
-					} else if (radioSol.isSelected() && !radioNo.isSelected() && generoOutfitF.isSelected()) {
-						
-						try {
-							outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), true, color);
-							//funciona, si pide un outfit Femenino
-							
-							
-							Object[][] arrOutfitSol = new Object[outfitSolMap.size()][2];
-							@SuppressWarnings("rawtypes")
-							Set entries = outfitSolMap.entrySet();
-							@SuppressWarnings("rawtypes")
-							Iterator entriesIterator = entries.iterator();
-							
-							int i = 0;
-							
-							while(entriesIterator.hasNext()) {
-								@SuppressWarnings("unchecked")
-								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator.next();
-								
-								arrOutfitSol [i][0] = mapping.getKey();
-								arrOutfitSol  [i][1]= mapping.getValue();
-								
-								i++;
-							}
-							
-							rowsData = arrOutfitSol;
-							
-						} catch (BDException | SQLException e1) {
-							
-							e1.printStackTrace();
-						}
+
 						
 					}	else if (radioLluvia.isSelected() && !radioNo.isSelected()) {
 						HashMap<Integer, byte[]> outfitLluviaMap = null;
 						try {
 							
 							if (generoOutfitM.isSelected()) {
-								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(estilosComboBoxPideOutfit.getSelectedItem().toString(), false, color);
+								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(estilosComboBoxPideOutfit.getSelectedItem().toString(), 0, color);
 							} else if (generoOutfitF.isSelected()) {
-								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(estilosComboBoxPideOutfit.getSelectedItem().toString(), true, color);
+								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(estilosComboBoxPideOutfit.getSelectedItem().toString(), 1, color);
 							} 
 							
 							Object[][] arrOutfitLluvia = new Object[outfitLluviaMap.size()][2];
