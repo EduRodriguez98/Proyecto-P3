@@ -461,7 +461,6 @@ public class BaseDatosModise {
 					+ "WHERE estiloPrendas = '" + estiloj + "' AND generocs = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() LIMIT 1";
 			//Si que recibe False y True cuando se le insertan en Principal.java
 			
-			System.out.println("estilo: " + estiloj + ", genero: "+ generoj + ", colorid: "+colorj);
 			
 			PreparedStatement Stmt = conn.prepareStatement(sql);
 			
@@ -471,10 +470,8 @@ public class BaseDatosModise {
 				
 				//recive el false cuando se pide masculino, pero no dice ni pio si se pide el F
 				int colorCamiseta = rs.getInt("idcolor");
-				System.out.println("color camiseta: " + colorCamiseta);
 				listaColoresUsados.add(colorCamiseta);
 				
-					
 					
 					int currentColor = listaColoresUsados.get(0);
 					
@@ -508,7 +505,7 @@ public class BaseDatosModise {
 					} else if (currentColor == (Integer)9) {
 						listaColoresDisponibles.remove(Integer.valueOf(7));
 					
-				} else {
+					} else {
 						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
 					}
 					
@@ -540,7 +537,6 @@ public class BaseDatosModise {
 			
 			while(rs.next()) {
 				int colorChaqueta = rs.getInt("idcolor");
-				System.out.println("color chaqueta: " + colorChaqueta);
 				listaColoresUsados.add(colorChaqueta);
 				
 				int currentColor = listaColoresUsados.get(listaColoresUsados.size() - 1);
@@ -603,7 +599,6 @@ public class BaseDatosModise {
 			while(rs.next()) {
 				
 				int colorGorro = rs.getInt("idcolor");
-				System.out.println("color gorro: " + colorGorro);
 				listaColoresUsados.add(colorGorro);
 				
 				
@@ -669,7 +664,6 @@ public class BaseDatosModise {
 			while(rs.next()) {
 				
 				int colorPantalon = rs.getInt("idcolor");
-				System.out.println("color pantalon: " + colorPantalon);
 				listaColoresUsados.add(colorPantalon);
 				
 				int currentColor = listaColoresUsados.get(listaColoresUsados.size() - 1);;
@@ -731,7 +725,6 @@ public class BaseDatosModise {
 			while(rs.next()) {
 				
 				int colorZapato = rs.getInt("idcolor");
-				System.out.println("color zapato: " + colorZapato);
 				listaColoresUsados.add(colorZapato);
 				
 				int currentColor = listaColoresUsados.get(listaColoresUsados.size() - 1);

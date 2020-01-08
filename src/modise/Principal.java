@@ -25,6 +25,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -1315,7 +1317,7 @@ public class Principal {
 					} else {
 						color = 9;
 					}
-						
+					
 						HashMap<Integer, byte[]> outfitSolMap=null;
 					
 					if(radioSol.isSelected() && !radioNo.isSelected()) {
@@ -1328,6 +1330,12 @@ public class Principal {
 								outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), 1, color);
 
 							}
+						
+							
+							//Comprobamos que el HashMap se cree correctamente!PASAR A LOG!!
+							System.out.println(Collections.singletonList(outfitSolMap));
+							
+							
 							Object[][] arrOutfitSol = new Object[outfitSolMap.size()][2];
 							@SuppressWarnings("rawtypes")
 							Set entries = outfitSolMap.entrySet();
@@ -1341,10 +1349,14 @@ public class Principal {
 								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator.next();
 								
 								arrOutfitSol [i][0] = mapping.getKey();
-								arrOutfitSol  [i][1]= mapping.getValue();
+								arrOutfitSol [i][1]= mapping.getValue();
 								
 								i++;
 							}
+							
+							//Comprobamos que el array bidimensional se llena. PASAR A LOG!!
+							System.out.println(Arrays.deepToString(arrOutfitSol));
+						
 							
 							rowsData = arrOutfitSol;
 							
