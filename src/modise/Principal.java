@@ -25,6 +25,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -1259,7 +1261,7 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 
 				if (bgPideOutfit.getSelection() != null
-						&& (radioNo.isSelected() || estilosComboBoxPideOutfit.getSelectedIndex() != -1)) {
+						&& (radioNo.isSelected() || estilosComboBoxPideOutfit.getSelectedIndex() != -1) && bgGenero.getSelection() != null && colorMenteComboBox.getSelectedItem() != null) {
 
 					Object l;
 					if (radioNo.isSelected()) {
@@ -1268,8 +1270,8 @@ public class Principal {
 						l = estilosComboBoxAñadirVestimenta.getSelectedItem();
 					}
 					Usuariolog.println("Pide Outfit, tiempo: " + bgPideOutfit.getSelection().getActionCommand()
-							+ ", estilo: " + l);
-
+							+ ", estilo: " + l + "genero: " + bgGenero.getSelection().getActionCommand() + "color: " + colorMenteComboBox.getSelectedItem().toString());
+					
 					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
 
 					UIManager.put("OptionPane.minimumSize", new Dimension(500, 800));
@@ -1314,23 +1316,26 @@ public class Principal {
 						color = 8;
 					} else if (nombreColorSeleccionadoPO == "Gris") {
 						color = 9;
-					} else if (nombreColorSeleccionadoPO == "Marron"){
-						color = 10;
+					} else if (nombreColorSeleccionadoPO == "Default") {
+						color = 999;
 					}
-						Boolean generoElegido = null;
-					if (generoOutfitM.isSelected()) {
-						generoElegido = false;
-					} else if (generoOutfitF.isSelected()) {
-						generoElegido = true;
-					} else {
-						JOptionPane.showMessageDialog(ventanaPideOutfit, "debe seleccionar el genero");
-					}
+					
+						HashMap<Integer, byte[]> outfitSolMap=null;
 					
 					if(radioSol.isSelected() && !radioNo.isSelected()) {
 						
 						try {
 							
-							HashMap<Integer, byte[]> outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), generoElegido, color);
+							if (generoOutfitM.isSelected()) {
+							outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), 0, color);
+							} else if (generoOutfitF.isSelected()) {
+								outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), 1, color);
+
+							}
+						
+							
+							//Comprobamos que el HashMap se cree correctamente!PASAR A LOG!!
+							System.out.println(Collections.singletonList(outfitSolMap));
 							
 							
 							Object[][] arrOutfitSol = new Object[outfitSolMap.size()][2];
@@ -1346,10 +1351,14 @@ public class Principal {
 								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator.next();
 								
 								arrOutfitSol [i][0] = mapping.getKey();
-								arrOutfitSol  [i][1]= mapping.getValue();
+								arrOutfitSol [i][1]= mapping.getValue();
 								
 								i++;
 							}
+							
+							//Comprobamos que el array bidimensional se llena. PASAR A LOG!!
+							System.out.println(Arrays.deepToString(arrOutfitSol));
+						
 							
 							rowsData = arrOutfitSol;
 							
@@ -1357,7 +1366,43 @@ public class Principal {
 							
 							e1.printStackTrace();
 						}
-					}	
+
+						
+					}	else if (radioLluvia.isSelected() && !radioNo.isSelected()) {
+						HashMap<Integer, byte[]> outfitLluviaMap = null;
+						try {
+							
+							if (generoOutfitM.isSelected()) {
+								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(estilosComboBoxPideOutfit.getSelectedItem().toString(), 0, color);
+							} else if (generoOutfitF.isSelected()) {
+								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(estilosComboBoxPideOutfit.getSelectedItem().toString(), 1, color);
+							} 
+							
+							Object[][] arrOutfitLluvia = new Object[outfitLluviaMap.size()][2];
+							@SuppressWarnings("rawtypes")
+							Set entries = outfitLluviaMap.entrySet();
+							@SuppressWarnings("rawtypes")
+							Iterator entriesIterator = entries.iterator();
+							
+							int i = 0;
+							
+							while(entriesIterator.hasNext()) {
+								@SuppressWarnings("unchecked")
+								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator.next();
+								
+								arrOutfitLluvia [i][0] = mapping.getKey();
+								arrOutfitLluvia  [i][1]= mapping.getValue();
+								
+								i++;
+							}
+							
+							rowsData = arrOutfitLluvia;
+							
+						} catch (BDException | SQLException e1) {
+							
+							e1.printStackTrace();
+						}
+					}
 						
 					ventanaEmergenteOutfit.add(jt);
 					

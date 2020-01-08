@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-import com.mysql.cj.util.StringUtils;
 
 public class BaseDatosModise {
 
@@ -430,9 +429,10 @@ public class BaseDatosModise {
 
 	
 	
-	public static HashMap<Integer, byte[]> crearOutfitSoleado(String estiloj, Boolean generoj, int colorj) throws BDException, SQLException{
+	public static HashMap<Integer, byte[]> crearOutfitSoleado(String estiloj, int generoj, int colorj) throws BDException, SQLException{
 		//Utilizamos un HashMap para almacenar el resultado de la Query, y procedemos a meterlo en una JTable para mostrar el resultado en el panel!
 		//Al usar idprendas como key, nos aseguramos de que no hay duplicados ya que es una primary key de prendas, y tipos de prendas heredan de ella!
+		
 		
 		
 		HashMap<Integer, byte[]> mapOutfitSol = new HashMap<Integer, byte[]>();
@@ -458,71 +458,72 @@ public class BaseDatosModise {
 		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 		try {
 			
+
 			String sql = "SELECT fotocamiseta, idprendas, idcolor FROM camisetasol "
 					+ "WHERE estiloPrendas = '" + estiloj + "' AND generocs = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() "
 							+ "LIMIT 1) UNION (SELECT fotocamiseta, idprendas FROM camisetas WHERE idprendas = 123)";
+
 			
-			String sqlIn = listaColoresDisponibles.stream().map(x -> String.valueOf(x)).collect(Collectors.joining(",", "(", ")"));
-			sql = sql.replace("(?)", sqlIn);
 			
 			PreparedStatement Stmt = conn.prepareStatement(sql);
 			
 			ResultSet rs = Stmt.executeQuery();
 			
-			
-			
 			while(rs.next()) {
 				
+				//recive el false cuando se pide masculino, pero no dice ni pio si se pide el F
 				int colorCamiseta = rs.getInt("idcolor");
-				System.out.println("color camiseta: " + colorCamiseta);
 				listaColoresUsados.add(colorCamiseta);
 				
-				
-			
+					
 					int currentColor = listaColoresUsados.get(0);
 					
-					if (currentColor == '1') {
-						listaColoresDisponibles.remove('3');
-						listaColoresDisponibles.remove('4');
-						listaColoresDisponibles.remove('6');
+					if (currentColor == (Integer)1) {
+						listaColoresDisponibles.remove(Integer.valueOf(3));
+						listaColoresDisponibles.remove(Integer.valueOf(4));
+						listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == '2') {
-						listaColoresDisponibles.remove('3');
-						listaColoresDisponibles.remove('6');
+					} else if (currentColor == (Integer)2) {
+						listaColoresDisponibles.remove(Integer.valueOf(3));
+						listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == '3') {
-						listaColoresDisponibles.remove('1');
-						listaColoresDisponibles.remove('2');
-						listaColoresDisponibles.remove('4');
+					} else if (currentColor == (Integer)3) {
+						listaColoresDisponibles.remove(Integer.valueOf(1));
+						listaColoresDisponibles.remove(Integer.valueOf(4));
+						listaColoresDisponibles.remove(Integer.valueOf(2));
 
-					} else if (currentColor == '4') {
-						listaColoresDisponibles.remove('6');
-						listaColoresDisponibles.remove('1');
-						listaColoresDisponibles.remove('3');
+					} else if (currentColor == (Integer)4) {
+						listaColoresDisponibles.remove(Integer.valueOf(6));
+						listaColoresDisponibles.remove(Integer.valueOf(1));
+						listaColoresDisponibles.remove(Integer.valueOf(3));
 
-					} else if (currentColor == '6') {
-						listaColoresDisponibles.remove('2');
-						listaColoresDisponibles.remove('4');
-						listaColoresDisponibles.remove('1');
+					} else if (currentColor == (Integer)6) {
+						listaColoresDisponibles.remove(Integer.valueOf(2));
+						listaColoresDisponibles.remove(Integer.valueOf(4));
+						listaColoresDisponibles.remove(Integer.valueOf(1));
 					
-					} else if (currentColor == '7') {
-						listaColoresDisponibles.remove('9');		
+					} else if (currentColor == (Integer)7) {
+						listaColoresDisponibles.remove(Integer.valueOf(9));		
 
-					} else if (currentColor == '9') {
-						listaColoresDisponibles.remove('7');
+					} else if (currentColor == (Integer)9) {
+						listaColoresDisponibles.remove(Integer.valueOf(7));
 					
 					} else {
 						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
 					}
-	
+
 				Integer idCamiseta = rs.getInt("idprendas");
 				byte[] fotobytesCamisetas = rs.getBytes("fotocamiseta");
+				
+				
 				
 				mapOutfitSol.put(idCamiseta, fotobytesCamisetas);
 				
 			}
+			
 			rs.close();
 			Stmt.close();
+			
 			
 			
 			Connection conn2 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
@@ -539,40 +540,39 @@ public class BaseDatosModise {
 			
 			while(rs.next()) {
 				int colorChaqueta = rs.getInt("idcolor");
-				System.out.println("color chaqueta: " + colorChaqueta);
 				listaColoresUsados.add(colorChaqueta);
 				
 				int currentColor = listaColoresUsados.get(listaColoresUsados.size() - 1);
 					
-					if (currentColor == '1') {
-						listaColoresDisponibles.remove('3');
-						listaColoresDisponibles.remove('4');
-						listaColoresDisponibles.remove('6');
+				if (currentColor == (Integer)1) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == '2') {
-						listaColoresDisponibles.remove('3');
-						listaColoresDisponibles.remove('6');
+				} else if (currentColor == (Integer)2) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == '3') {
-						listaColoresDisponibles.remove('1');
-						listaColoresDisponibles.remove('2');
-						listaColoresDisponibles.remove('4');
+				} else if (currentColor == (Integer)3) {
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(2));
 
-					} else if (currentColor == '4') {
-						listaColoresDisponibles.remove('6');
-						listaColoresDisponibles.remove('1');
-						listaColoresDisponibles.remove('3');
+				} else if (currentColor == (Integer)4) {
+					listaColoresDisponibles.remove(Integer.valueOf(6));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(3));
 
-					} else if (currentColor == '6') {
-						listaColoresDisponibles.remove('2');
-						listaColoresDisponibles.remove('4');
-						listaColoresDisponibles.remove('1');
-					
-					} else if (currentColor == '7') {
-						listaColoresDisponibles.remove('9');		
+				} else if (currentColor == (Integer)6) {
+					listaColoresDisponibles.remove(Integer.valueOf(2));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+				
+				} else if (currentColor == (Integer)7) {
+					listaColoresDisponibles.remove(Integer.valueOf(9));		
 
-					} else if (currentColor == '9') {
-						listaColoresDisponibles.remove('7');
+				} else if (currentColor == (Integer)9) {
+					listaColoresDisponibles.remove(Integer.valueOf(7));
 						
 				} else {
 						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
@@ -603,42 +603,41 @@ public class BaseDatosModise {
 			while(rs.next()) {
 				
 				int colorGorro = rs.getInt("idcolor");
-				System.out.println("color gorro: " + colorGorro);
 				listaColoresUsados.add(colorGorro);
 				
 				
 				
 				int currentColor = listaColoresUsados.get(listaColoresUsados.size() - 1);
 					
-					if (currentColor == '1') {
-							listaColoresDisponibles.remove('3');
-							listaColoresDisponibles.remove('4');
-							listaColoresDisponibles.remove('6');
+				if (currentColor == (Integer)1) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == '2') {
-						listaColoresDisponibles.remove('3');
-						listaColoresDisponibles.remove('6');
+				} else if (currentColor == (Integer)2) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == '3') {
-						listaColoresDisponibles.remove('1');
-						listaColoresDisponibles.remove('2');
-						listaColoresDisponibles.remove('4');
+				} else if (currentColor == (Integer)3) {
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(2));
 
-					} else if (currentColor == '4') {
-						listaColoresDisponibles.remove('6');
-						listaColoresDisponibles.remove('1');
-						listaColoresDisponibles.remove('3');
+				} else if (currentColor == (Integer)4) {
+					listaColoresDisponibles.remove(Integer.valueOf(6));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(3));
 
-					} else if (currentColor == '6') {
-						listaColoresDisponibles.remove('2');
-						listaColoresDisponibles.remove('4');
-						listaColoresDisponibles.remove('1');
-						
-					} else if (currentColor == '7') {
-						listaColoresDisponibles.remove('9');		
+				} else if (currentColor == (Integer)6) {
+					listaColoresDisponibles.remove(Integer.valueOf(2));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+				
+				} else if (currentColor == (Integer)7) {
+					listaColoresDisponibles.remove(Integer.valueOf(9));		
 
-					} else if (currentColor == '9') {
-						listaColoresDisponibles.remove('7');
+				} else if (currentColor == (Integer)9) {
+					listaColoresDisponibles.remove(Integer.valueOf(7));
 						
 					} else {
 						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
@@ -652,6 +651,7 @@ public class BaseDatosModise {
 			}
 			rs.close();
 			conn3.close();
+			
 			
 			Connection conn4 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			String sql4 = "SELECT fotopantalones, idprendas, idcolor FROM pantalonsol "
@@ -669,40 +669,39 @@ public class BaseDatosModise {
 			while(rs.next()) {
 				
 				int colorPantalon = rs.getInt("idcolor");
-				System.out.println("color pantalon: " + colorPantalon);
 				listaColoresUsados.add(colorPantalon);
 				
 				int currentColor = listaColoresUsados.get(listaColoresUsados.size() - 1);;
 					
-					if (currentColor == '1') {
-						listaColoresDisponibles.remove('3');
-						listaColoresDisponibles.remove('4');
-						listaColoresDisponibles.remove('6');
+				if (currentColor == (Integer)1) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == '2') {
-						listaColoresDisponibles.remove('3');
-						listaColoresDisponibles.remove('6');
+				} else if (currentColor == (Integer)2) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == '3') {
-						listaColoresDisponibles.remove('1');
-						listaColoresDisponibles.remove('2');
-						listaColoresDisponibles.remove('4');
+				} else if (currentColor == (Integer)3) {
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(2));
 
-					} else if (currentColor == '4') {
-						listaColoresDisponibles.remove('6');
-						listaColoresDisponibles.remove('1');
-						listaColoresDisponibles.remove('3');
+				} else if (currentColor == (Integer)4) {
+					listaColoresDisponibles.remove(Integer.valueOf(6));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(3));
 
-					} else if (currentColor == '6') {
-						listaColoresDisponibles.remove('2');
-						listaColoresDisponibles.remove('4');
-						listaColoresDisponibles.remove('1');
-					
-					} else if (currentColor == '7') {
-						listaColoresDisponibles.remove('9');		
+				} else if (currentColor == (Integer)6) {
+					listaColoresDisponibles.remove(Integer.valueOf(2));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+				
+				} else if (currentColor == (Integer)7) {
+					listaColoresDisponibles.remove(Integer.valueOf(9));		
 
-					} else if (currentColor == '9') {
-						listaColoresDisponibles.remove('7');
+				} else if (currentColor == (Integer)9) {
+					listaColoresDisponibles.remove(Integer.valueOf(7));
 					
 					} else {
 						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
@@ -732,40 +731,39 @@ public class BaseDatosModise {
 			while(rs.next()) {
 				
 				int colorZapato = rs.getInt("idcolor");
-				System.out.println("color zapato: " + colorZapato);
 				listaColoresUsados.add(colorZapato);
 				
 				int currentColor = listaColoresUsados.get(listaColoresUsados.size() - 1);
 					
-					if (currentColor == '1') {
-						listaColoresDisponibles.remove('3');
-						listaColoresDisponibles.remove('4');
-						listaColoresDisponibles.remove('6');
+				if (currentColor == (Integer)1) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == '2') {
-						listaColoresDisponibles.remove('3');
-						listaColoresDisponibles.remove('6');
+				} else if (currentColor == (Integer)2) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == '3') {
-						listaColoresDisponibles.remove('1');
-						listaColoresDisponibles.remove('2');
-						listaColoresDisponibles.remove('4');
+				} else if (currentColor == (Integer)3) {
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(2));
 
-					} else if (currentColor == '4') {
-						listaColoresDisponibles.remove('6');
-						listaColoresDisponibles.remove('1');
-						listaColoresDisponibles.remove('3');
+				} else if (currentColor == (Integer)4) {
+					listaColoresDisponibles.remove(Integer.valueOf(6));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(3));
 
-					} else if (currentColor == '6') {
-						listaColoresDisponibles.remove('2');
-						listaColoresDisponibles.remove('4');
-						listaColoresDisponibles.remove('1');
-					
-					} else if (currentColor == '7') {
-						listaColoresDisponibles.remove('9');		
+				} else if (currentColor == (Integer)6) {
+					listaColoresDisponibles.remove(Integer.valueOf(2));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+				
+				} else if (currentColor == (Integer)7) {
+					listaColoresDisponibles.remove(Integer.valueOf(9));		
 
-					} else if (currentColor == '9') {
-						listaColoresDisponibles.remove('7');
+				} else if (currentColor == (Integer)9) {
+					listaColoresDisponibles.remove(Integer.valueOf(7));
 					
 				} else {
 						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
@@ -792,7 +790,7 @@ public class BaseDatosModise {
 	}
 	
 		
-	public static HashMap<Integer, byte[]> crearOutfitLluvioso(String estiloj, Boolean generoj, int colorj) throws BDException, SQLException{
+	public static HashMap<Integer, byte[]> crearOutfitLluvioso(String estiloj, int generoj, int colorj) throws BDException, SQLException{
 		//Utilizamos un HashMap para almacenar el resultado de la Query, y procedemos a meterlo en una JTable para mostrar el resultado en el panel!
 		//Al usar idprendas como key, nos aseguramos de que no hay duplicados ya que es una primary key de prendas, y tipos de prendas heredan de ella!
 		
@@ -801,6 +799,7 @@ public class BaseDatosModise {
 		List<Integer> listaColoresUsados = new ArrayList<Integer>();
 		
 		List<Integer> listaColoresDisponibles = new ArrayList<Integer>();
+		listaColoresDisponibles.clear();
 		listaColoresDisponibles.add(1);
 		listaColoresDisponibles.add(2);
 		listaColoresDisponibles.add(3);
@@ -811,55 +810,68 @@ public class BaseDatosModise {
 		listaColoresDisponibles.add(8);
 		listaColoresDisponibles.add(9);
 		
-		try {
-			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			
-			PreparedStatement Stmt = conn.prepareStatement("SELECT fotocamiseta FROM camisetalluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
+		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 
+		try {
+			
+			String sql = "SELECT fotocamiseta, idprendas, idcolor FROM camisetalluvia"
+					+ " WHERE estiloPrendas = '" + estiloj + "' AND generocll = '" + generoj + "' AND idcolor IN (?)" + " ORDER BY RAND() LIMIT 1";
+			
+			String sqlIn = listaColoresDisponibles.stream().map(x -> String.valueOf(x)).collect(Collectors.joining(",", "(", ")"));
+			sql = sql.replace("(?)", sqlIn);
+			
+			PreparedStatement Stmt = conn.prepareStatement(sql); 
+			System.out.println(generoj);
 			
 			ResultSet rs = Stmt.executeQuery();
 			
+			
 			while(rs.next()) {
 				
-				listaColoresUsados.add(rs.getInt("idcolor"));
-				
-				for (Integer integer : listaColoresUsados) {
-					int currentColor = listaColoresUsados.get(integer);
+				int colorCamiseta = rs.getInt("idcolor");
+				System.out.println("color camiseta: " + colorCamiseta);
+				listaColoresUsados.add(colorCamiseta);
 					
-					if (currentColor == 1) {
-							listaColoresDisponibles.remove(3);
-							listaColoresDisponibles.remove(4);
-							listaColoresDisponibles.remove(6);
+	
+				
+				int currentColor = listaColoresUsados.get(0);
+				
+					
+					if (currentColor == (Integer)1) {
+						listaColoresDisponibles.remove(Integer.valueOf(3));
+						listaColoresDisponibles.remove(Integer.valueOf(4));
+						listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == 2) {
-						listaColoresDisponibles.remove(3);
-						listaColoresDisponibles.remove(6);
+					} else if (currentColor == (Integer)2) {
+						listaColoresDisponibles.remove(Integer.valueOf(3));
+						listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == 3) {
-						listaColoresDisponibles.remove(1);
-						listaColoresDisponibles.remove(2);
-						listaColoresDisponibles.remove(4);
+					} else if (currentColor == (Integer)3) {
+						listaColoresDisponibles.remove(Integer.valueOf(1));
+						listaColoresDisponibles.remove(Integer.valueOf(4));
+						listaColoresDisponibles.remove(Integer.valueOf(2));
 
-					} else if (currentColor == 4) {
-						listaColoresDisponibles.remove(6);
-						listaColoresDisponibles.remove(1);
-						listaColoresDisponibles.remove(3);
+					} else if (currentColor == (Integer)4) {
+						listaColoresDisponibles.remove(Integer.valueOf(6));
+						listaColoresDisponibles.remove(Integer.valueOf(1));
+						listaColoresDisponibles.remove(Integer.valueOf(3));
 
-					} else if (currentColor == 6) {
-						listaColoresDisponibles.remove(2);
-						listaColoresDisponibles.remove(4);
-						listaColoresDisponibles.remove(1);
-						
-					} else if (currentColor == 7) {
-						listaColoresDisponibles.remove(9);		
+					} else if (currentColor == (Integer)6) {
+						listaColoresDisponibles.remove(Integer.valueOf(2));
+						listaColoresDisponibles.remove(Integer.valueOf(4));
+						listaColoresDisponibles.remove(Integer.valueOf(1));
+					
+					} else if (currentColor == (Integer)7) {
+						listaColoresDisponibles.remove(Integer.valueOf(9));		
 
-					} else if (currentColor == 9) {
-						listaColoresDisponibles.remove(7);
-						
-					} else {
+					} else if (colorCamiseta == (Integer)9) {
+						listaColoresDisponibles.remove(Integer.valueOf(7));
+					
+				} else {
 						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
 					}
-				}
+					
+	
 				
 				Integer idCamiseta = rs.getInt("idprendas");
 				byte[] fotobytesCamisetas = rs.getBytes("fotocamiseta");
@@ -868,54 +880,65 @@ public class BaseDatosModise {
 			}
 			rs.close();
 			Stmt.close();
+	
 			
+			Connection conn2 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+			String sql2 = "SELECT fotochaqueta, idprendas, idcolor FROM chaquetalluvia"
+					+ " WHERE estiloPrendas = '" + estiloj + "' AND generochll = '" + generoj + "' AND idcolor IN (?)" + " ORDER BY RAND() LIMIT 1";
 			
+			String sqlIn2 = listaColoresDisponibles.stream().map(x -> String.valueOf(x)).collect(Collectors.joining(",", "(", ")"));
+			sql2 = sql2.replace("(?)", sqlIn2);
 			
-			Stmt = conn.prepareStatement("SELECT fotochaqueta FROM chaquetalluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
+			Stmt = conn2.prepareStatement(sql2); 
 			
 			rs = Stmt.executeQuery();
 			
+			
+			
 			while(rs.next()) {
 				
-				listaColoresUsados.add(rs.getInt("idcolor"));
 				
-				for (Integer integer : listaColoresUsados) {
-					int currentColor = listaColoresUsados.get(integer);
+				int colorChaqueta = rs.getInt("idcolor");
+				System.out.println("color chaqueta: " + colorChaqueta);
+				listaColoresUsados.add(colorChaqueta);
+	
+				
+				int currentColor = listaColoresUsados.get(listaColoresUsados.size() - 1);
 					
-					if (currentColor == 1) {
-							listaColoresDisponibles.remove(3);
-							listaColoresDisponibles.remove(4);
-							listaColoresDisponibles.remove(6);
+				if (currentColor == (Integer)1) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == 2) {
-						listaColoresDisponibles.remove(3);
-						listaColoresDisponibles.remove(6);
+				} else if (currentColor == (Integer)2) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == 3) {
-						listaColoresDisponibles.remove(1);
-						listaColoresDisponibles.remove(2);
-						listaColoresDisponibles.remove(4);
+				} else if (currentColor == (Integer)3) {
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(2));
 
-					} else if (currentColor == 4) {
-						listaColoresDisponibles.remove(6);
-						listaColoresDisponibles.remove(1);
-						listaColoresDisponibles.remove(3);
+				} else if (currentColor == (Integer)4) {
+					listaColoresDisponibles.remove(Integer.valueOf(6));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(3));
 
-					} else if (currentColor == 6) {
-						listaColoresDisponibles.remove(2);
-						listaColoresDisponibles.remove(4);
-						listaColoresDisponibles.remove(1);
+				} else if (currentColor == (Integer)6) {
+					listaColoresDisponibles.remove(Integer.valueOf(2));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+				
+				} else if (currentColor == (Integer)7) {
+					listaColoresDisponibles.remove(Integer.valueOf(9));		
+
+				} else if (currentColor == (Integer)9) {
+					listaColoresDisponibles.remove(Integer.valueOf(7));
 						
-					} else if (currentColor == 7) {
-						listaColoresDisponibles.remove(9);		
-
-					} else if (currentColor == 9) {
-						listaColoresDisponibles.remove(7);
-						
-					} else {
+				} else {
 						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
 					}
-				}
+				
 				
 				Integer idChaqueta = rs.getInt("idprendas");
 				byte[] fotobytesChaquetas = rs.getBytes("fotochaqueta");
@@ -923,185 +946,212 @@ public class BaseDatosModise {
 				mapOutfitLluvioso.put(idChaqueta, fotobytesChaquetas);
 			}
 			rs.close();
-			conn.close();
+			conn2.close();
 			
 			
+			Connection conn3 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+			String sql3 = "SELECT fotogorros, idprendas, idcolor FROM gorrolluvia "
+					+ "WHERE estiloPrendas = '" + estiloj + "' AND generogll = '" + generoj + "' AND idcolor IN (?)" + " ORDER BY RAND() LIMIT 1";
 			
-			Stmt = conn.prepareStatement("SELECT fotogorros FROM gorrolluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
+			String sqlIn3 = listaColoresDisponibles.stream().map(x -> String.valueOf(x)).collect(Collectors.joining(",", "(", ")"));
+			sql3 = sql3.replace("(?)", sqlIn3);
+			
+			Stmt = conn3.prepareStatement(sql3);
 			
 			rs = Stmt.executeQuery();
 			
 			while(rs.next()) {
 				
-				listaColoresUsados.add(rs.getInt("idcolor"));
+				int colorGorro = rs.getInt("idcolor");
+				System.out.println("color gorro: " + colorGorro);
+				listaColoresUsados.add(colorGorro);
 				
-				for (Integer integer : listaColoresUsados) {
-					int currentColor = listaColoresUsados.get(integer);
+				
+				
+				int currentColor = listaColoresUsados.get(listaColoresUsados.size() - 1);
 					
-					if (currentColor == 1) {
-							listaColoresDisponibles.remove(3);
-							listaColoresDisponibles.remove(4);
-							listaColoresDisponibles.remove(6);
+				if (currentColor == (Integer)1) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == 2) {
-						listaColoresDisponibles.remove(3);
-						listaColoresDisponibles.remove(6);
+				} else if (currentColor == (Integer)2) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == 3) {
-						listaColoresDisponibles.remove(1);
-						listaColoresDisponibles.remove(2);
-						listaColoresDisponibles.remove(4);
+				} else if (currentColor == (Integer)3) {
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(2));
 
-					} else if (currentColor == 4) {
-						listaColoresDisponibles.remove(6);
-						listaColoresDisponibles.remove(1);
-						listaColoresDisponibles.remove(3);
+				} else if (currentColor == (Integer)4) {
+					listaColoresDisponibles.remove(Integer.valueOf(6));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(3));
 
-					} else if (currentColor == 6) {
-						listaColoresDisponibles.remove(2);
-						listaColoresDisponibles.remove(4);
-						listaColoresDisponibles.remove(1);
-						
-					} else if (currentColor == 7) {
-						listaColoresDisponibles.remove(9);		
+				} else if (currentColor == (Integer)6) {
+					listaColoresDisponibles.remove(Integer.valueOf(2));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+				
+				} else if (currentColor == (Integer)7) {
+					listaColoresDisponibles.remove(Integer.valueOf(9));		
 
-					} else if (currentColor == 9) {
-						listaColoresDisponibles.remove(7);
+				} else if (currentColor == (Integer)9) {
+					listaColoresDisponibles.remove(Integer.valueOf(7));
 						
 					} else {
 						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
 					}
-				}
+				
 				
 				Integer idGorros = rs.getInt("idprendas");
 				byte[] fotobytesGorros = rs.getBytes("fotogorros");
 				
 				mapOutfitLluvioso.put(idGorros, fotobytesGorros);
-				
 			}
 			rs.close();
-			conn.close();
+			conn3.close();
 			
+			Connection conn4 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+			String sql4 = "SELECT fotopantalones, idprendas, idcolor FROM pantalonlluvia "
+					+ "WHERE estiloPrendas = '" + estiloj + "' AND generopll = '" + generoj + "' AND idcolor IN (?)" + " ORDER BY RAND() LIMIT 1";
 			
+			String sqlIn4 = listaColoresDisponibles.stream().map(x -> String.valueOf(x)).collect(Collectors.joining(",", "(", ")"));
+			sql4 = sql4.replace("(?)", sqlIn4);
 			
-			Stmt = conn.prepareStatement("SELECT fotopantalones FROM pantalonlluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+")");
+			Stmt = conn4.prepareStatement(sql4);
+			
 			
 			rs = Stmt.executeQuery();
 			
 			while(rs.next()) {
 				
-				listaColoresUsados.add(rs.getInt("idcolor"));
+				int colorPantalon = rs.getInt("idcolor");
+				System.out.println("color pantalon: " + colorPantalon);
+				listaColoresUsados.add(colorPantalon);
 				
-				for (Integer integer : listaColoresUsados) {
-					int currentColor = listaColoresUsados.get(integer);
+				
+				int currentColor = listaColoresUsados.get(listaColoresUsados.size() - 1);;
 					
-					if (currentColor == 1) {
-							listaColoresDisponibles.remove(3);
-							listaColoresDisponibles.remove(4);
-							listaColoresDisponibles.remove(6);
+				if (currentColor == (Integer)1) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == 2) {
-						listaColoresDisponibles.remove(3);
-						listaColoresDisponibles.remove(6);
+				} else if (currentColor == (Integer)2) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == 3) {
-						listaColoresDisponibles.remove(1);
-						listaColoresDisponibles.remove(2);
-						listaColoresDisponibles.remove(4);
+				} else if (currentColor == (Integer)3) {
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(2));
 
-					} else if (currentColor == 4) {
-						listaColoresDisponibles.remove(6);
-						listaColoresDisponibles.remove(1);
-						listaColoresDisponibles.remove(3);
+				} else if (currentColor == (Integer)4) {
+					listaColoresDisponibles.remove(Integer.valueOf(6));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(3));
 
-					} else if (currentColor == 6) {
-						listaColoresDisponibles.remove(2);
-						listaColoresDisponibles.remove(4);
-						listaColoresDisponibles.remove(1);
-						
-					} else if (currentColor == 7) {
-						listaColoresDisponibles.remove(9);		
+				} else if (currentColor == (Integer)6) {
+					listaColoresDisponibles.remove(Integer.valueOf(2));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+				
+				} else if (currentColor == (Integer)7) {
+					listaColoresDisponibles.remove(Integer.valueOf(9));		
 
-					} else if (currentColor == 9) {
-						listaColoresDisponibles.remove(7);
-						
+				} else if (currentColor == (Integer)9) {
+					listaColoresDisponibles.remove(Integer.valueOf(7));
+					
 					} else {
 						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
 					}
-				}
+					
 				
 				Integer idPantalones = rs.getInt("idprendas");
 				byte[] fotobytesPantalones = rs.getBytes("fotopantalones");
 				
 				mapOutfitLluvioso.put(idPantalones, fotobytesPantalones);
-				
 			}
 			rs.close();
-			conn.close();
+			conn4.close();
 			
+			Connection conn5 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+			String sql5 = "SELECT fotozapatos, idprendas, idcolor FROM zapatoslluvia "
+					+ "WHERE estiloPrendas = '" + estiloj + "' AND generozll = '" + generoj + "' AND idcolor IN (?)" + " ORDER BY RAND() LIMIT 1";
 			
+			String sqlIn5 = listaColoresDisponibles.stream().map(x -> String.valueOf(x)).collect(Collectors.joining(",", "(", ")"));
+			sql5 = sql5.replace("(?)", sqlIn5);
 			
-			Stmt = conn.prepareStatement("SELECT fotozapatos FROM zapatolluvia ORDER BY rand() LIMIT 1 WHERE (estiloPrendas = " + estiloj + ", AND genero = " + generoj + ", AND id_color IN " + StringUtils.joinWithSerialComma(listaColoresDisponibles)+ ")");
+			Stmt = conn5.prepareStatement(sql5);
 			
 			rs = Stmt.executeQuery();
 			
 			while(rs.next()) {
 				
-				listaColoresUsados.add(rs.getInt("idcolor"));
+				int colorZapato = rs.getInt("idcolor");
+				System.out.println("color zapato: " + colorZapato);
+				listaColoresUsados.add(colorZapato);
 				
-				for (Integer integer : listaColoresUsados) {
-					int currentColor = listaColoresUsados.get(integer);
+				int currentColor = listaColoresUsados.get(listaColoresUsados.size() - 1);
 					
-					if (currentColor == 1) {
-							listaColoresDisponibles.remove(3);
-							listaColoresDisponibles.remove(4);
-							listaColoresDisponibles.remove(6);
+				if (currentColor == (Integer)1) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == 2) {
-						listaColoresDisponibles.remove(3);
-						listaColoresDisponibles.remove(6);
+				} else if (currentColor == (Integer)2) {
+					listaColoresDisponibles.remove(Integer.valueOf(3));
+					listaColoresDisponibles.remove(Integer.valueOf(6));
 
-					} else if (currentColor == 3) {
-						listaColoresDisponibles.remove(1);
-						listaColoresDisponibles.remove(2);
-						listaColoresDisponibles.remove(4);
+				} else if (currentColor == (Integer)3) {
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(2));
 
-					} else if (currentColor == 4) {
-						listaColoresDisponibles.remove(6);
-						listaColoresDisponibles.remove(1);
-						listaColoresDisponibles.remove(3);
+				} else if (currentColor == (Integer)4) {
+					listaColoresDisponibles.remove(Integer.valueOf(6));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+					listaColoresDisponibles.remove(Integer.valueOf(3));
 
-					} else if (currentColor == 6) {
-						listaColoresDisponibles.remove(2);
-						listaColoresDisponibles.remove(4);
-						listaColoresDisponibles.remove(1);
-						
-					} else if (currentColor == 7) {
-						listaColoresDisponibles.remove(9);		
+				} else if (currentColor == (Integer)6) {
+					listaColoresDisponibles.remove(Integer.valueOf(2));
+					listaColoresDisponibles.remove(Integer.valueOf(4));
+					listaColoresDisponibles.remove(Integer.valueOf(1));
+				
+				} else if (currentColor == (Integer)7) {
+					listaColoresDisponibles.remove(Integer.valueOf(9));		
 
-					} else if (currentColor == 9) {
-						listaColoresDisponibles.remove(7);
-						
-					} else {
+				} else if (currentColor == (Integer)9) {
+					listaColoresDisponibles.remove(Integer.valueOf(7));
+					
+				} else {
 						//no hace nada si no hay ninguno de estos colores ya que no hace falta actualizar la lista!
 					}
-				}
+				
 				
 				Integer idZapatos = rs.getInt("idprendas");
 				byte[] fotobytesZapatos = rs.getBytes("fotozapatos");
 				
 				mapOutfitLluvioso.put(idZapatos, fotobytesZapatos);
-				//Una vez sacado las 5 prendas y metidas en el hashmap, se vacian estas listas
-				listaColoresUsados.clear();
-				listaColoresDisponibles.clear();
 				
 			}
 			rs.close();
-			conn.close();
+			conn5.close();
+			
+			System.out.println(listaColoresDisponibles.toString());
+			
+			listaColoresUsados.clear();
+			listaColoresDisponibles.clear();
 			
 		} catch (SQLException e) {
-			throw new BDException ("error al conectar con la BD", e);
+			e.printStackTrace();
 		}
+		
+		
+		
+		
 		return mapOutfitLluvioso;
 		
 		
