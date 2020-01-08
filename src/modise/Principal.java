@@ -1312,8 +1312,10 @@ public class Principal {
 						color = 7;
 					} else if (nombreColorSeleccionadoPO == "blanco") {
 						color = 8;
-					} else {
-						color = 8;
+					} else if (nombreColorSeleccionadoPO == "Gris") {
+						color = 9;
+					} else if (nombreColorSeleccionadoPO == "Marron"){
+						color = 10;
 					}
 						Boolean generoElegido = null;
 					if (generoOutfitM.isSelected()) {
@@ -1449,6 +1451,8 @@ public class Principal {
 		coloresComboBoxAñadirVestimenta.addItem("Multicolor");
 		coloresComboBoxAñadirVestimenta.addItem("Blanco");
 		coloresComboBoxAñadirVestimenta.addItem("Gris");
+		coloresComboBoxAñadirVestimenta.addItem("Default");
+
 
 		tipoLabelAñadirVestimenta.setBounds(190, 50, 400, 40);
 		estilosLabelAñadirVestimenta.setBounds(190, 100, 400, 40);
@@ -1522,7 +1526,7 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 
 			String nombreColorSeleccionado = coloresComboBoxAñadirVestimenta.getSelectedItem().toString();
-			int idColorSeleccionado;
+			int idColorSeleccionado = 0;
 			if (nombreColorSeleccionado == "Rojo") {
 				idColorSeleccionado = 1;
 			} else if (nombreColorSeleccionado == "Azul") {
@@ -1531,8 +1535,18 @@ public class Principal {
 				idColorSeleccionado = 3;
 			} else if (nombreColorSeleccionado == "Verde") {
 				idColorSeleccionado = 4;
-			} else {
+			} else if (nombreColorSeleccionado == "Negro") {
 				idColorSeleccionado = 5;
+			} else if (nombreColorSeleccionado == "Rosa") {
+				idColorSeleccionado = 6;
+			} else if (nombreColorSeleccionado == "Multicolor") {
+				idColorSeleccionado = 7;
+			} else if (nombreColorSeleccionado == "Blanco"){
+				idColorSeleccionado = 8;
+			} else if (nombreColorSeleccionado == "Gris"){
+				idColorSeleccionado = 9;
+			} else if (nombreColorSeleccionado == "Default"){
+				idColorSeleccionado = 999;
 			}
 			
 			int nivelFashionSeleccionado = (int)nivelFashionSpin.getValue();
