@@ -1371,9 +1371,12 @@ public class Principal {
 								i++;
 							}
 							
+							
+							
 							//Comprobamos que el array bidimensional se llena. PASAR A LOG!!
 							System.out.println(Arrays.deepToString(arrOutfitSol));
 						
+							
 							
 							rowsData = arrOutfitSol;
 							
