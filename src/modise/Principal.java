@@ -1333,9 +1333,7 @@ public class Principal {
 						color = 9;
 					} else if (nombreColorSeleccionadoPO == "Marron") {
 						color = 10;
-					} else if (nombreColorSeleccionadoPO == "Default") {
-						color = 999;
-					}
+					} 
 					
 						HashMap<Integer, byte[]> outfitSolMap=null;
 					
@@ -1514,7 +1512,6 @@ public class Principal {
 		coloresComboBoxAñadirVestimenta.addItem("Blanco");
 		coloresComboBoxAñadirVestimenta.addItem("Gris");
 		coloresComboBoxAñadirVestimenta.addItem("Marron");
-		coloresComboBoxAñadirVestimenta.addItem("Default");
 
 
 		tipoLabelAñadirVestimenta.setBounds(190, 50, 400, 40);
@@ -1610,9 +1607,7 @@ public class Principal {
 				idColorSeleccionado = 9;
 			} else if (nombreColorSeleccionado == "Marron"){
 				idColorSeleccionado = 10;
-			} else if (nombreColorSeleccionado == "Default"){
-				idColorSeleccionado = 999;
-			}
+			} 
 			
 			int nivelFashionSeleccionado = (int)nivelFashionSpin.getValue();
 			int nivelImpermeableSeleccionado = (int)nivelImpermeableSpin.getValue();
