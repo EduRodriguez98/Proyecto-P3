@@ -25,7 +25,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -202,6 +201,33 @@ public class Principal {
 	// mas
 	static PrintStream Feedbacklog, Usuariolog;
 	public static Logger BDLogger;
+	
+	//Metodo Cargar Datos a JPanel
+	
+	public static void cargarJTable(Object[][] arrLleno, Object[][] arrV, int i, int j) {
+		
+		Object aux;
+		
+		aux = arrLleno[i][j];
+		arrV[i][j] = aux;
+
+		System.out.println(arrV[i][j]);
+		
+		if(i != arrLleno.length -1 || j != arrLleno[i].length -1) {
+			
+			if(j == arrLleno[i].length -1) {
+				i++;
+				j=0;
+			
+			}else {
+				j++;
+			}
+			
+			cargarJTable(arrLleno,arrV,i,j);
+			
+		}
+		
+	}
 
 	// Metodo Cambiar Paneles
 	public void CambiarPanel(JPanel g, JPanel h) {
@@ -1291,23 +1317,7 @@ public class Principal {
 
 					UIManager.put("OptionPane.minimumSize", new Dimension(500, 800));
 					
-					//ventanaEmergentePideOutfit
 					
-					JTable jt = new JTable();
-						jt.setPreferredSize(new Dimension(400, 850));
-						jt.setRowHeight(0, 50);
-						jt.setRowHeight(1, 150);
-						jt.setRowHeight(2, 150);
-						jt.setRowHeight(3, 150);
-						jt.setRowHeight(4, 150);
-						jt.setRowHeight(5, 150);
-						
-						String [] cols = {"idprendas", "foto"};
-						Object [][] rowsData = {};
-						
-						
-						DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
-						dtm.setDataVector(rowsData, cols);
 					int color = 1;
 					
 					
@@ -1370,15 +1380,26 @@ public class Principal {
 								
 								i++;
 							}
+							//ventanaEmergentePideOutfit
 							
-							
-							
-							//Comprobamos que el array bidimensional se llena. PASAR A LOG!!
-							System.out.println(Arrays.deepToString(arrOutfitSol));
-						
-							
-							
-							rowsData = arrOutfitSol;
+							JTable jt = new JTable();
+								jt.setPreferredSize(new Dimension(400, 850));
+								jt.setRowHeight(0, 50);
+								jt.setRowHeight(1, 150);
+								jt.setRowHeight(2, 150);
+								jt.setRowHeight(3, 150);
+								jt.setRowHeight(4, 150);
+								jt.setRowHeight(5, 150);
+								
+								String [] cols = {"idprendas", "foto"};
+								Object [][] rowsData = {};
+								
+								cargarJTable(arrOutfitSol,rowsData,0,0);
+								
+								DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
+								dtm.setDataVector(rowsData, cols);
+								
+								ventanaEmergenteOutfit.add(jt);
 							
 						} catch (BDException | SQLException e1) {
 							
@@ -1414,7 +1435,28 @@ public class Principal {
 								i++;
 							}
 							
-							rowsData = arrOutfitLluvia;
+							//ventanaEmergentePideOutfit
+							
+							JTable jt = new JTable();
+								jt.setPreferredSize(new Dimension(400, 850));
+								jt.setRowHeight(0, 50);
+								jt.setRowHeight(1, 150);
+								jt.setRowHeight(2, 150);
+								jt.setRowHeight(3, 150);
+								jt.setRowHeight(4, 150);
+								jt.setRowHeight(5, 150);
+								
+								String [] cols = {"idprendas", "foto"};
+								Object [][] rowsData = {};
+								
+								
+								cargarJTable(arrOutfitLluvia,rowsData,0,0);
+								
+								
+								DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
+								dtm.setDataVector(rowsData, cols);
+							
+								ventanaEmergenteOutfit.add(jt);
 							
 						} catch (BDException | SQLException e1) {
 							
@@ -1422,7 +1464,7 @@ public class Principal {
 						}
 					}
 						
-					ventanaEmergenteOutfit.add(jt);
+					
 					
 					
 					JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!",
