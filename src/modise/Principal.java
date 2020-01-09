@@ -22,12 +22,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
@@ -48,6 +53,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
@@ -55,6 +61,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
 
 import conexion.BDException;
 import conexion.BaseDatosModise;
@@ -168,10 +175,11 @@ public class Principal {
 
 	// ventanaPideOutfit
 	JButton botonAtrasPideOutfit, botonBuscar;
-	JRadioButton radioSol, radioLluvia, radioNublado, radioNo;
-	JLabel preguntaEstilo, preguntaTiempo, errorPideOutfit;
-	JComboBox<String> estilosComboBoxPideOutfit;
+	JRadioButton radioSol, radioLluvia, radioNublado, radioNo, generoOutfitM, generoOutfitF;
+	JLabel preguntaEstilo, preguntaTiempo, errorPideOutfit, preguntaColor, generoPregunta;
+	JComboBox<String> estilosComboBoxPideOutfit, colorMenteComboBox;
 	Boolean escrito5;
+	
 
 	// ventanaFeedback
 	JLabel nivelSatisfaccion, gustoColores, errorFeedback;
@@ -194,6 +202,33 @@ public class Principal {
 	// mas
 	static PrintStream Feedbacklog, Usuariolog;
 	public static Logger BDLogger;
+	
+	//Metodo Cargar Datos a JPanel
+	
+	public static void cargarJTable(Object[][] arrLleno, Object[][] arrV, int i, int j) {
+		
+		Object aux;
+		
+		aux = arrLleno[i][j];
+		arrV[i][j] = aux;
+
+		System.out.println(arrV[i][j] + " ");
+		
+		if(i != arrLleno.length -1 || j != arrLleno[i].length -1) {
+			
+			if(j == arrLleno[i].length -1) {
+				i++;
+				j=0;
+			
+			}else {
+				j++;
+			}
+			
+			cargarJTable(arrLleno,arrV,i,j);
+			
+		}
+		
+	}
 
 	// Metodo Cambiar Paneles
 	public void CambiarPanel(JPanel g, JPanel h) {
@@ -703,6 +738,8 @@ public class Principal {
 		comboColorPreferidoM.addItem("Multicolor");
 		comboColorPreferidoM.addItem("Blanco");
 		comboColorPreferidoM.addItem("Gris");
+		comboColorPreferidoM.addItem("Marron");
+
 		ventanaPerfilGustosUnoM.add(comboColorPreferidoM);
 		
 		botonPerfilGustosUnoMAtras = new JButton("Atras");
@@ -724,7 +761,9 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
+				CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
+				
 				if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() || smartM.isSelected()
 						|| formalM.isSelected() || casualChickM.isSelected()) {
 					
@@ -749,20 +788,67 @@ public class Principal {
 								@Override
 								public void run() {
 									progressCargando.setValue(counter);
-
+									
 								}
 							});
 						}
 						
 						if (stop = true) {
 							
-							//bd = nuevo usuario
-							
-							
+							try {
+								
+								int colorseleccionado = 0;
+								String estiloseleccionado = null;
+								
+								if(comboColorPreferidoM.getSelectedItem().toString() == "Rojo") {
+									colorseleccionado = 1;
+								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Azul") {
+									colorseleccionado = 2;
+								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Amarillo") {
+									colorseleccionado = 3;
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Verde") {
+									colorseleccionado = 4;
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Negro") {
+									colorseleccionado = 5;
+								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Rosa") {
+									colorseleccionado = 6;
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Multicolor") {
+									colorseleccionado = 7;
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Blanco") {
+									colorseleccionado = 8;
+								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Gris") {
+									colorseleccionado = 9;
+								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Marron") {
+									colorseleccionado = 10;
+								} else {
+									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM, "Debes escoger un color para continuar");
+								}
+								
+								if (clasicoM.isSelected()) {
+									estiloseleccionado = "clasicoM";
+								} else if (urbanaM.isSelected()) {
+									estiloseleccionado = "urbanaM";
+								} else if (rockM.isSelected()) {
+									estiloseleccionado = "rockM";
+								} else if (smartM.isSelected()) {
+									estiloseleccionado = "smartM";
+								} else if (formalM.isSelected()) {
+									estiloseleccionado = "formalM";
+								} else if (casualChickM.isSelected()) {
+									estiloseleccionado = "casualChickM";
+								} else {
+									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM, "Debes seleccionar un estilo favorito");
+								}
+								BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(), txtCrearEmailM.getText(), 0, (int)spinCrearEdadM.getValue(), txtCrearContraseñaM.getText(), 0, colorseleccionado, estiloseleccionado);
+								
+							} catch (BDException e) {
+								e.printStackTrace();
+							}
+							CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 						}
 					}
 				});  
-				CambiarPanel(ventanaPerfilGustosUnoM, ventanaMenuPrincipal);
+				
 				t.start();
 			}
 		});
@@ -788,25 +874,107 @@ public class Principal {
 
 		// Añadiendo los componentes de ventanaPerfilGustosUnoF
 
+		labelCrearNombreF = new JLabel("Introduzca su nombre: ");
+		labelCrearNombreF.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoF.add(labelCrearNombreF);
+		labelCrearNombreF.setBounds(20, 10, 200, 30);
+
+		txtCrearNombreF = new JTextField("nombre");
+		ventanaPerfilGustosUnoF.add(txtCrearNombreF);
+		txtCrearNombreF.setBounds(230, 10, 200, 30);
+		escrito3F = false;
+		txtCrearNombreF.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (escrito3F == false) {
+					txtCrearNombreF.setText("");
+					escrito3F = true;
+				}
+			}
+		});
+
+		labelCrearEmailF = new JLabel("Introduzca su email: ");
+		labelCrearEmailF.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoF.add(labelCrearEmailF);
+		labelCrearEmailF.setBounds(20, 45, 200, 30);
+
+		txtCrearEmailF = new JTextField("ejemplo@gmail.com");
+		ventanaPerfilGustosUnoF.add(txtCrearEmailF);
+		txtCrearEmailF.setBounds(230, 45, 200, 30);
+		escrito4F = false;
+		txtCrearEmailF.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (escrito4F == false) {
+					txtCrearEmailF.setText("");
+					escrito4F = true;
+				}
+			}
+		});
+
+		labelCrearContraseñaF = new JLabel("Cree una contrasena: ");
+		labelCrearContraseñaF.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoF.add(labelCrearContraseñaM);
+		labelCrearContraseñaF.setBounds(20, 80, 200, 30);
+
+		txtCrearContraseñaF = new JTextField("");
+		ventanaPerfilGustosUnoF.add(txtCrearContraseñaF);
+		txtCrearContraseñaF.setBounds(230, 80, 200, 30);
+
+		labelCrearEdadF = new JLabel("Seleccione su edad: ");
+		labelCrearEdadF.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoF.add(labelCrearEdadF);
+		labelCrearEdadF.setBounds(20, 115, 200, 30);
+
+		SpinnerModel model2 = new SpinnerNumberModel(18, 0, 99, 1); // default 18, min 0, max 99, +-1
+		// spinCrearEdad.setValue(18);
+		spinCrearEdadF = new JSpinner(model2);
+		ventanaPerfilGustosUnoF.add(spinCrearEdadF);
+		spinCrearEdadF.setBounds(230, 115, 80, 30);
+
+		errorNombreF = new JLabel();
+		ventanaPerfilGustosUnoF.add(errorNombreF);
+		errorNombreF.setFont(new Font("Monospace", Font.BOLD, 11));
+		errorNombreF.setBounds(230, 10, 150, 30);
+		errorNombreF.setForeground(Color.RED);
+
+		errorEmailF = new JLabel();
+		errorEmailF.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoF.add(errorEmailF);
+		errorEmailF.setBounds(230, 45, 150, 30);
+		errorEmailF.setForeground(Color.RED);
+
+		errorContraseñaF = new JLabel();
+		errorContraseñaF.setFont(new Font("Monospace", Font.BOLD, 11));
+		ventanaPerfilGustosUnoF.add(errorContraseñaF);
+		errorContraseñaF.setBounds(230, 80, 150, 30);
+		errorContraseñaF.setForeground(Color.RED);
+		
+		
+		labelEstiloFavoritoF = new JLabel("Selecciona tu estilo favorito:");
+		labelEstiloFavoritoF.setFont(new Font("Monospace", Font.BOLD, 11));
+		labelEstiloFavoritoF.setBounds(20, 150, 200, 30);
+		ventanaPerfilGustosUnoF.add(labelEstiloFavoritoF);
+		
 		clasicoF = new JRadioButton("Clasico");
 		ventanaPerfilGustosUnoF.add(clasicoF);
-		clasicoF.setBounds(100, 50, 150, 40);
+		clasicoF.setBounds(20, 185, 150, 30);
 		urbanaF = new JRadioButton("Urbana");
 		ventanaPerfilGustosUnoF.add(urbanaF);
-		urbanaF.setBounds(250, 50, 150, 40);
+		urbanaF.setBounds(170, 185, 150, 30);
 		rockF = new JRadioButton("Rock");
 		ventanaPerfilGustosUnoF.add(rockF);
-		rockF.setBounds(400, 50, 150, 40);
-		bohoF = new JRadioButton("Boho");
+		rockF.setBounds(320, 185, 150, 30);
+		bohoF = new JRadioButton("Smart");
 		ventanaPerfilGustosUnoF.add(bohoF);
-		bohoF.setBounds(100, 110, 150, 40);
+		bohoF.setBounds(20, 215, 150, 30);
 		formalF = new JRadioButton("Formal");
 		ventanaPerfilGustosUnoF.add(formalF);
-		formalF.setBounds(250, 110, 150, 40);
+		formalF.setBounds(170, 215, 150, 30);
 		sportyChickF = new JRadioButton("Sporty Chick");
 		ventanaPerfilGustosUnoF.add(sportyChickF);
-		sportyChickF.setBounds(400, 110, 150, 40);
-
+		sportyChickF.setBounds(320, 215, 150, 30);
+		
 		ButtonGroup bgF = new ButtonGroup();
 		bgF.add(clasicoF);
 		bgF.add(urbanaF);
@@ -815,12 +983,14 @@ public class Principal {
 		bgF.add(formalF);
 		bgF.add(sportyChickF);
 		
-		labelColorPreferidoM = new JLabel("Seleccione su color preferido");
-		labelColorPreferidoM.setBounds(100, 175, 200, 40);
-		ventanaPerfilGustosUnoF.add(labelColorPreferidoM);
+		
+		labelColorPreferidoF = new JLabel("Seleccione su color preferido");
+		labelColorPreferidoF.setFont(new Font("Monospace", Font.BOLD, 11));
+		labelColorPreferidoF.setBounds(20, 250, 200, 40);
+		ventanaPerfilGustosUnoF.add(labelColorPreferidoF);
 		
 		comboColorPreferidoF = new JComboBox<String>();
-		comboColorPreferidoF.setBounds(100, 230, 200, 40);
+		comboColorPreferidoF.setBounds(20, 285, 100, 40);
 		comboColorPreferidoF.addItem("Rojo");
 		comboColorPreferidoF.addItem("Amarillo");
 		comboColorPreferidoF.addItem("Verde");
@@ -829,6 +999,8 @@ public class Principal {
 		comboColorPreferidoF.addItem("Multicolor");
 		comboColorPreferidoF.addItem("Blanco");
 		comboColorPreferidoF.addItem("Gris");
+		comboColorPreferidoF.addItem("Marron");
+
 		ventanaPerfilGustosUnoF.add(comboColorPreferidoF);
 		
 		botonPerfilGustosUnoFAtrasF = new JButton("Atras");
@@ -840,14 +1012,19 @@ public class Principal {
 		botonPerfilGustosUnoFSiguienteF.setBounds(500, 340, 200, 30);
 
 		errorPerfilGustosUnoF = new JLabel();
+		errorPerfilGustosUnoF.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoF.add(errorPerfilGustosUnoF);
 		errorPerfilGustosUnoF.setBounds(300, 340, 400, 40);
 		errorPerfilGustosUnoF.setForeground(Color.RED);
+		
+		//ActionListeners ventanaPerfilGustosUnoF
 
 		botonPerfilGustosUnoFSiguienteF.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaPerfilGustosUnoF, ventanaCarga);
+				
 				if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() || bohoF.isSelected()
 						|| formalF.isSelected() || sportyChickF.isSelected()) {
 					
@@ -856,8 +1033,6 @@ public class Principal {
 					errorPerfilGustosUnoF.setText("Selecciona 1 estilo");
 				}
 				
-				// JProgressBar
-
 				Thread t = new Thread(new Runnable() {
 
 					@Override
@@ -871,24 +1046,69 @@ public class Principal {
 								@Override
 								public void run() {
 									progressCargando.setValue(counter);
-
+									
 								}
 							});
 						}
 						
 						if (stop = true) {
 							
-							//bd = nuevo usuario
-							
-							
+							try {
+								
+								int colorseleccionado = 0;
+								String estiloseleccionado = null;
+								
+								if(comboColorPreferidoF.getSelectedItem().toString() == "Rojo") {
+									colorseleccionado = 1;
+								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Azul") {
+									colorseleccionado = 2;
+								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Amarillo") {
+									colorseleccionado = 3;
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Verde") {
+									colorseleccionado = 4;
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Negro") {
+									colorseleccionado = 5;
+								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Rosa") {
+									colorseleccionado = 6;
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Multicolor") {
+									colorseleccionado = 7;
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Blanco") {
+									colorseleccionado = 8;
+								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Gris") {
+									colorseleccionado = 9;
+								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Marron") {
+									colorseleccionado = 10;
+								}else {
+									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoF, "Debes escoger un color para continuar");
+								}
+								
+								if (clasicoF.isSelected()) {
+									estiloseleccionado = "clasicoF";
+								} else if (urbanaF.isSelected()) {
+									estiloseleccionado = "urbanaF";
+								} else if (rockF.isSelected()) {
+									estiloseleccionado = "rockF";
+								} else if (bohoF.isSelected()) {
+									estiloseleccionado = "bohoF";
+								} else if (formalF.isSelected()) {
+									estiloseleccionado = "formalF";
+								} else if (sportyChickF.isSelected()) {
+									estiloseleccionado = "sportyChickF";
+								} else {
+									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoF, "Debes seleccionar un estilo favorito");
+								}
+								BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(), txtCrearEmailF.getText(), 0, (int)spinCrearEdadF.getValue(), txtCrearContraseñaF.getText(), 1, colorseleccionado, estiloseleccionado);
+								
+							} catch (BDException e) {
+								e.printStackTrace();
+							}
+							CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 						}
 					}
 				});  
-				CambiarPanel(ventanaPerfilGustosUnoF, ventanaMenuPrincipal);
+				
 				t.start();
 			}
-			
-			
 		});
 
 		botonPerfilGustosUnoFAtrasF.addActionListener(new ActionListener() {
@@ -909,8 +1129,7 @@ public class Principal {
 				CambiarPanel(ventanaPerfilGustosUnoF, ventanaGenero);
 			}
 		});
- 
-							
+
 		// Añadiendo los componentes de ventanaCarga
 		labelCargando = new JLabel("Cargando");
 		ventanaCarga.add(labelCargando);
@@ -925,7 +1144,7 @@ public class Principal {
 		botonPideOutfit = new JButton("Pide un Outfit!");
 		botonPideOutfit.setBounds(250, 150, 200, 50);
 		ventanaMenuPrincipal.add(botonPideOutfit);
-
+ 
 		botonAñadirVestimenta = new JButton("Añade tu propia Vestimenta");
 		botonAñadirVestimenta.setBounds(250, 250, 200, 50);
 		ventanaMenuPrincipal.add(botonAñadirVestimenta);
@@ -965,21 +1184,45 @@ public class Principal {
 				CambiarPanel(ventanaMenuPrincipal, ventanaMasMenosAdmin);
 			}
 		});
-
+		
+		
+		
 		// Añadiendo los compenentes de ventanaPideOutfit
 		preguntaTiempo = new JLabel("Que tiempo hace hoy?");
 		preguntaTiempo.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPideOutfit.add(preguntaTiempo);
-		preguntaTiempo.setBounds(50, 0, 300, 100);
+		preguntaTiempo.setBounds(30, 0, 300, 40);
 
 		radioSol = new JRadioButton("Sol");
 		radioSol.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioSol);
-		radioSol.setBounds(50, 80, 100, 40);
+		radioSol.setBounds(30, 50, 100, 40);
 		radioLluvia = new JRadioButton("Lluvia");
 		radioLluvia.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioLluvia);
-		radioLluvia.setBounds(50, 120, 100, 40);
+		radioLluvia.setBounds(30, 100, 100, 40);
+		
+		preguntaColor = new JLabel("Tienes algun color en mente?");
+		preguntaColor.setFont(new Font("Monospace", Font.BOLD, 13));
+		ventanaPideOutfit.add(preguntaColor);
+		preguntaColor.setBounds(370, 0, 300, 40);
+		ventanaPideOutfit.add(preguntaColor);
+		
+		colorMenteComboBox = new JComboBox<String>();
+		colorMenteComboBox.addItem("rojo");
+		colorMenteComboBox.addItem("azul");
+		colorMenteComboBox.addItem("amarillo");
+		colorMenteComboBox.addItem("verde");
+		colorMenteComboBox.addItem("negro");
+		colorMenteComboBox.addItem("rosa");
+		colorMenteComboBox.addItem("multicolor");
+		colorMenteComboBox.addItem("blanco");
+		colorMenteComboBox.addItem("gris");
+		colorMenteComboBox.addItem("marron");
+
+		
+		colorMenteComboBox.setBounds(370, 50, 190, 30);
+		ventanaPideOutfit.add(colorMenteComboBox);
 		
 		ButtonGroup bgPideOutfit = new ButtonGroup();
 		bgPideOutfit.add(radioSol);
@@ -988,12 +1231,12 @@ public class Principal {
 		preguntaEstilo = new JLabel("Tienes algun estilo en mente para tu outfit?");
 		preguntaEstilo.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPideOutfit.add(preguntaEstilo);
-		preguntaEstilo.setBounds(50, 210, 300, 60);
+		preguntaEstilo.setBounds(30, 200, 300, 30);
 
 		radioNo = new JRadioButton("No");
 		radioNo.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioNo);
-		radioNo.setBounds(50, 260, 50, 30);
+		radioNo.setBounds(30, 240, 50, 30);
 
 		estilosComboBoxPideOutfit = new JComboBox<String>();
 		ventanaPideOutfit.add(estilosComboBoxPideOutfit);
@@ -1010,8 +1253,25 @@ public class Principal {
 		estilosComboBoxPideOutfit.addItem("FormalM");
 		estilosComboBoxPideOutfit.addItem("SportyChickF");
 		estilosComboBoxPideOutfit.addItem("CasualChickM"); // 12
-		estilosComboBoxPideOutfit.setBounds(150, 260, 200, 30);
+		estilosComboBoxPideOutfit.setBounds(120, 240, 180, 30);
 
+		generoPregunta = new JLabel("Seleccione el genero");
+		generoPregunta.setFont(new Font("Monospace", Font.BOLD, 13));
+		generoPregunta.setBounds(370, 200, 200, 30);
+		ventanaPideOutfit.add(generoPregunta);
+		generoOutfitM = new JRadioButton("M");
+		generoOutfitM.setFont(new Font("Monospace", Font.PLAIN, 12));
+		generoOutfitM.setBounds(370, 240, 50, 30);
+		generoOutfitF = new JRadioButton("F");
+		generoOutfitF.setFont(new Font("Monospace", Font.PLAIN, 12));
+		generoOutfitF.setBounds(420, 240, 50, 30);
+		ButtonGroup bgGenero = new ButtonGroup();
+		bgGenero.add(generoOutfitM);
+		bgGenero.add(generoOutfitF);
+		ventanaPideOutfit.add(generoOutfitM);
+		ventanaPideOutfit.add(generoOutfitF);
+		
+		
 		botonAtrasPideOutfit = new JButton("Atras");
 		ventanaPideOutfit.add(botonAtrasPideOutfit);
 		botonAtrasPideOutfit.setBounds(10, 340, 200, 30);
@@ -1041,10 +1301,9 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(estilosComboBoxPideOutfit.getSelectedIndex());
 
 				if (bgPideOutfit.getSelection() != null
-						&& (radioNo.isSelected() || estilosComboBoxPideOutfit.getSelectedIndex() != -1)) {
+						&& (radioNo.isSelected() || estilosComboBoxPideOutfit.getSelectedIndex() != -1) && bgGenero.getSelection() != null && colorMenteComboBox.getSelectedItem() != null) {
 
 					Object l;
 					if (radioNo.isSelected()) {
@@ -1053,13 +1312,170 @@ public class Principal {
 						l = estilosComboBoxAñadirVestimenta.getSelectedItem();
 					}
 					Usuariolog.println("Pide Outfit, tiempo: " + bgPideOutfit.getSelection().getActionCommand()
-							+ ", estilo: " + l);
-
+							+ ", estilo: " + l + "genero: " + bgGenero.getSelection().getActionCommand() + "color: " + colorMenteComboBox.getSelectedItem().toString());
+					
 					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
 
-					UIManager.put("OptionPane.minimumSize", new Dimension(600, 700));
+					UIManager.put("OptionPane.minimumSize", new Dimension(500, 800));
+					
+					
+					int color = 1;
+					
+					
+					String nombreColorSeleccionadoPO = colorMenteComboBox.getSelectedItem().toString();
+					
+					if(nombreColorSeleccionadoPO == "rojo") {
+						color = 1;
+					} else if (nombreColorSeleccionadoPO == "azul") {
+						color = 2;
+					} else if (nombreColorSeleccionadoPO == "amarillo") {
+						color = 3;
+					} else if (nombreColorSeleccionadoPO == "verde") {
+						color = 4;
+					} else if (nombreColorSeleccionadoPO == "negro") {
+						color = 5;
+					} else if (nombreColorSeleccionadoPO == "rosa") {
+						color = 6;
+					} else if (nombreColorSeleccionadoPO == "multicolor") {
+						color = 7;
+					} else if (nombreColorSeleccionadoPO == "blanco") {
+						color = 8;
+					} else if (nombreColorSeleccionadoPO == "Gris") {
+						color = 9;
+					} else if (nombreColorSeleccionadoPO == "Marron") {
+						color = 10;
+					} 
+					
+						HashMap<Integer, byte[]> outfitSolMap=null;
+					
+					if(radioSol.isSelected() && !radioNo.isSelected()) {
+						
+						try {
+							
+							if (generoOutfitM.isSelected()) {
+							outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), 0, color);
+							} else if (generoOutfitF.isSelected()) {
+								outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), 1, color);
+
+							}
+						
+							
+							//Comprobamos que el HashMap se cree correctamente!PASAR A LOG!!
+							System.out.println(Collections.singletonList(outfitSolMap));
+							
+							
+							Object[][] arrOutfitSol = new Object[outfitSolMap.size()][2];
+							@SuppressWarnings("rawtypes")
+							Set entries = outfitSolMap.entrySet();
+							@SuppressWarnings("rawtypes")
+							Iterator entriesIterator = entries.iterator();
+							
+							int i = 0;
+							
+							while(entriesIterator.hasNext()) {
+								@SuppressWarnings("unchecked")
+								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator.next();
+								
+								arrOutfitSol [i][0] = mapping.getKey();
+								arrOutfitSol [i][1]= mapping.getValue();
+								
+								i++;
+							}
+							//ventanaEmergentePideOutfit
+							
+							JTable jt = new JTable();
+								jt.setPreferredSize(new Dimension(400, 850));
+								jt.setRowHeight(0, 50);
+								jt.setRowHeight(1, 150);
+								jt.setRowHeight(2, 150);
+								jt.setRowHeight(3, 150);
+								jt.setRowHeight(4, 150);
+								jt.setRowHeight(5, 150);
+								
+								String [] cols = {"idprendas", "foto"};
+								Object [][] rowsData = {};
+								
+								cargarJTable(arrOutfitSol,rowsData,0,0);
+								
+								DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
+								dtm.setDataVector(rowsData, cols);
+								
+								ventanaEmergenteOutfit.add(jt);
+							//Comprobamos que el array bidimensional se llena. PASAR A LOG!!
+							System.out.println(Arrays.deepToString(arrOutfitSol));
+						
+							
+							
+							
+						} catch (BDException | SQLException e1) {
+							
+							e1.printStackTrace();
+						}
+
+						
+					}	else if (radioLluvia.isSelected() && !radioNo.isSelected()) {
+						HashMap<Integer, byte[]> outfitLluviaMap = null;
+						try {
+							
+							if (generoOutfitM.isSelected()) {
+								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(estilosComboBoxPideOutfit.getSelectedItem().toString(), 0, color);
+							} else if (generoOutfitF.isSelected()) {
+								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(estilosComboBoxPideOutfit.getSelectedItem().toString(), 1, color);
+							} 
+							
+							Object[][] arrOutfitLluvia = new Object[outfitLluviaMap.size()][2];
+							@SuppressWarnings("rawtypes")
+							Set entries = outfitLluviaMap.entrySet();
+							@SuppressWarnings("rawtypes")
+							Iterator entriesIterator = entries.iterator();
+							
+							int i = 0;
+							
+							while(entriesIterator.hasNext()) {
+								@SuppressWarnings("unchecked")
+								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator.next();
+								
+								arrOutfitLluvia [i][0] = mapping.getKey();
+								arrOutfitLluvia  [i][1]= mapping.getValue();
+								
+								i++;
+							}
+							
+							//ventanaEmergentePideOutfit
+							
+							JTable jt = new JTable();
+								jt.setPreferredSize(new Dimension(400, 850));
+								jt.setRowHeight(0, 50);
+								jt.setRowHeight(1, 150);
+								jt.setRowHeight(2, 150);
+								jt.setRowHeight(3, 150);
+								jt.setRowHeight(4, 150);
+								jt.setRowHeight(5, 150);
+								
+								String [] cols = {"idprendas", "foto"};
+								Object [][] rowsData = {};
+								
+								
+								cargarJTable(arrOutfitLluvia,rowsData,0,0);
+								
+								
+								DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
+								dtm.setDataVector(rowsData, cols);
+							
+								ventanaEmergenteOutfit.add(jt);
+							
+						} catch (BDException | SQLException e1) {
+							
+							e1.printStackTrace();
+						}
+					}
+						
+					
+					
+					
 					JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!",
 							JOptionPane.DEFAULT_OPTION);
+					
 					escrito5 = false;
 					bgPideOutfit.clearSelection();
 					radioNo.setSelected(false);
@@ -1146,6 +1562,8 @@ public class Principal {
 		coloresComboBoxAñadirVestimenta.addItem("Multicolor");
 		coloresComboBoxAñadirVestimenta.addItem("Blanco");
 		coloresComboBoxAñadirVestimenta.addItem("Gris");
+		coloresComboBoxAñadirVestimenta.addItem("Marron");
+
 
 		tipoLabelAñadirVestimenta.setBounds(190, 50, 400, 40);
 		estilosLabelAñadirVestimenta.setBounds(190, 100, 400, 40);
@@ -1219,7 +1637,7 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 
 			String nombreColorSeleccionado = coloresComboBoxAñadirVestimenta.getSelectedItem().toString();
-			int idColorSeleccionado;
+			int idColorSeleccionado = 0;
 			if (nombreColorSeleccionado == "Rojo") {
 				idColorSeleccionado = 1;
 			} else if (nombreColorSeleccionado == "Azul") {
@@ -1228,9 +1646,19 @@ public class Principal {
 				idColorSeleccionado = 3;
 			} else if (nombreColorSeleccionado == "Verde") {
 				idColorSeleccionado = 4;
-			} else {
+			} else if (nombreColorSeleccionado == "Negro") {
 				idColorSeleccionado = 5;
-			}
+			} else if (nombreColorSeleccionado == "Rosa") {
+				idColorSeleccionado = 6;
+			} else if (nombreColorSeleccionado == "Multicolor") {
+				idColorSeleccionado = 7;
+			} else if (nombreColorSeleccionado == "Blanco"){
+				idColorSeleccionado = 8;
+			} else if (nombreColorSeleccionado == "Gris"){
+				idColorSeleccionado = 9;
+			} else if (nombreColorSeleccionado == "Marron"){
+				idColorSeleccionado = 10;
+			} 
 			
 			int nivelFashionSeleccionado = (int)nivelFashionSpin.getValue();
 			int nivelImpermeableSeleccionado = (int)nivelImpermeableSpin.getValue();

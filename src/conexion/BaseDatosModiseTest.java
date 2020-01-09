@@ -1,9 +1,13 @@
 package conexion;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -11,7 +15,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import junit.framework.Assert;
+
 public class BaseDatosModiseTest {
+	
+	
 
 	Connection conexion = BaseDatosModise.conectar();
 
@@ -68,13 +76,49 @@ public class BaseDatosModiseTest {
 
 	@Test
 	public void nuevoUsuarioTest() {
-		Statement st;
+		
 		try {
-			st = conexion.createStatement();
-			BaseDatosModise.nuevoUsuario(st, "eneko", "lauram@gmail.com", 0, 20, "123", 1);
-		} catch (SQLException e) {
+			BaseDatosModise.nuevoUsuario("eneka", "lauram@gmail.com", 0, 20, "123", 1, 2, "rockF");
+			
+			PreparedStatement Stmt = conexion.prepareStatement("SELECT * FROM usuario WHERE (nom_usuario = eneko AND correo = lauram@gmail.com)");
+			ResultSet rs = Stmt.executeQuery();
+			
+			String nombre;
+			String correo;
+			int admin;
+			int edad;
+			String contraseña;
+			Boolean genero;
+			int colorFav;
+			String estiloFav;
+			
+			
+			while(rs.next()) {
+			nombre = rs.getString("nom_usuario");
+			correo = rs.getString("correo");
+			admin = rs.getInt("administrador");
+			edad = rs.getInt("edad");
+			contraseña = rs.getString("contrasena");
+			genero = rs.getBoolean("edad");
+			colorFav = rs.getInt("colorFav");
+			estiloFav = rs.getString("estiloFav");
+	
+			assertEquals("eneka", nombre);
+			assertEquals("lauram@gmail.com", correo);
+			assertEquals(0, admin);
+			assertEquals(20, edad);
+			assertEquals("123", contraseña);
+			assertEquals(true, genero);
+			assertEquals(2, colorFav);
+			assertEquals("rockF", estiloFav);
+			
+	
+			}
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	@Test
