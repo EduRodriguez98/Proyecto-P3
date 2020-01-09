@@ -752,7 +752,7 @@ public class BaseDatosModise {
 			Stmt = conn5.prepareStatement(sql5);
 			
 			rs = Stmt.executeQuery();
-			
+			 
 			while(rs.next()) {
 				
 				int colorZapato = rs.getInt("idcolor");
