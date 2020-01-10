@@ -665,21 +665,21 @@ public class Principal {
 		ventanaPerfilGustosUnoM.add(spinCrearEdadM);
 		spinCrearEdadM.setBounds(230, 115, 80, 30);
 
-		errorNombreM = new JLabel("AAAAAAAAA");
+		errorNombreM = new JLabel("Error en el nombre.");
 		ventanaPerfilGustosUnoM.add(errorNombreM);
 		errorNombreM.setFont(new Font("Monospace", Font.BOLD, 11));
-		errorNombreM.setBounds(230, 10, 150, 30);
+		errorNombreM.setBounds(450, 10, 50, 200);
 		errorNombreM.setForeground(Color.RED);
 		ventanaPerfilGustosUnoM.add(errorNombreM);
 
-		errorEmailM = new JLabel("bbbbbbbbbbbbbb");
+		errorEmailM = new JLabel("Error en el email.");
 		errorEmailM.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoM.add(errorEmailM);
-		errorEmailM.setBounds(300, 305, 150, 30);
+		errorEmailM.setBounds(450, 45, 50, 200);
 		errorEmailM.setForeground(Color.RED);
 		ventanaPerfilGustosUnoM.add(errorEmailM);
-		
-		errorContraseñaM = new JLabel();
+
+		errorContraseñaM = new JLabel("Error en la contraseña.");
 		errorContraseñaM.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoM.add(errorContraseñaM);
 		errorContraseñaM.setBounds(230, 80, 150, 30);
@@ -756,7 +756,6 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-
 				String CrearNombreM = txtCrearNombreM.getText();
 				String CrearEmailM = txtCrearEmailM.getText();
 				String CrearContraseñaM = txtCrearContraseñaM.getText();
@@ -807,9 +806,7 @@ public class Principal {
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdadM + ", Contraseña NO valida");
 				}
 
-				
-				
-				//CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
+				// CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
 
 				if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() || smartM.isSelected()
 						|| formalM.isSelected() || casualChickM.isSelected()) {
@@ -821,87 +818,66 @@ public class Principal {
 				}
 
 				// JProgressBar
-/*
-				Thread t = new Thread(new Runnable() {
-
-					@Override
-					public void run() {
-
-						for (counter = 0; !stop && counter <= MAX_STEPS; counter++) {
-							System.out.println(counter);
-
-							SwingUtilities.invokeLater(new Runnable() {
-
-								@Override
-								public void run() {
-									progressCargando.setValue(counter);
-
-								}
-							});
-						}
-
-						if (stop = true) {
-
-							try {
-
-								int colorseleccionado = 0;
-								String estiloseleccionado = null;
-
-								if (comboColorPreferidoM.getSelectedItem().toString() == "Rojo") {
-									colorseleccionado = 1;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Azul") {
-									colorseleccionado = 2;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Amarillo") {
-									colorseleccionado = 3;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Verde") {
-									colorseleccionado = 4;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Negro") {
-									colorseleccionado = 5;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Rosa") {
-									colorseleccionado = 6;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Multicolor") {
-									colorseleccionado = 7;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Blanco") {
-									colorseleccionado = 8;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Gris") {
-									colorseleccionado = 9;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Marron") {
-									colorseleccionado = 10;
-								} else {
-									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM,
-											"Debes escoger un color para continuar");
-								}
-
-								if (clasicoM.isSelected()) {
-									estiloseleccionado = "clasicoM";
-								} else if (urbanaM.isSelected()) {
-									estiloseleccionado = "urbanaM";
-								} else if (rockM.isSelected()) {
-									estiloseleccionado = "rockM";
-								} else if (smartM.isSelected()) {
-									estiloseleccionado = "smartM";
-								} else if (formalM.isSelected()) {
-									estiloseleccionado = "formalM";
-								} else if (casualChickM.isSelected()) {
-									estiloseleccionado = "casualChickM";
-								} else {
-									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM,
-											"Debes seleccionar un estilo favorito");
-								}
-								BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(), txtCrearEmailM.getText(), 0,
-										(int) spinCrearEdadM.getValue(), txtCrearContraseñaM.getText(), 0,
-										colorseleccionado, estiloseleccionado);
-
-							} catch (BDException e) {
-								e.printStackTrace();
-							}
-							CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
-							mb.setVisible(true);
-						}
-					}
-				});
-
-				t.start();*/
+				/*
+				 * Thread t = new Thread(new Runnable() {
+				 *
+				 * @Override public void run() {
+				 *
+				 * for (counter = 0; !stop && counter <= MAX_STEPS; counter++) {
+				 * System.out.println(counter);
+				 *
+				 * SwingUtilities.invokeLater(new Runnable() {
+				 *
+				 * @Override public void run() { progressCargando.setValue(counter);
+				 *
+				 * } }); }
+				 *
+				 * if (stop = true) {
+				 *
+				 * try {
+				 *
+				 * int colorseleccionado = 0; String estiloseleccionado = null;
+				 *
+				 * if (comboColorPreferidoM.getSelectedItem().toString() == "Rojo") {
+				 * colorseleccionado = 1; } else if
+				 * (comboColorPreferidoM.getSelectedItem().toString() == "Azul") {
+				 * colorseleccionado = 2; } else if
+				 * (comboColorPreferidoM.getSelectedItem().toString() == "Amarillo") {
+				 * colorseleccionado = 3; } else if
+				 * (comboColorPreferidoM.getSelectedItem().toString() == "Verde") {
+				 * colorseleccionado = 4; } else if
+				 * (comboColorPreferidoM.getSelectedItem().toString() == "Negro") {
+				 * colorseleccionado = 5; } else if
+				 * (comboColorPreferidoM.getSelectedItem().toString() == "Rosa") {
+				 * colorseleccionado = 6; } else if
+				 * (comboColorPreferidoM.getSelectedItem().toString() == "Multicolor") {
+				 * colorseleccionado = 7; } else if
+				 * (comboColorPreferidoM.getSelectedItem().toString() == "Blanco") {
+				 * colorseleccionado = 8; } else if
+				 * (comboColorPreferidoM.getSelectedItem().toString() == "Gris") {
+				 * colorseleccionado = 9; } else if
+				 * (comboColorPreferidoM.getSelectedItem().toString() == "Marron") {
+				 * colorseleccionado = 10; } else {
+				 * JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM,
+				 * "Debes escoger un color para continuar"); }
+				 *
+				 * if (clasicoM.isSelected()) { estiloseleccionado = "clasicoM"; } else if
+				 * (urbanaM.isSelected()) { estiloseleccionado = "urbanaM"; } else if
+				 * (rockM.isSelected()) { estiloseleccionado = "rockM"; } else if
+				 * (smartM.isSelected()) { estiloseleccionado = "smartM"; } else if
+				 * (formalM.isSelected()) { estiloseleccionado = "formalM"; } else if
+				 * (casualChickM.isSelected()) { estiloseleccionado = "casualChickM"; } else {
+				 * JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM,
+				 * "Debes seleccionar un estilo favorito"); }
+				 * BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(),
+				 * txtCrearEmailM.getText(), 0, (int) spinCrearEdadM.getValue(),
+				 * txtCrearContraseñaM.getText(), 0, colorseleccionado, estiloseleccionado);
+				 *
+				 * } catch (BDException e) { e.printStackTrace(); } CambiarPanel(ventanaCarga,
+				 * ventanaMenuPrincipal); mb.setVisible(true); } } });
+				 *
+				 * t.start();
+				 */
 			}
 		});
 
@@ -925,7 +901,7 @@ public class Principal {
 				txtCrearContraseñaM.setText("");
 				spinCrearEdadM.setValue(18);
 				comboColorPreferidoM.setSelectedItem(null);
-				
+
 				CambiarPanel(ventanaPerfilGustosUnoM, ventanaGenero);
 			}
 		});
