@@ -205,8 +205,7 @@ public class Principal {
 		Object aux;
 
 		int aux2 = (int) arrLleno[i][0];
-		
-		
+
 		aux = arrLleno[i][j];
 		arrV[i][j] = aux;
 
@@ -217,8 +216,8 @@ public class Principal {
 			if (j == arrLleno[i].length - 1) {
 				i++;
 
-				j=0;
-				
+				j = 0;
+
 				arrV[i][j] = aux2;
 
 			} else {
@@ -842,6 +841,7 @@ public class Principal {
 								e.printStackTrace();
 							}
 							CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+							mb.setVisible(true);
 						}
 					}
 				});
@@ -911,7 +911,7 @@ public class Principal {
 
 		labelCrearContraseñaF = new JLabel("Cree una contrasena: ");
 		labelCrearContraseñaF.setFont(new Font("Monospace", Font.BOLD, 11));
-		ventanaPerfilGustosUnoF.add(labelCrearContraseñaM);
+		ventanaPerfilGustosUnoF.add(labelCrearContraseñaF);
 		labelCrearContraseñaF.setBounds(20, 80, 200, 30);
 
 		txtCrearContraseñaF = new JTextField("");
