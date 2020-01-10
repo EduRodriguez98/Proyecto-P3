@@ -208,9 +208,9 @@ public class Principal {
 	public static void cargarJTable(Object[][] arrLleno, Object[][] arrV, int i, int j) {
 		
 		Object aux;
+		int aux2 = (int) arrLleno[i][0];
 		
-		aux = arrLleno[i][j];
-		arrV[i][j] = aux;
+		
 
 		System.out.println(arrV[i][j] + " ");
 		
@@ -219,9 +219,13 @@ public class Principal {
 			if(j == arrLleno[i].length -1) {
 				i++;
 				j=0;
+				
+				arrV[i][j] = aux2;
 			
 			}else {
 				j++;
+				aux = arrLleno[i][j];
+				arrV[i][j] = aux;
 			}
 			
 			cargarJTable(arrLleno,arrV,i,j);
