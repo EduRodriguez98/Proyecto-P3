@@ -152,6 +152,7 @@ public class BaseDatosModise {
 
 			forLog = Stmt.toString();
 
+			System.out.println(forLog);
 		} catch (SQLException e) {
 			modise.Principal.BDLogger.log(Level.SEVERE, "Error nuevoUsuario\n" + forLog, e);
 			throw new BDException("error en el codigo SQL al ejecutar update", e);
@@ -536,9 +537,8 @@ public class BaseDatosModise {
 			Stmt.close();
 
 			Connection conn2 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			String sql2 = "(SELECT fotochaqueta, idprendas, idcolor FROM chaquetasol " + "WHERE estiloPrendas = '"
-					+ estiloj + "' AND generochs = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() "
-					+ "LIMIT 1) UNION ALL (SELECT ch.fotochaqueta, p.idprendas, p.id_color FROM prendas p, chaquetas ch WHERE p.idprendas = 124 LIMIT 1)";
+			String sql2 = "(SELECT fotochaqueta, idprendas, idcolor FROM chaquetasol WHERE estiloPrendas = '" + estiloj
+					+ "' AND generochs = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() LIMIT 1)";
 
 			String sqlIn2 = listaColoresDisponibles.stream().map(x -> String.valueOf(x))
 					.collect(Collectors.joining(",", "(", ")"));
@@ -596,10 +596,19 @@ public class BaseDatosModise {
 					// actualizar la lista!
 				}
 
-				Integer idChaqueta = rs.getInt("idprendas");
-				byte[] fotobytesChaquetas = rs.getBytes("fotochaqueta");
+				if (rs.getInt("idprendas") == 0) {
+					rs.close();
+					Stmt.close();
+					conn2.close();
 
-				mapOutfitSol.put(idChaqueta, fotobytesChaquetas);
+					Connection conn2II = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+
+				} else {
+					Integer idChaquetas = rs.getInt("idprendas");
+					byte[] fotobytesChaquetas = rs.getBytes("fotochaqueta");
+					mapOutfitSol.put(idChaquetas, fotobytesChaquetas);
+				}
+
 			}
 			rs.close();
 			conn2.close();
@@ -821,7 +830,9 @@ public class BaseDatosModise {
 			listaColoresUsados.clear();
 			listaColoresDisponibles.clear();
 
-		} catch (SQLException e) {
+		} catch (
+
+		SQLException e) {
 			e.printStackTrace();
 		}
 		return mapOutfitSol;

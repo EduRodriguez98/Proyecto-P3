@@ -8551,4 +8551,10 @@ null</message>
     </frame>
   </exception>
 </record>
+<<<<<<< HEAD
+=======
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 </log>
