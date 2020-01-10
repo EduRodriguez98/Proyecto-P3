@@ -182,7 +182,7 @@ public class Principal {
 	JButton botonInicioFeedback;
 
 	// Ajustes
-	JButton cambiarContraseña, cambiarFecha, reiniciarPerfil;
+	JButton cambiarContraseña, reiniciarPerfil;
 
 	// ventanaEmergenteOutfit
 
@@ -856,16 +856,25 @@ public class Principal {
 											estiloseleccionado = "formalM";
 										} else if (casualChickM.isSelected()) {
 											estiloseleccionado = "casualChickM";
-										} /*else {
-											JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM,
-													"Debes seleccionar un estilo favorito");
-										}*/
+										}
 										BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(), txtCrearEmailM.getText(), 0,
 												(int) spinCrearEdadM.getValue(), txtCrearContraseñaM.getText(), 0,
 												colorseleccionado, estiloseleccionado);
 
-										//CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
-										//mb.setVisible(true);
+										errorPerfilGustosUnoM.setText("");
+										errorNombreM.setText("");
+										errorEmailM.setText("");
+										errorContraseñaM.setText("");
+										
+										escrito3M = false;
+										escrito4M = false;
+
+										txtCrearNombreM.setText("nombre");
+										txtCrearEmailM.setText("ejemplo@gmail.com");
+										txtCrearContraseñaM.setText("");
+										spinCrearEdadM.setValue(18);
+										// comboColorPreferidoM.setSelectedItem(null);
+										bgM.clearSelection();
 										
 									} catch (BDException e) {
 										e.printStackTrace();
@@ -903,16 +912,13 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Asegurarse de que los checkboxes que aparezcan se borran y se vuelven a
-				// generar al darle a siguiente en caso de cambio de genero al volver atras
-				clasicoM.setSelected(false);
-				urbanaM.setSelected(false);
-				rockM.setSelected(false);
-				smartM.setSelected(false);
-				formalM.setSelected(false);
-				casualChickM.setSelected(false);
-
 				errorPerfilGustosUnoM.setText("");
+				errorNombreM.setText("");
+				errorEmailM.setText("");
+				errorContraseñaM.setText("");
+				
+				escrito3M = false;
+				escrito4M = false;
 
 				txtCrearNombreM.setText("nombre");
 				txtCrearEmailM.setText("ejemplo@gmail.com");
@@ -2380,9 +2386,7 @@ public class Principal {
 		cambiarContraseña.setBounds(50, 20, 50, 50);
 		ajustes.add(cambiarContraseña);
 
-		cambiarFecha = new JButton("Cambiar fecha");
-		cambiarFecha.setBounds(50, 100, 50, 50);
-		ajustes.add(cambiarFecha);
+		
 
 		reiniciarPerfil = new JButton("Reiniciar perfil");
 		reiniciarPerfil.setBounds(50, 180, 50, 50);
@@ -2414,13 +2418,7 @@ public class Principal {
 			}
 		});
 
-		cambiarFecha.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Cambiar fecha");
-			}
-		});
+		
 
 		reiniciarPerfil.addActionListener(new ActionListener() {
 
@@ -2613,7 +2611,7 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				UIManager.put("OptionPane.minimumSize", new Dimension(200, 200)); // este tamaño es solo para esta
+				UIManager.put("OptionPane.minimumSize", new Dimension(200, 150)); // este tamaño es solo para esta
 																					// ventana emergente
 				JOptionPane.showMessageDialog(null, ajustes, "Ajustes", JOptionPane.DEFAULT_OPTION);
 
