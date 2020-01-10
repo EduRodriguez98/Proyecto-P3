@@ -1873,6 +1873,8 @@ Inicio del programa.
 Fin del programa.
 
 Inicio del programa.
+<<<<<<< HEAD
+=======
 Inicio de sesion: a	, Thu Jan 09 12:03:29 CET 2020
 Pide Outfit, tiempo: null, estilo: ClasicoFgenero: nullcolor: verde
 Fin del programa.
@@ -2019,6 +2021,7 @@ Inicio de sesion: a	, Fri Jan 10 11:48:55 CET 2020
 Fin del programa.
 
 Inicio del programa.
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 Fin del programa.
 
 Inicio del programa.

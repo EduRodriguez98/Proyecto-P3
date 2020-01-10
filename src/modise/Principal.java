@@ -204,6 +204,9 @@ public class Principal {
 
 		Object aux;
 
+		int aux2 = (int) arrLleno[i][0];
+		
+		
 		aux = arrLleno[i][j];
 		arrV[i][j] = aux;
 
@@ -213,10 +216,16 @@ public class Principal {
 
 			if (j == arrLleno[i].length - 1) {
 				i++;
-				j = 0;
+
+				j=0;
+				
+				arrV[i][j] = aux2;
 
 			} else {
+
 				j++;
+				aux = arrLleno[i][j];
+				arrV[i][j] = aux;
 			}
 
 			cargarJTable(arrLleno, arrV, i, j);
