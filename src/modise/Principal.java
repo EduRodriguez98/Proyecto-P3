@@ -996,14 +996,14 @@ public class Principal {
 		errorNombreF.setFont(new Font("Monospace", Font.BOLD, 11));
 		errorNombreF.setBounds(450, 10, 150, 30);
 		errorNombreF.setForeground(Color.RED);
-		ventanaPerfilGustosUnoM.add(errorNombreF);
+		ventanaPerfilGustosUnoF.add(errorNombreF);
 
 		errorEmailF = new JLabel("");
 		errorEmailF.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoF.add(errorEmailF);
 		errorEmailF.setBounds(450, 45, 150, 30);
 		errorEmailF.setForeground(Color.RED);
-		ventanaPerfilGustosUnoM.add(errorEmailF);
+		ventanaPerfilGustosUnoF.add(errorEmailF);
 
 		errorContraseñaF = new JLabel("");
 		errorContraseñaF.setFont(new Font("Monospace", Font.BOLD, 11));
@@ -1083,12 +1083,18 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
+				System.out.println("botonPerfilGustosUnoFSiguienteF");
+				
+				
 				String CrearNombreF = txtCrearNombreF.getText();
 				String CrearEmailF = txtCrearEmailF.getText();
 				String CrearContraseñaF = txtCrearContraseñaF.getText();
 				String CrearEdadF = spinCrearEdadF.getValue().toString();
 				int EdadSeleccionadaF = (int) spinCrearEdadF.getValue();
 
+				System.out.println(CrearEmailF);
+				System.out.println(txtCrearEmailF.getText());
+				
 				errorNombreF.setText("");
 				errorEmailF.setText("");
 				errorContraseñaF.setText("");
@@ -1105,7 +1111,7 @@ public class Principal {
 						&& CrearEmailF.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 								+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 						&& !CrearEmailF.isEmpty() && !CrearContraseñaF.isEmpty() && CrearEdadF.matches("^[0-9]*$")
-						&& BaseDatosModise.existeUsuario(st, txtCrearEmailM.getText()) == true) {
+						&& BaseDatosModise.existeUsuario(st, txtCrearEmailF.getText()) == true) {
 					if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() || bohoF.isSelected()
 							|| formalF.isSelected() || sportyChickF.isSelected()) {
 						errorPerfilGustosUnoF.setText("");
@@ -1117,6 +1123,7 @@ public class Principal {
 						System.out.println("Edad marcado al crear cuenta:" + CrearEdadF); // para comporbar que guarda
 						
 						CambiarPanel(ventanaPerfilGustosUnoF, ventanaCarga);
+						bgF.clearSelection();
 						// JProgressBar
 						Thread t = new Thread(new Runnable() {
 
@@ -1184,8 +1191,9 @@ public class Principal {
 										} else if (sportyChickF.isSelected()) {
 											estiloseleccionado = "casualChickF";
 										}
-										BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(), txtCrearEmailF.getText(), 0,
-												(int) spinCrearEdadF.getValue(), txtCrearContraseñaF.getText(), 1,
+										System.out.println("BD: "+txtCrearEmailF.getText());
+										BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(), txtCrearEmailF.getText(), 1,
+												(int) spinCrearEdadF.getValue(), txtCrearContraseñaF.getText(), 0,
 												colorseleccionado, estiloseleccionado);
 
 										errorPerfilGustosUnoF.setText("");
@@ -1197,7 +1205,7 @@ public class Principal {
 										escrito4F = false;
 
 										txtCrearNombreF.setText("nombre");
-										txtCrearEmailF.setText("ejemplo@gmail.com");
+										//txtCrearEmailF.setText("ejemplo@gmail.com");
 										txtCrearContraseñaF.setText("");
 										spinCrearEdadF.setValue(18);
 										// comboColorPreferidoM.setSelectedItem(null);
@@ -1210,26 +1218,26 @@ public class Principal {
 								}
 							}
 						});
-//AAAAAAAAAAAAAAAAAA
+
 						t.start();
 						
 					} else {
-						errorPerfilGustosUnoM.setText("Selecciona 1 estilo");
+						errorPerfilGustosUnoF.setText("Selecciona 1 estilo");
 					}
 				} else if (!CrearNombreF.matches("^[a-zA-Z]*$") || CrearNombreF.isEmpty()) {
-					errorNombreM.setText("Nombre NO valido");
-					spinCrearEdadM.setValue(EdadSeleccionadaF);
+					errorNombreF.setText("Nombre NO valido");
+					spinCrearEdadF.setValue(EdadSeleccionadaF);
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdadF + ", Nombre NO valido");
 				} else if (!CrearEmailF.matches(
 						"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 						|| CrearEmailF.isEmpty()
-						|| BaseDatosModise.existeUsuario(st, txtCrearEmailM.getText()) == false) {
-					errorEmailM.setText("Email NO valido");
-					spinCrearEdadM.setValue(EdadSeleccionadaF);
+						|| BaseDatosModise.existeUsuario(st, txtCrearEmailF.getText()) == false) {
+					errorEmailF.setText("Email NO vaalido");
+					spinCrearEdadF.setValue(EdadSeleccionadaF);
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdadF + ", Email NO valido");
 				} else if (CrearContraseñaF.isEmpty()) {
-					errorContraseñaM.setText("Contraseña NO valida");
-					spinCrearEdadM.setValue(EdadSeleccionadaF);
+					errorContraseñaF.setText("Contraseña NO valida");
+					spinCrearEdadF.setValue(EdadSeleccionadaF);
 					System.out.println("Edad marcado al crear cuenta:" + CrearEdadF + ", Contraseña NO valida");
 				}
 			}
