@@ -665,18 +665,20 @@ public class Principal {
 		ventanaPerfilGustosUnoM.add(spinCrearEdadM);
 		spinCrearEdadM.setBounds(230, 115, 80, 30);
 
-		errorNombreM = new JLabel();
+		errorNombreM = new JLabel("AAAAAAAAA");
 		ventanaPerfilGustosUnoM.add(errorNombreM);
 		errorNombreM.setFont(new Font("Monospace", Font.BOLD, 11));
 		errorNombreM.setBounds(230, 10, 150, 30);
 		errorNombreM.setForeground(Color.RED);
+		ventanaPerfilGustosUnoM.add(errorNombreM);
 
-		errorEmailM = new JLabel();
+		errorEmailM = new JLabel("bbbbbbbbbbbbbb");
 		errorEmailM.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoM.add(errorEmailM);
-		errorEmailM.setBounds(230, 45, 150, 30);
+		errorEmailM.setBounds(300, 305, 150, 30);
 		errorEmailM.setForeground(Color.RED);
-
+		ventanaPerfilGustosUnoM.add(errorEmailM);
+		
 		errorContraseñaM = new JLabel();
 		errorContraseñaM.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoM.add(errorContraseñaM);
@@ -754,7 +756,60 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
+
+				String CrearNombreM = txtCrearNombreM.getText();
+				String CrearEmailM = txtCrearEmailM.getText();
+				String CrearContraseñaM = txtCrearContraseñaM.getText();
+				String CrearEdadM = spinCrearEdadM.getValue().toString();
+				int EdadSeleccionadaM = (int) spinCrearEdadM.getValue();
+
+				errorNombreM.setText("");
+				errorEmailM.setText("");
+				errorContraseñaM.setText("");
+
+				Connection conexion = BaseDatosModise.conectar();
+				Statement st = null;
+				try {
+					st = conexion.createStatement();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
+				if (CrearNombreM.matches("^[a-zA-Z]*$") && !CrearNombreM.isEmpty()
+						&& CrearEmailM.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+								+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+						&& !CrearEmailM.isEmpty() && !CrearContraseñaM.isEmpty() && CrearEdadM.matches("^[0-9]*$")
+						&& BaseDatosModise.existeUsuario(st, txtCrearEmailM.getText()) == true) {
+					CambiarPanel(ventanaPerfilGustosUnoM, ventanaGenero);
+					errorNombreM.setText("");
+					errorEmailM.setText("");
+					errorContraseñaM.setText("");
+					System.out.println("Edad marcado al crear cuenta:" + CrearEdadM); // para comporbar que guarda
+					/*
+					 * } else { errorCrearCuenta.setText("Error al insertar datos.");
+					 * spinCrearEdad.setValue(EdadSeleccionada);
+					 * System.out.println("Edad marcado al crear cuenta:"+CrearEdad); }
+					 */
+				} else if (!CrearNombreM.matches("^[a-zA-Z]*$") || CrearNombreM.isEmpty()) {
+					errorNombreM.setText("Nombre NO valido");
+					spinCrearEdadM.setValue(EdadSeleccionadaM);
+					System.out.println("Edad marcado al crear cuenta:" + CrearEdadM + ", Nombre NO valido");
+				} else if (!CrearEmailM.matches(
+						"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+						|| CrearEmailM.isEmpty()
+						|| BaseDatosModise.existeUsuario(st, txtCrearEmailM.getText()) == false) {
+					errorEmailM.setText("Email NO valido");
+					spinCrearEdadM.setValue(EdadSeleccionadaM);
+					System.out.println("Edad marcado al crear cuenta:" + CrearEdadM + ", Email NO valido");
+				} else if (CrearContraseñaM.isEmpty()) {
+					errorContraseñaM.setText("Contraseña NO valida");
+					spinCrearEdadM.setValue(EdadSeleccionadaM);
+					System.out.println("Edad marcado al crear cuenta:" + CrearEdadM + ", Contraseña NO valida");
+				}
+
+				
+				
+				//CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
 
 				if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() || smartM.isSelected()
 						|| formalM.isSelected() || casualChickM.isSelected()) {
@@ -766,7 +821,7 @@ public class Principal {
 				}
 
 				// JProgressBar
-
+/*
 				Thread t = new Thread(new Runnable() {
 
 					@Override
@@ -846,7 +901,7 @@ public class Principal {
 					}
 				});
 
-				t.start();
+				t.start();*/
 			}
 		});
 
@@ -865,6 +920,12 @@ public class Principal {
 
 				errorPerfilGustosUnoM.setText("");
 
+				txtCrearNombreM.setText("nombre");
+				txtCrearEmailM.setText("ejemplo@gmail.com");
+				txtCrearContraseñaM.setText("");
+				spinCrearEdadM.setValue(18);
+				comboColorPreferidoM.setSelectedItem(null);
+				
 				CambiarPanel(ventanaPerfilGustosUnoM, ventanaGenero);
 			}
 		});
