@@ -254,7 +254,7 @@ public class Principal {
 	/**
 	 * Guarda en un archivo properties el valor del username que ha entrado por
 	 * ultima vez
-	 * 
+	 *
 	 * @param Username nombre del usuario a escribir
 	 */
 	public static void setProp(String mail, String password) {
@@ -2615,6 +2615,7 @@ public class Principal {
 		// lo ponemos en mas?
 
 		Timer timer = new Timer(ONE_SECOND, new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent evt) {
 				clockLabel.setText(clockFormat.format(new Date()));
 				clockLabel.repaint();
