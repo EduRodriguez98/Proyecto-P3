@@ -8032,3 +8032,522 @@ null</message>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-01-10T15:45:53</date>
+  <millis>1578667553527</millis>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>SEVERE</level>
+  <class>conexion.BaseDatosModise</class>
+  <method>logIn</method>
+  <thread>15</thread>
+  <message>Error logIn
+select * from usuario where correo = 'ejemplo@gmail.com' and contrasena = '12345'</message>
+  <exception>
+    <message>java.sql.SQLException: Illegal operation on empty result set.</message>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>129</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>97</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>89</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>63</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.result.ResultSetImpl</class>
+      <method>checkRowPos</method>
+      <line>484</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.result.ResultSetImpl</class>
+      <method>getString</method>
+      <line>834</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.result.ResultSetImpl</class>
+      <method>getString</method>
+      <line>852</line>
+    </frame>
+    <frame>
+      <class>conexion.BaseDatosModise</class>
+      <method>logIn</method>
+      <line>70</line>
+    </frame>
+    <frame>
+      <class>modise.Principal$5</class>
+      <method>actionPerformed</method>
+      <line>511</line>
+    </frame>
+    <frame>
+      <class>javax.swing.AbstractButton</class>
+      <method>fireActionPerformed</method>
+    </frame>
+    <frame>
+      <class>javax.swing.AbstractButton$Handler</class>
+      <method>actionPerformed</method>
+    </frame>
+    <frame>
+      <class>javax.swing.DefaultButtonModel</class>
+      <method>fireActionPerformed</method>
+    </frame>
+    <frame>
+      <class>javax.swing.DefaultButtonModel</class>
+      <method>setPressed</method>
+    </frame>
+    <frame>
+      <class>javax.swing.plaf.basic.BasicButtonListener</class>
+      <method>mouseReleased</method>
+    </frame>
+    <frame>
+      <class>java.awt.Component</class>
+      <method>processMouseEvent</method>
+    </frame>
+    <frame>
+      <class>javax.swing.JComponent</class>
+      <method>processMouseEvent</method>
+    </frame>
+    <frame>
+      <class>java.awt.Component</class>
+      <method>processEvent</method>
+    </frame>
+    <frame>
+      <class>java.awt.Container</class>
+      <method>processEvent</method>
+    </frame>
+    <frame>
+      <class>java.awt.Component</class>
+      <method>dispatchEventImpl</method>
+    </frame>
+    <frame>
+      <class>java.awt.Container</class>
+      <method>dispatchEventImpl</method>
+    </frame>
+    <frame>
+      <class>java.awt.Component</class>
+      <method>dispatchEvent</method>
+    </frame>
+    <frame>
+      <class>java.awt.LightweightDispatcher</class>
+      <method>retargetMouseEvent</method>
+    </frame>
+    <frame>
+      <class>java.awt.LightweightDispatcher</class>
+      <method>processMouseEvent</method>
+    </frame>
+    <frame>
+      <class>java.awt.LightweightDispatcher</class>
+      <method>dispatchEvent</method>
+    </frame>
+    <frame>
+      <class>java.awt.Container</class>
+      <method>dispatchEventImpl</method>
+    </frame>
+    <frame>
+      <class>java.awt.Window</class>
+      <method>dispatchEventImpl</method>
+    </frame>
+    <frame>
+      <class>java.awt.Component</class>
+      <method>dispatchEvent</method>
+    </frame>
+    <frame>
+      <class>java.awt.EventQueue</class>
+      <method>dispatchEventImpl</method>
+    </frame>
+    <frame>
+      <class>java.awt.EventQueue</class>
+      <method>access$500</method>
+    </frame>
+    <frame>
+      <class>java.awt.EventQueue$3</class>
+      <method>run</method>
+    </frame>
+    <frame>
+      <class>java.awt.EventQueue$3</class>
+      <method>run</method>
+    </frame>
+    <frame>
+      <class>java.security.AccessController</class>
+      <method>doPrivileged</method>
+    </frame>
+    <frame>
+      <class>java.security.ProtectionDomain$JavaSecurityAccessImpl</class>
+      <method>doIntersectionPrivilege</method>
+    </frame>
+    <frame>
+      <class>java.security.ProtectionDomain$JavaSecurityAccessImpl</class>
+      <method>doIntersectionPrivilege</method>
+    </frame>
+    <frame>
+      <class>java.awt.EventQueue$4</class>
+      <method>run</method>
+    </frame>
+    <frame>
+      <class>java.awt.EventQueue$4</class>
+      <method>run</method>
+    </frame>
+    <frame>
+      <class>java.security.AccessController</class>
+      <method>doPrivileged</method>
+    </frame>
+    <frame>
+      <class>java.security.ProtectionDomain$JavaSecurityAccessImpl</class>
+      <method>doIntersectionPrivilege</method>
+    </frame>
+    <frame>
+      <class>java.awt.EventQueue</class>
+      <method>dispatchEvent</method>
+    </frame>
+    <frame>
+      <class>java.awt.EventDispatchThread</class>
+      <method>pumpOneEventForFilters</method>
+    </frame>
+    <frame>
+      <class>java.awt.EventDispatchThread</class>
+      <method>pumpEventsForFilter</method>
+    </frame>
+    <frame>
+      <class>java.awt.EventDispatchThread</class>
+      <method>pumpEventsForHierarchy</method>
+    </frame>
+    <frame>
+      <class>java.awt.EventDispatchThread</class>
+      <method>pumpEvents</method>
+    </frame>
+    <frame>
+      <class>java.awt.EventDispatchThread</class>
+      <method>pumpEvents</method>
+    </frame>
+    <frame>
+      <class>java.awt.EventDispatchThread</class>
+      <method>run</method>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-01-10T15:59:04</date>
+  <millis>1578668344499</millis>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>SEVERE</level>
+  <class>conexion.BaseDatosModise</class>
+  <method>nuevoUsuario</method>
+  <thread>21</thread>
+  <message>Error nuevoUsuario
+null</message>
+  <exception>
+    <message>java.sql.SQLSyntaxErrorException: Unknown column 'colorFav' in 'field list'</message>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>120</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>97</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping</class>
+      <method>translateException</method>
+      <line>122</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeInternal</method>
+      <line>953</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdateInternal</method>
+      <line>1092</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdateInternal</method>
+      <line>1040</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeLargeUpdate</method>
+      <line>1347</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdate</method>
+      <line>1025</line>
+    </frame>
+    <frame>
+      <class>conexion.BaseDatosModise</class>
+      <method>nuevoUsuario</method>
+      <line>151</line>
+    </frame>
+    <frame>
+      <class>modise.Principal$11$1</class>
+      <method>run</method>
+      <line>884</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2020-01-10T15:59:19</date>
+  <millis>1578668359545</millis>
+  <sequence>1</sequence>
+  <logger>BDLogger</logger>
+  <level>SEVERE</level>
+  <class>conexion.BaseDatosModise</class>
+  <method>nuevoUsuario</method>
+  <thread>22</thread>
+  <message>Error nuevoUsuario
+null</message>
+  <exception>
+    <message>java.sql.SQLSyntaxErrorException: Unknown column 'colorFav' in 'field list'</message>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>120</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>97</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping</class>
+      <method>translateException</method>
+      <line>122</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeInternal</method>
+      <line>953</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdateInternal</method>
+      <line>1092</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdateInternal</method>
+      <line>1040</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeLargeUpdate</method>
+      <line>1347</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdate</method>
+      <line>1025</line>
+    </frame>
+    <frame>
+      <class>conexion.BaseDatosModise</class>
+      <method>nuevoUsuario</method>
+      <line>151</line>
+    </frame>
+    <frame>
+      <class>modise.Principal$11$1</class>
+      <method>run</method>
+      <line>884</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2020-01-10T15:59:22</date>
+  <millis>1578668362189</millis>
+  <sequence>2</sequence>
+  <logger>BDLogger</logger>
+  <level>SEVERE</level>
+  <class>conexion.BaseDatosModise</class>
+  <method>nuevoUsuario</method>
+  <thread>23</thread>
+  <message>Error nuevoUsuario
+null</message>
+  <exception>
+    <message>java.sql.SQLSyntaxErrorException: Unknown column 'colorFav' in 'field list'</message>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>120</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>97</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping</class>
+      <method>translateException</method>
+      <line>122</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeInternal</method>
+      <line>953</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdateInternal</method>
+      <line>1092</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdateInternal</method>
+      <line>1040</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeLargeUpdate</method>
+      <line>1347</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdate</method>
+      <line>1025</line>
+    </frame>
+    <frame>
+      <class>conexion.BaseDatosModise</class>
+      <method>nuevoUsuario</method>
+      <line>151</line>
+    </frame>
+    <frame>
+      <class>modise.Principal$11$1</class>
+      <method>run</method>
+      <line>884</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-01-10T16:00:37</date>
+  <millis>1578668437835</millis>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>SEVERE</level>
+  <class>conexion.BaseDatosModise</class>
+  <method>nuevoUsuario</method>
+  <thread>21</thread>
+  <message>Error nuevoUsuario
+null</message>
+  <exception>
+    <message>java.sql.SQLSyntaxErrorException: Unknown column 'colorFav' in 'field list'</message>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>120</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>97</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping</class>
+      <method>translateException</method>
+      <line>122</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeInternal</method>
+      <line>953</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdateInternal</method>
+      <line>1092</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdateInternal</method>
+      <line>1040</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeLargeUpdate</method>
+      <line>1347</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdate</method>
+      <line>1025</line>
+    </frame>
+    <frame>
+      <class>conexion.BaseDatosModise</class>
+      <method>nuevoUsuario</method>
+      <line>151</line>
+    </frame>
+    <frame>
+      <class>modise.Principal$11$1</class>
+      <method>run</method>
+      <line>884</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+    </frame>
+  </exception>
+</record>
