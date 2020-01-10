@@ -782,13 +782,13 @@ public class Principal {
 					if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() || smartM.isSelected()
 							|| formalM.isSelected() || casualChickM.isSelected()) {
 						errorPerfilGustosUnoM.setText("");
-						//CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
+						// CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
 						System.out.println("correctooooo");
 						errorNombreM.setText("");
 						errorEmailM.setText("");
 						errorContraseñaM.setText("");
 						System.out.println("Edad marcado al crear cuenta:" + CrearEdadM); // para comporbar que guarda
-						
+
 						CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
 						// JProgressBar
 						Thread t = new Thread(new Runnable() {
@@ -810,10 +810,10 @@ public class Principal {
 								}
 
 								if (stop = true) {
-									
+
 									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 									mb.setVisible(true);
-									
+
 									try {
 
 										int colorseleccionado = 0;
@@ -856,27 +856,28 @@ public class Principal {
 											estiloseleccionado = "formalM";
 										} else if (casualChickM.isSelected()) {
 											estiloseleccionado = "casualChickM";
-										} /*else {
-											JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM,
-													"Debes seleccionar un estilo favorito");
-										}*/
-										BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(), txtCrearEmailM.getText(), 0,
-												(int) spinCrearEdadM.getValue(), txtCrearContraseñaM.getText(), 0,
-												colorseleccionado, estiloseleccionado);
+										} /*
+											 * else { JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM,
+											 * "Debes seleccionar un estilo favorito"); }
+											 */
+										BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(),
+												txtCrearEmailM.getText(), 0, (int) spinCrearEdadM.getValue(),
+												txtCrearContraseñaM.getText(), 0, colorseleccionado,
+												estiloseleccionado);
 
-										//CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
-										//mb.setVisible(true);
-										
+										// CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+										// mb.setVisible(true);
+
 									} catch (BDException e) {
 										e.printStackTrace();
 									}
-									
+
 								}
 							}
 						});
 
 						t.start();
-						
+
 					} else {
 						errorPerfilGustosUnoM.setText("Selecciona 1 estilo");
 					}
