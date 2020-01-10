@@ -535,6 +535,7 @@ public class BaseDatosModise {
 
 			rs.close();
 			Stmt.close();
+			Stmt.close();
 
 			Connection conn2 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			String sql2 = "(SELECT fotochaqueta, idprendas, idcolor FROM chaquetasol WHERE estiloPrendas = '" + estiloj
@@ -596,12 +597,22 @@ public class BaseDatosModise {
 					// actualizar la lista!
 				}
 
-				if (rs.getInt("idprendas") == 0) {
+				if (rs.next() == false) {
 					rs.close();
 					Stmt.close();
 					conn2.close();
 
 					Connection conn2II = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+					String sql2II = new String("SELECT * FROM chaquetas WHERE ID = 124 LIMIT 1");
+					Stmt = conn2II.prepareStatement(sql2II);
+
+					while (rs.next()) {
+						Integer idChaquetas = rs.getInt("idprendas");
+						byte[] fotobytesChaquetas = rs.getBytes("fotochaqueta");
+						mapOutfitSol.put(idChaquetas, fotobytesChaquetas);
+					}
+					rs.close();
+					conn2II.close();
 
 				} else {
 					Integer idChaquetas = rs.getInt("idprendas");
@@ -612,6 +623,7 @@ public class BaseDatosModise {
 			}
 			rs.close();
 			conn2.close();
+			Stmt.close();
 
 			Connection conn3 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			String sql3 = "(SELECT fotogorros, idprendas, idcolor FROM gorrosol " + "WHERE estiloPrendas = '" + estiloj
@@ -683,6 +695,7 @@ public class BaseDatosModise {
 			}
 			rs.close();
 			conn3.close();
+			Stmt.close();
 
 			Connection conn4 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			String sql4 = "(SELECT fotopantalones, idprendas, idcolor FROM pantalonsol " + "WHERE estiloPrendas = '"
@@ -754,6 +767,7 @@ public class BaseDatosModise {
 			}
 			rs.close();
 			conn4.close();
+			Stmt.close();
 
 			Connection conn5 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			String sql5 = "(SELECT fotozapatos, idprendas, idcolor FROM zapatosol " + "WHERE estiloPrendas = '"
@@ -826,6 +840,7 @@ public class BaseDatosModise {
 			}
 			rs.close();
 			conn5.close();
+			Stmt.close();
 
 			listaColoresUsados.clear();
 			listaColoresDisponibles.clear();
@@ -935,6 +950,7 @@ public class BaseDatosModise {
 			}
 			rs.close();
 			Stmt.close();
+			Stmt.close();
 
 			Connection conn2 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			String sql2 = "(SELECT fotochaqueta, idprendas, idcolor FROM chaquetalluvia " + "WHERE estiloPrendas = '"
@@ -1005,6 +1021,7 @@ public class BaseDatosModise {
 			}
 			rs.close();
 			conn2.close();
+			Stmt.close();
 
 			Connection conn3 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			String sql3 = "(SELECT fotogorros, idprendas, idcolor FROM gorrolluvia " + "WHERE estiloPrendas = '"
@@ -1075,6 +1092,7 @@ public class BaseDatosModise {
 			}
 			rs.close();
 			conn3.close();
+			Stmt.close();
 
 			Connection conn4 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			String sql4 = "(SELECT fotopantalones, idprendas, idcolor FROM pantalonlluvia " + "WHERE estiloPrendas = '"
@@ -1146,6 +1164,7 @@ public class BaseDatosModise {
 			}
 			rs.close();
 			conn4.close();
+			Stmt.close();
 
 			Connection conn5 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			String sql5 = "(SELECT fotozapatos, idprendas, idcolor FROM zapatoslluvia " + "WHERE estiloPrendas = '"
@@ -1217,6 +1236,7 @@ public class BaseDatosModise {
 			}
 			rs.close();
 			conn5.close();
+			Stmt.close();
 
 			System.out.println(listaColoresDisponibles.toString());
 
