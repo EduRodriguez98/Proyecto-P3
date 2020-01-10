@@ -9,7 +9,7 @@ public class Prendas {
 	private boolean genero;
 	private int nivelFashion;
 	private int nivelImpermeable;
-	
+
 	public Prendas(Color colorPrincipal, boolean genero, int nivelFashion, int nivelImpermeable) {
 		super();
 		this.id_prendas = contador;
@@ -65,10 +65,5 @@ public class Prendas {
 		return "Prendas [id_prendas = " + id_prendas + ", colorPrincipal = " + colorPrincipal + ", genero = " + genero
 				+ ", nivelFashion = " + nivelFashion + ", nivelImpermeable = " + nivelImpermeable + "]";
 	}
-
-	
-	
-	
-	
 
 }

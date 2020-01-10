@@ -23,6 +23,5 @@ public class Gorros extends Prendas {
 				+ getColorPrincipal() + ", isGenero = " + isGenero() + ", NivelFashion = " + getNivelFashion()
 				+ ", NivelImpermeable = " + getNivelImpermeable() + "]";
 	}
-	
-	
+
 }

@@ -5,7 +5,6 @@ public class Camisetas extends Prendas {
 	private Boolean logotipo;
 	private Boolean rayas;
 	private Boolean cuadros;
-	
 
 	public Camisetas(Color colorPrincipal, boolean genero, int nivelFashion, int nivelImpermeable, Boolean logotipo,
 			Boolean rayas, Boolean cuadros) {
@@ -35,7 +34,6 @@ public class Camisetas extends Prendas {
 		return cuadros;
 	}
 
-
 	public void setCuadros(Boolean cuadros) {
 		this.cuadros = cuadros;
 	}
@@ -46,6 +44,5 @@ public class Camisetas extends Prendas {
 				+ getId_prendas() + ", getColorPrincipal = " + getColorPrincipal() + ", isGenero = " + isGenero()
 				+ ", getNivelFashion = " + getNivelFashion() + ", getNivelImpermeable = " + getNivelImpermeable() + "]";
 	}
-
 
 }
