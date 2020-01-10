@@ -782,13 +782,13 @@ public class Principal {
 					if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() || smartM.isSelected()
 							|| formalM.isSelected() || casualChickM.isSelected()) {
 						errorPerfilGustosUnoM.setText("");
-						//CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
+						// CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
 						System.out.println("correctooooo");
 						errorNombreM.setText("");
 						errorEmailM.setText("");
 						errorContraseñaM.setText("");
 						System.out.println("Edad marcado al crear cuenta:" + CrearEdadM); // para comporbar que guarda
-						
+
 						CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
 						// JProgressBar
 						Thread t = new Thread(new Runnable() {
@@ -810,10 +810,10 @@ public class Principal {
 								}
 
 								if (stop = true) {
-									
+
 									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 									mb.setVisible(true);
-									
+
 									try {
 
 										int colorseleccionado = 0;
@@ -856,16 +856,21 @@ public class Principal {
 											estiloseleccionado = "formalM";
 										} else if (casualChickM.isSelected()) {
 											estiloseleccionado = "casualChickM";
+
 										}
-										BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(), txtCrearEmailM.getText(), 0,
-												(int) spinCrearEdadM.getValue(), txtCrearContraseñaM.getText(), 0,
-												colorseleccionado, estiloseleccionado);
+										BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(),
+												txtCrearEmailM.getText(), 0, (int) spinCrearEdadM.getValue(),
+												txtCrearContraseñaM.getText(), 0, colorseleccionado,
+												estiloseleccionado);
+
+										// CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+										// mb.setVisible(true);
 
 										errorPerfilGustosUnoM.setText("");
 										errorNombreM.setText("");
 										errorEmailM.setText("");
 										errorContraseñaM.setText("");
-										
+
 										escrito3M = false;
 										escrito4M = false;
 
@@ -875,17 +880,17 @@ public class Principal {
 										spinCrearEdadM.setValue(18);
 										// comboColorPreferidoM.setSelectedItem(null);
 										bgM.clearSelection();
-										
+
 									} catch (BDException e) {
 										e.printStackTrace();
 									}
-									
+
 								}
 							}
 						});
 
 						t.start();
-						
+
 					} else {
 						errorPerfilGustosUnoM.setText("Selecciona 1 estilo");
 					}
@@ -916,7 +921,7 @@ public class Principal {
 				errorNombreM.setText("");
 				errorEmailM.setText("");
 				errorContraseñaM.setText("");
-				
+
 				escrito3M = false;
 				escrito4M = false;
 
@@ -1115,13 +1120,13 @@ public class Principal {
 					if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() || bohoF.isSelected()
 							|| formalF.isSelected() || sportyChickF.isSelected()) {
 						errorPerfilGustosUnoF.setText("");
-						//CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
+						// CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
 						System.out.println("correctooooo");
 						errorNombreF.setText("");
 						errorEmailF.setText("");
 						errorContraseñaF.setText("");
 						System.out.println("Edad marcado al crear cuenta:" + CrearEdadF); // para comporbar que guarda
-						
+
 						CambiarPanel(ventanaPerfilGustosUnoF, ventanaCarga);
 						bgF.clearSelection();
 						// JProgressBar
@@ -1144,10 +1149,10 @@ public class Principal {
 								}
 
 								if (stop = true) {
-									
+
 									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 									mb.setVisible(true);
-									
+
 									try {
 
 										int colorseleccionado = 0;
@@ -1191,16 +1196,23 @@ public class Principal {
 										} else if (sportyChickF.isSelected()) {
 											estiloseleccionado = "casualChickF";
 										}
+<<<<<<< HEAD
 										System.out.println("BD: "+txtCrearEmailF.getText());
 										BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(), txtCrearEmailF.getText(), 1,
 												(int) spinCrearEdadF.getValue(), txtCrearContraseñaF.getText(), 0,
 												colorseleccionado, estiloseleccionado);
+=======
+										BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(),
+												txtCrearEmailF.getText(), 0, (int) spinCrearEdadF.getValue(),
+												txtCrearContraseñaF.getText(), 1, colorseleccionado,
+												estiloseleccionado);
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 
 										errorPerfilGustosUnoF.setText("");
 										errorNombreF.setText("");
 										errorEmailF.setText("");
 										errorContraseñaF.setText("");
-										
+
 										escrito3F = false;
 										escrito4F = false;
 
@@ -1210,17 +1222,17 @@ public class Principal {
 										spinCrearEdadF.setValue(18);
 										// comboColorPreferidoM.setSelectedItem(null);
 										bgF.clearSelection();
-										
+
 									} catch (BDException e) {
 										e.printStackTrace();
 									}
-									
+
 								}
 							}
 						});
 
 						t.start();
-						
+
 					} else {
 						errorPerfilGustosUnoF.setText("Selecciona 1 estilo");
 					}
@@ -1251,7 +1263,7 @@ public class Principal {
 				errorNombreF.setText("");
 				errorEmailF.setText("");
 				errorContraseñaF.setText("");
-				
+
 				escrito3F = false;
 				escrito4F = false;
 
@@ -2461,8 +2473,6 @@ public class Principal {
 		cambiarContraseña.setBounds(50, 20, 50, 50);
 		ajustes.add(cambiarContraseña);
 
-		
-
 		reiniciarPerfil = new JButton("Reiniciar perfil");
 		reiniciarPerfil.setBounds(50, 180, 50, 50);
 		ajustes.add(reiniciarPerfil);
@@ -2492,8 +2502,6 @@ public class Principal {
 				}
 			}
 		});
-
-		
 
 		reiniciarPerfil.addActionListener(new ActionListener() {
 

@@ -8646,6 +8646,7 @@ null</message>
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
+<<<<<<< HEAD
 <record>
   <date>2020-01-10T17:16:45</date>
   <millis>1578673005200</millis>
@@ -8808,4 +8809,18 @@ null</message>
     </frame>
   </exception>
 </record>
+=======
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 </log>
