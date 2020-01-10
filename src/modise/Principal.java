@@ -1196,17 +1196,11 @@ public class Principal {
 										} else if (sportyChickF.isSelected()) {
 											estiloseleccionado = "casualChickF";
 										}
-<<<<<<< HEAD
+										
 										System.out.println("BD: "+txtCrearEmailF.getText());
 										BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(), txtCrearEmailF.getText(), 1,
 												(int) spinCrearEdadF.getValue(), txtCrearContraseñaF.getText(), 0,
 												colorseleccionado, estiloseleccionado);
-=======
-										BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(),
-												txtCrearEmailF.getText(), 0, (int) spinCrearEdadF.getValue(),
-												txtCrearContraseñaF.getText(), 1, colorseleccionado,
-												estiloseleccionado);
->>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 
 										errorPerfilGustosUnoF.setText("");
 										errorNombreF.setText("");
