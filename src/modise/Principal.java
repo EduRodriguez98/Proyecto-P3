@@ -856,32 +856,21 @@ public class Principal {
 											estiloseleccionado = "formalM";
 										} else if (casualChickM.isSelected()) {
 											estiloseleccionado = "casualChickM";
-<<<<<<< HEAD
-										} /*
-											 * else { JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM,
-											 * "Debes seleccionar un estilo favorito"); }
-											 */
+
+										}
 										BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(),
 												txtCrearEmailM.getText(), 0, (int) spinCrearEdadM.getValue(),
 												txtCrearContraseñaM.getText(), 0, colorseleccionado,
 												estiloseleccionado);
-=======
-										}
-										BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(), txtCrearEmailM.getText(), 0,
-												(int) spinCrearEdadM.getValue(), txtCrearContraseñaM.getText(), 0,
-												colorseleccionado, estiloseleccionado);
->>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 
-<<<<<<< HEAD
 										// CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 										// mb.setVisible(true);
 
-=======
 										errorPerfilGustosUnoM.setText("");
 										errorNombreM.setText("");
 										errorEmailM.setText("");
 										errorContraseñaM.setText("");
-										
+
 										escrito3M = false;
 										escrito4M = false;
 
@@ -891,8 +880,7 @@ public class Principal {
 										spinCrearEdadM.setValue(18);
 										// comboColorPreferidoM.setSelectedItem(null);
 										bgM.clearSelection();
-										
->>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
+
 									} catch (BDException e) {
 										e.printStackTrace();
 									}
@@ -933,7 +921,7 @@ public class Principal {
 				errorNombreM.setText("");
 				errorEmailM.setText("");
 				errorContraseñaM.setText("");
-				
+
 				escrito3M = false;
 				escrito4M = false;
 
@@ -1126,13 +1114,13 @@ public class Principal {
 					if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() || bohoF.isSelected()
 							|| formalF.isSelected() || sportyChickF.isSelected()) {
 						errorPerfilGustosUnoF.setText("");
-						//CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
+						// CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
 						System.out.println("correctooooo");
 						errorNombreF.setText("");
 						errorEmailF.setText("");
 						errorContraseñaF.setText("");
 						System.out.println("Edad marcado al crear cuenta:" + CrearEdadF); // para comporbar que guarda
-						
+
 						CambiarPanel(ventanaPerfilGustosUnoF, ventanaCarga);
 						// JProgressBar
 						Thread t = new Thread(new Runnable() {
@@ -1154,10 +1142,10 @@ public class Principal {
 								}
 
 								if (stop = true) {
-									
+
 									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 									mb.setVisible(true);
-									
+
 									try {
 
 										int colorseleccionado = 0;
@@ -1201,15 +1189,16 @@ public class Principal {
 										} else if (sportyChickF.isSelected()) {
 											estiloseleccionado = "casualChickF";
 										}
-										BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(), txtCrearEmailF.getText(), 0,
-												(int) spinCrearEdadF.getValue(), txtCrearContraseñaF.getText(), 1,
-												colorseleccionado, estiloseleccionado);
+										BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(),
+												txtCrearEmailF.getText(), 0, (int) spinCrearEdadF.getValue(),
+												txtCrearContraseñaF.getText(), 1, colorseleccionado,
+												estiloseleccionado);
 
 										errorPerfilGustosUnoF.setText("");
 										errorNombreF.setText("");
 										errorEmailF.setText("");
 										errorContraseñaF.setText("");
-										
+
 										escrito3F = false;
 										escrito4F = false;
 
@@ -1219,17 +1208,17 @@ public class Principal {
 										spinCrearEdadF.setValue(18);
 										// comboColorPreferidoM.setSelectedItem(null);
 										bgF.clearSelection();
-										
+
 									} catch (BDException e) {
 										e.printStackTrace();
 									}
-									
+
 								}
 							}
 						});
 //AAAAAAAAAAAAAAAAAA
 						t.start();
-						
+
 					} else {
 						errorPerfilGustosUnoM.setText("Selecciona 1 estilo");
 					}
@@ -1260,7 +1249,7 @@ public class Principal {
 				errorNombreF.setText("");
 				errorEmailF.setText("");
 				errorContraseñaF.setText("");
-				
+
 				escrito3F = false;
 				escrito4F = false;
 
@@ -2470,8 +2459,6 @@ public class Principal {
 		cambiarContraseña.setBounds(50, 20, 50, 50);
 		ajustes.add(cambiarContraseña);
 
-		
-
 		reiniciarPerfil = new JButton("Reiniciar perfil");
 		reiniciarPerfil.setBounds(50, 180, 50, 50);
 		ajustes.add(reiniciarPerfil);
@@ -2501,8 +2488,6 @@ public class Principal {
 				}
 			}
 		});
-
-		
 
 		reiniciarPerfil.addActionListener(new ActionListener() {
 
