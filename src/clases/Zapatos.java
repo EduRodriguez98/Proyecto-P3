@@ -34,6 +34,5 @@ public class Zapatos extends Prendas {
 				+ ", ColorPrincipal = " + getColorPrincipal() + ", isGenero()=" + isGenero() + ", NivelFashion = "
 				+ getNivelFashion() + ", NivelImpermeable = " + getNivelImpermeable() + "]";
 	}
-	
 
 }
