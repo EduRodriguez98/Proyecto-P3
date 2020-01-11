@@ -2,3 +2,84 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-01-10T17:43:48</date>
+  <millis>1578674628429</millis>
+  <sequence>0</sequence>
+  <logger>BDLogger</logger>
+  <level>SEVERE</level>
+  <class>conexion.BaseDatosModise</class>
+  <method>nuevoUsuario</method>
+  <thread>21</thread>
+  <message>Error nuevoUsuario
+null</message>
+  <exception>
+    <message>java.sql.SQLSyntaxErrorException: Unknown column 'colorFav' in 'field list'</message>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>120</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLError</class>
+      <method>createSQLException</method>
+      <line>97</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping</class>
+      <method>translateException</method>
+      <line>122</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeInternal</method>
+      <line>953</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdateInternal</method>
+      <line>1092</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdateInternal</method>
+      <line>1040</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeLargeUpdate</method>
+      <line>1347</line>
+    </frame>
+    <frame>
+      <class>com.mysql.cj.jdbc.ClientPreparedStatement</class>
+      <method>executeUpdate</method>
+      <line>1025</line>
+    </frame>
+    <frame>
+      <class>conexion.BaseDatosModise</class>
+      <method>nuevoUsuario</method>
+      <line>151</line>
+    </frame>
+    <frame>
+      <class>modise.Principal$15$1</class>
+      <method>run</method>
+      <line>1195</line>
+    </frame>
+    <frame>
+      <class>java.lang.Thread</class>
+      <method>run</method>
+    </frame>
+  </exception>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+</log>

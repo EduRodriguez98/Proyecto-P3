@@ -82,11 +82,10 @@ public class Principal {
 	JPasswordField contraseña;
 	JCheckBox view;
 	boolean escrito1, escrito2;
- 
+
 	private JLabel clockLabel;
 	public final static int ONE_SECOND = 1000;
 	private final SimpleDateFormat clockFormat = new SimpleDateFormat("H:mm:ss");
-
 
 	// VentanaGenero
 	JRadioButton radioMasculino, radioFemenino;
@@ -95,7 +94,7 @@ public class Principal {
 
 	// VentanaPerfilGustosUnoM
 	JLabel labelCrearNombreM, labelCrearEmailM, labelCrearContraseñaM, labelCrearEdadM, errorNombreM, errorEmailM,
-	errorContraseñaM, labelEstiloFavoritoM;
+			errorContraseñaM, labelEstiloFavoritoM;
 	JTextField txtCrearNombreM, txtCrearEmailM, txtCrearContraseñaM;
 	JSpinner spinCrearEdadM;
 	SpinnerModel modelM;
@@ -105,22 +104,20 @@ public class Principal {
 	JRadioButton clasicoM, urbanaM, rockM, smartM, formalM, casualChickM;
 	JLabel errorPerfilGustosUnoM, labelColorPreferidoM;
 	JComboBox<String> comboColorPreferidoM;
-	
 
 	// VentanaPerfilGustosUnoF
 	JLabel labelCrearNombreF, labelCrearEmailF, labelCrearContraseñaF, labelCrearEdadF, errorNombreF, errorEmailF,
-	errorContraseñaF, labelEstiloFavoritoF;
+			errorContraseñaF, labelEstiloFavoritoF;
 	JTextField txtCrearNombreF, txtCrearEmailF, txtCrearContraseñaF;
 	JSpinner spinCrearEdadF;
 	SpinnerModel modelF;
 	JButton botonCrearSiguienteF, botonCrearAtrasF;
 	boolean escrito3F, escrito4F;
 	JButton botonPerfilGustosUnoFSiguienteF, botonPerfilGustosUnoFAtrasF;
-	
+
 	JRadioButton clasicoF, urbanaF, rockF, bohoF, formalF, sportyChickF;
 	JLabel errorPerfilGustosUnoF, labelColorPreferidoF;
 	JComboBox<String> comboColorPreferidoF;
-
 
 	// VentanaCarga
 	JProgressBar progressCargando;
@@ -136,42 +133,42 @@ public class Principal {
 	JButton botonPideOutfit, botonAñadirVestimenta, botonMasMenosAdmin;
 
 	// ventanaAñadirVestimenta1
-	
-	JLabel tipoLabelAñadirVestimenta, estilosLabelAñadirVestimenta, colorLabelAñadirVestimenta, errorVentanaAñadirVestimenta1, nivelFashionLabel, nivelImpermeableLabel;
+
+	JLabel tipoLabelAñadirVestimenta, estilosLabelAñadirVestimenta, colorLabelAñadirVestimenta,
+			errorVentanaAñadirVestimenta1, nivelFashionLabel, nivelImpermeableLabel;
 	JComboBox<String> coloresComboBoxAñadirVestimenta;
 	JComboBox<String> estilosComboBoxAñadirVestimenta;
 	JComboBox<String> tipoComboBoxAñadirVestimenta;
 	JSpinner nivelFashionSpin, nivelImpermeableSpin;
 	JButton ventanaAñadirVestimenta1Atras, ventanaAñadirVestimenta1Siguiente, ventanaAñadirVestimenta1Cancelar;
-	
-	
+
 	// ventanaAñadirCamisetas
-	JLabel importarFotoCamisetas, camisetasLogotipoLabel, camisetasRayasLabel, camisetasCuadrosLabel, camisetaChooserPreview;
+	JLabel importarFotoCamisetas, camisetasLogotipoLabel, camisetasRayasLabel, camisetasCuadrosLabel,
+			camisetaChooserPreview;
 	JRadioButton camisetasRayasSiRB, camisetasRayasNoRB, camisetasCuadrosSiRB, camisetasCuadrosNoRB;
 	JButton atrasAñadirCamisetas, siguienteAñadirCamisetas, importarFotoCamisetaChooser;
 	JTextField logotipoCamisetaTextField;
-	
+
 	// ventanaAñadirChaquetas
 	JLabel importarFotoChaquetas, chaquetasLargoLabel, chaquetasLisaLabel, chaquetasChooserPreview;
 	JRadioButton chaquetasLargoSiRB, chaquetasLargoNoRB, chaquetasLisaSiRB, chaquetasLisaNoRB;
 	JButton atrasAñadirChaquetas, siguienteAñadirChaquetas, importarFotoChaquetaChooser, importarFotoChaquetasChooser;
-	
+
 	// ventanaAñadirGorros
 	JLabel importarFotoGorros, gorrosTemporadaLabel, gorrosChooserPreview;
 	JRadioButton gorrosVeranoSiRB, gorrosVeranoNoRB;
 	JButton atrasAñadirGorros, siguienteAñadirGorros, importarFotoGorrosChooser;
-	
+
 	// ventanaAñadirPantalones
 	JLabel importarFotoPantalones, pantalonesMarcaLabel, pantalonesLargoLabel, pantalonesChooserPreview;
 	JRadioButton pantalonesLargoSiRB, pantalonesLargoNoRB;
 	JTextField pantalonesMarcaText;
 	JButton atrasAñadirPantalones, siguienteAñadirPantalones, importarFotoPantalonesChooser;
-	
+
 	// ventanaAñadirZapatos
 	JLabel importarFotoZapatos, zapatosTipoLabel, zapatosChooserPreview;
 	JRadioButton zapatosDeportivosRB, zapatosVestirRB;
 	JButton atrasAñadirZapatos, siguienteAñadirZapatos, importarFotoZapatosChooser;
-	
 
 	// ventanaPideOutfit
 	JButton botonAtrasPideOutfit, botonBuscar;
@@ -179,7 +176,6 @@ public class Principal {
 	JLabel preguntaEstilo, preguntaTiempo, errorPideOutfit, preguntaColor, generoPregunta;
 	JComboBox<String> estilosComboBoxPideOutfit, colorMenteComboBox;
 	Boolean escrito5;
-	
 
 	// ventanaFeedback
 	JLabel nivelSatisfaccion, gustoColores, errorFeedback;
@@ -187,7 +183,7 @@ public class Principal {
 	JButton botonInicioFeedback;
 
 	// Ajustes
-	JButton cambiarContraseña, cambiarFecha, reiniciarPerfil;
+	JButton cambiarContraseña, reiniciarPerfil;
 
 	// ventanaEmergenteOutfit
 
@@ -202,32 +198,40 @@ public class Principal {
 	// mas
 	static PrintStream Feedbacklog, Usuariolog;
 	public static Logger BDLogger;
-	
-	//Metodo Cargar Datos a JPanel
-	
+
+	// Metodo Cargar Datos a JPanel
+
 	public static void cargarJTable(Object[][] arrLleno, Object[][] arrV, int i, int j) {
-		
+
 		Object aux;
-		
+
+		int aux2 = (int) arrLleno[i][0];
+
 		aux = arrLleno[i][j];
 		arrV[i][j] = aux;
 
 		System.out.println(arrV[i][j]);
-		
-		if(i != arrLleno.length -1 || j != arrLleno[i].length -1) {
-			
-			if(j == arrLleno[i].length -1) {
+
+		if (i != arrLleno.length - 1 || j != arrLleno[i].length - 1) {
+
+			if (j == arrLleno[i].length - 1) {
 				i++;
-				j=0;
-			
-			}else {
+
+				j = 0;
+
+				arrV[i][j] = aux2;
+
+			} else {
+
 				j++;
+				aux = arrLleno[i][j];
+				arrV[i][j] = aux;
 			}
-			
-			cargarJTable(arrLleno,arrV,i,j);
-			
+
+			cargarJTable(arrLleno, arrV, i, j);
+
 		}
-		
+
 	}
 
 	// Metodo Cambiar Paneles
@@ -259,7 +263,7 @@ public class Principal {
 	/**
 	 * Guarda en un archivo properties el valor del username que ha entrado por
 	 * ultima vez
-	 * 
+	 *
 	 * @param Username nombre del usuario a escribir
 	 */
 	public static void setProp(String mail, String password) {
@@ -536,12 +540,6 @@ public class Principal {
 			}
 		});
 
-	
-
-		
-		
-		
-
 		// Añadiendo los componentes de ventanaGenero
 		labelEscogerGenero = new JLabel("Seleccione su genero: ");
 		ventanaGenero.add(labelEscogerGenero);
@@ -608,11 +606,8 @@ public class Principal {
 			}
 		});
 
-		
-		
-		
 		// Añadiendo los componentes de ventanaPerfilGustosUnoM
-		
+
 		labelCrearNombreM = new JLabel("Introduzca su nombre: ");
 		labelCrearNombreM.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoM.add(labelCrearNombreM);
@@ -671,30 +666,31 @@ public class Principal {
 		ventanaPerfilGustosUnoM.add(spinCrearEdadM);
 		spinCrearEdadM.setBounds(230, 115, 80, 30);
 
-		errorNombreM = new JLabel();
+		errorNombreM = new JLabel("");
 		ventanaPerfilGustosUnoM.add(errorNombreM);
 		errorNombreM.setFont(new Font("Monospace", Font.BOLD, 11));
-		errorNombreM.setBounds(230, 10, 150, 30);
+		errorNombreM.setBounds(450, 10, 150, 30);
 		errorNombreM.setForeground(Color.RED);
+		ventanaPerfilGustosUnoM.add(errorNombreM);
 
-		errorEmailM = new JLabel();
+		errorEmailM = new JLabel("");
 		errorEmailM.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoM.add(errorEmailM);
-		errorEmailM.setBounds(230, 45, 150, 30);
+		errorEmailM.setBounds(450, 45, 150, 30);
 		errorEmailM.setForeground(Color.RED);
+		ventanaPerfilGustosUnoM.add(errorEmailM);
 
-		errorContraseñaM = new JLabel();
+		errorContraseñaM = new JLabel("");
 		errorContraseñaM.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoM.add(errorContraseñaM);
-		errorContraseñaM.setBounds(230, 80, 150, 30);
+		errorContraseñaM.setBounds(450, 80, 150, 30);
 		errorContraseñaM.setForeground(Color.RED);
-		
-		
+
 		labelEstiloFavoritoM = new JLabel("Selecciona tu estilo favorito:");
 		labelEstiloFavoritoM.setFont(new Font("Monospace", Font.BOLD, 11));
 		labelEstiloFavoritoM.setBounds(20, 150, 200, 30);
 		ventanaPerfilGustosUnoM.add(labelEstiloFavoritoM);
-		
+
 		clasicoM = new JRadioButton("Clasico");
 		ventanaPerfilGustosUnoM.add(clasicoM);
 		clasicoM.setBounds(20, 185, 150, 30);
@@ -713,7 +709,7 @@ public class Principal {
 		casualChickM = new JRadioButton("Casual Chick");
 		ventanaPerfilGustosUnoM.add(casualChickM);
 		casualChickM.setBounds(320, 215, 150, 30);
-		
+
 		ButtonGroup bgM = new ButtonGroup();
 		bgM.add(clasicoM);
 		bgM.add(urbanaM);
@@ -721,13 +717,12 @@ public class Principal {
 		bgM.add(smartM);
 		bgM.add(formalM);
 		bgM.add(casualChickM);
-		
-		
+
 		labelColorPreferidoM = new JLabel("Seleccione su color preferido");
 		labelColorPreferidoM.setFont(new Font("Monospace", Font.BOLD, 11));
 		labelColorPreferidoM.setBounds(20, 250, 200, 40);
 		ventanaPerfilGustosUnoM.add(labelColorPreferidoM);
-		
+
 		comboColorPreferidoM = new JComboBox<String>();
 		comboColorPreferidoM.setBounds(20, 285, 100, 40);
 		comboColorPreferidoM.addItem("Rojo");
@@ -741,7 +736,7 @@ public class Principal {
 		comboColorPreferidoM.addItem("Marron");
 
 		ventanaPerfilGustosUnoM.add(comboColorPreferidoM);
-		
+
 		botonPerfilGustosUnoMAtras = new JButton("Atras");
 		ventanaPerfilGustosUnoM.add(botonPerfilGustosUnoMAtras);
 		botonPerfilGustosUnoMAtras.setBounds(10, 340, 200, 30);
@@ -761,95 +756,161 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
-				
-				if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() || smartM.isSelected()
-						|| formalM.isSelected() || casualChickM.isSelected()) {
-					
-					errorPerfilGustosUnoM.setText("");
 
-				} else {
-					errorPerfilGustosUnoM.setText("Selecciona 1 estilo");
+				String CrearNombreM = txtCrearNombreM.getText();
+				String CrearEmailM = txtCrearEmailM.getText();
+				String CrearContraseñaM = txtCrearContraseñaM.getText();
+				String CrearEdadM = spinCrearEdadM.getValue().toString();
+				int EdadSeleccionadaM = (int) spinCrearEdadM.getValue();
+
+				errorNombreM.setText("");
+				errorEmailM.setText("");
+				errorContraseñaM.setText("");
+
+				Connection conexion = BaseDatosModise.conectar();
+				Statement st = null;
+				try {
+					st = conexion.createStatement();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
 				}
-				
-				// JProgressBar
 
-				Thread t = new Thread(new Runnable() {
+				if (CrearNombreM.matches("^[a-zA-Z]*$") && !CrearNombreM.isEmpty()
+						&& CrearEmailM.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+								+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+						&& !CrearEmailM.isEmpty() && !CrearContraseñaM.isEmpty() && CrearEdadM.matches("^[0-9]*$")
+						&& BaseDatosModise.existeUsuario(st, txtCrearEmailM.getText()) == true) {
+					if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() || smartM.isSelected()
+							|| formalM.isSelected() || casualChickM.isSelected()) {
+						errorPerfilGustosUnoM.setText("");
+						// CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
+						System.out.println("correctooooo");
+						errorNombreM.setText("");
+						errorEmailM.setText("");
+						errorContraseñaM.setText("");
+						System.out.println("Edad marcado al crear cuenta:" + CrearEdadM); // para comporbar que guarda
 
-					@Override
-					public void run() {
+						CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
+						// JProgressBar
+						Thread t = new Thread(new Runnable() {
 
-						for (counter = 0; !stop && counter <= MAX_STEPS; counter++) {
-							System.out.println(counter);
+							@Override
+							public void run() {
 
-							SwingUtilities.invokeLater(new Runnable() {
+								for (counter = 0; !stop && counter <= MAX_STEPS; counter++) {
+									System.out.println(counter);
 
-								@Override
-								public void run() {
-									progressCargando.setValue(counter);
-									
+									SwingUtilities.invokeLater(new Runnable() {
+
+										@Override
+										public void run() {
+											progressCargando.setValue(counter);
+
+										}
+									});
 								}
-							});
-						}
-						
-						if (stop = true) {
-							
-							try {
-								
-								int colorseleccionado = 0;
-								String estiloseleccionado = null;
-								
-								if(comboColorPreferidoM.getSelectedItem().toString() == "Rojo") {
-									colorseleccionado = 1;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Azul") {
-									colorseleccionado = 2;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Amarillo") {
-									colorseleccionado = 3;
-								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Verde") {
-									colorseleccionado = 4;
-								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Negro") {
-									colorseleccionado = 5;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Rosa") {
-									colorseleccionado = 6;
-								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Multicolor") {
-									colorseleccionado = 7;
-								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Blanco") {
-									colorseleccionado = 8;
-								} else if(comboColorPreferidoM.getSelectedItem().toString() == "Gris") {
-									colorseleccionado = 9;
-								} else if (comboColorPreferidoM.getSelectedItem().toString() == "Marron") {
-									colorseleccionado = 10;
-								} else {
-									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM, "Debes escoger un color para continuar");
+
+								if (stop = true) {
+
+									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+									mb.setVisible(true);
+
+									try {
+
+										int colorseleccionado = 0;
+										String estiloseleccionado = null;
+
+										if (comboColorPreferidoM.getSelectedItem().toString() == "Rojo") {
+											colorseleccionado = 1;
+										} else if (comboColorPreferidoM.getSelectedItem().toString() == "Azul") {
+											colorseleccionado = 2;
+										} else if (comboColorPreferidoM.getSelectedItem().toString() == "Amarillo") {
+											colorseleccionado = 3;
+										} else if (comboColorPreferidoM.getSelectedItem().toString() == "Verde") {
+											colorseleccionado = 4;
+										} else if (comboColorPreferidoM.getSelectedItem().toString() == "Negro") {
+											colorseleccionado = 5;
+										} else if (comboColorPreferidoM.getSelectedItem().toString() == "Rosa") {
+											colorseleccionado = 6;
+										} else if (comboColorPreferidoM.getSelectedItem().toString() == "Multicolor") {
+											colorseleccionado = 7;
+										} else if (comboColorPreferidoM.getSelectedItem().toString() == "Blanco") {
+											colorseleccionado = 8;
+										} else if (comboColorPreferidoM.getSelectedItem().toString() == "Gris") {
+											colorseleccionado = 9;
+										} else if (comboColorPreferidoM.getSelectedItem().toString() == "Marron") {
+											colorseleccionado = 10;
+										} else {
+											JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM,
+													"Debes escoger un color para continuar");
+										}
+
+										if (clasicoM.isSelected()) {
+											estiloseleccionado = "clasicoM";
+										} else if (urbanaM.isSelected()) {
+											estiloseleccionado = "urbanaM";
+										} else if (rockM.isSelected()) {
+											estiloseleccionado = "rockM";
+										} else if (smartM.isSelected()) {
+											estiloseleccionado = "smartM";
+										} else if (formalM.isSelected()) {
+											estiloseleccionado = "formalM";
+										} else if (casualChickM.isSelected()) {
+											estiloseleccionado = "casualChickM";
+
+										}
+										BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(),
+												txtCrearEmailM.getText(), 0, (int) spinCrearEdadM.getValue(),
+												txtCrearContraseñaM.getText(), 0, colorseleccionado,
+												estiloseleccionado);
+
+										// CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+										// mb.setVisible(true);
+
+										errorPerfilGustosUnoM.setText("");
+										errorNombreM.setText("");
+										errorEmailM.setText("");
+										errorContraseñaM.setText("");
+
+										escrito3M = false;
+										escrito4M = false;
+
+										txtCrearNombreM.setText("nombre");
+										txtCrearEmailM.setText("ejemplo@gmail.com");
+										txtCrearContraseñaM.setText("");
+										spinCrearEdadM.setValue(18);
+										// comboColorPreferidoM.setSelectedItem(null);
+										bgM.clearSelection();
+
+									} catch (BDException e) {
+										e.printStackTrace();
+									}
+
 								}
-								
-								if (clasicoM.isSelected()) {
-									estiloseleccionado = "clasicoM";
-								} else if (urbanaM.isSelected()) {
-									estiloseleccionado = "urbanaM";
-								} else if (rockM.isSelected()) {
-									estiloseleccionado = "rockM";
-								} else if (smartM.isSelected()) {
-									estiloseleccionado = "smartM";
-								} else if (formalM.isSelected()) {
-									estiloseleccionado = "formalM";
-								} else if (casualChickM.isSelected()) {
-									estiloseleccionado = "casualChickM";
-								} else {
-									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM, "Debes seleccionar un estilo favorito");
-								}
-								BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(), txtCrearEmailM.getText(), 0, (int)spinCrearEdadM.getValue(), txtCrearContraseñaM.getText(), 0, colorseleccionado, estiloseleccionado);
-								
-							} catch (BDException e) {
-								e.printStackTrace();
 							}
-							CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
-						}
+						});
+
+						t.start();
+
+					} else {
+						errorPerfilGustosUnoM.setText("Selecciona 1 estilo");
 					}
-				});  
-				
-				t.start();
+				} else if (!CrearNombreM.matches("^[a-zA-Z]*$") || CrearNombreM.isEmpty()) {
+					errorNombreM.setText("Nombre NO valido");
+					spinCrearEdadM.setValue(EdadSeleccionadaM);
+					System.out.println("Edad marcado al crear cuenta:" + CrearEdadM + ", Nombre NO valido");
+				} else if (!CrearEmailM.matches(
+						"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+						|| CrearEmailM.isEmpty()
+						|| BaseDatosModise.existeUsuario(st, txtCrearEmailM.getText()) == false) {
+					errorEmailM.setText("Email NO valido");
+					spinCrearEdadM.setValue(EdadSeleccionadaM);
+					System.out.println("Edad marcado al crear cuenta:" + CrearEdadM + ", Email NO valido");
+				} else if (CrearContraseñaM.isEmpty()) {
+					errorContraseñaM.setText("Contraseña NO valida");
+					spinCrearEdadM.setValue(EdadSeleccionadaM);
+					System.out.println("Edad marcado al crear cuenta:" + CrearEdadM + ", Contraseña NO valida");
+				}
 			}
 		});
 
@@ -857,16 +918,20 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Asegurarse de que los checkboxes que aparezcan se borran y se vuelven a
-				// generar al darle a siguiente en caso de cambio de genero al volver atras
-				clasicoM.setSelected(false);
-				urbanaM.setSelected(false);
-				rockM.setSelected(false);
-				smartM.setSelected(false);
-				formalM.setSelected(false);
-				casualChickM.setSelected(false);
-
 				errorPerfilGustosUnoM.setText("");
+				errorNombreM.setText("");
+				errorEmailM.setText("");
+				errorContraseñaM.setText("");
+
+				escrito3M = false;
+				escrito4M = false;
+
+				txtCrearNombreM.setText("nombre");
+				txtCrearEmailM.setText("ejemplo@gmail.com");
+				txtCrearContraseñaM.setText("");
+				spinCrearEdadM.setValue(18);
+				// comboColorPreferidoM.setSelectedItem(null);
+				bgM.clearSelection();
 
 				CambiarPanel(ventanaPerfilGustosUnoM, ventanaGenero);
 			}
@@ -914,7 +979,7 @@ public class Principal {
 
 		labelCrearContraseñaF = new JLabel("Cree una contrasena: ");
 		labelCrearContraseñaF.setFont(new Font("Monospace", Font.BOLD, 11));
-		ventanaPerfilGustosUnoF.add(labelCrearContraseñaM);
+		ventanaPerfilGustosUnoF.add(labelCrearContraseñaF);
 		labelCrearContraseñaF.setBounds(20, 80, 200, 30);
 
 		txtCrearContraseñaF = new JTextField("");
@@ -932,30 +997,31 @@ public class Principal {
 		ventanaPerfilGustosUnoF.add(spinCrearEdadF);
 		spinCrearEdadF.setBounds(230, 115, 80, 30);
 
-		errorNombreF = new JLabel();
+		errorNombreF = new JLabel("");
 		ventanaPerfilGustosUnoF.add(errorNombreF);
 		errorNombreF.setFont(new Font("Monospace", Font.BOLD, 11));
-		errorNombreF.setBounds(230, 10, 150, 30);
+		errorNombreF.setBounds(450, 10, 150, 30);
 		errorNombreF.setForeground(Color.RED);
+		ventanaPerfilGustosUnoF.add(errorNombreF);
 
-		errorEmailF = new JLabel();
+		errorEmailF = new JLabel("");
 		errorEmailF.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoF.add(errorEmailF);
-		errorEmailF.setBounds(230, 45, 150, 30);
+		errorEmailF.setBounds(450, 45, 150, 30);
 		errorEmailF.setForeground(Color.RED);
+		ventanaPerfilGustosUnoF.add(errorEmailF);
 
-		errorContraseñaF = new JLabel();
+		errorContraseñaF = new JLabel("");
 		errorContraseñaF.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoF.add(errorContraseñaF);
-		errorContraseñaF.setBounds(230, 80, 150, 30);
+		errorContraseñaF.setBounds(450, 80, 150, 30);
 		errorContraseñaF.setForeground(Color.RED);
-		
-		
+
 		labelEstiloFavoritoF = new JLabel("Selecciona tu estilo favorito:");
 		labelEstiloFavoritoF.setFont(new Font("Monospace", Font.BOLD, 11));
 		labelEstiloFavoritoF.setBounds(20, 150, 200, 30);
 		ventanaPerfilGustosUnoF.add(labelEstiloFavoritoF);
-		
+
 		clasicoF = new JRadioButton("Clasico");
 		ventanaPerfilGustosUnoF.add(clasicoF);
 		clasicoF.setBounds(20, 185, 150, 30);
@@ -965,7 +1031,7 @@ public class Principal {
 		rockF = new JRadioButton("Rock");
 		ventanaPerfilGustosUnoF.add(rockF);
 		rockF.setBounds(320, 185, 150, 30);
-		bohoF = new JRadioButton("Smart");
+		bohoF = new JRadioButton("Boho");
 		ventanaPerfilGustosUnoF.add(bohoF);
 		bohoF.setBounds(20, 215, 150, 30);
 		formalF = new JRadioButton("Formal");
@@ -974,7 +1040,7 @@ public class Principal {
 		sportyChickF = new JRadioButton("Sporty Chick");
 		ventanaPerfilGustosUnoF.add(sportyChickF);
 		sportyChickF.setBounds(320, 215, 150, 30);
-		
+
 		ButtonGroup bgF = new ButtonGroup();
 		bgF.add(clasicoF);
 		bgF.add(urbanaF);
@@ -982,13 +1048,12 @@ public class Principal {
 		bgF.add(bohoF);
 		bgF.add(formalF);
 		bgF.add(sportyChickF);
-		
-		
+
 		labelColorPreferidoF = new JLabel("Seleccione su color preferido");
 		labelColorPreferidoF.setFont(new Font("Monospace", Font.BOLD, 11));
 		labelColorPreferidoF.setBounds(20, 250, 200, 40);
 		ventanaPerfilGustosUnoF.add(labelColorPreferidoF);
-		
+
 		comboColorPreferidoF = new JComboBox<String>();
 		comboColorPreferidoF.setBounds(20, 285, 100, 40);
 		comboColorPreferidoF.addItem("Rojo");
@@ -1002,7 +1067,7 @@ public class Principal {
 		comboColorPreferidoF.addItem("Marron");
 
 		ventanaPerfilGustosUnoF.add(comboColorPreferidoF);
-		
+
 		botonPerfilGustosUnoFAtrasF = new JButton("Atras");
 		ventanaPerfilGustosUnoF.add(botonPerfilGustosUnoFAtrasF);
 		botonPerfilGustosUnoFAtrasF.setBounds(10, 340, 200, 30);
@@ -1016,98 +1081,172 @@ public class Principal {
 		ventanaPerfilGustosUnoF.add(errorPerfilGustosUnoF);
 		errorPerfilGustosUnoF.setBounds(300, 340, 400, 40);
 		errorPerfilGustosUnoF.setForeground(Color.RED);
-		
-		//ActionListeners ventanaPerfilGustosUnoF
+
+		// ActionListeners ventanaPerfilGustosUnoF
 
 		botonPerfilGustosUnoFSiguienteF.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CambiarPanel(ventanaPerfilGustosUnoF, ventanaCarga);
+
+				System.out.println("botonPerfilGustosUnoFSiguienteF");
 				
-				if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() || bohoF.isSelected()
-						|| formalF.isSelected() || sportyChickF.isSelected()) {
-					
-					errorPerfilGustosUnoF.setText("");
-				} else {
-					errorPerfilGustosUnoF.setText("Selecciona 1 estilo");
+				
+				String CrearNombreF = txtCrearNombreF.getText();
+				String CrearEmailF = txtCrearEmailF.getText();
+				String CrearContraseñaF = txtCrearContraseñaF.getText();
+				String CrearEdadF = spinCrearEdadF.getValue().toString();
+				int EdadSeleccionadaF = (int) spinCrearEdadF.getValue();
+
+				System.out.println(CrearEmailF);
+				System.out.println(txtCrearEmailF.getText());
+				
+				errorNombreF.setText("");
+				errorEmailF.setText("");
+				errorContraseñaF.setText("");
+
+				Connection conexion = BaseDatosModise.conectar();
+				Statement st = null;
+				try {
+					st = conexion.createStatement();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
 				}
-				
-				Thread t = new Thread(new Runnable() {
 
-					@Override
-					public void run() {
+				if (CrearNombreF.matches("^[a-zA-Z]*$") && !CrearNombreF.isEmpty()
+						&& CrearEmailF.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+								+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+						&& !CrearEmailF.isEmpty() && !CrearContraseñaF.isEmpty() && CrearEdadF.matches("^[0-9]*$")
+						&& BaseDatosModise.existeUsuario(st, txtCrearEmailF.getText()) == true) {
+					if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() || bohoF.isSelected()
+							|| formalF.isSelected() || sportyChickF.isSelected()) {
+						errorPerfilGustosUnoF.setText("");
+						// CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
+						System.out.println("correctooooo");
+						errorNombreF.setText("");
+						errorEmailF.setText("");
+						errorContraseñaF.setText("");
+						System.out.println("Edad marcado al crear cuenta:" + CrearEdadF); // para comporbar que guarda
 
-						for (counter = 0; !stop && counter <= MAX_STEPS; counter++) {
-							System.out.println(counter);
+						CambiarPanel(ventanaPerfilGustosUnoF, ventanaCarga);
+						bgF.clearSelection();
+						// JProgressBar
+						Thread t = new Thread(new Runnable() {
 
-							SwingUtilities.invokeLater(new Runnable() {
+							@Override
+							public void run() {
 
-								@Override
-								public void run() {
-									progressCargando.setValue(counter);
-									
+								for (counter = 0; !stop && counter <= MAX_STEPS; counter++) {
+									System.out.println(counter);
+
+									SwingUtilities.invokeLater(new Runnable() {
+
+										@Override
+										public void run() {
+											progressCargando.setValue(counter);
+
+										}
+									});
 								}
-							});
-						}
-						
-						if (stop = true) {
-							
-							try {
-								
-								int colorseleccionado = 0;
-								String estiloseleccionado = null;
-								
-								if(comboColorPreferidoF.getSelectedItem().toString() == "Rojo") {
-									colorseleccionado = 1;
-								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Azul") {
-									colorseleccionado = 2;
-								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Amarillo") {
-									colorseleccionado = 3;
-								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Verde") {
-									colorseleccionado = 4;
-								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Negro") {
-									colorseleccionado = 5;
-								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Rosa") {
-									colorseleccionado = 6;
-								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Multicolor") {
-									colorseleccionado = 7;
-								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Blanco") {
-									colorseleccionado = 8;
-								} else if(comboColorPreferidoF.getSelectedItem().toString() == "Gris") {
-									colorseleccionado = 9;
-								} else if (comboColorPreferidoF.getSelectedItem().toString() == "Marron") {
-									colorseleccionado = 10;
-								}else {
-									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoF, "Debes escoger un color para continuar");
+
+								if (stop = true) {
+
+									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
+									mb.setVisible(true);
+
+									try {
+
+										int colorseleccionado = 0;
+										String estiloseleccionado = null;
+
+										if (comboColorPreferidoF.getSelectedItem().toString() == "Rojo") {
+											colorseleccionado = 1;
+										} else if (comboColorPreferidoF.getSelectedItem().toString() == "Azul") {
+											colorseleccionado = 2;
+										} else if (comboColorPreferidoF.getSelectedItem().toString() == "Amarillo") {
+											colorseleccionado = 3;
+										} else if (comboColorPreferidoF.getSelectedItem().toString() == "Verde") {
+											colorseleccionado = 4;
+										} else if (comboColorPreferidoF.getSelectedItem().toString() == "Negro") {
+											colorseleccionado = 5;
+										} else if (comboColorPreferidoF.getSelectedItem().toString() == "Rosa") {
+											colorseleccionado = 6;
+										} else if (comboColorPreferidoF.getSelectedItem().toString() == "Multicolor") {
+											colorseleccionado = 7;
+										} else if (comboColorPreferidoF.getSelectedItem().toString() == "Blanco") {
+											colorseleccionado = 8;
+										} else if (comboColorPreferidoF.getSelectedItem().toString() == "Gris") {
+											colorseleccionado = 9;
+										} else if (comboColorPreferidoF.getSelectedItem().toString() == "Marron") {
+											colorseleccionado = 10;
+										} else {
+											JOptionPane.showMessageDialog(ventanaPerfilGustosUnoM,
+													"Debes escoger un color para continuar");
+										}
+
+										if (clasicoF.isSelected()) {
+											estiloseleccionado = "clasicoF";
+										} else if (urbanaF.isSelected()) {
+											estiloseleccionado = "urbanaF";
+										} else if (rockF.isSelected()) {
+											estiloseleccionado = "rockF";
+										} else if (bohoF.isSelected()) {
+											estiloseleccionado = "bohoF";
+										} else if (formalF.isSelected()) {
+											estiloseleccionado = "formalF";
+										} else if (sportyChickF.isSelected()) {
+											estiloseleccionado = "casualChickF";
+										}
+										
+										System.out.println("BD: "+txtCrearEmailF.getText());
+										BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(), txtCrearEmailF.getText(), 1,
+												(int) spinCrearEdadF.getValue(), txtCrearContraseñaF.getText(), 0,
+												colorseleccionado, estiloseleccionado);
+
+										errorPerfilGustosUnoF.setText("");
+										errorNombreF.setText("");
+										errorEmailF.setText("");
+										errorContraseñaF.setText("");
+
+										escrito3F = false;
+										escrito4F = false;
+
+										txtCrearNombreF.setText("nombre");
+										//txtCrearEmailF.setText("ejemplo@gmail.com");
+										txtCrearContraseñaF.setText("");
+										spinCrearEdadF.setValue(18);
+										// comboColorPreferidoM.setSelectedItem(null);
+										bgF.clearSelection();
+
+									} catch (BDException e) {
+										e.printStackTrace();
+									}
+
 								}
-								
-								if (clasicoF.isSelected()) {
-									estiloseleccionado = "clasicoF";
-								} else if (urbanaF.isSelected()) {
-									estiloseleccionado = "urbanaF";
-								} else if (rockF.isSelected()) {
-									estiloseleccionado = "rockF";
-								} else if (bohoF.isSelected()) {
-									estiloseleccionado = "bohoF";
-								} else if (formalF.isSelected()) {
-									estiloseleccionado = "formalF";
-								} else if (sportyChickF.isSelected()) {
-									estiloseleccionado = "sportyChickF";
-								} else {
-									JOptionPane.showMessageDialog(ventanaPerfilGustosUnoF, "Debes seleccionar un estilo favorito");
-								}
-								BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(), txtCrearEmailF.getText(), 0, (int)spinCrearEdadF.getValue(), txtCrearContraseñaF.getText(), 1, colorseleccionado, estiloseleccionado);
-								
-							} catch (BDException e) {
-								e.printStackTrace();
 							}
-							CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
-						}
+						});
+
+						t.start();
+
+					} else {
+						errorPerfilGustosUnoF.setText("Selecciona 1 estilo");
 					}
-				});  
-				
-				t.start();
+				} else if (!CrearNombreF.matches("^[a-zA-Z]*$") || CrearNombreF.isEmpty()) {
+					errorNombreF.setText("Nombre NO valido");
+					spinCrearEdadF.setValue(EdadSeleccionadaF);
+					System.out.println("Edad marcado al crear cuenta:" + CrearEdadF + ", Nombre NO valido");
+				} else if (!CrearEmailF.matches(
+						"^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+						|| CrearEmailF.isEmpty()
+						|| BaseDatosModise.existeUsuario(st, txtCrearEmailF.getText()) == false) {
+					errorEmailF.setText("Email NO vaalido");
+					spinCrearEdadF.setValue(EdadSeleccionadaF);
+					System.out.println("Edad marcado al crear cuenta:" + CrearEdadF + ", Email NO valido");
+				} else if (CrearContraseñaF.isEmpty()) {
+					errorContraseñaF.setText("Contraseña NO valida");
+					spinCrearEdadF.setValue(EdadSeleccionadaF);
+					System.out.println("Edad marcado al crear cuenta:" + CrearEdadF + ", Contraseña NO valida");
+				}
 			}
 		});
 
@@ -1115,16 +1254,20 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Asegurarse de que los checkboxes que aparezcan se borran y se vuelven a
-				// generar al darle a siguiente en caso de cambio de genero al volver atras
-				clasicoF.setSelected(false);
-				urbanaF.setSelected(false);
-				rockF.setSelected(false);
-				bohoF.setSelected(false);
-				formalF.setSelected(false);
-				sportyChickF.setSelected(false);
+				errorPerfilGustosUnoF.setText("");
+				errorNombreF.setText("");
+				errorEmailF.setText("");
+				errorContraseñaF.setText("");
 
-				errorPerfilGustosUnoM.setText("");
+				escrito3F = false;
+				escrito4F = false;
+
+				txtCrearNombreF.setText("nombre");
+				txtCrearEmailF.setText("ejemplo@gmail.com");
+				txtCrearContraseñaF.setText("");
+				spinCrearEdadF.setValue(18);
+				// comboColorPreferidoM.setSelectedItem(null);
+				bgF.clearSelection();
 
 				CambiarPanel(ventanaPerfilGustosUnoF, ventanaGenero);
 			}
@@ -1144,7 +1287,7 @@ public class Principal {
 		botonPideOutfit = new JButton("Pide un Outfit!");
 		botonPideOutfit.setBounds(250, 150, 200, 50);
 		ventanaMenuPrincipal.add(botonPideOutfit);
- 
+
 		botonAñadirVestimenta = new JButton("Añade tu propia Vestimenta");
 		botonAñadirVestimenta.setBounds(250, 250, 200, 50);
 		ventanaMenuPrincipal.add(botonAñadirVestimenta);
@@ -1184,9 +1327,7 @@ public class Principal {
 				CambiarPanel(ventanaMenuPrincipal, ventanaMasMenosAdmin);
 			}
 		});
-		
-		
-		
+
 		// Añadiendo los compenentes de ventanaPideOutfit
 		preguntaTiempo = new JLabel("Que tiempo hace hoy?");
 		preguntaTiempo.setFont(new Font("Monospace", Font.BOLD, 13));
@@ -1201,13 +1342,13 @@ public class Principal {
 		radioLluvia.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioLluvia);
 		radioLluvia.setBounds(30, 100, 100, 40);
-		
+
 		preguntaColor = new JLabel("Tienes algun color en mente?");
 		preguntaColor.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPideOutfit.add(preguntaColor);
 		preguntaColor.setBounds(370, 0, 300, 40);
 		ventanaPideOutfit.add(preguntaColor);
-		
+
 		colorMenteComboBox = new JComboBox<String>();
 		colorMenteComboBox.addItem("rojo");
 		colorMenteComboBox.addItem("azul");
@@ -1220,14 +1361,13 @@ public class Principal {
 		colorMenteComboBox.addItem("gris");
 		colorMenteComboBox.addItem("marron");
 
-		
 		colorMenteComboBox.setBounds(370, 50, 190, 30);
 		ventanaPideOutfit.add(colorMenteComboBox);
-		
+
 		ButtonGroup bgPideOutfit = new ButtonGroup();
 		bgPideOutfit.add(radioSol);
 		bgPideOutfit.add(radioLluvia);
-		
+
 		preguntaEstilo = new JLabel("Tienes algun estilo en mente para tu outfit?");
 		preguntaEstilo.setFont(new Font("Monospace", Font.BOLD, 13));
 		ventanaPideOutfit.add(preguntaEstilo);
@@ -1270,8 +1410,7 @@ public class Principal {
 		bgGenero.add(generoOutfitF);
 		ventanaPideOutfit.add(generoOutfitM);
 		ventanaPideOutfit.add(generoOutfitF);
-		
-		
+
 		botonAtrasPideOutfit = new JButton("Atras");
 		ventanaPideOutfit.add(botonAtrasPideOutfit);
 		botonAtrasPideOutfit.setBounds(10, 340, 200, 30);
@@ -1303,7 +1442,8 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 
 				if (bgPideOutfit.getSelection() != null
-						&& (radioNo.isSelected() || estilosComboBoxPideOutfit.getSelectedIndex() != -1) && bgGenero.getSelection() != null && colorMenteComboBox.getSelectedItem() != null) {
+						&& (radioNo.isSelected() || estilosComboBoxPideOutfit.getSelectedIndex() != -1)
+						&& bgGenero.getSelection() != null && colorMenteComboBox.getSelectedItem() != null) {
 
 					Object l;
 					if (radioNo.isSelected()) {
@@ -1312,19 +1452,18 @@ public class Principal {
 						l = estilosComboBoxAñadirVestimenta.getSelectedItem();
 					}
 					Usuariolog.println("Pide Outfit, tiempo: " + bgPideOutfit.getSelection().getActionCommand()
-							+ ", estilo: " + l + "genero: " + bgGenero.getSelection().getActionCommand() + "color: " + colorMenteComboBox.getSelectedItem().toString());
-					
+							+ ", estilo: " + l + "genero: " + bgGenero.getSelection().getActionCommand() + "color: "
+							+ colorMenteComboBox.getSelectedItem().toString());
+
 					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
 
 					UIManager.put("OptionPane.minimumSize", new Dimension(500, 800));
-					
-					
+
 					int color = 1;
-					
-					
+
 					String nombreColorSeleccionadoPO = colorMenteComboBox.getSelectedItem().toString();
-					
-					if(nombreColorSeleccionadoPO == "rojo") {
+
+					if (nombreColorSeleccionadoPO == "rojo") {
 						color = 1;
 					} else if (nombreColorSeleccionadoPO == "azul") {
 						color = 2;
@@ -1344,97 +1483,101 @@ public class Principal {
 						color = 9;
 					} else if (nombreColorSeleccionadoPO == "Marron") {
 						color = 10;
-					} 
-					
-						HashMap<Integer, byte[]> outfitSolMap=null;
-					
-					if(radioSol.isSelected() && !radioNo.isSelected()) {
-						
+					}
+
+					HashMap<Integer, byte[]> outfitSolMap = null;
+
+					if (radioSol.isSelected() && !radioNo.isSelected()) {
+
 						try {
-							
+
 							if (generoOutfitM.isSelected()) {
-							outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), 0, color);
+								outfitSolMap = BaseDatosModise.crearOutfitSoleado(
+										estilosComboBoxPideOutfit.getSelectedItem().toString(), 0, color);
 							} else if (generoOutfitF.isSelected()) {
-								outfitSolMap = BaseDatosModise.crearOutfitSoleado(estilosComboBoxPideOutfit.getSelectedItem().toString(), 1, color);
+								outfitSolMap = BaseDatosModise.crearOutfitSoleado(
+										estilosComboBoxPideOutfit.getSelectedItem().toString(), 1, color);
 
 							}
-						
-							
-							//Comprobamos que el HashMap se cree correctamente!PASAR A LOG!!
+
+							// Comprobamos que el HashMap se cree correctamente!PASAR A LOG!!
 							System.out.println(Collections.singletonList(outfitSolMap));
-							
-							
+
 							Object[][] arrOutfitSol = new Object[outfitSolMap.size()][2];
 							@SuppressWarnings("rawtypes")
 							Set entries = outfitSolMap.entrySet();
 							@SuppressWarnings("rawtypes")
 							Iterator entriesIterator = entries.iterator();
-							
+
 							int i = 0;
-							
-							while(entriesIterator.hasNext()) {
+
+							while (entriesIterator.hasNext()) {
 								@SuppressWarnings("unchecked")
-								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator.next();
-								
-								arrOutfitSol [i][0] = mapping.getKey();
-								arrOutfitSol [i][1]= mapping.getValue();
-								
+								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator
+										.next();
+
+								arrOutfitSol[i][0] = mapping.getKey();
+								arrOutfitSol[i][1] = mapping.getValue();
+
 								i++;
 							}
 							
 							System.out.println(Arrays.deepToString(arrOutfitSol));
 							//ventanaEmergentePideOutfit
 							
+
 							JTable jt = new JTable();
-								jt.setPreferredSize(new Dimension(400, 850));
-								jt.setRowHeight(0, 50);
-								jt.setRowHeight(1, 150);
-								jt.setRowHeight(2, 150);
-								jt.setRowHeight(3, 150);
-								jt.setRowHeight(4, 150);
-								jt.setRowHeight(5, 150);
-								
-								String [] cols = {"idprendas", "foto"};
-								Object [][] rowsData = {};
-								
-								cargarJTable(arrOutfitSol,rowsData,0,0);
-								
-								DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
-								dtm.setDataVector(rowsData, cols);
-								
-								ventanaEmergenteOutfit.add(jt);
-							
+							jt.setPreferredSize(new Dimension(400, 850));
+							jt.setRowHeight(0, 50);
+							jt.setRowHeight(1, 150);
+							jt.setRowHeight(2, 150);
+							jt.setRowHeight(3, 150);
+							jt.setRowHeight(4, 150);
+							jt.setRowHeight(5, 150);
+
+							String[] cols = { "idprendas", "foto" };
+							Object[][] rowsData = {};
+
+							cargarJTable(arrOutfitSol, rowsData, 0, 0);
+
+							DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
+							dtm.setDataVector(rowsData, cols);
+
+							ventanaEmergenteOutfit.add(jt);
+
 						} catch (BDException | SQLException e1) {
-							
+
 							e1.printStackTrace();
 						}
 
-						
-					}	else if (radioLluvia.isSelected() && !radioNo.isSelected()) {
+					} else if (radioLluvia.isSelected() && !radioNo.isSelected()) {
 						HashMap<Integer, byte[]> outfitLluviaMap = null;
 						try {
-							
+
 							if (generoOutfitM.isSelected()) {
-								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(estilosComboBoxPideOutfit.getSelectedItem().toString(), 0, color);
+								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(
+										estilosComboBoxPideOutfit.getSelectedItem().toString(), 0, color);
 							} else if (generoOutfitF.isSelected()) {
-								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(estilosComboBoxPideOutfit.getSelectedItem().toString(), 1, color);
-							} 
-							
+								outfitLluviaMap = BaseDatosModise.crearOutfitLluvioso(
+										estilosComboBoxPideOutfit.getSelectedItem().toString(), 1, color);
+							}
+
 							Object[][] arrOutfitLluvia = new Object[outfitLluviaMap.size()][2];
 							@SuppressWarnings("rawtypes")
 							Set entries = outfitLluviaMap.entrySet();
 							@SuppressWarnings("rawtypes")
 							Iterator entriesIterator = entries.iterator();
-							
+
 							int i = 0;
-							
-							while(entriesIterator.hasNext()) {
+
+							while (entriesIterator.hasNext()) {
 								@SuppressWarnings("unchecked")
-								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator.next();
-								
-								arrOutfitLluvia [i][0] = mapping.getKey();
-								arrOutfitLluvia  [i][1]= mapping.getValue();
-								
+								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator
+										.next();
+
+								arrOutfitLluvia[i][0] = mapping.getKey();
+								arrOutfitLluvia[i][1] = mapping.getValue();
+
 								i++;
 							}
 							
@@ -1442,39 +1585,35 @@ public class Principal {
 							
 							//ventanaEmergentePideOutfit
 							
+
 							JTable jt = new JTable();
-								jt.setPreferredSize(new Dimension(400, 850));
-								jt.setRowHeight(0, 50);
-								jt.setRowHeight(1, 150);
-								jt.setRowHeight(2, 150);
-								jt.setRowHeight(3, 150);
-								jt.setRowHeight(4, 150);
-								jt.setRowHeight(5, 150);
-								
-								String [] cols = {"idprendas", "foto"};
-								Object [][] rowsData = {};
-								
-								
-								cargarJTable(arrOutfitLluvia,rowsData,0,0);
-								
-								
-								DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
-								dtm.setDataVector(rowsData, cols);
-							
-								ventanaEmergenteOutfit.add(jt);
-							
+							jt.setPreferredSize(new Dimension(400, 850));
+							jt.setRowHeight(0, 50);
+							jt.setRowHeight(1, 150);
+							jt.setRowHeight(2, 150);
+							jt.setRowHeight(3, 150);
+							jt.setRowHeight(4, 150);
+							jt.setRowHeight(5, 150);
+
+							String[] cols = { "idprendas", "foto" };
+							Object[][] rowsData = {};
+
+							cargarJTable(arrOutfitLluvia, rowsData, 0, 0);
+
+							DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
+							dtm.setDataVector(rowsData, cols);
+
+							ventanaEmergenteOutfit.add(jt);
+
 						} catch (BDException | SQLException e1) {
-							
+
 							e1.printStackTrace();
 						}
 					}
-						
-					
-					
-					
+
 					JOptionPane.showMessageDialog(null, ventanaEmergenteOutfit, "¡Aqui esta tu outfit!",
 							JOptionPane.DEFAULT_OPTION);
-					
+
 					escrito5 = false;
 					bgPideOutfit.clearSelection();
 					radioNo.setSelected(false);
@@ -1482,10 +1621,6 @@ public class Principal {
 					estilosComboBoxPideOutfit.setSelectedIndex(0);
 
 					// LLamar a la clase Crear Outfit
-					
-					
-					
-					
 
 				} else {
 					errorPideOutfit.setText("Rellena todos los campos requeridos.");
@@ -1519,8 +1654,7 @@ public class Principal {
 		});
 
 		// Action Listeners
-		
-		
+
 		// Añadiendo los componentes de ventanaAñadirVestimenta1
 		tipoLabelAñadirVestimenta = new JLabel("Selecione el tipo de prenda que desea añadir: ");
 		tipoLabelAñadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
@@ -1538,7 +1672,7 @@ public class Principal {
 		tipoComboBoxAñadirVestimenta.addItem("gorros");
 		tipoComboBoxAñadirVestimenta.addItem("pantalones");
 		tipoComboBoxAñadirVestimenta.addItem("zapatos");
-		
+
 		estilosComboBoxAñadirVestimenta.addItem("ClasicoF");
 		estilosComboBoxAñadirVestimenta.addItem("ClasicoM");
 		estilosComboBoxAñadirVestimenta.addItem("UrbanaF");
@@ -1562,7 +1696,6 @@ public class Principal {
 		coloresComboBoxAñadirVestimenta.addItem("Blanco");
 		coloresComboBoxAñadirVestimenta.addItem("Gris");
 		coloresComboBoxAñadirVestimenta.addItem("Marron");
-
 
 		tipoLabelAñadirVestimenta.setBounds(190, 50, 400, 40);
 		estilosLabelAñadirVestimenta.setBounds(190, 100, 400, 40);
@@ -1588,23 +1721,25 @@ public class Principal {
 		ventanaAñadirVestimenta1Cancelar = new JButton("cancelar");
 		ventanaAñadirVestimenta1Cancelar.setVisible(false);
 		ventanaAñadirVestimenta1Cancelar.setBounds(10, 340, 200, 30);
-		
-		//NO OLVIDARSE ANYADIR LIMITE PARA LOS SPINNERS LUEGO!!
-		nivelFashionLabel = new JLabel("Seleccione nivel de Fashion entre 0-100 (100 en tendencias, 0 no en tendencias)");
+
+		// NO OLVIDARSE ANYADIR LIMITE PARA LOS SPINNERS LUEGO!!
+		nivelFashionLabel = new JLabel(
+				"Seleccione nivel de Fashion entre 0-100 (100 en tendencias, 0 no en tendencias)");
 		nivelFashionLabel.setFont(new Font("Monospace", Font.BOLD, 11));
 		nivelFashionLabel.setBounds(190, 200, 500, 40);
 		nivelFashionSpin = new JSpinner();
 		nivelFashionSpin.setValue(0);
 		nivelFashionSpin.setBounds(40, 200, 150, 40);
-		
-		//NO OLVIDARSE ANYADIR LIMITE PARA LOS SPINNERS LUEGO!!
-		nivelImpermeableLabel = new JLabel("Seleccione nivel de impermeabilidad entre 0-100 (100 impermeable, 0 no impermeable)");
+
+		// NO OLVIDARSE ANYADIR LIMITE PARA LOS SPINNERS LUEGO!!
+		nivelImpermeableLabel = new JLabel(
+				"Seleccione nivel de impermeabilidad entre 0-100 (100 impermeable, 0 no impermeable)");
 		nivelImpermeableLabel.setFont(new Font("Monospace", Font.BOLD, 11));
 		nivelImpermeableLabel.setBounds(190, 250, 500, 40);
 		nivelImpermeableSpin = new JSpinner();
 		nivelImpermeableSpin.setValue(0);
 		nivelImpermeableSpin.setBounds(40, 250, 150, 40);
-		
+
 		ventanaAñadirVestimenta1.add(ventanaAñadirVestimenta1Cancelar);
 		ventanaAñadirVestimenta1.add(tipoLabelAñadirVestimenta);
 		ventanaAñadirVestimenta1.add(tipoComboBoxAñadirVestimenta);
@@ -1616,7 +1751,6 @@ public class Principal {
 		ventanaAñadirVestimenta1.add(nivelImpermeableLabel);
 		ventanaAñadirVestimenta1.add(nivelFashionSpin);
 		ventanaAñadirVestimenta1.add(nivelImpermeableSpin);
-	
 
 		// actionlisteners ventanaAñadirVestimenta
 		ventanaAñadirVestimenta1Atras.addActionListener(new ActionListener() {
@@ -1635,630 +1769,613 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-			String nombreColorSeleccionado = coloresComboBoxAñadirVestimenta.getSelectedItem().toString();
-			int idColorSeleccionado = 0;
-			if (nombreColorSeleccionado == "Rojo") {
-				idColorSeleccionado = 1;
-			} else if (nombreColorSeleccionado == "Azul") {
-				idColorSeleccionado = 2;
-			} else if (nombreColorSeleccionado == "Amarillo") {
-				idColorSeleccionado = 3;
-			} else if (nombreColorSeleccionado == "Verde") {
-				idColorSeleccionado = 4;
-			} else if (nombreColorSeleccionado == "Negro") {
-				idColorSeleccionado = 5;
-			} else if (nombreColorSeleccionado == "Rosa") {
-				idColorSeleccionado = 6;
-			} else if (nombreColorSeleccionado == "Multicolor") {
-				idColorSeleccionado = 7;
-			} else if (nombreColorSeleccionado == "Blanco"){
-				idColorSeleccionado = 8;
-			} else if (nombreColorSeleccionado == "Gris"){
-				idColorSeleccionado = 9;
-			} else if (nombreColorSeleccionado == "Marron"){
-				idColorSeleccionado = 10;
-			} 
-			
-			int nivelFashionSeleccionado = (int)nivelFashionSpin.getValue();
-			int nivelImpermeableSeleccionado = (int)nivelImpermeableSpin.getValue();
-			
-			String estiloPrendasSeleccionado = estilosComboBoxAñadirVestimenta.getSelectedItem().toString();
-			Boolean generoPrendas = null;
-			
-			if (estiloPrendasSeleccionado == "ClasicoF" || estiloPrendasSeleccionado == "UrbanaF" || estiloPrendasSeleccionado == "RockF" ||
-					estiloPrendasSeleccionado == "BohoF" || estiloPrendasSeleccionado == "FormalF" || estiloPrendasSeleccionado == "SportyChickF") {
-				generoPrendas = true;
-	
-			} else {
-				generoPrendas = false;
-			} 
-		
-				
-				try {
-					
-					//Metodo BD para anyadir prenda
-					
-					BaseDatosModise.añadirPrenda(idColorSeleccionado, estiloPrendasSeleccionado, generoPrendas, nivelFashionSeleccionado, nivelImpermeableSeleccionado);
+				String nombreColorSeleccionado = coloresComboBoxAñadirVestimenta.getSelectedItem().toString();
+				int idColorSeleccionado = 0;
+				if (nombreColorSeleccionado == "Rojo") {
+					idColorSeleccionado = 1;
+				} else if (nombreColorSeleccionado == "Azul") {
+					idColorSeleccionado = 2;
+				} else if (nombreColorSeleccionado == "Amarillo") {
+					idColorSeleccionado = 3;
+				} else if (nombreColorSeleccionado == "Verde") {
+					idColorSeleccionado = 4;
+				} else if (nombreColorSeleccionado == "Negro") {
+					idColorSeleccionado = 5;
+				} else if (nombreColorSeleccionado == "Rosa") {
+					idColorSeleccionado = 6;
+				} else if (nombreColorSeleccionado == "Multicolor") {
+					idColorSeleccionado = 7;
+				} else if (nombreColorSeleccionado == "Blanco") {
+					idColorSeleccionado = 8;
+				} else if (nombreColorSeleccionado == "Gris") {
+					idColorSeleccionado = 9;
+				} else if (nombreColorSeleccionado == "Marron") {
+					idColorSeleccionado = 10;
+				}
 
-					//Cambiar paneles
+				int nivelFashionSeleccionado = (int) nivelFashionSpin.getValue();
+				int nivelImpermeableSeleccionado = (int) nivelImpermeableSpin.getValue();
+
+				String estiloPrendasSeleccionado = estilosComboBoxAñadirVestimenta.getSelectedItem().toString();
+				Boolean generoPrendas = null;
+
+				if (estiloPrendasSeleccionado == "ClasicoF" || estiloPrendasSeleccionado == "UrbanaF"
+						|| estiloPrendasSeleccionado == "RockF" || estiloPrendasSeleccionado == "BohoF"
+						|| estiloPrendasSeleccionado == "FormalF" || estiloPrendasSeleccionado == "SportyChickF") {
+					generoPrendas = true;
+
+				} else {
+					generoPrendas = false;
+				}
+
+				try {
+
+					// Metodo BD para anyadir prenda
+
+					BaseDatosModise.añadirPrenda(idColorSeleccionado, estiloPrendasSeleccionado, generoPrendas,
+							nivelFashionSeleccionado, nivelImpermeableSeleccionado);
+
+					// Cambiar paneles
 					String tipoPrenda = tipoComboBoxAñadirVestimenta.getSelectedItem().toString();
 					if (tipoPrenda == "camisetas") {
 						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirCamisetas);
-					} else if(tipoPrenda == "chaquetas") {
+					} else if (tipoPrenda == "chaquetas") {
 						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirChaquetas);
-					} else if(tipoPrenda == "gorros") {
+					} else if (tipoPrenda == "gorros") {
 						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirGorros);
-					} else if(tipoPrenda == "pantalones") {
+					} else if (tipoPrenda == "pantalones") {
 						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirPantalones);
-					} else if (tipoPrenda == "zapatos"){
+					} else if (tipoPrenda == "zapatos") {
 						CambiarPanel(ventanaAñadirVestimenta1, ventanaAñadirZapatos);
 					}
-			
+
 					mb.setEnabled(true);
 					mb.setVisible(true);
-					errorVentanaAñadirVestimenta1.setText("");  
-					
+					errorVentanaAñadirVestimenta1.setText("");
+
 				} catch (BDException e1) {
 					e1.printStackTrace();
 				}
-			
-			
-			}	 
+
+			}
 		});
-		
+
 		ventanaAñadirVestimenta1Cancelar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				try {
 					BaseDatosModise.eliminarUltimaPrenda();
 				} catch (BDException e1) {
 					e1.printStackTrace();
 				}
-				
+
 				CambiarPanel(ventanaAñadirVestimenta1, ventanaMenuPrincipal);
 			}
 		});
-		
-		
-		
-		
-		//Añadiendo los componentes de ventanaAñadirCamiseta
-		
-			//Importar foto
-		
-			
-			importarFotoCamisetas = new JLabel("Seleccionar foto para importar de la camiseta: ");
-			importarFotoCamisetas.setBounds(40, 50, 300, 40);
-			
-			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
-			importarFotoCamisetaChooser = new JButton("Seleccionar Foto");
-			importarFotoCamisetaChooser.setBounds(360, 60, 140, 30);
-			
-			camisetaChooserPreview = new JLabel(" ");
-			camisetaChooserPreview.setBounds(40, 100, 550, 30);
-			
-			camisetasLogotipoLabel = new JLabel("Tiene logotipo la camiseta?: ");
-			camisetasLogotipoLabel.setBounds(40, 130, 300, 40);
-			logotipoCamisetaTextField = new JTextField();
-			logotipoCamisetaTextField.setBounds(360, 140, 200, 30);
-			
-			
-			camisetasRayasLabel = new JLabel("Tiene Rayas la camiseta?: ");
-			camisetasRayasLabel.setBounds(40,190, 300, 40);
-			camisetasRayasSiRB = new JRadioButton("Si");
-			camisetasRayasSiRB.setBounds(360, 190, 50, 40);
-			camisetasRayasNoRB = new JRadioButton("No");
-			camisetasRayasNoRB.setBounds(430, 190, 50, 40);
-			ButtonGroup radioRayasBG = new ButtonGroup();
-			radioRayasBG.add(camisetasRayasSiRB);
-			radioRayasBG.add(camisetasRayasNoRB);
-			
-			camisetasCuadrosLabel = new JLabel("La camiseta es a cuadros?");
-			camisetasCuadrosLabel.setBounds(40, 240, 300, 40);
-			camisetasCuadrosSiRB = new JRadioButton("Si");
-			camisetasCuadrosSiRB.setBounds(360, 240, 50, 40);
-			camisetasCuadrosNoRB = new JRadioButton("No");
-			camisetasCuadrosNoRB.setBounds(430, 240, 50, 40);
-			ButtonGroup radioCuadrosBG = new ButtonGroup();
-			radioCuadrosBG.add(camisetasCuadrosSiRB);
-			radioCuadrosBG.add(camisetasCuadrosNoRB);
-			
-			atrasAñadirCamisetas = new JButton("Atrás");
-			atrasAñadirCamisetas.setBounds(10, 340, 200, 30);
-			
-			siguienteAñadirCamisetas = new JButton("Siguiente");
-			siguienteAñadirCamisetas.setBounds(500, 340, 200, 30);
-			
-			ventanaAñadirCamisetas.add(importarFotoCamisetas);
-			ventanaAñadirCamisetas.add(camisetaChooserPreview);
-			ventanaAñadirCamisetas.add(camisetasLogotipoLabel);
-			ventanaAñadirCamisetas.add(importarFotoCamisetaChooser);
-			ventanaAñadirCamisetas.add(logotipoCamisetaTextField);
-			ventanaAñadirCamisetas.add(camisetasRayasLabel);
-			ventanaAñadirCamisetas.add(camisetasRayasSiRB);
-			ventanaAñadirCamisetas.add(camisetasRayasNoRB);
-			ventanaAñadirCamisetas.add(camisetasCuadrosLabel);
-			ventanaAñadirCamisetas.add(camisetasCuadrosSiRB);
-			ventanaAñadirCamisetas.add(camisetasCuadrosNoRB);
-			ventanaAñadirCamisetas.add(atrasAñadirCamisetas);
-			ventanaAñadirCamisetas.add(siguienteAñadirCamisetas);
-			
-			importarFotoCamisetaChooser.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					JFileChooser chooser = new JFileChooser();
-					chooser.showOpenDialog(null);
-					File f = chooser.getSelectedFile();
-					String filename = f.getAbsolutePath();
-					
-					camisetaChooserPreview.setText(filename);
-					
-				}
-			});
-			
-			atrasAñadirCamisetas.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
 
-					
-					CambiarPanel(ventanaAñadirCamisetas, ventanaAñadirVestimenta1);
-					ventanaAñadirVestimenta1Cancelar.setVisible(true);
-					ventanaAñadirVestimenta1Atras.setVisible(false);
-				}
-			});
-			
-			siguienteAñadirCamisetas.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					Boolean rayasSiNo = null;
-					if ( camisetasRayasSiRB.isSelected()) {
-						rayasSiNo = true;
-					} else if (camisetasRayasNoRB.isSelected()){
-						rayasSiNo = false;
-					} else {
-						JOptionPane.showMessageDialog(ventanaAñadirCamisetas, "Debes seleccionar si tiene rayas o no la camiseta");
-					}
-					
-					Boolean cuadrosSiNo = null;
-					if (camisetasCuadrosSiRB.isSelected()) {
-						cuadrosSiNo = true;
-					} else if (camisetasCuadrosNoRB.isSelected()) {
-						cuadrosSiNo = false;
-					} else {
-						JOptionPane.showMessageDialog(ventanaAñadirCamisetas, "Debes seleccionar si tiene cuadros o no la camiseta");
+		// Añadiendo los componentes de ventanaAñadirCamiseta
 
-					}
-					
-						try {
-							BaseDatosModise.añadirCamiseta(logotipoCamisetaTextField.getSelectedText(), rayasSiNo, cuadrosSiNo, camisetaChooserPreview.getText());
-						} catch (FileNotFoundException | BDException e1) {
-							e1.printStackTrace();
-						}
-				
-						CambiarPanel(ventanaAñadirCamisetas, ventanaMenuPrincipal);
-				}
-			});
-		
-		//Añadiendo los componentes de ventanaAñadirChaquetas
-			
-			importarFotoChaquetas = new JLabel("Seleccionar foto para importar de la chaqueta: ");
-			importarFotoChaquetas.setBounds(40, 50, 300, 40);
-			
-			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
-			importarFotoChaquetasChooser = new JButton("Seleccionar Foto");
-			importarFotoChaquetasChooser.setBounds(360, 60, 140, 30);
-			
-			chaquetasChooserPreview = new JLabel(" ");
-			chaquetasChooserPreview.setBounds(40, 100, 550, 30);
-	
-			
-			chaquetasLargoLabel = new JLabel("Es larga la chaqueta?: ");
-			chaquetasLargoLabel.setBounds(40, 150, 300, 40);
-			chaquetasLargoSiRB = new JRadioButton("Si");
-			chaquetasLargoSiRB.setBounds(360, 150, 50, 40);
-			chaquetasLargoNoRB = new JRadioButton("No");
-			chaquetasLargoNoRB.setBounds(430, 150, 50, 40);
-			ButtonGroup radioLargoBG = new ButtonGroup();
-			radioLargoBG.add(chaquetasLargoSiRB);
-			radioLargoBG.add(chaquetasLargoNoRB);
-			
-			chaquetasLisaLabel = new JLabel("La chaqueta es lisa?: ");
-			chaquetasLisaLabel.setBounds(40,200, 300, 40);
-			chaquetasLisaSiRB = new JRadioButton("Si");
-			chaquetasLisaSiRB.setBounds(360, 200, 50, 40);
-			chaquetasLisaNoRB = new JRadioButton("No");
-			chaquetasLisaNoRB.setBounds(430, 200, 50, 40);
-			ButtonGroup radioLisaBG = new ButtonGroup();
-			radioLisaBG.add(chaquetasLisaSiRB);
-			radioLisaBG.add(chaquetasLisaNoRB);
-			
-			atrasAñadirChaquetas = new JButton("Atrás");
-			atrasAñadirChaquetas.setBounds(10, 340, 200, 30);
-			
-			siguienteAñadirChaquetas = new JButton("Siguiente");
-			siguienteAñadirChaquetas.setBounds(500, 340, 200, 30);
-			
-			ventanaAñadirChaquetas.add(importarFotoChaquetas);
-			ventanaAñadirChaquetas.add(importarFotoChaquetasChooser);
-			ventanaAñadirChaquetas.add(chaquetasChooserPreview);
-			ventanaAñadirChaquetas.add(chaquetasLargoLabel);
-			ventanaAñadirChaquetas.add(chaquetasLargoSiRB);
-			ventanaAñadirChaquetas.add(chaquetasLargoNoRB);
-			ventanaAñadirChaquetas.add(chaquetasLisaLabel);
-			ventanaAñadirChaquetas.add(chaquetasLisaSiRB);
-			ventanaAñadirChaquetas.add(chaquetasLisaNoRB);
-			ventanaAñadirChaquetas.add(atrasAñadirChaquetas);
-			ventanaAñadirChaquetas.add(siguienteAñadirChaquetas);
-			
-			
-			importarFotoChaquetasChooser.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					JFileChooser chooser = new JFileChooser();
-					chooser.showOpenDialog(null);
-					File f = chooser.getSelectedFile();
-					String filename = f.getAbsolutePath();
-					
-					chaquetasChooserPreview.setText(filename);
-					
-				}
-			});
-			
-			atrasAñadirChaquetas.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					CambiarPanel(ventanaAñadirChaquetas, ventanaAñadirVestimenta1);
-					ventanaAñadirVestimenta1Cancelar.setVisible(true);
-					ventanaAñadirVestimenta1Atras.setVisible(false);
-					
-				}
-			});			
-			
-			
-			siguienteAñadirChaquetas.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					
-					Boolean largaSiNo = null;
-					if ( chaquetasLargoSiRB.isSelected()) {
-						largaSiNo = true;
-					} else if (chaquetasLargoNoRB.isSelected()){
-						largaSiNo = false;
-					} else {
-						JOptionPane.showMessageDialog(ventanaAñadirChaquetas, "Debes seleccionar si es larga o no la chaqueta");
-					}
-					
-					Boolean lisaSiNo = null;
-					if (chaquetasLisaSiRB.isSelected()) {
-						lisaSiNo = true;
-					} else if (chaquetasLisaNoRB.isSelected()) {
-						lisaSiNo = false;
-					} else {
-						JOptionPane.showMessageDialog(ventanaAñadirChaquetas, "Debes seleccionar si es lisa o no la chaqueta");
+		// Importar foto
 
-					}
-					
-						try {
-							BaseDatosModise.añadirChaquetas(largaSiNo, lisaSiNo, chaquetasChooserPreview.getText());
-						} catch (FileNotFoundException | BDException e1) {
-							e1.printStackTrace();
-						}
-					
-					
-					
-					CambiarPanel(ventanaAñadirChaquetas, ventanaMenuPrincipal);
-					
-				}
-			});
-			
-			
-			
-		//Añadiendo los componentes de ventanaAñadirGorros
-			
-			//Importar foto
-			importarFotoGorros = new JLabel("Seleccionar foto para importar de la prenda: ");
-			importarFotoGorros.setBounds(40, 50, 300, 40);
-			
-			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
-			importarFotoGorrosChooser = new JButton("Seleccionar Foto");
-			importarFotoGorrosChooser.setBounds(360, 60, 140, 30);
-			
-			gorrosChooserPreview = new JLabel(" ");
-			gorrosChooserPreview.setBounds(40, 100, 550, 30);
-			
-			gorrosTemporadaLabel = new JLabel("Es de verano el gorro?: ");
-			gorrosTemporadaLabel.setBounds(40,200, 300, 40);
-			gorrosVeranoSiRB = new JRadioButton("Si");
-			gorrosVeranoSiRB.setBounds(360, 200, 50, 40);
-			gorrosVeranoNoRB = new JRadioButton("No");
-			gorrosVeranoNoRB.setBounds(430, 200, 50, 40);
-			ButtonGroup radioVeranoBG = new ButtonGroup();
-			radioVeranoBG.add(gorrosVeranoSiRB);
-			radioVeranoBG.add(gorrosVeranoNoRB);
-			
-			atrasAñadirGorros = new JButton("Atrás");
-			atrasAñadirGorros.setBounds(10, 340, 200, 30);
-			
-			siguienteAñadirGorros = new JButton("Siguiente");
-			siguienteAñadirGorros.setBounds(500, 340, 200, 30);
-			
-			ventanaAñadirGorros.add(importarFotoGorros);
-			ventanaAñadirGorros.add(importarFotoGorrosChooser);
-			ventanaAñadirGorros.add(gorrosChooserPreview);
-			ventanaAñadirGorros.add(gorrosTemporadaLabel);
-			ventanaAñadirGorros.add(gorrosVeranoSiRB);
-			ventanaAñadirGorros.add(gorrosVeranoNoRB);
-			ventanaAñadirGorros.add(atrasAñadirGorros);
-			ventanaAñadirGorros.add(siguienteAñadirGorros);
-			ventanaAñadirGorros.add(importarFotoGorros);
-			
-			importarFotoGorrosChooser.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-						JFileChooser chooser = new JFileChooser();
-						chooser.showOpenDialog(null);
-						File f = chooser.getSelectedFile();
-						String filename = f.getAbsolutePath();
-						
-						gorrosChooserPreview.setText(filename);
-					
-				}
-			});
-			
-			atrasAñadirGorros.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					CambiarPanel(ventanaAñadirGorros, ventanaAñadirVestimenta1);
-					ventanaAñadirVestimenta1Cancelar.setVisible(true);
-					ventanaAñadirVestimenta1Atras.setVisible(false);
-					
-				}
-			});			
-			
-			
-			siguienteAñadirGorros.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					Boolean veranoSiNo = null;
-					if (chaquetasLisaSiRB.isSelected()) {
-						veranoSiNo = true;
-					} else if (chaquetasLisaNoRB.isSelected()) {
-						veranoSiNo = false;
-					} else {
-						JOptionPane.showMessageDialog(ventanaAñadirChaquetas, "Debes seleccionar si es para verano o no el gorro");
+		importarFotoCamisetas = new JLabel("Seleccionar foto para importar de la camiseta: ");
+		importarFotoCamisetas.setBounds(40, 50, 300, 40);
 
-					}
-					
-						try {
-							BaseDatosModise.añadirGorros(veranoSiNo, gorrosChooserPreview.getText());
-						} catch (FileNotFoundException | BDException e1) {
-							e1.printStackTrace();
-						}
-					
-					CambiarPanel(ventanaAñadirGorros, ventanaMenuPrincipal);
-					
-				}
-			});
-			
-			
-			
-			
-		//Añadiendo los componentes de ventanaAñadirPantalones
-			
-			//Importar foto
-			importarFotoPantalones = new JLabel("Seleccionar foto para importar de la prenda: ");
-			importarFotoPantalones.setBounds(40, 50, 300, 40);
-			
-			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
-			importarFotoPantalonesChooser = new JButton("Seleccionar Foto");
-			importarFotoPantalonesChooser.setBounds(360, 60, 140, 30);
-			
-			pantalonesChooserPreview = new JLabel(" ");
-			pantalonesChooserPreview.setBounds(40, 100, 550, 30);
-			
-			pantalonesMarcaLabel = new JLabel("De que marca son los pantalones?: ");
-			pantalonesMarcaLabel.setBounds(40, 150, 300, 40);
-			pantalonesMarcaText = new JTextField();
-			pantalonesMarcaText.setBounds(360, 160, 100, 30);
-			
-			pantalonesLargoLabel = new JLabel("Son largos los pantalones?: ");
-			pantalonesLargoLabel.setBounds(40,200, 300, 40);
-			pantalonesLargoSiRB = new JRadioButton("Si");
-			pantalonesLargoSiRB.setBounds(360, 200, 50, 40);
-			pantalonesLargoNoRB = new JRadioButton("No");
-			pantalonesLargoNoRB.setBounds(430, 200, 50, 40);
-			ButtonGroup pantalonesBG = new ButtonGroup();
-			pantalonesBG.add(pantalonesLargoNoRB);
-			pantalonesBG.add(pantalonesLargoSiRB);
+		// aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la
+		// base de datos <<
+		importarFotoCamisetaChooser = new JButton("Seleccionar Foto");
+		importarFotoCamisetaChooser.setBounds(360, 60, 140, 30);
 
-			
-			atrasAñadirPantalones = new JButton("Atrás");
-			atrasAñadirPantalones.setBounds(10, 340, 200, 30);
-			
-			siguienteAñadirPantalones = new JButton("Siguiente");
-			siguienteAñadirPantalones.setBounds(500, 340, 200, 30);
-			
-			ventanaAñadirPantalones.add(importarFotoPantalones);
-			ventanaAñadirPantalones.add(importarFotoPantalonesChooser);
-			ventanaAñadirPantalones.add(pantalonesChooserPreview);
-			ventanaAñadirPantalones.add(pantalonesMarcaLabel);
-			ventanaAñadirPantalones.add(pantalonesMarcaText);
-			ventanaAñadirPantalones.add(pantalonesLargoLabel);
-			ventanaAñadirPantalones.add(pantalonesLargoSiRB);
-			ventanaAñadirPantalones.add(pantalonesLargoNoRB);
-			ventanaAñadirPantalones.add(atrasAñadirPantalones);
-			ventanaAñadirPantalones.add(siguienteAñadirPantalones);
-			
-			importarFotoPantalonesChooser.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					JFileChooser chooser = new JFileChooser();
-					chooser.showOpenDialog(null);
-					File f = chooser.getSelectedFile();
-					String filename = f.getAbsolutePath();
-					
-					pantalonesChooserPreview.setText(filename);
-					
-				}
-			});
-			
-			atrasAñadirPantalones.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					
-					CambiarPanel(ventanaAñadirPantalones, ventanaAñadirVestimenta1);
-					ventanaAñadirVestimenta1Cancelar.setVisible(true);
-					ventanaAñadirVestimenta1Atras.setVisible(false);
-					
-				}
-			});			
-			
-			
-			siguienteAñadirPantalones.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					Boolean pantalonesLargoSiNo = null;
-					if (pantalonesLargoSiRB.isSelected()) {
-						pantalonesLargoSiNo = true;
-					} else if (pantalonesLargoNoRB.isSelected()) {
-						pantalonesLargoSiNo = false;
-					} else {
-						JOptionPane.showMessageDialog(ventanaAñadirChaquetas, "Debes seleccionar si es largo o no el pantalon");
+		camisetaChooserPreview = new JLabel(" ");
+		camisetaChooserPreview.setBounds(40, 100, 550, 30);
 
-					}
-					
-						try {
-							BaseDatosModise.añadirPantalones(pantalonesMarcaText.getText() ,pantalonesLargoSiNo, pantalonesChooserPreview.getText());
-						} catch (FileNotFoundException | BDException e1) {
-							e1.printStackTrace();
-						}
-					
-					
-					CambiarPanel(ventanaAñadirPantalones, ventanaMenuPrincipal);
-					
-				}
-			});
-			
-			
-		//Añadiendo los componentes de ventanaAñadirZapatos
+		camisetasLogotipoLabel = new JLabel("Tiene logotipo la camiseta?: ");
+		camisetasLogotipoLabel.setBounds(40, 130, 300, 40);
+		logotipoCamisetaTextField = new JTextField();
+		logotipoCamisetaTextField.setBounds(360, 140, 200, 30);
 
-			//Importar foto
-			importarFotoZapatos = new JLabel("Seleccionar foto para importar de la prenda: ");
-			importarFotoZapatos.setBounds(40, 50, 300, 40);
-			
-			//aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la base de datos <<
-			importarFotoZapatosChooser = new JButton("Seleccionar Foto");
-			importarFotoZapatosChooser.setBounds(360, 60, 140, 30);
-			
-			zapatosChooserPreview = new JLabel(" ");
-			zapatosChooserPreview.setBounds(40, 100, 550, 30);
-			
-			zapatosTipoLabel = new JLabel("De que tipo son los zapatos?: ");
-			zapatosTipoLabel.setBounds(40,150, 300, 40);
-			zapatosDeportivosRB = new JRadioButton("Deportivos");
-			zapatosDeportivosRB.setBounds(360, 150, 100, 40);
-			zapatosVestirRB = new JRadioButton("De Vestir");
-			zapatosVestirRB.setBounds(470, 150, 100, 40);
-			ButtonGroup radioTipoZapatosBG = new ButtonGroup();
-			radioTipoZapatosBG.add(zapatosDeportivosRB);
-			radioTipoZapatosBG.add(zapatosVestirRB);
-			
-			atrasAñadirZapatos = new JButton("Atrás");
-			atrasAñadirZapatos.setBounds(10, 340, 200, 30);
-			
-			siguienteAñadirZapatos = new JButton("Siguiente");
-			siguienteAñadirZapatos.setBounds(500, 340, 200, 30);
-			
-			ventanaAñadirZapatos.add(importarFotoZapatosChooser);
-			ventanaAñadirZapatos.add(zapatosChooserPreview);
-			ventanaAñadirZapatos.add(importarFotoZapatos);
-			ventanaAñadirZapatos.add(zapatosTipoLabel);
-			ventanaAñadirZapatos.add(zapatosDeportivosRB);
-			ventanaAñadirZapatos.add(zapatosVestirRB);
-			ventanaAñadirZapatos.add(atrasAñadirZapatos);
-			ventanaAñadirZapatos.add(siguienteAñadirZapatos);
-			
-			importarFotoZapatosChooser.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					JFileChooser chooser = new JFileChooser();
-					chooser.showOpenDialog(null);
-					File f = chooser.getSelectedFile();
-					String filename = f.getAbsolutePath();
-					
-					zapatosChooserPreview.setText(filename);
-					
+		camisetasRayasLabel = new JLabel("Tiene Rayas la camiseta?: ");
+		camisetasRayasLabel.setBounds(40, 190, 300, 40);
+		camisetasRayasSiRB = new JRadioButton("Si");
+		camisetasRayasSiRB.setBounds(360, 190, 50, 40);
+		camisetasRayasNoRB = new JRadioButton("No");
+		camisetasRayasNoRB.setBounds(430, 190, 50, 40);
+		ButtonGroup radioRayasBG = new ButtonGroup();
+		radioRayasBG.add(camisetasRayasSiRB);
+		radioRayasBG.add(camisetasRayasNoRB);
+
+		camisetasCuadrosLabel = new JLabel("La camiseta es a cuadros?");
+		camisetasCuadrosLabel.setBounds(40, 240, 300, 40);
+		camisetasCuadrosSiRB = new JRadioButton("Si");
+		camisetasCuadrosSiRB.setBounds(360, 240, 50, 40);
+		camisetasCuadrosNoRB = new JRadioButton("No");
+		camisetasCuadrosNoRB.setBounds(430, 240, 50, 40);
+		ButtonGroup radioCuadrosBG = new ButtonGroup();
+		radioCuadrosBG.add(camisetasCuadrosSiRB);
+		radioCuadrosBG.add(camisetasCuadrosNoRB);
+
+		atrasAñadirCamisetas = new JButton("Atrás");
+		atrasAñadirCamisetas.setBounds(10, 340, 200, 30);
+
+		siguienteAñadirCamisetas = new JButton("Siguiente");
+		siguienteAñadirCamisetas.setBounds(500, 340, 200, 30);
+
+		ventanaAñadirCamisetas.add(importarFotoCamisetas);
+		ventanaAñadirCamisetas.add(camisetaChooserPreview);
+		ventanaAñadirCamisetas.add(camisetasLogotipoLabel);
+		ventanaAñadirCamisetas.add(importarFotoCamisetaChooser);
+		ventanaAñadirCamisetas.add(logotipoCamisetaTextField);
+		ventanaAñadirCamisetas.add(camisetasRayasLabel);
+		ventanaAñadirCamisetas.add(camisetasRayasSiRB);
+		ventanaAñadirCamisetas.add(camisetasRayasNoRB);
+		ventanaAñadirCamisetas.add(camisetasCuadrosLabel);
+		ventanaAñadirCamisetas.add(camisetasCuadrosSiRB);
+		ventanaAñadirCamisetas.add(camisetasCuadrosNoRB);
+		ventanaAñadirCamisetas.add(atrasAñadirCamisetas);
+		ventanaAñadirCamisetas.add(siguienteAñadirCamisetas);
+
+		importarFotoCamisetaChooser.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+				chooser.showOpenDialog(null);
+				File f = chooser.getSelectedFile();
+				String filename = f.getAbsolutePath();
+
+				camisetaChooserPreview.setText(filename);
+
+			}
+		});
+
+		atrasAñadirCamisetas.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				CambiarPanel(ventanaAñadirCamisetas, ventanaAñadirVestimenta1);
+				ventanaAñadirVestimenta1Cancelar.setVisible(true);
+				ventanaAñadirVestimenta1Atras.setVisible(false);
+			}
+		});
+
+		siguienteAñadirCamisetas.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Boolean rayasSiNo = null;
+				if (camisetasRayasSiRB.isSelected()) {
+					rayasSiNo = true;
+				} else if (camisetasRayasNoRB.isSelected()) {
+					rayasSiNo = false;
+				} else {
+					JOptionPane.showMessageDialog(ventanaAñadirCamisetas,
+							"Debes seleccionar si tiene rayas o no la camiseta");
 				}
-			});
-			
-			atrasAñadirZapatos.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					CambiarPanel(ventanaAñadirZapatos, ventanaAñadirVestimenta1);
-					ventanaAñadirVestimenta1Cancelar.setVisible(true);
-					ventanaAñadirVestimenta1Atras.setVisible(false);
-					
+
+				Boolean cuadrosSiNo = null;
+				if (camisetasCuadrosSiRB.isSelected()) {
+					cuadrosSiNo = true;
+				} else if (camisetasCuadrosNoRB.isSelected()) {
+					cuadrosSiNo = false;
+				} else {
+					JOptionPane.showMessageDialog(ventanaAñadirCamisetas,
+							"Debes seleccionar si tiene cuadros o no la camiseta");
+
 				}
-			});			
-			
-			
-			siguienteAñadirZapatos.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					Boolean deportivoSiNo = null;
-					if (zapatosDeportivosRB.isSelected()) {
-						deportivoSiNo = true;
-					} else {
-						deportivoSiNo = false;
-					}
-					
-					Boolean devestirSiNo = null;
-					if (zapatosVestirRB.isSelected()) {
-						devestirSiNo = true;
-					} else {
-						devestirSiNo = false;
-					}
-					
-					
-					
-						try {
-							BaseDatosModise.añadirZapatos(deportivoSiNo, devestirSiNo, zapatosChooserPreview.getText());
-						} catch (FileNotFoundException | BDException e1) {
-							e1.printStackTrace();
-						} 
-					
-					CambiarPanel(ventanaAñadirZapatos, ventanaMenuPrincipal);
-					
+
+				try {
+					BaseDatosModise.añadirCamiseta(logotipoCamisetaTextField.getSelectedText(), rayasSiNo, cuadrosSiNo,
+							camisetaChooserPreview.getText());
+				} catch (FileNotFoundException | BDException e1) {
+					e1.printStackTrace();
 				}
-			});
-			
-		
-		
-			
-			
+
+				CambiarPanel(ventanaAñadirCamisetas, ventanaMenuPrincipal);
+			}
+		});
+
+		// Añadiendo los componentes de ventanaAñadirChaquetas
+
+		importarFotoChaquetas = new JLabel("Seleccionar foto para importar de la chaqueta: ");
+		importarFotoChaquetas.setBounds(40, 50, 300, 40);
+
+		// aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la
+		// base de datos <<
+		importarFotoChaquetasChooser = new JButton("Seleccionar Foto");
+		importarFotoChaquetasChooser.setBounds(360, 60, 140, 30);
+
+		chaquetasChooserPreview = new JLabel(" ");
+		chaquetasChooserPreview.setBounds(40, 100, 550, 30);
+
+		chaquetasLargoLabel = new JLabel("Es larga la chaqueta?: ");
+		chaquetasLargoLabel.setBounds(40, 150, 300, 40);
+		chaquetasLargoSiRB = new JRadioButton("Si");
+		chaquetasLargoSiRB.setBounds(360, 150, 50, 40);
+		chaquetasLargoNoRB = new JRadioButton("No");
+		chaquetasLargoNoRB.setBounds(430, 150, 50, 40);
+		ButtonGroup radioLargoBG = new ButtonGroup();
+		radioLargoBG.add(chaquetasLargoSiRB);
+		radioLargoBG.add(chaquetasLargoNoRB);
+
+		chaquetasLisaLabel = new JLabel("La chaqueta es lisa?: ");
+		chaquetasLisaLabel.setBounds(40, 200, 300, 40);
+		chaquetasLisaSiRB = new JRadioButton("Si");
+		chaquetasLisaSiRB.setBounds(360, 200, 50, 40);
+		chaquetasLisaNoRB = new JRadioButton("No");
+		chaquetasLisaNoRB.setBounds(430, 200, 50, 40);
+		ButtonGroup radioLisaBG = new ButtonGroup();
+		radioLisaBG.add(chaquetasLisaSiRB);
+		radioLisaBG.add(chaquetasLisaNoRB);
+
+		atrasAñadirChaquetas = new JButton("Atrás");
+		atrasAñadirChaquetas.setBounds(10, 340, 200, 30);
+
+		siguienteAñadirChaquetas = new JButton("Siguiente");
+		siguienteAñadirChaquetas.setBounds(500, 340, 200, 30);
+
+		ventanaAñadirChaquetas.add(importarFotoChaquetas);
+		ventanaAñadirChaquetas.add(importarFotoChaquetasChooser);
+		ventanaAñadirChaquetas.add(chaquetasChooserPreview);
+		ventanaAñadirChaquetas.add(chaquetasLargoLabel);
+		ventanaAñadirChaquetas.add(chaquetasLargoSiRB);
+		ventanaAñadirChaquetas.add(chaquetasLargoNoRB);
+		ventanaAñadirChaquetas.add(chaquetasLisaLabel);
+		ventanaAñadirChaquetas.add(chaquetasLisaSiRB);
+		ventanaAñadirChaquetas.add(chaquetasLisaNoRB);
+		ventanaAñadirChaquetas.add(atrasAñadirChaquetas);
+		ventanaAñadirChaquetas.add(siguienteAñadirChaquetas);
+
+		importarFotoChaquetasChooser.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+				chooser.showOpenDialog(null);
+				File f = chooser.getSelectedFile();
+				String filename = f.getAbsolutePath();
+
+				chaquetasChooserPreview.setText(filename);
+
+			}
+		});
+
+		atrasAñadirChaquetas.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaAñadirChaquetas, ventanaAñadirVestimenta1);
+				ventanaAñadirVestimenta1Cancelar.setVisible(true);
+				ventanaAñadirVestimenta1Atras.setVisible(false);
+
+			}
+		});
+
+		siguienteAñadirChaquetas.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Boolean largaSiNo = null;
+				if (chaquetasLargoSiRB.isSelected()) {
+					largaSiNo = true;
+				} else if (chaquetasLargoNoRB.isSelected()) {
+					largaSiNo = false;
+				} else {
+					JOptionPane.showMessageDialog(ventanaAñadirChaquetas,
+							"Debes seleccionar si es larga o no la chaqueta");
+				}
+
+				Boolean lisaSiNo = null;
+				if (chaquetasLisaSiRB.isSelected()) {
+					lisaSiNo = true;
+				} else if (chaquetasLisaNoRB.isSelected()) {
+					lisaSiNo = false;
+				} else {
+					JOptionPane.showMessageDialog(ventanaAñadirChaquetas,
+							"Debes seleccionar si es lisa o no la chaqueta");
+
+				}
+
+				try {
+					BaseDatosModise.añadirChaquetas(largaSiNo, lisaSiNo, chaquetasChooserPreview.getText());
+				} catch (FileNotFoundException | BDException e1) {
+					e1.printStackTrace();
+				}
+
+				CambiarPanel(ventanaAñadirChaquetas, ventanaMenuPrincipal);
+
+			}
+		});
+
+		// Añadiendo los componentes de ventanaAñadirGorros
+
+		// Importar foto
+		importarFotoGorros = new JLabel("Seleccionar foto para importar de la prenda: ");
+		importarFotoGorros.setBounds(40, 50, 300, 40);
+
+		// aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la
+		// base de datos <<
+		importarFotoGorrosChooser = new JButton("Seleccionar Foto");
+		importarFotoGorrosChooser.setBounds(360, 60, 140, 30);
+
+		gorrosChooserPreview = new JLabel(" ");
+		gorrosChooserPreview.setBounds(40, 100, 550, 30);
+
+		gorrosTemporadaLabel = new JLabel("Es de verano el gorro?: ");
+		gorrosTemporadaLabel.setBounds(40, 200, 300, 40);
+		gorrosVeranoSiRB = new JRadioButton("Si");
+		gorrosVeranoSiRB.setBounds(360, 200, 50, 40);
+		gorrosVeranoNoRB = new JRadioButton("No");
+		gorrosVeranoNoRB.setBounds(430, 200, 50, 40);
+		ButtonGroup radioVeranoBG = new ButtonGroup();
+		radioVeranoBG.add(gorrosVeranoSiRB);
+		radioVeranoBG.add(gorrosVeranoNoRB);
+
+		atrasAñadirGorros = new JButton("Atrás");
+		atrasAñadirGorros.setBounds(10, 340, 200, 30);
+
+		siguienteAñadirGorros = new JButton("Siguiente");
+		siguienteAñadirGorros.setBounds(500, 340, 200, 30);
+
+		ventanaAñadirGorros.add(importarFotoGorros);
+		ventanaAñadirGorros.add(importarFotoGorrosChooser);
+		ventanaAñadirGorros.add(gorrosChooserPreview);
+		ventanaAñadirGorros.add(gorrosTemporadaLabel);
+		ventanaAñadirGorros.add(gorrosVeranoSiRB);
+		ventanaAñadirGorros.add(gorrosVeranoNoRB);
+		ventanaAñadirGorros.add(atrasAñadirGorros);
+		ventanaAñadirGorros.add(siguienteAñadirGorros);
+		ventanaAñadirGorros.add(importarFotoGorros);
+
+		importarFotoGorrosChooser.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+				chooser.showOpenDialog(null);
+				File f = chooser.getSelectedFile();
+				String filename = f.getAbsolutePath();
+
+				gorrosChooserPreview.setText(filename);
+
+			}
+		});
+
+		atrasAñadirGorros.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaAñadirGorros, ventanaAñadirVestimenta1);
+				ventanaAñadirVestimenta1Cancelar.setVisible(true);
+				ventanaAñadirVestimenta1Atras.setVisible(false);
+
+			}
+		});
+
+		siguienteAñadirGorros.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Boolean veranoSiNo = null;
+				if (chaquetasLisaSiRB.isSelected()) {
+					veranoSiNo = true;
+				} else if (chaquetasLisaNoRB.isSelected()) {
+					veranoSiNo = false;
+				} else {
+					JOptionPane.showMessageDialog(ventanaAñadirChaquetas,
+							"Debes seleccionar si es para verano o no el gorro");
+
+				}
+
+				try {
+					BaseDatosModise.añadirGorros(veranoSiNo, gorrosChooserPreview.getText());
+				} catch (FileNotFoundException | BDException e1) {
+					e1.printStackTrace();
+				}
+
+				CambiarPanel(ventanaAñadirGorros, ventanaMenuPrincipal);
+
+			}
+		});
+
+		// Añadiendo los componentes de ventanaAñadirPantalones
+
+		// Importar foto
+		importarFotoPantalones = new JLabel("Seleccionar foto para importar de la prenda: ");
+		importarFotoPantalones.setBounds(40, 50, 300, 40);
+
+		// aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la
+		// base de datos <<
+		importarFotoPantalonesChooser = new JButton("Seleccionar Foto");
+		importarFotoPantalonesChooser.setBounds(360, 60, 140, 30);
+
+		pantalonesChooserPreview = new JLabel(" ");
+		pantalonesChooserPreview.setBounds(40, 100, 550, 30);
+
+		pantalonesMarcaLabel = new JLabel("De que marca son los pantalones?: ");
+		pantalonesMarcaLabel.setBounds(40, 150, 300, 40);
+		pantalonesMarcaText = new JTextField();
+		pantalonesMarcaText.setBounds(360, 160, 100, 30);
+
+		pantalonesLargoLabel = new JLabel("Son largos los pantalones?: ");
+		pantalonesLargoLabel.setBounds(40, 200, 300, 40);
+		pantalonesLargoSiRB = new JRadioButton("Si");
+		pantalonesLargoSiRB.setBounds(360, 200, 50, 40);
+		pantalonesLargoNoRB = new JRadioButton("No");
+		pantalonesLargoNoRB.setBounds(430, 200, 50, 40);
+		ButtonGroup pantalonesBG = new ButtonGroup();
+		pantalonesBG.add(pantalonesLargoNoRB);
+		pantalonesBG.add(pantalonesLargoSiRB);
+
+		atrasAñadirPantalones = new JButton("Atrás");
+		atrasAñadirPantalones.setBounds(10, 340, 200, 30);
+
+		siguienteAñadirPantalones = new JButton("Siguiente");
+		siguienteAñadirPantalones.setBounds(500, 340, 200, 30);
+
+		ventanaAñadirPantalones.add(importarFotoPantalones);
+		ventanaAñadirPantalones.add(importarFotoPantalonesChooser);
+		ventanaAñadirPantalones.add(pantalonesChooserPreview);
+		ventanaAñadirPantalones.add(pantalonesMarcaLabel);
+		ventanaAñadirPantalones.add(pantalonesMarcaText);
+		ventanaAñadirPantalones.add(pantalonesLargoLabel);
+		ventanaAñadirPantalones.add(pantalonesLargoSiRB);
+		ventanaAñadirPantalones.add(pantalonesLargoNoRB);
+		ventanaAñadirPantalones.add(atrasAñadirPantalones);
+		ventanaAñadirPantalones.add(siguienteAñadirPantalones);
+
+		importarFotoPantalonesChooser.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+				chooser.showOpenDialog(null);
+				File f = chooser.getSelectedFile();
+				String filename = f.getAbsolutePath();
+
+				pantalonesChooserPreview.setText(filename);
+
+			}
+		});
+
+		atrasAñadirPantalones.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				CambiarPanel(ventanaAñadirPantalones, ventanaAñadirVestimenta1);
+				ventanaAñadirVestimenta1Cancelar.setVisible(true);
+				ventanaAñadirVestimenta1Atras.setVisible(false);
+
+			}
+		});
+
+		siguienteAñadirPantalones.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Boolean pantalonesLargoSiNo = null;
+				if (pantalonesLargoSiRB.isSelected()) {
+					pantalonesLargoSiNo = true;
+				} else if (pantalonesLargoNoRB.isSelected()) {
+					pantalonesLargoSiNo = false;
+				} else {
+					JOptionPane.showMessageDialog(ventanaAñadirChaquetas,
+							"Debes seleccionar si es largo o no el pantalon");
+
+				}
+
+				try {
+					BaseDatosModise.añadirPantalones(pantalonesMarcaText.getText(), pantalonesLargoSiNo,
+							pantalonesChooserPreview.getText());
+				} catch (FileNotFoundException | BDException e1) {
+					e1.printStackTrace();
+				}
+
+				CambiarPanel(ventanaAñadirPantalones, ventanaMenuPrincipal);
+
+			}
+		});
+
+		// Añadiendo los componentes de ventanaAñadirZapatos
+
+		// Importar foto
+		importarFotoZapatos = new JLabel("Seleccionar foto para importar de la prenda: ");
+		importarFotoZapatos.setBounds(40, 50, 300, 40);
+
+		// aqui hay que poner el filechooser y hacer el metodo de subida de fotos a la
+		// base de datos <<
+		importarFotoZapatosChooser = new JButton("Seleccionar Foto");
+		importarFotoZapatosChooser.setBounds(360, 60, 140, 30);
+
+		zapatosChooserPreview = new JLabel(" ");
+		zapatosChooserPreview.setBounds(40, 100, 550, 30);
+
+		zapatosTipoLabel = new JLabel("De que tipo son los zapatos?: ");
+		zapatosTipoLabel.setBounds(40, 150, 300, 40);
+		zapatosDeportivosRB = new JRadioButton("Deportivos");
+		zapatosDeportivosRB.setBounds(360, 150, 100, 40);
+		zapatosVestirRB = new JRadioButton("De Vestir");
+		zapatosVestirRB.setBounds(470, 150, 100, 40);
+		ButtonGroup radioTipoZapatosBG = new ButtonGroup();
+		radioTipoZapatosBG.add(zapatosDeportivosRB);
+		radioTipoZapatosBG.add(zapatosVestirRB);
+
+		atrasAñadirZapatos = new JButton("Atrás");
+		atrasAñadirZapatos.setBounds(10, 340, 200, 30);
+
+		siguienteAñadirZapatos = new JButton("Siguiente");
+		siguienteAñadirZapatos.setBounds(500, 340, 200, 30);
+
+		ventanaAñadirZapatos.add(importarFotoZapatosChooser);
+		ventanaAñadirZapatos.add(zapatosChooserPreview);
+		ventanaAñadirZapatos.add(importarFotoZapatos);
+		ventanaAñadirZapatos.add(zapatosTipoLabel);
+		ventanaAñadirZapatos.add(zapatosDeportivosRB);
+		ventanaAñadirZapatos.add(zapatosVestirRB);
+		ventanaAñadirZapatos.add(atrasAñadirZapatos);
+		ventanaAñadirZapatos.add(siguienteAñadirZapatos);
+
+		importarFotoZapatosChooser.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser chooser = new JFileChooser();
+				chooser.showOpenDialog(null);
+				File f = chooser.getSelectedFile();
+				String filename = f.getAbsolutePath();
+
+				zapatosChooserPreview.setText(filename);
+
+			}
+		});
+
+		atrasAñadirZapatos.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CambiarPanel(ventanaAñadirZapatos, ventanaAñadirVestimenta1);
+				ventanaAñadirVestimenta1Cancelar.setVisible(true);
+				ventanaAñadirVestimenta1Atras.setVisible(false);
+
+			}
+		});
+
+		siguienteAñadirZapatos.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				Boolean deportivoSiNo = null;
+				if (zapatosDeportivosRB.isSelected()) {
+					deportivoSiNo = true;
+				} else {
+					deportivoSiNo = false;
+				}
+
+				Boolean devestirSiNo = null;
+				if (zapatosVestirRB.isSelected()) {
+					devestirSiNo = true;
+				} else {
+					devestirSiNo = false;
+				}
+
+				try {
+					BaseDatosModise.añadirZapatos(deportivoSiNo, devestirSiNo, zapatosChooserPreview.getText());
+				} catch (FileNotFoundException | BDException e1) {
+					e1.printStackTrace();
+				}
+
+				CambiarPanel(ventanaAñadirZapatos, ventanaMenuPrincipal);
+
+			}
+		});
+
 		// Añadiendo los componentes de ventanaFeedback
 		nivelSatisfaccion = new JLabel("Nivel de satisfaccion: ");
 		nivelSatisfaccion.setFont(new Font("Monospace", Font.BOLD, 13));
@@ -2357,10 +2474,6 @@ public class Principal {
 		cambiarContraseña.setBounds(50, 20, 50, 50);
 		ajustes.add(cambiarContraseña);
 
-		cambiarFecha = new JButton("Cambiar fecha");
-		cambiarFecha.setBounds(50, 100, 50, 50);
-		ajustes.add(cambiarFecha);
-
 		reiniciarPerfil = new JButton("Reiniciar perfil");
 		reiniciarPerfil.setBounds(50, 180, 50, 50);
 		ajustes.add(reiniciarPerfil);
@@ -2388,14 +2501,6 @@ public class Principal {
 							JOptionPane.ERROR_MESSAGE);
 					System.out.println("Contraseña vacia o null, NO CAMBIADA");
 				}
-			}
-		});
-
-		cambiarFecha.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Cambiar fecha");
 			}
 		});
 
@@ -2590,7 +2695,7 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				UIManager.put("OptionPane.minimumSize", new Dimension(200, 200)); // este tamaño es solo para esta
+				UIManager.put("OptionPane.minimumSize", new Dimension(200, 150)); // este tamaño es solo para esta
 																					// ventana emergente
 				JOptionPane.showMessageDialog(null, ajustes, "Ajustes", JOptionPane.DEFAULT_OPTION);
 
@@ -2657,6 +2762,7 @@ public class Principal {
 		// lo ponemos en mas?
 
 		Timer timer = new Timer(ONE_SECOND, new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent evt) {
 				clockLabel.setText(clockFormat.format(new Date()));
 				clockLabel.repaint();

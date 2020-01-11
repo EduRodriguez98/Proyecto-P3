@@ -5,7 +5,6 @@ public class Pantalones extends Prendas {
 	private String marca;
 	private Boolean corto;
 
-
 	public Pantalones(Color colorPrincipal, boolean genero, int nivelFashion, int nivelImpermeable, String marca,
 			Boolean corto) {
 		super(colorPrincipal, genero, nivelFashion, nivelImpermeable);

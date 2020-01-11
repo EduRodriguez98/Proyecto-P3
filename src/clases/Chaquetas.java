@@ -4,7 +4,7 @@ public class Chaquetas extends Prendas {
 
 	private Boolean larga;
 	private Boolean lisa;
-	
+
 	public Chaquetas(Color colorPrincipal, boolean genero, int nivelFashion, int nivelImpermeable, Boolean larga,
 			Boolean lisa) {
 		super(colorPrincipal, genero, nivelFashion, nivelImpermeable);
@@ -34,7 +34,5 @@ public class Chaquetas extends Prendas {
 				+ ", ColorPrincipal = " + getColorPrincipal() + ", isGenero = " + isGenero() + ", NivelFashion = "
 				+ getNivelFashion() + ", NivelImpermeable = " + getNivelImpermeable() + "]";
 	}
-
-	
 
 }
