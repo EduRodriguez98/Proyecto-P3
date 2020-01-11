@@ -25,14 +25,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 import java.util.Properties;
-import java.util.Set;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
@@ -199,8 +197,8 @@ public class Principal {
 	static PrintStream Feedbacklog, Usuariolog;
 	public static Logger BDLogger;
 
-	// Metodo Cargar Datos a JPanel
-
+	
+	// Metodo Cargar Datos a JPanel (HAY QUE CAMBIARLO PERO NOT BAD!!! ES DEL ESTILO NO BORRAR)
 	public static void cargarJTable(Object[][] arrLleno, Object[][] arrV, int i, int j) {
 
 		Object aux;
@@ -1503,29 +1501,34 @@ public class Principal {
 							// Comprobamos que el HashMap se cree correctamente!PASAR A LOG!!
 							System.out.println(Collections.singletonList(outfitSolMap));
 
-							Object[][] arrOutfitSol = new Object[outfitSolMap.size()][2];
-							@SuppressWarnings("rawtypes")
-							Set entries = outfitSolMap.entrySet();
-							@SuppressWarnings("rawtypes")
-							Iterator entriesIterator = entries.iterator();
-
-							int i = 0;
-
-							while (entriesIterator.hasNext()) {
-								@SuppressWarnings("unchecked")
-								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator
-										.next();
-
-								arrOutfitSol[i][0] = mapping.getKey();
-								arrOutfitSol[i][1] = mapping.getValue();
-
-								i++;
+							//Creamos una lista de byteArray para guardar las fotos en una lista para usar en un segundo
+							List<byte[]> listaByteArray = new ArrayList<byte[]>();
+							
+							for (byte[]  bA: outfitSolMap.values()) {
+								listaByteArray.add(bA);
 							}
 							
-							System.out.println(Arrays.deepToString(arrOutfitSol));
-							//ventanaEmergentePideOutfit
+							//mostramos por pantalla la lista de byte[] creada para comprobar
+							System.out.println("aqui esta la lista de byte[]: " + listaByteArray);
 							
-
+							
+							ImageIcon f1 = new ImageIcon(listaByteArray.get(0));
+							ImageIcon f2 = new ImageIcon(listaByteArray.get(1));
+							ImageIcon f3 = new ImageIcon(listaByteArray.get(2));
+							ImageIcon f4 = new ImageIcon(listaByteArray.get(3));
+							ImageIcon f5 = new ImageIcon(listaByteArray.get(4));
+							
+							//Ya tenemos una lista de ImageIcon preparada para meter los valores a la tabla
+							List<ImageIcon> listaImageIcon = new ArrayList<ImageIcon>();
+							listaImageIcon.add(f1);
+							listaImageIcon.add(f2);
+							listaImageIcon.add(f3);
+							listaImageIcon.add(f4);
+							listaImageIcon.add(f5);
+							
+							
+							
+							//ventanaEmergentePideOutfit
 							JTable jt = new JTable();
 							jt.setPreferredSize(new Dimension(400, 850));
 							jt.setRowHeight(0, 50);
@@ -1538,7 +1541,6 @@ public class Principal {
 							String[] cols = { "idprendas", "foto" };
 							Object[][] rowsData = {};
 
-							cargarJTable(arrOutfitSol, rowsData, 0, 0);
 
 							DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
 							dtm.setDataVector(rowsData, cols);
@@ -1562,26 +1564,30 @@ public class Principal {
 										estilosComboBoxPideOutfit.getSelectedItem().toString(), 1, color);
 							}
 
-							Object[][] arrOutfitLluvia = new Object[outfitLluviaMap.size()][2];
-							@SuppressWarnings("rawtypes")
-							Set entries = outfitLluviaMap.entrySet();
-							@SuppressWarnings("rawtypes")
-							Iterator entriesIterator = entries.iterator();
-
-							int i = 0;
-
-							while (entriesIterator.hasNext()) {
-								@SuppressWarnings("unchecked")
-								Map.Entry<Integer, byte[]> mapping = (Map.Entry<Integer, byte[]>) entriesIterator
-										.next();
-
-								arrOutfitLluvia[i][0] = mapping.getKey();
-								arrOutfitLluvia[i][1] = mapping.getValue();
-
-								i++;
+							List<byte[]> listaByteArray = new ArrayList<byte[]>();
+							
+							for (byte[]  bA: outfitLluviaMap.values()) {
+								listaByteArray.add(bA);
 							}
 							
-							System.out.println(Arrays.deepToString(arrOutfitLluvia));
+							//mostramos por pantalla la lista de byte[] creada para comprobar
+							System.out.println("aqui esta la lista de byte[]: " + listaByteArray);
+							
+							
+							ImageIcon f1 = new ImageIcon(listaByteArray.get(0));
+							ImageIcon f2 = new ImageIcon(listaByteArray.get(1));
+							ImageIcon f3 = new ImageIcon(listaByteArray.get(2));
+							ImageIcon f4 = new ImageIcon(listaByteArray.get(3));
+							ImageIcon f5 = new ImageIcon(listaByteArray.get(4));
+							
+							//Ya tenemos una lista de ImageIcon preparada para meter los valores a la tabla
+							List<ImageIcon> listaImageIcon = new ArrayList<ImageIcon>();
+							listaImageIcon.add(f1);
+							listaImageIcon.add(f2);
+							listaImageIcon.add(f3);
+							listaImageIcon.add(f4);
+							listaImageIcon.add(f5);
+							
 							
 							//ventanaEmergentePideOutfit
 							
@@ -1598,7 +1604,6 @@ public class Principal {
 							String[] cols = { "idprendas", "foto" };
 							Object[][] rowsData = {};
 
-							cargarJTable(arrOutfitLluvia, rowsData, 0, 0);
 
 							DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
 							dtm.setDataVector(rowsData, cols);
