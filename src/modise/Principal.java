@@ -73,6 +73,7 @@ public class Principal {
 	// Gustos 2 || || 6.Ventana de Carga || 7.Ventana Menu Principal
 	// (CASO USUARIO YA REGISTRADO) 1.Ventana Inicio Sesion || 2.Ventana de Carga ||
 	// 3.Ventana Menu Principal
+
 	// Declarando componentes
 	// VentanaInicioSesion
 	JLabel labelBrand, labelEmail, labelContraseña, labelPregunta;
@@ -132,7 +133,6 @@ public class Principal {
 	JButton botonPideOutfit, botonAñadirVestimenta, botonMasMenosAdmin;
 
 	// ventanaAñadirVestimenta1
-
 	JLabel tipoLabelAñadirVestimenta, estilosLabelAñadirVestimenta, colorLabelAñadirVestimenta,
 			errorVentanaAñadirVestimenta1, nivelFashionLabel, nivelImpermeableLabel;
 	JComboBox<String> coloresComboBoxAñadirVestimenta;
@@ -140,6 +140,8 @@ public class Principal {
 	JComboBox<String> tipoComboBoxAñadirVestimenta;
 	JSpinner nivelFashionSpin, nivelImpermeableSpin;
 	JButton ventanaAñadirVestimenta1Atras, ventanaAñadirVestimenta1Siguiente, ventanaAñadirVestimenta1Cancelar;
+
+	SpinnerModel model3;
 
 	// ventanaAñadirCamisetas
 	JLabel importarFotoCamisetas, camisetasLogotipoLabel, camisetasRayasLabel, camisetasCuadrosLabel,
@@ -198,27 +200,27 @@ public class Principal {
 	static PrintStream Feedbacklog, Usuariolog;
 	public static Logger BDLogger;
 
-	
-	public void recorrerArray2DRecursivo(Object[][] array, List<ImageIcon> imgIconList, int row, int col, int countID,int countfoto) {
-	
-		if (row != array.length-1 || col != array[row].length-1) {
-		
-			if (col == array[row].length-1) {
-				row ++;
+	public void recorrerArray2DRecursivo(Object[][] array, List<ImageIcon> imgIconList, int row, int col, int countID,
+			int countfoto) {
+
+		if (row != array.length - 1 || col != array[row].length - 1) {
+
+			if (col == array[row].length - 1) {
+				row++;
 				countID++;
 				countfoto++;
 				col = 0;
-			
+
 				array[0][0] = imgIconList.get(0).toString();
 				array[row][col] = imgIconList.get(countfoto).toString();
-				
+
 			} else {
-				
-				col ++;
+
+				col++;
 			}
 			recorrerArray2DRecursivo(array, imgIconList, row, col, countID, countfoto);
 		}
-		
+
 	}
 
 	// Metodo Cambiar Paneles
@@ -243,8 +245,6 @@ public class Principal {
 		g.setVisible(false);
 		g.setEnabled(false);
 		g.setBounds(0, 0, 720, 480);
-		// g.setBackground(Color.GRAY); //color de todos los paneles (NO de las ventanas
-		// emergentes), a no ser que queramos cambiar alguno
 	}
 
 	/**
@@ -274,7 +274,6 @@ public class Principal {
 			FileInputStream fis = new FileInputStream(archivo);
 			Properties propConfig = new Properties();
 			propConfig.load(fis);
-			// cojemos las properties
 			String nombre = propConfig.getProperty("correo");
 			return nombre;
 		} catch (IOException e) {
@@ -289,7 +288,6 @@ public class Principal {
 			FileInputStream fis = new FileInputStream(archivo);
 			Properties propConfig = new Properties();
 			propConfig.load(fis);
-			// cojemos las properties
 			String contr = propConfig.getProperty("contrasena");
 			return contr;
 		} catch (IOException e) {
@@ -310,7 +308,6 @@ public class Principal {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height / 2 - frame.getSize().height / 2);
 		frame.setIconImage(new ImageIcon(getClass().getResource("modise1.png")).getImage()); // Icono de frame
-		// para el color haced " ctrl + F " y buscad " g.setBackground "
 
 		mb = new JMenuBar();
 		menu1 = new JMenu("Menu");
@@ -334,9 +331,6 @@ public class Principal {
 				Image bufferImage = this.createImage(this.getSize().width, this.getSize().height);
 				Graphics bufferGraphics = bufferImage.getGraphics();
 
-				// probando para ver si arreglamos lo de la imagen descentrada de fondo, en mi
-				// MAC hace lo que le da la gana los graficos :) pero probadlo en windows a ver
-				// como sale la ventana.
 				if (mb.isVisible() && mb.isEnabled()) {
 					bufferGraphics.drawImage(imagenInicio.getImage(), 0, -3, 720, 440, null);
 				} else {
@@ -362,7 +356,7 @@ public class Principal {
 		PanelFondo ventanaAñadirZapatos = new PanelFondo();
 		PanelFondo ventanaPideOutfit = new PanelFondo();
 		PanelFondo ventanaFeedback = new PanelFondo();
-		JPanel ventanaMasMenosAdmin = new JPanel(); // dejadla asi. NO, le he cambiado el nombre
+		JPanel ventanaMasMenosAdmin = new JPanel();
 
 		// ventanas Emergentes
 		JPanel ajustes = new JPanel(new GridLayout(3, 1));
@@ -408,7 +402,6 @@ public class Principal {
 		ventanaInicioSesion.add(labelEmail);
 		labelEmail.setBounds(60, 62, 100, 40);
 
-		// txtEmail = new JTextField("ejemplo@gmail.com");
 		txtEmail = new JTextField();
 		txtEmail.setText(getProp1());
 		ventanaInicioSesion.add(txtEmail);
@@ -429,10 +422,9 @@ public class Principal {
 		ventanaInicioSesion.add(labelContraseña);
 		labelContraseña.setBounds(60, 133, 100, 40);
 
-		// contraseña = new JPasswordField("12345"); // cambiado
 		contraseña = new JPasswordField();
 		contraseña.setText(getProp2());
-		contraseña.setEchoChar('*'); // hacer checkbox isSelected para ver contraseña, HECHO
+		contraseña.setEchoChar('*');
 		ventanaInicioSesion.add(contraseña);
 		contraseña.setBounds(160, 140, 300, 30);
 		escrito2 = false;
@@ -484,7 +476,6 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String valorPass = new String(contraseña.getPassword());
-				// setProp(txtEmail.getText(), valorPass);
 
 				Connection conexion = BaseDatosModise.conectar();
 				Statement st = null;
@@ -493,9 +484,7 @@ public class Principal {
 				} catch (SQLException e1) {
 
 				}
-				// Pasa el valor del JPassword a String
-				// String valorPass = new String(contraseña.getPassword()); UNAS LINEAS MAS
-				// ARRIBA
+
 				if (BaseDatosModise.logIn(st, txtEmail.getText(), valorPass) == true) {
 					CambiarPanel(ventanaInicioSesion, ventanaMenuPrincipal);
 					Usuariolog.println("Inicio de sesion: " + txtEmail.getText() + "	, " + (new Date()));
@@ -509,7 +498,7 @@ public class Principal {
 						System.out.println("VA NO ADMIN");
 					}
 				} else {
-					System.out.println("no va");
+					System.out.println("no va, USUARIO O CONTRASEÑA INCORRECTOS");
 					JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.");
 				}
 			}
@@ -576,8 +565,7 @@ public class Principal {
 					errorGenero.setText("");
 				} else {
 					errorGenero.setText("Se necesita seleccionar 1 genero para continuar.");
-					System.out.println("Se necesita seleccionar 1 genero para continuar."); // Hacer dialogo mas
-																							// adelante
+					System.out.println("Se necesita seleccionar 1 genero para continuar.");
 				}
 			}
 		});
@@ -594,7 +582,6 @@ public class Principal {
 		});
 
 		// Añadiendo los componentes de ventanaPerfilGustosUnoM
-
 		labelCrearNombreM = new JLabel("Introduzca su nombre: ");
 		labelCrearNombreM.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoM.add(labelCrearNombreM);
@@ -648,7 +635,6 @@ public class Principal {
 		labelCrearEdadM.setBounds(20, 115, 200, 30);
 
 		SpinnerModel model = new SpinnerNumberModel(18, 0, 99, 1); // default 18, min 0, max 99, +-1
-		// spinCrearEdad.setValue(18);
 		spinCrearEdadM = new JSpinner(model);
 		ventanaPerfilGustosUnoM.add(spinCrearEdadM);
 		spinCrearEdadM.setBounds(230, 115, 80, 30);
@@ -770,7 +756,6 @@ public class Principal {
 					if (clasicoM.isSelected() || urbanaM.isSelected() || rockM.isSelected() || smartM.isSelected()
 							|| formalM.isSelected() || casualChickM.isSelected()) {
 						errorPerfilGustosUnoM.setText("");
-						// CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
 						System.out.println("correctooooo");
 						errorNombreM.setText("");
 						errorEmailM.setText("");
@@ -778,6 +763,7 @@ public class Principal {
 						System.out.println("Edad marcado al crear cuenta:" + CrearEdadM); // para comporbar que guarda
 
 						CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
+
 						// JProgressBar
 						Thread t = new Thread(new Runnable() {
 
@@ -799,8 +785,10 @@ public class Principal {
 
 								if (stop = true) {
 
+									counter = 0;
 									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 									mb.setVisible(true);
+									botonMasMenosAdmin.setVisible(false);
 
 									try {
 
@@ -848,11 +836,8 @@ public class Principal {
 										}
 										BaseDatosModise.nuevoUsuario(txtCrearNombreM.getText(),
 												txtCrearEmailM.getText(), 0, (int) spinCrearEdadM.getValue(),
-												txtCrearContraseñaM.getText(), 0, colorseleccionado,
+												txtCrearContraseñaM.getText(), 1, colorseleccionado,
 												estiloseleccionado);
-
-										// CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
-										// mb.setVisible(true);
 
 										errorPerfilGustosUnoM.setText("");
 										errorNombreM.setText("");
@@ -866,7 +851,6 @@ public class Principal {
 										txtCrearEmailM.setText("ejemplo@gmail.com");
 										txtCrearContraseñaM.setText("");
 										spinCrearEdadM.setValue(18);
-										// comboColorPreferidoM.setSelectedItem(null);
 										bgM.clearSelection();
 
 									} catch (BDException e) {
@@ -917,7 +901,6 @@ public class Principal {
 				txtCrearEmailM.setText("ejemplo@gmail.com");
 				txtCrearContraseñaM.setText("");
 				spinCrearEdadM.setValue(18);
-				// comboColorPreferidoM.setSelectedItem(null);
 				bgM.clearSelection();
 
 				CambiarPanel(ventanaPerfilGustosUnoM, ventanaGenero);
@@ -925,7 +908,6 @@ public class Principal {
 		});
 
 		// Añadiendo los componentes de ventanaPerfilGustosUnoF
-
 		labelCrearNombreF = new JLabel("Introduzca su nombre: ");
 		labelCrearNombreF.setFont(new Font("Monospace", Font.BOLD, 11));
 		ventanaPerfilGustosUnoF.add(labelCrearNombreF);
@@ -979,7 +961,6 @@ public class Principal {
 		labelCrearEdadF.setBounds(20, 115, 200, 30);
 
 		SpinnerModel model2 = new SpinnerNumberModel(18, 0, 99, 1); // default 18, min 0, max 99, +-1
-		// spinCrearEdad.setValue(18);
 		spinCrearEdadF = new JSpinner(model2);
 		ventanaPerfilGustosUnoF.add(spinCrearEdadF);
 		spinCrearEdadF.setBounds(230, 115, 80, 30);
@@ -1070,15 +1051,13 @@ public class Principal {
 		errorPerfilGustosUnoF.setForeground(Color.RED);
 
 		// ActionListeners ventanaPerfilGustosUnoF
-
 		botonPerfilGustosUnoFSiguienteF.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				System.out.println("botonPerfilGustosUnoFSiguienteF");
-				
-				
+
 				String CrearNombreF = txtCrearNombreF.getText();
 				String CrearEmailF = txtCrearEmailF.getText();
 				String CrearContraseñaF = txtCrearContraseñaF.getText();
@@ -1087,7 +1066,7 @@ public class Principal {
 
 				System.out.println(CrearEmailF);
 				System.out.println(txtCrearEmailF.getText());
-				
+
 				errorNombreF.setText("");
 				errorEmailF.setText("");
 				errorContraseñaF.setText("");
@@ -1108,7 +1087,6 @@ public class Principal {
 					if (clasicoF.isSelected() || urbanaF.isSelected() || rockF.isSelected() || bohoF.isSelected()
 							|| formalF.isSelected() || sportyChickF.isSelected()) {
 						errorPerfilGustosUnoF.setText("");
-						// CambiarPanel(ventanaPerfilGustosUnoM, ventanaCarga);
 						System.out.println("correctooooo");
 						errorNombreF.setText("");
 						errorEmailF.setText("");
@@ -1116,7 +1094,7 @@ public class Principal {
 						System.out.println("Edad marcado al crear cuenta:" + CrearEdadF); // para comporbar que guarda
 
 						CambiarPanel(ventanaPerfilGustosUnoF, ventanaCarga);
-						bgF.clearSelection();
+
 						// JProgressBar
 						Thread t = new Thread(new Runnable() {
 
@@ -1138,13 +1116,15 @@ public class Principal {
 
 								if (stop = true) {
 
+									counter = 0;
 									CambiarPanel(ventanaCarga, ventanaMenuPrincipal);
 									mb.setVisible(true);
+									botonMasMenosAdmin.setVisible(false);
 
 									try {
 
 										int colorseleccionado = 0;
-										String estiloseleccionado = null;
+										String estiloseleccionadoF = "";
 
 										if (comboColorPreferidoF.getSelectedItem().toString() == "Rojo") {
 											colorseleccionado = 1;
@@ -1172,23 +1152,23 @@ public class Principal {
 										}
 
 										if (clasicoF.isSelected()) {
-											estiloseleccionado = "clasicoF";
+											estiloseleccionadoF = "clasicoF";
 										} else if (urbanaF.isSelected()) {
-											estiloseleccionado = "urbanaF";
+											estiloseleccionadoF = "urbanaF";
 										} else if (rockF.isSelected()) {
-											estiloseleccionado = "rockF";
+											estiloseleccionadoF = "rockF";
 										} else if (bohoF.isSelected()) {
-											estiloseleccionado = "bohoF";
+											estiloseleccionadoF = "bohoF";
 										} else if (formalF.isSelected()) {
-											estiloseleccionado = "formalF";
+											estiloseleccionadoF = "formalF";
 										} else if (sportyChickF.isSelected()) {
-											estiloseleccionado = "casualChickF";
+											estiloseleccionadoF = "casualChickF";
 										}
-										
-										System.out.println("BD: "+txtCrearEmailF.getText());
-										BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(), txtCrearEmailF.getText(), 1,
-												(int) spinCrearEdadF.getValue(), txtCrearContraseñaF.getText(), 0,
-												colorseleccionado, estiloseleccionado);
+
+										BaseDatosModise.nuevoUsuario(txtCrearNombreF.getText(),
+												txtCrearEmailF.getText(), 0, (int) spinCrearEdadF.getValue(),
+												txtCrearContraseñaF.getText(), 0, colorseleccionado,
+												estiloseleccionadoF);
 
 										errorPerfilGustosUnoF.setText("");
 										errorNombreF.setText("");
@@ -1199,10 +1179,8 @@ public class Principal {
 										escrito4F = false;
 
 										txtCrearNombreF.setText("nombre");
-										//txtCrearEmailF.setText("ejemplo@gmail.com");
 										txtCrearContraseñaF.setText("");
 										spinCrearEdadF.setValue(18);
-										// comboColorPreferidoM.setSelectedItem(null);
 										bgF.clearSelection();
 
 									} catch (BDException e) {
@@ -1253,7 +1231,6 @@ public class Principal {
 				txtCrearEmailF.setText("ejemplo@gmail.com");
 				txtCrearContraseñaF.setText("");
 				spinCrearEdadF.setValue(18);
-				// comboColorPreferidoM.setSelectedItem(null);
 				bgF.clearSelection();
 
 				CambiarPanel(ventanaPerfilGustosUnoF, ventanaGenero);
@@ -1282,7 +1259,6 @@ public class Principal {
 		botonMasMenosAdmin = new JButton("Admin +/-");
 		botonMasMenosAdmin.setBounds(550, 40, 110, 30);
 		ventanaMenuPrincipal.add(botonMasMenosAdmin);
-		// botonMasMenosAdmin.setVisible(true);
 
 		// ActionListeners
 		botonPideOutfit.addActionListener(new ActionListener() {
@@ -1366,7 +1342,7 @@ public class Principal {
 		radioNo.setBounds(30, 240, 50, 30);
 
 		estilosComboBoxPideOutfit = new JComboBox<String>();
-		ventanaPideOutfit.add(estilosComboBoxPideOutfit);
+		ventanaPideOutfit.add(estilosComboBoxPideOutfit);// aaaaaa
 		estilosComboBoxPideOutfit.addItem(null); // mantener esta opcion como primero!!! se supone que es -1
 		estilosComboBoxPideOutfit.addItem("ClasicoF"); // 1
 		estilosComboBoxPideOutfit.addItem("ClasicoM"); // 2
@@ -1438,6 +1414,7 @@ public class Principal {
 					} else {
 						l = estilosComboBoxAñadirVestimenta.getSelectedItem();
 					}
+
 					Usuariolog.println("Pide Outfit, tiempo: " + bgPideOutfit.getSelection().getActionCommand()
 							+ ", estilo: " + l + "genero: " + bgGenero.getSelection().getActionCommand() + "color: "
 							+ colorMenteComboBox.getSelectedItem().toString());
@@ -1490,78 +1467,75 @@ public class Principal {
 							// Comprobamos que el HashMap se cree correctamente!PASAR A LOG!!
 							System.out.println(Collections.singletonList(outfitSolMap));
 
-							//Creamos una lista de byteArray para guardar las fotos en una lista para usar en un segundo
+							// Creamos una lista de byteArray para guardar las fotos en una lista para usar
+							// en un segundo
 							List<byte[]> listaByteArray = new ArrayList<byte[]>();
-							
-							for (byte[]  bA: outfitSolMap.values()) {
+
+							for (byte[] bA : outfitSolMap.values()) {
 								listaByteArray.add(bA);
 							}
-							
-							//mostramos por pantalla la lista de byte[] creada para comprobar
 
-							
+							// mostramos por pantalla la lista de byte[] creada para comprobar
 							ImageIcon f1 = new ImageIcon(listaByteArray.get(0));
 							ImageIcon f2 = new ImageIcon(listaByteArray.get(1));
 							ImageIcon f3 = new ImageIcon(listaByteArray.get(2));
 							ImageIcon f4 = new ImageIcon(listaByteArray.get(3));
 							ImageIcon f5 = new ImageIcon(listaByteArray.get(4));
-							
-							//Ya tenemos una lista de ImageIcon preparada para meter los valores a la tabla
+
+							// Ya tenemos una lista de ImageIcon preparada para meter los valores a la tabla
 							List<ImageIcon> listaImageIcon = new ArrayList<ImageIcon>();
 							listaImageIcon.add(f3);
 							listaImageIcon.add(f1);
 							listaImageIcon.add(f2);
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
-							
-							
-							//ventanaEmergentePideOutfit
-							//Creamos arrays para usar
-							Object[] arrayTablaColumnas = {"idprendas", "fotos"};
-							
-							//(Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
-							Object[][] arrayTablaFilas = new Object[5][2]; 
-							
+
+							// ventanaEmergentePideOutfit
+							// Creamos arrays para usar
+							Object[] arrayTablaColumnas = { "idprendas", "fotos" };
+
+							// (Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
+							Object[][] arrayTablaFilas = new Object[5][2];
+
 							JTable tabla = new JTable(arrayTablaFilas, arrayTablaColumnas);
 							tabla.setBounds(0, 30, 550, 800);
 							tabla.setRowHeight(180);
 							TableColumnModel columnmodel = tabla.getColumnModel();
 							columnmodel.getColumn(0).setPreferredWidth(300);
 							columnmodel.getColumn(1).setPreferredWidth(250);
-							
-							
-							class ImageRenderer extends DefaultTableCellRenderer{
-								  /**
-								 * 
-								 */
+
+							class ImageRenderer extends DefaultTableCellRenderer {
+								/**
+								*
+								*/
 								private static final long serialVersionUID = 1L;
-								
+
 								JLabel lbl = new JLabel();
 
-								  public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-								      boolean hasFocus, int row, int column) {
-								    lbl.setText((String) value);
-								    if(row == 0) {
-								    	lbl.setIcon(listaImageIcon.get(0));
-								    } else if(row == 1) {
-								    	lbl.setIcon(listaImageIcon.get(1));
-									} else if(row == 2) {
+								@Override
+								public Component getTableCellRendererComponent(JTable table, Object value,
+										boolean isSelected, boolean hasFocus, int row, int column) {
+									lbl.setText((String) value);
+									if (row == 0) {
+										lbl.setIcon(listaImageIcon.get(0));
+									} else if (row == 1) {
+										lbl.setIcon(listaImageIcon.get(1));
+									} else if (row == 2) {
 										lbl.setIcon(listaImageIcon.get(2));
-									} else if(row == 3) {
+									} else if (row == 3) {
 										lbl.setIcon(listaImageIcon.get(3));
-									} else if(row == 4) {
+									} else if (row == 4) {
 										lbl.setIcon(listaImageIcon.get(1));
 									}
-								    
-								    return lbl;
-								  }
-								}
-							tabla.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
-							
-							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
-							
-							ventanaEmergenteOutfit.add(tabla);
 
+									return lbl;
+								}
+							}
+							tabla.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
+
+							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
+
+							ventanaEmergenteOutfit.add(tabla);
 
 						} catch (BDException | SQLException e1) {
 
@@ -1581,46 +1555,44 @@ public class Principal {
 							}
 
 							List<byte[]> listaByteArray = new ArrayList<byte[]>();
-							
-							for (byte[]  bA: outfitLluviaMap.values()) {
+
+							for (byte[] bA : outfitLluviaMap.values()) {
 								listaByteArray.add(bA);
 							}
-							
-							//mostramos por pantalla la lista de byte[] creada para comprobar
+
+							// mostramos por pantalla la lista de byte[] creada para comprobar
 							System.out.println("aqui esta la lista de byte[]: " + listaByteArray);
-							
-							
+
 							ImageIcon f1 = new ImageIcon(listaByteArray.get(0));
 							ImageIcon f2 = new ImageIcon(listaByteArray.get(1));
 							ImageIcon f3 = new ImageIcon(listaByteArray.get(2));
 							ImageIcon f4 = new ImageIcon(listaByteArray.get(3));
 							ImageIcon f5 = new ImageIcon(listaByteArray.get(4));
-							
-							//Ya tenemos una lista de ImageIcon preparada para meter los valores a la tabla
+
+							// Ya tenemos una lista de ImageIcon preparada para meter los valores a la tabla
 							List<ImageIcon> listaImageIcon = new ArrayList<ImageIcon>();
 							listaImageIcon.add(f3);
 							listaImageIcon.add(f1);
 							listaImageIcon.add(f2);
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
-							
-							
-							//ventanaEmergentePideOutfit
-							//Creamos arrays para usar
-							Object[] arrayTablaColumnas = {"idprendas", "fotos"};
-							
-							//(Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
-							Object[][] arrayTablaFilas = new Object[5][2]; 
-							
+
+							// ventanaEmergentePideOutfit
+							// Creamos arrays para usar
+							Object[] arrayTablaColumnas = { "idprendas", "fotos" };
+
+							// (Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
+							Object[][] arrayTablaFilas = new Object[5][2];
+
 							JTable tabla = new JTable(arrayTablaFilas, arrayTablaColumnas);
 							tabla.setBounds(0, 30, 400, 800);
 							tabla.setRowHeight(180);
 							TableColumnModel columnmodel = tabla.getColumnModel();
 							columnmodel.getColumn(0).setPreferredWidth(20);
 							columnmodel.getColumn(1).setPreferredWidth(250);
-							
+
 							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
-							
+
 							ventanaEmergenteOutfit.add(tabla);
 
 						} catch (BDException | SQLException e1) {
@@ -1637,6 +1609,7 @@ public class Principal {
 					radioNo.setSelected(false);
 					errorPideOutfit.setText("");
 					estilosComboBoxPideOutfit.setSelectedIndex(0);
+					bgGenero.clearSelection();
 
 					// LLamar a la clase Crear Outfit
 
@@ -1672,7 +1645,6 @@ public class Principal {
 		});
 
 		// Action Listeners
-
 		// Añadiendo los componentes de ventanaAñadirVestimenta1
 		tipoLabelAñadirVestimenta = new JLabel("Selecione el tipo de prenda que desea añadir: ");
 		tipoLabelAñadirVestimenta.setFont(new Font("Monospace", Font.BOLD, 13));
@@ -1745,8 +1717,9 @@ public class Principal {
 				"Seleccione nivel de Fashion entre 0-100 (100 en tendencias, 0 no en tendencias)");
 		nivelFashionLabel.setFont(new Font("Monospace", Font.BOLD, 11));
 		nivelFashionLabel.setBounds(190, 200, 500, 40);
-		nivelFashionSpin = new JSpinner();
-		nivelFashionSpin.setValue(0);
+
+		SpinnerModel modelfash = new SpinnerNumberModel(0, 0, 100, 1); // default 18, min 0, max 99, +-1
+		nivelFashionSpin = new JSpinner(modelfash);
 		nivelFashionSpin.setBounds(40, 200, 150, 40);
 
 		// NO OLVIDARSE ANYADIR LIMITE PARA LOS SPINNERS LUEGO!!
@@ -1754,8 +1727,9 @@ public class Principal {
 				"Seleccione nivel de impermeabilidad entre 0-100 (100 impermeable, 0 no impermeable)");
 		nivelImpermeableLabel.setFont(new Font("Monospace", Font.BOLD, 11));
 		nivelImpermeableLabel.setBounds(190, 250, 500, 40);
-		nivelImpermeableSpin = new JSpinner();
-		nivelImpermeableSpin.setValue(0);
+
+		SpinnerModel modelimper = new SpinnerNumberModel(0, 0, 100, 1); // default 18, min 0, max 99, +-1
+		nivelImpermeableSpin = new JSpinner(modelimper);
 		nivelImpermeableSpin.setBounds(40, 250, 150, 40);
 
 		ventanaAñadirVestimenta1.add(ventanaAñadirVestimenta1Cancelar);
@@ -1829,7 +1803,6 @@ public class Principal {
 				try {
 
 					// Metodo BD para anyadir prenda
-
 					BaseDatosModise.añadirPrenda(idColorSeleccionado, estiloPrendasSeleccionado, generoPrendas,
 							nivelFashionSeleccionado, nivelImpermeableSeleccionado);
 
@@ -1870,6 +1843,9 @@ public class Principal {
 				}
 
 				CambiarPanel(ventanaAñadirVestimenta1, ventanaMenuPrincipal);
+				nivelFashionSpin.setValue(0);
+				nivelImpermeableSpin.setValue(0);
+				logotipoCamisetaTextField.setText("");
 			}
 		});
 
@@ -1955,6 +1931,12 @@ public class Principal {
 				CambiarPanel(ventanaAñadirCamisetas, ventanaAñadirVestimenta1);
 				ventanaAñadirVestimenta1Cancelar.setVisible(true);
 				ventanaAñadirVestimenta1Atras.setVisible(false);
+
+				nivelFashionSpin.setValue(0);
+				nivelImpermeableSpin.setValue(0);
+				logotipoCamisetaTextField.setText("");
+				radioRayasBG.clearSelection();
+				radioCuadrosBG.clearSelection();
 			}
 		});
 
@@ -1981,7 +1963,10 @@ public class Principal {
 				} else {
 					JOptionPane.showMessageDialog(ventanaAñadirCamisetas,
 							"Debes seleccionar si tiene cuadros o no la camiseta");
+				}
 
+				if (camisetaChooserPreview.getText().equals("")) {
+					JOptionPane.showMessageDialog(ventanaAñadirCamisetas, "Debes seleccionar imagen");
 				}
 
 				try {
@@ -1992,11 +1977,15 @@ public class Principal {
 				}
 
 				CambiarPanel(ventanaAñadirCamisetas, ventanaMenuPrincipal);
+				nivelFashionSpin.setValue(0);
+				nivelImpermeableSpin.setValue(0);
+				logotipoCamisetaTextField.setText("");
+				radioRayasBG.clearSelection();
+				radioCuadrosBG.clearSelection();
 			}
 		});
 
 		// Añadiendo los componentes de ventanaAñadirChaquetas
-
 		importarFotoChaquetas = new JLabel("Seleccionar foto para importar de la chaqueta: ");
 		importarFotoChaquetas.setBounds(40, 50, 300, 40);
 
@@ -2487,7 +2476,7 @@ public class Principal {
 			}
 		});
 
-		// Añadiendo los componentes de ajustes
+		// Añadiendo los componentes de ajustes //aaaaaaaaaaa
 		cambiarContraseña = new JButton("Cambiar contraseña");
 		cambiarContraseña.setBounds(50, 20, 50, 50);
 		ajustes.add(cambiarContraseña);
@@ -2496,7 +2485,7 @@ public class Principal {
 		reiniciarPerfil.setBounds(50, 180, 50, 50);
 		ajustes.add(reiniciarPerfil);
 
-		// Action listeners OJO ESTO SOLO PARA PROBAR
+		// Action listeners
 		cambiarContraseña.addActionListener(new ActionListener() {
 
 			@Override
@@ -2527,11 +2516,55 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Reiniciar perfil de gustos");
+
+				String gusto = "proba";
+
+				Connection conexion = BaseDatosModise.conectar();
+				Statement st = null;
+				try {
+					st = conexion.createStatement();
+				} catch (SQLException e1) {
+
+				}
+
+				if (BaseDatosModise.genero(st, txtEmail.getText()) == true) {
+					System.out.println("chica");
+					String input = JOptionPane.showInputDialog(null,
+							"Elige entre: clasicoF, urbanaF, rockF, bohoF, formalF, sportyChickF", "Reiniciar gusto",
+							2);
+					if (input.equals("clasicoF") || input.equals("urbanaF") || input.equals("rockF")
+							|| input.equals("bohoF") || input.equals("formalF") || input.equals("sportyChickF")) {
+						BaseDatosModise.reiniciarGusto(st, input, txtEmail.getText());
+					} else {
+						JOptionPane.showMessageDialog(null, "Por favor, escribelo tal cual está indicado.", "Error",
+								JOptionPane.ERROR_MESSAGE);
+						System.out.println("Gusto mal escrito/introducido");
+					}
+
+				} else if (BaseDatosModise.genero(st, txtEmail.getText()) == false) {
+					System.out.println("chico");
+					String input = JOptionPane.showInputDialog(null,
+							"Elige entre: clasicoM, urbanaM, rockM, smartM, formalM, casualChickM", "Reiniciar gusto",
+							2);
+					if (input.equals("clasicoM") || input.equals("urbanaM") || input.equals("rockM")
+							|| input.equals("smartM") || input.equals("formalM") || input.equals("casualChickM")) {
+						BaseDatosModise.reiniciarGusto(st, input, txtEmail.getText());
+					} else {
+						JOptionPane.showMessageDialog(null, "Por favor, escribelo tal cual está indicado.", "Error",
+								JOptionPane.ERROR_MESSAGE);
+						System.out.println("Gusto mal escrito/introducido");
+					}
+				}
+				clasicoF.setSelected(false);
+				urbanaF.setSelected(false);
+				rockF.setSelected(false);
+				bohoF.setSelected(false);
+				formalF.setSelected(false);
+				sportyChickF.setSelected(false);
 			}
 		});
 
 		// VentanaMasMenosAdmin
-
 		labelEmailMasMenosAdmin = new JLabel("Introduzca el email de la cuenta que desea modificar: ");
 		ventanaMasMenosAdmin.add(labelEmailMasMenosAdmin);
 		labelEmailMasMenosAdmin.setBounds(25, 100, 350, 40);
@@ -2630,6 +2663,11 @@ public class Principal {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(counter);
+				// ventanacarga
+				counter = 0;
+				System.out.println(counter);
+
 				// propeties
 
 				// Menu
@@ -2639,7 +2677,6 @@ public class Principal {
 				// ventanaInicioSesion
 				txtEmail.setText("ejemplo@gmail.com");
 				contraseña.setText("12345");
-				// view.setSelected(false); dejarlo asi
 				escrito1 = false;
 				escrito2 = false;
 
@@ -2705,7 +2742,6 @@ public class Principal {
 				CambiarPanel(ventanaMenuPrincipal, ventanaInicioSesion);
 				System.out.println("Sesion cerrada.");
 				setProp("ejemplo@gmail.com", "12345");
-
 			}
 		});
 
@@ -2777,7 +2813,6 @@ public class Principal {
 		clockLabel.setBounds(640, 0, 100, 20);
 
 		ventanaMenuPrincipal.add(clockLabel);
-		// lo ponemos en mas?
 
 		Timer timer = new Timer(ONE_SECOND, new ActionListener() {
 			@Override

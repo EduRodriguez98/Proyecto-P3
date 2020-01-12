@@ -104,6 +104,36 @@ public class BaseDatosModise {
 		}
 	}
 
+	public static boolean genero(Statement st, String corr) {
+		String SentSQL = "select genero from usuario where correo = '" + corr + "';";
+		try {
+			ResultSet rs = st.executeQuery(SentSQL);
+			rs.next();
+
+			String a = rs.getString("genero");
+			System.out.println("chico false1 chica true0: " + SentSQL + a);
+			if (a.equals("0")) {
+				return true; // chica
+			} else {
+				return false; // chico
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public static void reiniciarGusto(Statement st, String gusto, String corr) {
+		String SentSQL = "UPDATE usuario SET estiloFav = '" + gusto + "' WHERE correo = '" + corr + "';";
+		System.out.println(SentSQL);
+		try {
+			st.executeUpdate(SentSQL);
+		} catch (SQLException e) {
+			modise.Principal.BDLogger.log(Level.SEVERE, "Error reiniciarGusto\n" + SentSQL, e);
+			e.printStackTrace();
+		}
+	}
+
 	public static boolean existeUsuario(Statement st, String corr) {
 		String SentSQL = "select correo from usuario where correo = " + "'" + corr + "';";
 		System.out.println(SentSQL);
@@ -1032,8 +1062,9 @@ public class BaseDatosModise {
 			Stmt.close();
 
 			Connection conn2 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			String sql2 = "(SELECT fotochaqueta, idprendas, idcolor FROM chaquetalluvia WHERE estiloPrendas = '" + estiloj
-					+ "' AND generochll = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() LIMIT 1)";
+			String sql2 = "(SELECT fotochaqueta, idprendas, idcolor FROM chaquetalluvia WHERE estiloPrendas = '"
+					+ estiloj + "' AND generochll = '" + generoj + "' AND idcolor = '" + colorj
+					+ "' ORDER BY RAND() LIMIT 1)";
 
 			String sqlIn2 = listaColoresDisponibles.stream().map(x -> String.valueOf(x))
 					.collect(Collectors.joining(",", "(", ")"));
@@ -1128,8 +1159,9 @@ public class BaseDatosModise {
 			Stmt.close();
 
 			Connection conn3 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			String sql3 = "(SELECT fotogorros, idprendas, idcolor FROM gorrolluvia " + "WHERE estiloPrendas = '" + estiloj
-					+ "' AND generogll = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() " + "LIMIT 1)";
+			String sql3 = "(SELECT fotogorros, idprendas, idcolor FROM gorrolluvia " + "WHERE estiloPrendas = '"
+					+ estiloj + "' AND generogll = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() "
+					+ "LIMIT 1)";
 
 			String sqlIn3 = listaColoresDisponibles.stream().map(x -> String.valueOf(x))
 					.collect(Collectors.joining(",", "(", ")"));
