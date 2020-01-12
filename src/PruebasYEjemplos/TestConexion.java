@@ -33,7 +33,7 @@ public class TestConexion {
 		ResultSet rs = null;
 
 		try {
-			cn = conexion.conectar();
+			cn = Conexion.conectar();
 			stm = cn.createStatement();
 			rs = stm.executeQuery("SELECT * FROM usuario");
 
