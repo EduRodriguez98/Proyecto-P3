@@ -59,7 +59,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import conexion.BDException;
@@ -1582,35 +1581,30 @@ public class Principal {
 							
 							//Ya tenemos una lista de ImageIcon preparada para meter los valores a la tabla
 							List<ImageIcon> listaImageIcon = new ArrayList<ImageIcon>();
+							listaImageIcon.add(f3);
 							listaImageIcon.add(f1);
 							listaImageIcon.add(f2);
-							listaImageIcon.add(f3);
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
 							
 							
-							
-							
 							//ventanaEmergentePideOutfit
+							//Creamos arrays para usar
+							Object[] arrayTablaColumnas = {"idprendas", "fotos"};
 							
-
-							JTable jt = new JTable();
-							jt.setPreferredSize(new Dimension(400, 850));
-							jt.setRowHeight(0, 50);
-							jt.setRowHeight(1, 150);
-							jt.setRowHeight(2, 150);
-							jt.setRowHeight(3, 150);
-							jt.setRowHeight(4, 150);
-							jt.setRowHeight(5, 150);
-
-							String[] cols = { "idprendas", "foto" };
-							Object[][] rowsData = {};
-
-
-							DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
-							dtm.setDataVector(rowsData, cols);
-
-							ventanaEmergenteOutfit.add(jt);
+							//(Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
+							Object[][] arrayTablaFilas = new Object[5][2]; 
+							
+							JTable tabla = new JTable(arrayTablaFilas, arrayTablaColumnas);
+							tabla.setBounds(0, 30, 400, 800);
+							tabla.setRowHeight(180);
+							TableColumnModel columnmodel = tabla.getColumnModel();
+							columnmodel.getColumn(0).setPreferredWidth(20);
+							columnmodel.getColumn(1).setPreferredWidth(250);
+							
+							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
+							
+							ventanaEmergenteOutfit.add(tabla);
 
 						} catch (BDException | SQLException e1) {
 

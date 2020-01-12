@@ -1032,9 +1032,8 @@ public class BaseDatosModise {
 			Stmt.close();
 
 			Connection conn2 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			String sql2 = "(SELECT fotochaqueta, idprendas, idcolor FROM chaquetalluvia " + "WHERE estiloPrendas = '"
-					+ estiloj + "' AND generochll = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() "
-					+ "LIMIT 1) UNION ALL (SELECT ch.fotochaqueta, p.idprendas, p.id_color FROM prendas p, chaquetas ch WHERE p.idprendas = 124 LIMIT 1)";
+			String sql2 = "(SELECT fotochaqueta, idprendas, idcolor FROM chaquetalluvia WHERE estiloPrendas = '" + estiloj
+					+ "' AND generochll = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() LIMIT 1)";
 
 			String sqlIn2 = listaColoresDisponibles.stream().map(x -> String.valueOf(x))
 					.collect(Collectors.joining(",", "(", ")"));
@@ -1129,9 +1128,8 @@ public class BaseDatosModise {
 			Stmt.close();
 
 			Connection conn3 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			String sql3 = "(SELECT fotogorros, idprendas, idcolor FROM gorrolluvia " + "WHERE estiloPrendas = '"
-					+ estiloj + "' AND generogll = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() "
-					+ "LIMIT 1) UNION ALL (SELECT g.fotogorros, p.idprendas, p.id_color FROM prendas p, gorros g WHERE p.idprendas = 125 LIMIT 1)";
+			String sql3 = "(SELECT fotogorros, idprendas, idcolor FROM gorrolluvia " + "WHERE estiloPrendas = '" + estiloj
+					+ "' AND generogll = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() " + "LIMIT 1)";
 
 			String sqlIn3 = listaColoresDisponibles.stream().map(x -> String.valueOf(x))
 					.collect(Collectors.joining(",", "(", ")"));
@@ -1227,7 +1225,7 @@ public class BaseDatosModise {
 			Connection conn4 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 			String sql4 = "(SELECT fotopantalones, idprendas, idcolor FROM pantalonlluvia " + "WHERE estiloPrendas = '"
 					+ estiloj + "' AND generopll = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() "
-					+ "LIMIT 1) UNION ALL (SELECT pa.fotopantalones, p.idprendas, p.id_color FROM prendas p, pantalones pa WHERE p.idprendas = 126 LIMIT 1)";
+					+ "LIMIT 1)";
 
 			String sqlIn4 = listaColoresDisponibles.stream().map(x -> String.valueOf(x))
 					.collect(Collectors.joining(",", "(", ")"));
@@ -1322,9 +1320,9 @@ public class BaseDatosModise {
 			Stmt.close();
 
 			Connection conn5 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			String sql5 = "(SELECT fotozapatos, idprendas, idcolor FROM zapatoslluvia " + "WHERE estiloPrendas = '"
+			String sql5 = "(SELECT fotozapatos, idprendas, idcolor FROM zapatosll " + "WHERE estiloPrendas = '"
 					+ estiloj + "' AND generozll = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() "
-					+ "LIMIT 1) UNION ALL (SELECT z.fotozapatos, p.idprendas, p.id_color FROM prendas p, zapatos z WHERE p.idprendas = 127 LIMIT 1)";
+					+ "LIMIT 1)";
 
 			String sqlIn5 = listaColoresDisponibles.stream().map(x -> String.valueOf(x))
 					.collect(Collectors.joining(",", "(", ")"));
