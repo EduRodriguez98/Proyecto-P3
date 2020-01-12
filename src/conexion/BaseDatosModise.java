@@ -465,20 +465,21 @@ public class BaseDatosModise {
 		listaColoresDisponibles.add(9);
 		listaColoresDisponibles.add(10);
 
-		Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+		
 		try {
-
-			String sql = "(SELECT fotocamiseta, idprendas, idcolor FROM camisetasol " + "WHERE estiloPrendas = '"
-					+ estiloj + "' AND generocs = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() "
-					+ "LIMIT 1) UNION ALL (SELECT c.fotocamiseta, p.idprendas, p.id_color FROM prendas p, camisetas c WHERE p.idprendas = 123 LIMIT 1)";
+			
+			
+			Connection conn = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+			String sql = "SELECT fotocamiseta, idprendas, idcolor FROM camisetasol WHERE estiloPrendas = '"
+					+ estiloj + "' AND generocs = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() LIMIT 1";
 
 			PreparedStatement Stmt = conn.prepareStatement(sql);
 
 			ResultSet rs = Stmt.executeQuery();
 
+			
 			while (rs.next()) {
-
-				// recive el false cuando se pide masculino, pero no dice ni pio si se pide el F
+				
 				int colorCamiseta = rs.getInt("idcolor");
 				System.out.println("color camiseta: " + colorCamiseta);
 				listaColoresUsados.add(colorCamiseta);
@@ -521,24 +522,42 @@ public class BaseDatosModise {
 				} else if (currentColor == 10) {
 					listaColoresDisponibles.remove(Integer.valueOf(5));
 
-				} else {
-					// no hace nada si no hay ninguno de estos colores ya que no hace falta
-					// actualizar la lista!
 				}
+	
+				Integer idCamisetas = rs.getInt("idprendas");
+				byte[] fotbytesCamisetas = rs.getBytes("fotocamiseta");
+				mapOutfitSol.put(idCamisetas, fotbytesCamisetas);	
+				
+				if (mapOutfitSol.size() != 1) {
+					
+					Connection conn1I = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
+					String sql1I = new String("SELECT * FROM camisetas WHERE idprendas = 123 LIMIT 1");
+					PreparedStatement Stmt1 = conn1I.prepareStatement(sql1I);
 
-				Integer idCamiseta = rs.getInt("idprendas");
-				byte[] fotobytesCamisetas = rs.getBytes("fotocamiseta");
+					ResultSet rs1 = Stmt1.executeQuery();
 
-				mapOutfitSol.put(idCamiseta, fotobytesCamisetas);
-
+					while (rs1.next()) {
+						Integer idCamisetas1 = rs1.getInt("idprendas");
+						byte[] fotbytesCamisetas1 = rs1.getBytes("fotocamiseta");
+						mapOutfitSol.put(idCamisetas1, fotbytesCamisetas1);
+						
+						
+					}
+					rs1.close();
+					Stmt1.close();
+					conn1I.close();
+				}
 			}
+			
 			rs.close();
 			Stmt.close();
-
+			
+			
+			
 			Connection conn2 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 
-			String sql2 = "(SELECT fotochaqueta, idprendas, idcolor FROM chaquetasol WHERE estiloPrendas = '" + estiloj
-					+ "' AND generochs = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() LIMIT 1)";
+			String sql2 = "SELECT fotochaqueta, idprendas, idcolor FROM chaquetasol WHERE estiloPrendas = '" + estiloj
+					+ "' AND generochs = '" + generoj + "' AND idcolor IN (?) ORDER BY RAND() LIMIT 1";
 
 			String sqlIn2 = listaColoresDisponibles.stream().map(x -> String.valueOf(x))
 					.collect(Collectors.joining(",", "(", ")"));
@@ -591,54 +610,45 @@ public class BaseDatosModise {
 				} else if (currentColor == 10) {
 					listaColoresDisponibles.remove(Integer.valueOf(5));
 
-				} else {
-					// no hace nada si no hay ninguno de estos colores ya que no hace falta
-					// actualizar la lista!
-				}
-
-				Integer idsacado = 0;
-				idsacado = rs.getInt("idprendas");
-
-				if (idsacado == 0) {
-					rs.close();
-					Stmt.close();
-					conn2.close();
-
+				} 
+				
+				Integer idChaquetas = rs.getInt("idprendas");
+				byte[] fotobytesChaquetas = rs.getBytes("fotochaqueta");
+				mapOutfitSol.put(idChaquetas, fotobytesChaquetas);
+				
+				if (mapOutfitSol.size() != 2) {
 					Connection conn2II = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 					String sql2II = new String("SELECT * FROM chaquetas WHERE idprendas = 124 LIMIT 1");
-					Stmt = conn2II.prepareStatement(sql2II);
+					PreparedStatement Stmt2 = conn2II.prepareStatement(sql2II);
 
-					ResultSet rs2 = Stmt.executeQuery();
+					ResultSet rs2 = Stmt2.executeQuery();
 
-					while (rs.next()) {
-						Integer idChaquetas = rs.getInt("idprendas");
-						byte[] fotobytesChaquetas = rs2.getBytes("fotochaqueta");
-						mapOutfitSol.put(idChaquetas, fotobytesChaquetas);
-						rs2.close();
+					while (rs2.next()) {
+						Integer idChaquetas1 = rs2.getInt("idprendas");
+						byte[] fotobytesChaquetas1 = rs2.getBytes("fotochaqueta");
+						mapOutfitSol.put(idChaquetas1, fotobytesChaquetas1);
+						
 					}
-
+					rs2.close();
+					Stmt2.close();
 					conn2II.close();
-
-				} else {
-					Integer idChaquetas = rs.getInt("idprendas");
-					byte[] fotobytesChaquetas = rs.getBytes("fotochaqueta");
-					mapOutfitSol.put(idChaquetas, fotobytesChaquetas);
-
 				}
-
+				
 			}
 			rs.close();
 			conn2.close();
 			Stmt.close();
-
+			
+			
+			
 			Connection conn3 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			String sql3 = "(SELECT fotogorros, idprendas, idcolor FROM gorrosol " + "WHERE estiloPrendas = '" + estiloj
-					+ "' AND generogs = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() " + "LIMIT 1)";
+			String sql3 = "SELECT fotogorros, idprendas, idcolor FROM gorrosol " + "WHERE estiloPrendas = '" + estiloj
+					+ "' AND generogs = '" + generoj + "' AND idcolor IN (?) ORDER BY RAND() LIMIT 1";
 
 			String sqlIn3 = listaColoresDisponibles.stream().map(x -> String.valueOf(x))
 					.collect(Collectors.joining(",", "(", ")"));
 			sql3 = sql3.replace("(?)", sqlIn3);
-
+			
 			Stmt = conn3.prepareStatement(sql3);
 
 			rs = Stmt.executeQuery();
@@ -687,51 +697,42 @@ public class BaseDatosModise {
 
 				} else if (currentColor == 10) {
 					listaColoresDisponibles.remove(Integer.valueOf(5));
-
-				} else {
-					// no hace nada si no hay ninguno de estos colores ya que no hace falta
-					// actualizar la lista!
-				}
-
-				Integer idsacado = 0;
-				idsacado = rs.getInt("idprendas");
-
-				if (idsacado == 0) {
-					rs.close();
-					Stmt.close();
-					conn3.close();
-
+				} 				
+			
+				Integer idGorros = rs.getInt("idprendas");
+				byte[] fotobytesGorros = rs.getBytes("fotogorros");
+				mapOutfitSol.put(idGorros, fotobytesGorros);
+				
+				if (mapOutfitSol.size() != 3) {
 					Connection conn3III = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 					String sql3III = new String("SELECT * FROM gorros WHERE idprendas = 125 LIMIT 1");
-					Stmt = conn3III.prepareStatement(sql3III);
+					PreparedStatement Stmt3 = conn3III.prepareStatement(sql3III);
 
-					ResultSet rs3 = Stmt.executeQuery();
+					ResultSet rs3 = Stmt3.executeQuery();
 
-					while (rs.next()) {
-						Integer idgorros = rs.getInt("idprendas");
-						byte[] fotobytesGorros = rs3.getBytes("fotogorros");
-						mapOutfitSol.put(idgorros, fotobytesGorros);
-						rs3.close();
+					while (rs3.next()) {
+						Integer idgorros1 = rs3.getInt("idprendas");
+						byte[] fotobytesGorros1 = rs3.getBytes("fotogorros");
+						mapOutfitSol.put(idgorros1, fotobytesGorros1);
+						
 					}
-
+					rs3.close();
 					conn3III.close();
-
-				} else {
-					Integer idChaquetas = rs.getInt("idprendas");
-					byte[] fotobytesChaquetas = rs.getBytes("fotogorros");
-					mapOutfitSol.put(idChaquetas, fotobytesChaquetas);
-
+					Stmt3.close();
 				}
-
+				
+				
 			}
 			rs.close();
 			conn3.close();
 			Stmt.close();
-
+			
+			
+			
+			
 			Connection conn4 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			String sql4 = "(SELECT fotopantalones, idprendas, idcolor FROM pantalonsol " + "WHERE estiloPrendas = '"
-					+ estiloj + "' AND generops = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() "
-					+ "LIMIT 1)";
+			String sql4 = "SELECT fotopantalones, idprendas, idcolor FROM pantalonsol " + "WHERE estiloPrendas = '"
+					+ estiloj + "' AND generops = '" + generoj + "' AND idcolor IN (?) ORDER BY RAND() LIMIT 1";
 
 			String sqlIn4 = listaColoresDisponibles.stream().map(x -> String.valueOf(x))
 					.collect(Collectors.joining(",", "(", ")"));
@@ -742,7 +743,7 @@ public class BaseDatosModise {
 			rs = Stmt.executeQuery();
 
 			while (rs.next()) {
-
+				
 				int colorPantalon = rs.getInt("idcolor");
 				System.out.println("color pantalon: " + colorPantalon);
 				listaColoresUsados.add(colorPantalon);
@@ -785,50 +786,43 @@ public class BaseDatosModise {
 
 				} else if (currentColor == 10) {
 					listaColoresDisponibles.remove(Integer.valueOf(5));
-
-				} else {
-					// no hace nada si no hay ninguno de estos colores ya que no hace falta
-					// actualizar la lista!
-				}
-
-				Integer idsacado = 0;
-				idsacado = rs.getInt("idprendas");
-
-				if (idsacado == 0) {
-					rs.close();
-					Stmt.close();
-					conn4.close();
-
+				} 	
+				
+				Integer idPantalones = rs.getInt("idprendas");
+				byte[] fotobytesPantalones = rs.getBytes("fotopantalones");
+				mapOutfitSol.put(idPantalones, fotobytesPantalones);
+				
+				if(mapOutfitSol.size() != 4) {
 					Connection conn4IV = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 					String sql4IV = new String("SELECT * FROM pantalones WHERE idprendas = 126 LIMIT 1");
-					Stmt = conn4IV.prepareStatement(sql4IV);
+					PreparedStatement Stmt4 = conn4IV.prepareStatement(sql4IV);
 
-					ResultSet rs4 = Stmt.executeQuery();
+					ResultSet rs4 = Stmt4.executeQuery();
 
-					while (rs.next()) {
-						Integer idPantalones = rs.getInt("idprendas");
-						byte[] fotobytesPantalones = rs4.getBytes("fotopantalones");
-						mapOutfitSol.put(idPantalones, fotobytesPantalones);
-						rs4.close();
+					while (rs4.next()) {
+						Integer idPantalones1 = rs4.getInt("idprendas");
+						byte[] fotobytesPantalones1 = rs4.getBytes("fotopantalones");
+						mapOutfitSol.put(idPantalones1, fotobytesPantalones1);
+						
 					}
-
+					rs4.close();
 					conn4IV.close();
-
-				} else {
-					Integer idPantalones = rs.getInt("idprendas");
-					byte[] fotobytesPantalones = rs.getBytes("fotopantalones");
-					mapOutfitSol.put(idPantalones, fotobytesPantalones);
+					Stmt4.close();
 				}
-
+				
 			}
 			rs.close();
 			conn4.close();
 			Stmt.close();
+			
+			
 
+			
+			
 			Connection conn5 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			String sql5 = "(SELECT fotozapatos, idprendas, idcolor FROM zapatosol " + "WHERE estiloPrendas = '"
-					+ estiloj + "' AND generozs = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() "
-					+ "LIMIT 1)";
+			String sql5 = "SELECT fotozapatos, idprendas, idcolor FROM zapatosol " + "WHERE estiloPrendas = '"
+					+ estiloj + "' AND generozs = '" + generoj + "' AND idcolor IN (?) ORDER BY RAND() LIMIT 1";
+					
 
 			String sqlIn5 = listaColoresDisponibles.stream().map(x -> String.valueOf(x))
 					.collect(Collectors.joining(",", "(", ")"));
@@ -883,62 +877,50 @@ public class BaseDatosModise {
 				} else if (currentColor == 10) {
 					listaColoresDisponibles.remove(Integer.valueOf(5));
 
-				} else {
-					// no hace nada si no hay ninguno de estos colores ya que no hace falta
-					// actualizar la lista!
-				}
-
-				Integer idsacado = 0;
-				idsacado = rs.getInt("idprendas");
-
-				if (idsacado == 0) {
-					rs.close();
-					Stmt.close();
-					conn5.close();
-
+				} 
+				
+				Integer idZapatos = 0;
+				idZapatos = rs.getInt("idprendas");
+				byte[] fotobytesZapatos = rs.getBytes("fotozapatos");
+				mapOutfitSol.put(idZapatos, fotobytesZapatos);
+				
+				if (mapOutfitSol.size() != 5) {
 					Connection conn5V = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 					String sql5V = new String("SELECT * FROM zapatos WHERE idprendas = 127 LIMIT 1");
-					Stmt = conn5V.prepareStatement(sql5V);
+					PreparedStatement Stmt5 = conn5V.prepareStatement(sql5V);
 
-					ResultSet rs5 = Stmt.executeQuery();
+					ResultSet rs5 = Stmt5.executeQuery();
 
-					while (rs.next()) {
-						Integer idZapatos = rs.getInt("idprendas");
-						byte[] fotobytesZapatos = rs.getBytes("fotozapatos");
-						mapOutfitSol.put(idZapatos, fotobytesZapatos);
-						rs5.close();
+					while (rs5.next()) {
+						Integer idZapatos1 = rs5.getInt("idprendas");
+						byte[] fotobytesZapatos1 = rs5.getBytes("fotozapatos");
+						mapOutfitSol.put(idZapatos1, fotobytesZapatos1);
+						
 					}
-
+					rs5.close();
 					conn5V.close();
-
-				} else {
-					Integer idZapatos = rs.getInt("idprendas");
-					byte[] fotobytesZapatos = rs.getBytes("fotozapatos");
-					mapOutfitSol.put(idZapatos, fotobytesZapatos);
+					Stmt5.close();
 				}
-
 			}
 			rs.close();
 			conn5.close();
 			Stmt.close();
-
+			
+	
 			listaColoresUsados.clear();
 			listaColoresDisponibles.clear();
-
-		} catch (
-
-		SQLException e) {
+			
+			
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		return mapOutfitSol;
 	}
 
+
 	public static HashMap<Integer, byte[]> crearOutfitLluvioso(String estiloj, int generoj, int colorj)
 			throws BDException, SQLException {
-		// Utilizamos un HashMap para almacenar el resultado de la Query, y procedemos a
-		// meterlo en una JTable para mostrar el resultado en el panel!
-		// Al usar idprendas como key, nos aseguramos de que no hay duplicados ya que es
-		// una primary key de prendas, y tipos de prendas heredan de ella!
+		
 
 		HashMap<Integer, byte[]> mapOutfitLluvioso = new HashMap<Integer, byte[]>();
 
@@ -964,10 +946,7 @@ public class BaseDatosModise {
 			String sql = "(SELECT fotocamiseta, idprendas, idcolor FROM camisetalluvia " + "WHERE estiloPrendas = '"
 					+ estiloj + "' AND generocll = '" + generoj + "' AND idcolor = '" + colorj + "' ORDER BY RAND() "
 					+ "LIMIT 1) UNION ALL (SELECT c.fotocamiseta, p.idprendas, p.id_color FROM prendas p, camisetas c WHERE p.idprendas = 123 LIMIT 1)";
-
-			String sqlIn = listaColoresDisponibles.stream().map(x -> String.valueOf(x))
-					.collect(Collectors.joining(",", "(", ")"));
-			sql = sql.replace("(?)", sqlIn);
+			
 
 			PreparedStatement Stmt = conn.prepareStatement(sql);
 

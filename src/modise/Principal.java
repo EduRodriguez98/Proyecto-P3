@@ -65,6 +65,7 @@ import javax.swing.table.TableColumnModel;
 import conexion.BDException;
 import conexion.BaseDatosModise;
 
+
 public class Principal {
 
 	// ORDENES DE LAS VENTANAS!!!!!
@@ -1448,36 +1449,37 @@ public class Principal {
 
 					int color = 1;
 
-					String nombreColorSeleccionadoPO = colorMenteComboBox.getSelectedItem().toString();
-
-					if (nombreColorSeleccionadoPO == "rojo") {
-						color = 1;
-					} else if (nombreColorSeleccionadoPO == "azul") {
-						color = 2;
-					} else if (nombreColorSeleccionadoPO == "amarillo") {
-						color = 3;
-					} else if (nombreColorSeleccionadoPO == "verde") {
-						color = 4;
-					} else if (nombreColorSeleccionadoPO == "negro") {
-						color = 5;
-					} else if (nombreColorSeleccionadoPO == "rosa") {
-						color = 6;
-					} else if (nombreColorSeleccionadoPO == "multicolor") {
-						color = 7;
-					} else if (nombreColorSeleccionadoPO == "blanco") {
-						color = 8;
-					} else if (nombreColorSeleccionadoPO == "Gris") {
-						color = 9;
-					} else if (nombreColorSeleccionadoPO == "Marron") {
-						color = 10;
-					}
 
 					HashMap<Integer, byte[]> outfitSolMap = null;
 
 					if (radioSol.isSelected() && !radioNo.isSelected()) {
-
+						
 						try {
 
+							String nombreColorSeleccionadoPO = colorMenteComboBox.getSelectedItem().toString();
+
+							if (nombreColorSeleccionadoPO == "rojo") {
+								color = 1;
+							} else if (nombreColorSeleccionadoPO == "azul") {
+								color = 2;
+							} else if (nombreColorSeleccionadoPO == "amarillo") {
+								color = 3;
+							} else if (nombreColorSeleccionadoPO == "verde") {
+								color = 4;
+							} else if (nombreColorSeleccionadoPO == "negro") {
+								color = 5;
+							} else if (nombreColorSeleccionadoPO == "rosa") {
+								color = 6;
+							} else if (nombreColorSeleccionadoPO == "multicolor") {
+								color = 7;
+							} else if (nombreColorSeleccionadoPO == "blanco") {
+								color = 8;
+							} else if (nombreColorSeleccionadoPO == "gris") {
+								color = 9;
+							} else if (nombreColorSeleccionadoPO == "marron") {
+								color = 10;
+							}
+							
 							if (generoOutfitM.isSelected()) {
 								outfitSolMap = BaseDatosModise.crearOutfitSoleado(
 										estilosComboBoxPideOutfit.getSelectedItem().toString(), 0, color);
@@ -1487,7 +1489,7 @@ public class Principal {
 
 							}
 
-							// Comprobamos que el HashMap se cree correctamente!PASAR A LOG!!
+							// Comprobamos que el HashMap se cree correctamente!
 							System.out.println(Collections.singletonList(outfitSolMap));
 
 							//Creamos una lista de byteArray para guardar las fotos en una lista para usar en un segundo
@@ -1550,7 +1552,7 @@ public class Principal {
 									} else if(row == 3) {
 										lbl.setIcon(listaImageIcon.get(3));
 									} else if(row == 4) {
-										lbl.setIcon(listaImageIcon.get(1));
+										lbl.setIcon(listaImageIcon.get(4));
 									}
 								    
 								    return lbl;
