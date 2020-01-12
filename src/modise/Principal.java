@@ -65,6 +65,7 @@ import javax.swing.table.TableColumnModel;
 import conexion.BDException;
 import conexion.BaseDatosModise;
 
+
 public class Principal {
 
 	// ORDENES DE LAS VENTANAS!!!!!
@@ -200,6 +201,7 @@ public class Principal {
 	static PrintStream Feedbacklog, Usuariolog;
 	public static Logger BDLogger;
 
+<<<<<<< HEAD
 	public void recorrerArray2DRecursivo(Object[][] array, List<ImageIcon> imgIconList, int row, int col, int countID,
 			int countfoto) {
 
@@ -207,18 +209,34 @@ public class Principal {
 
 			if (col == array[row].length - 1) {
 				row++;
+=======
+	
+	public void recorrerArray2DRecursivo(Object[][] array, List<String> StringList, int row, int col, int countID,int countfoto) {
+	
+		if (row != array.length-1 || col != array[row].length-1) {
+		
+			if (col == array[row].length-1) {
+				row ++;
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 				countID++;
 				countfoto++;
 				col = 0;
+<<<<<<< HEAD
 
 				array[0][0] = imgIconList.get(0).toString();
 				array[row][col] = imgIconList.get(countfoto).toString();
 
+=======
+			
+				array[0][0] = StringList.get(0);
+				array[row][col] = StringList.get(countfoto);
+				
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 			} else {
 
 				col++;
 			}
-			recorrerArray2DRecursivo(array, imgIconList, row, col, countID, countfoto);
+			recorrerArray2DRecursivo(array, StringList, row, col, countID, countfoto);
 		}
 
 	}
@@ -1425,36 +1443,37 @@ public class Principal {
 
 					int color = 1;
 
-					String nombreColorSeleccionadoPO = colorMenteComboBox.getSelectedItem().toString();
-
-					if (nombreColorSeleccionadoPO == "rojo") {
-						color = 1;
-					} else if (nombreColorSeleccionadoPO == "azul") {
-						color = 2;
-					} else if (nombreColorSeleccionadoPO == "amarillo") {
-						color = 3;
-					} else if (nombreColorSeleccionadoPO == "verde") {
-						color = 4;
-					} else if (nombreColorSeleccionadoPO == "negro") {
-						color = 5;
-					} else if (nombreColorSeleccionadoPO == "rosa") {
-						color = 6;
-					} else if (nombreColorSeleccionadoPO == "multicolor") {
-						color = 7;
-					} else if (nombreColorSeleccionadoPO == "blanco") {
-						color = 8;
-					} else if (nombreColorSeleccionadoPO == "Gris") {
-						color = 9;
-					} else if (nombreColorSeleccionadoPO == "Marron") {
-						color = 10;
-					}
 
 					HashMap<Integer, byte[]> outfitSolMap = null;
 
 					if (radioSol.isSelected() && !radioNo.isSelected()) {
-
+						
 						try {
 
+							String nombreColorSeleccionadoPO = colorMenteComboBox.getSelectedItem().toString();
+
+							if (nombreColorSeleccionadoPO == "rojo") {
+								color = 1;
+							} else if (nombreColorSeleccionadoPO == "azul") {
+								color = 2;
+							} else if (nombreColorSeleccionadoPO == "amarillo") {
+								color = 3;
+							} else if (nombreColorSeleccionadoPO == "verde") {
+								color = 4;
+							} else if (nombreColorSeleccionadoPO == "negro") {
+								color = 5;
+							} else if (nombreColorSeleccionadoPO == "rosa") {
+								color = 6;
+							} else if (nombreColorSeleccionadoPO == "multicolor") {
+								color = 7;
+							} else if (nombreColorSeleccionadoPO == "blanco") {
+								color = 8;
+							} else if (nombreColorSeleccionadoPO == "gris") {
+								color = 9;
+							} else if (nombreColorSeleccionadoPO == "marron") {
+								color = 10;
+							}
+							
 							if (generoOutfitM.isSelected()) {
 								outfitSolMap = BaseDatosModise.crearOutfitSoleado(
 										estilosComboBoxPideOutfit.getSelectedItem().toString(), 0, color);
@@ -1464,7 +1483,7 @@ public class Principal {
 
 							}
 
-							// Comprobamos que el HashMap se cree correctamente!PASAR A LOG!!
+							// Comprobamos que el HashMap se cree correctamente!
 							System.out.println(Collections.singletonList(outfitSolMap));
 
 							// Creamos una lista de byteArray para guardar las fotos en una lista para usar
@@ -1489,6 +1508,7 @@ public class Principal {
 							listaImageIcon.add(f2);
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
+<<<<<<< HEAD
 
 							// ventanaEmergentePideOutfit
 							// Creamos arrays para usar
@@ -1497,11 +1517,30 @@ public class Principal {
 							// (Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
 							Object[][] arrayTablaFilas = new Object[5][2];
 
+=======
+							
+							//Lista String para metodo recursivo en jtable
+							List<String> prendas = new ArrayList<String>();
+							prendas.add("gorro");
+							prendas.add("camiseta");
+							prendas.add("chaqueta");
+							prendas.add("pantalones");
+							prendas.add("zapatos");
+							
+							
+							//ventanaEmergentePideOutfit
+							//Creamos arrays para usar
+							Object[] arrayTablaColumnas = {"idprendas", "fotos"};
+							
+							//(Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
+							Object[][] arrayTablaFilas = new Object[5][2]; 
+							
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 							JTable tabla = new JTable(arrayTablaFilas, arrayTablaColumnas);
-							tabla.setBounds(0, 30, 550, 800);
+							tabla.setBounds(0, 30, 400, 800);
 							tabla.setRowHeight(180);
 							TableColumnModel columnmodel = tabla.getColumnModel();
-							columnmodel.getColumn(0).setPreferredWidth(300);
+							columnmodel.getColumn(0).setPreferredWidth(80);
 							columnmodel.getColumn(1).setPreferredWidth(250);
 
 							class ImageRenderer extends DefaultTableCellRenderer {
@@ -1524,9 +1563,26 @@ public class Principal {
 										lbl.setIcon(listaImageIcon.get(2));
 									} else if (row == 3) {
 										lbl.setIcon(listaImageIcon.get(3));
+<<<<<<< HEAD
 									} else if (row == 4) {
 										lbl.setIcon(listaImageIcon.get(1));
+=======
+									} else if(row == 4) {
+										lbl.setIcon(listaImageIcon.get(4));
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 									}
+<<<<<<< HEAD
+=======
+								    
+								    return lbl;
+								  }
+								}
+							tabla.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
+							
+							recorrerArray2DRecursivo(arrayTablaFilas, prendas, 0, 0, 1, 0);
+							
+							ventanaEmergenteOutfit.add(tabla);
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 
 									return lbl;
 								}
@@ -1576,6 +1632,7 @@ public class Principal {
 							listaImageIcon.add(f2);
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
+<<<<<<< HEAD
 
 							// ventanaEmergentePideOutfit
 							// Creamos arrays para usar
@@ -1584,15 +1641,39 @@ public class Principal {
 							// (Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
 							Object[][] arrayTablaFilas = new Object[5][2];
 
+=======
+							
+							//Lista String para metodo recursivo en jtable
+							List<String> prendas = new ArrayList<String>();
+							prendas.add("gorro");
+							prendas.add("camiseta");
+							prendas.add("chaqueta");
+							prendas.add("pantalones");
+							prendas.add("zapatos");
+							
+							//ventanaEmergentePideOutfit
+							//Creamos arrays para usar
+							Object[] arrayTablaColumnas = {"idprendas", "fotos"};
+							
+							//(Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
+							Object[][] arrayTablaFilas = new Object[5][2]; 
+							
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 							JTable tabla = new JTable(arrayTablaFilas, arrayTablaColumnas);
 							tabla.setBounds(0, 30, 400, 800);
 							tabla.setRowHeight(180);
 							TableColumnModel columnmodel = tabla.getColumnModel();
-							columnmodel.getColumn(0).setPreferredWidth(20);
+							columnmodel.getColumn(0).setPreferredWidth(80);
 							columnmodel.getColumn(1).setPreferredWidth(250);
+<<<<<<< HEAD
 
 							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
 
+=======
+							
+							recorrerArray2DRecursivo(arrayTablaFilas, prendas, 0, 0, 1, 0);
+							
+>>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 							ventanaEmergenteOutfit.add(tabla);
 
 						} catch (BDException | SQLException e1) {
