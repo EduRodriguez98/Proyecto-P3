@@ -200,20 +200,19 @@ public class Principal {
 	static PrintStream Feedbacklog, Usuariolog;
 	public static Logger BDLogger;
 
+	public void recorrerArray2DRecursivo(Object[][] array, List<String> StringList, int row, int col, int countID,
+			int countfoto) {
 
-	public void recorrerArray2DRecursivo(Object[][] array, List<String> StringList, int row, int col, int countID,int countfoto) {
+		if (row != array.length - 1 || col != array[row].length - 1) {
 
-		if (row != array.length-1 || col != array[row].length-1) {
-
-			if (col == array[row].length-1) {
-				row ++;
+			if (col == array[row].length - 1) {
+				row++;
 
 				countID++;
 				countfoto++;
 				col = 0;
 				array[0][0] = StringList.get(0);
 				array[row][col] = StringList.get(countfoto);
-
 
 			} else {
 
@@ -1434,7 +1433,6 @@ public class Principal {
 
 					int color = 1;
 
-
 					HashMap<Integer, byte[]> outfitSolMap = null;
 
 					if (radioSol.isSelected() && !radioNo.isSelected()) {
@@ -1499,7 +1497,7 @@ public class Principal {
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
 
-							//Lista String para metodo recursivo en jtable
+							// Lista String para metodo recursivo en jtable
 							List<String> prendas = new ArrayList<String>();
 							prendas.add("gorro");
 							prendas.add("camiseta");
@@ -1507,14 +1505,12 @@ public class Principal {
 							prendas.add("pantalones");
 							prendas.add("zapatos");
 
+							// ventanaEmergentePideOutfit
+							// Creamos arrays para usar
+							Object[] arrayTablaColumnas = { "idprendas", "fotos" };
 
-							//ventanaEmergentePideOutfit
-							//Creamos arrays para usar
-							Object[] arrayTablaColumnas = {"idprendas", "fotos"};
-
-							//(Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
+							// (Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
 							Object[][] arrayTablaFilas = new Object[5][2];
-
 
 							JTable tabla = new JTable(arrayTablaFilas, arrayTablaColumnas);
 							tabla.setBounds(0, 30, 400, 800);
@@ -1546,10 +1542,11 @@ public class Principal {
 									} else if (row == 4) {
 										lbl.setIcon(listaImageIcon.get(1));
 
-									} return lbl;
+									}
+									return lbl;
 								}
 							}
-							
+
 							tabla.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
 
 							recorrerArray2DRecursivo(arrayTablaFilas, prendas, 0, 0, 1, 0);
@@ -1596,8 +1593,7 @@ public class Principal {
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
 
-
-							//Lista String para metodo recursivo en jtable
+							// Lista String para metodo recursivo en jtable
 							List<String> prendas = new ArrayList<String>();
 							prendas.add("gorro");
 							prendas.add("camiseta");
@@ -1605,13 +1601,12 @@ public class Principal {
 							prendas.add("pantalones");
 							prendas.add("zapatos");
 
-							//ventanaEmergentePideOutfit
-							//Creamos arrays para usar
-							Object[] arrayTablaColumnas = {"idprendas", "fotos"};
+							// ventanaEmergentePideOutfit
+							// Creamos arrays para usar
+							Object[] arrayTablaColumnas = { "idprendas", "fotos" };
 
-							//(Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
+							// (Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
 							Object[][] arrayTablaFilas = new Object[5][2];
-
 
 							JTable tabla = new JTable(arrayTablaFilas, arrayTablaColumnas);
 							tabla.setBounds(0, 30, 400, 800);
@@ -1620,9 +1615,7 @@ public class Principal {
 							columnmodel.getColumn(0).setPreferredWidth(80);
 							columnmodel.getColumn(1).setPreferredWidth(250);
 
-
 							recorrerArray2DRecursivo(arrayTablaFilas, prendas, 0, 0, 1, 0);
-
 
 							ventanaEmergenteOutfit.add(tabla);
 
@@ -1652,7 +1645,7 @@ public class Principal {
 
 		botonAtrasPideOutfit.addActionListener(new ActionListener() {
 
-	@Override
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaPideOutfit, ventanaMenuPrincipal);
 				mb.setVisible(true);
@@ -2547,7 +2540,6 @@ public class Principal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Reiniciar perfil de gustos");
-
 
 				Connection conexion = BaseDatosModise.conectar();
 				Statement st = null;
