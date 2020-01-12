@@ -20,7 +20,7 @@ public class EstadisticaFeedback {
 		return ans;
 	}
 
-	public static /* double */ void siNo(double a, double b, double c) {
+	public static void siNo(double a, double b, double c) {
 		if (c == 0) {
 			throw new ArithmeticException("No puedes dividir por cero");
 		}
@@ -31,9 +31,6 @@ public class EstadisticaFeedback {
 		double ans2 = b / c;
 		ans2 = ans2 * 100;
 		System.out.println("No: " + String.format("%.2f", ans2) + " %.");
-		/*
-		 * ans = a+b; return ans;
-		 */
 	}
 
 	public static void Read() throws RWException {
@@ -111,7 +108,7 @@ public class EstadisticaFeedback {
 
 	public static void main(String[] args) throws RWException {
 
-		EstadisticaFeedback.Read(); // aqui o ponemos main en su clase??? AQUI NO?
+		EstadisticaFeedback.Read();
 	}
 
 }

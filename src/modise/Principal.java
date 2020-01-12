@@ -130,7 +130,7 @@ public class Principal {
 	// ventanaMenuPrincipal
 	JMenuBar mb;
 	JMenu menu1;
-	JMenuItem mi1, mi2, mi3, mi4; // mi1 = cerrar sesion
+	JMenuItem mi1, mi2, mi3;
 	JButton botonPideOutfit, botonAñadirVestimenta, botonMasMenosAdmin;
 
 	// ventanaAñadirVestimenta1
@@ -189,8 +189,7 @@ public class Principal {
 
 	// ventanaEmergenteOutfit
 	JButton boton1;
-	
-	
+
 	// ventanaMasMenosAdmin
 	JLabel labelEmailMasMenosAdmin;
 	JTextField txtEmailMasMenosAdmin;
@@ -203,11 +202,10 @@ public class Principal {
 	static PrintStream Feedbacklog, Usuariolog;
 	public static Logger BDLogger;
 
-
-	public void recorrerArray2DRecursivo(Object[][] array, List<ImageIcon> ImgIconList, int row, int col, int countID,int countfoto) {
+	public void recorrerArray2DRecursivo(Object[][] array, List<ImageIcon> ImgIconList, int row, int col, int countID,
+			int countfoto) {
 
 		if (row != array.length - 1 || col != array[row].length - 1) {
-
 
 			if (col == array[row].length - 1) {
 				row++;
@@ -1501,7 +1499,6 @@ public class Principal {
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
 
-
 							// ventanaEmergentePideOutfit
 							// Creamos arrays para usar
 							Object[] arrayTablaColumnas = { "idprendas", "fotos" };
@@ -1519,27 +1516,24 @@ public class Principal {
 							idClm.setMaxWidth(0);
 							idClm.setMinWidth(0);
 							idClm.setPreferredWidth(0);
-							
-							
+
 							boton1 = new JButton("foto id");
 							boton1.setBounds(10, 100, 50, 30);
 							boton1.setVisible(true);
 							ventanaEmergenteOutfit.add(boton1);
-							
+
 							boton1.addActionListener(new ActionListener() {
-								
-								
+
 								@Override
 								public void actionPerformed(ActionEvent e) {
 									TableColumn idClm = tabla.getColumn("idprendas");
 									idClm.setMaxWidth(200);
 									idClm.setMinWidth(199);
 									idClm.setPreferredWidth(200);
-									
+
 								}
 							});
-							
-						
+
 							class ImageRenderer extends DefaultTableCellRenderer {
 								/**
 								*
@@ -1569,7 +1563,6 @@ public class Principal {
 							}
 
 							tabla.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
-							
 
 							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
 
@@ -1615,8 +1608,6 @@ public class Principal {
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
 
-
-
 							// ventanaEmergentePideOutfit
 							// Creamos arrays para usar
 							Object[] arrayTablaColumnas = { "idprendas", "fotos" };
@@ -1631,34 +1622,33 @@ public class Principal {
 							columnmodel.getColumn(0).setPreferredWidth(80);
 							columnmodel.getColumn(1).setPreferredWidth(250);
 
-							TableColumn idClmn= tabla.getColumn("idprendas");
+							TableColumn idClmn = tabla.getColumn("idprendas");
 							idClmn.setMaxWidth(0);
 							idClmn.setMinWidth(0);
 							idClmn.setPreferredWidth(0);
-							
+
 							boton1 = new JButton("foto id");
 							boton1.setBounds(10, 0, 50, 30);
 							boton1.setVisible(true);
 							ventanaEmergenteOutfit.add(boton1);
-							
+
 							boton1.addActionListener(new ActionListener() {
-								
+
 								@Override
 								public void actionPerformed(ActionEvent e) {
-									TableColumn idClmn= tabla.getColumn("idprendas");
+									TableColumn idClmn = tabla.getColumn("idprendas");
 									idClmn.setMaxWidth(200);
 									idClmn.setMinWidth(199);
 									idClmn.setPreferredWidth(200);
-									
+
 								}
 							});
-							
+
 							class ImageRenderer extends DefaultTableCellRenderer {
 								/**
 								*
 								*/
 								private static final long serialVersionUID = 1L;
-
 
 								JLabel lbl = new JLabel();
 
@@ -1677,16 +1667,16 @@ public class Principal {
 									} else if (row == 4) {
 										lbl.setIcon(listaImageIcon.get(4));
 
-									} return lbl;
+									}
+									return lbl;
 								}
 							}
-							
+
 							tabla.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
 
 							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
 
 							ventanaEmergenteOutfit.add(tabla);
-							
 
 						} catch (BDException | SQLException e1) {
 

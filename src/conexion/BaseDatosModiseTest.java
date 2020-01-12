@@ -21,7 +21,7 @@ public class BaseDatosModiseTest {
 	@Before
 	public void conexionTest() {
 		if (conexion != null) {
-
+			assertTrue(true);
 		} else {
 			fail();
 		}
@@ -30,7 +30,7 @@ public class BaseDatosModiseTest {
 	@After
 	public void closeConexionTest() {
 		if (conexion != null) {
-
+			assertTrue(true);
 		} else {
 			fail();
 		}
@@ -106,13 +106,10 @@ public class BaseDatosModiseTest {
 				assertEquals(true, genero);
 				assertEquals(2, colorFav);
 				assertEquals("rockF", estiloFav);
-
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Test
