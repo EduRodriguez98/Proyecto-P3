@@ -476,7 +476,8 @@ public class BaseDatosModise {
 			PreparedStatement Stmt = conn.prepareStatement(sql);
 
 			ResultSet rs = Stmt.executeQuery();
-
+			
+			System.out.println("rs de camisetas" + rs.toString());
 			
 			while (rs.next()) {
 				
@@ -524,11 +525,12 @@ public class BaseDatosModise {
 
 				}
 	
-				Integer idCamisetas = rs.getInt("idprendas");
+				Integer idCamisetas = 0;
+				idCamisetas = rs.getInt("idprendas");
 				byte[] fotbytesCamisetas = rs.getBytes("fotocamiseta");
 				mapOutfitSol.put(idCamisetas, fotbytesCamisetas);	
 				
-				if (mapOutfitSol.size() != 1) {
+				if (idCamisetas == 0) {
 					
 					Connection conn1I = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 					String sql1I = new String("SELECT * FROM camisetas WHERE idprendas = 123 LIMIT 1");
@@ -612,11 +614,12 @@ public class BaseDatosModise {
 
 				} 
 				
-				Integer idChaquetas = rs.getInt("idprendas");
+				Integer idChaquetas = 0;
+				idChaquetas = rs.getInt("idprendas");
 				byte[] fotobytesChaquetas = rs.getBytes("fotochaqueta");
 				mapOutfitSol.put(idChaquetas, fotobytesChaquetas);
 				
-				if (mapOutfitSol.size() != 2) {
+				if (idChaquetas == 0) {
 					Connection conn2II = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 					String sql2II = new String("SELECT * FROM chaquetas WHERE idprendas = 124 LIMIT 1");
 					PreparedStatement Stmt2 = conn2II.prepareStatement(sql2II);
@@ -699,11 +702,12 @@ public class BaseDatosModise {
 					listaColoresDisponibles.remove(Integer.valueOf(5));
 				} 				
 			
-				Integer idGorros = rs.getInt("idprendas");
+				Integer idGorros = 0;
+				idGorros = rs.getInt("idprendas");
 				byte[] fotobytesGorros = rs.getBytes("fotogorros");
 				mapOutfitSol.put(idGorros, fotobytesGorros);
 				
-				if (mapOutfitSol.size() != 3) {
+				if (idGorros == 0) {
 					Connection conn3III = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 					String sql3III = new String("SELECT * FROM gorros WHERE idprendas = 125 LIMIT 1");
 					PreparedStatement Stmt3 = conn3III.prepareStatement(sql3III);
@@ -731,7 +735,7 @@ public class BaseDatosModise {
 			
 			
 			Connection conn4 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			String sql4 = "SELECT fotopantalones, idprendas, idcolor FROM pantalonsol " + "WHERE estiloPrendas = '"
+			String sql4 = "SELECT fotopantalones, idprendas, idcolor FROM pantalonsol WHERE estiloPrendas = '"
 					+ estiloj + "' AND generops = '" + generoj + "' AND idcolor IN (?) ORDER BY RAND() LIMIT 1";
 
 			String sqlIn4 = listaColoresDisponibles.stream().map(x -> String.valueOf(x))
@@ -788,11 +792,12 @@ public class BaseDatosModise {
 					listaColoresDisponibles.remove(Integer.valueOf(5));
 				} 	
 				
-				Integer idPantalones = rs.getInt("idprendas");
+				Integer idPantalones = 0;
+				idPantalones = rs.getInt("idprendas");
 				byte[] fotobytesPantalones = rs.getBytes("fotopantalones");
 				mapOutfitSol.put(idPantalones, fotobytesPantalones);
 				
-				if(mapOutfitSol.size() != 4) {
+				if(idPantalones == 0) {
 					Connection conn4IV = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 					String sql4IV = new String("SELECT * FROM pantalones WHERE idprendas = 126 LIMIT 1");
 					PreparedStatement Stmt4 = conn4IV.prepareStatement(sql4IV);
@@ -820,7 +825,7 @@ public class BaseDatosModise {
 			
 			
 			Connection conn5 = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
-			String sql5 = "SELECT fotozapatos, idprendas, idcolor FROM zapatosol " + "WHERE estiloPrendas = '"
+			String sql5 = "SELECT fotozapatos, idprendas, idcolor FROM zapatosol WHERE estiloPrendas = '"
 					+ estiloj + "' AND generozs = '" + generoj + "' AND idcolor IN (?) ORDER BY RAND() LIMIT 1";
 					
 
@@ -884,7 +889,7 @@ public class BaseDatosModise {
 				byte[] fotobytesZapatos = rs.getBytes("fotozapatos");
 				mapOutfitSol.put(idZapatos, fotobytesZapatos);
 				
-				if (mapOutfitSol.size() != 5) {
+				if (idZapatos == 0) {
 					Connection conn5V = DriverManager.getConnection(URL, USUARIO, CONTRASENA);
 					String sql5V = new String("SELECT * FROM zapatos WHERE idprendas = 127 LIMIT 1");
 					PreparedStatement Stmt5 = conn5V.prepareStatement(sql5V);

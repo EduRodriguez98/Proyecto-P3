@@ -200,7 +200,7 @@ public class Principal {
 	public static Logger BDLogger;
 
 	
-	public void recorrerArray2DRecursivo(Object[][] array, List<ImageIcon> imgIconList, int row, int col, int countID,int countfoto) {
+	public void recorrerArray2DRecursivo(Object[][] array, List<String> StringList, int row, int col, int countID,int countfoto) {
 	
 		if (row != array.length-1 || col != array[row].length-1) {
 		
@@ -210,14 +210,14 @@ public class Principal {
 				countfoto++;
 				col = 0;
 			
-				array[0][0] = imgIconList.get(0).toString();
-				array[row][col] = imgIconList.get(countfoto).toString();
+				array[0][0] = StringList.get(0);
+				array[row][col] = StringList.get(countfoto);
 				
 			} else {
 				
 				col ++;
 			}
-			recorrerArray2DRecursivo(array, imgIconList, row, col, countID, countfoto);
+			recorrerArray2DRecursivo(array, StringList, row, col, countID, countfoto);
 		}
 		
 	}
@@ -1516,6 +1516,14 @@ public class Principal {
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
 							
+							//Lista String para metodo recursivo en jtable
+							List<String> prendas = new ArrayList<String>();
+							prendas.add("gorro");
+							prendas.add("camiseta");
+							prendas.add("chaqueta");
+							prendas.add("pantalones");
+							prendas.add("zapatos");
+							
 							
 							//ventanaEmergentePideOutfit
 							//Creamos arrays para usar
@@ -1525,10 +1533,10 @@ public class Principal {
 							Object[][] arrayTablaFilas = new Object[5][2]; 
 							
 							JTable tabla = new JTable(arrayTablaFilas, arrayTablaColumnas);
-							tabla.setBounds(0, 30, 550, 800);
+							tabla.setBounds(0, 30, 400, 800);
 							tabla.setRowHeight(180);
 							TableColumnModel columnmodel = tabla.getColumnModel();
-							columnmodel.getColumn(0).setPreferredWidth(300);
+							columnmodel.getColumn(0).setPreferredWidth(80);
 							columnmodel.getColumn(1).setPreferredWidth(250);
 							
 							
@@ -1560,7 +1568,7 @@ public class Principal {
 								}
 							tabla.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
 							
-							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
+							recorrerArray2DRecursivo(arrayTablaFilas, prendas, 0, 0, 1, 0);
 							
 							ventanaEmergenteOutfit.add(tabla);
 
@@ -1606,6 +1614,13 @@ public class Principal {
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
 							
+							//Lista String para metodo recursivo en jtable
+							List<String> prendas = new ArrayList<String>();
+							prendas.add("gorro");
+							prendas.add("camiseta");
+							prendas.add("chaqueta");
+							prendas.add("pantalones");
+							prendas.add("zapatos");
 							
 							//ventanaEmergentePideOutfit
 							//Creamos arrays para usar
@@ -1618,10 +1633,10 @@ public class Principal {
 							tabla.setBounds(0, 30, 400, 800);
 							tabla.setRowHeight(180);
 							TableColumnModel columnmodel = tabla.getColumnModel();
-							columnmodel.getColumn(0).setPreferredWidth(20);
+							columnmodel.getColumn(0).setPreferredWidth(80);
 							columnmodel.getColumn(1).setPreferredWidth(250);
 							
-							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
+							recorrerArray2DRecursivo(arrayTablaFilas, prendas, 0, 0, 1, 0);
 							
 							ventanaEmergenteOutfit.add(tabla);
 
