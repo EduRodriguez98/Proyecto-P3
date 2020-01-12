@@ -857,6 +857,8 @@ public class Principal {
 												txtCrearContraseñaM.getText(), 1, colorseleccionado,
 												estiloseleccionado);
 
+										Usuariolog.println("Nuevo usuario: " + txtCrearEmailM.getText());
+
 										errorPerfilGustosUnoM.setText("");
 										errorNombreM.setText("");
 										errorEmailM.setText("");
@@ -1188,6 +1190,8 @@ public class Principal {
 												txtCrearContraseñaF.getText(), 0, colorseleccionado,
 												estiloseleccionadoF);
 
+										Usuariolog.println("Nuevo usuario: " + txtCrearEmailF.getText());
+
 										errorPerfilGustosUnoF.setText("");
 										errorNombreF.setText("");
 										errorEmailF.setText("");
@@ -1316,10 +1320,12 @@ public class Principal {
 		preguntaTiempo.setBounds(30, 0, 300, 40);
 
 		radioSol = new JRadioButton("Sol");
+		radioSol.setActionCommand("sol");
 		radioSol.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioSol);
 		radioSol.setBounds(30, 50, 100, 40);
 		radioLluvia = new JRadioButton("Lluvia");
+		radioLluvia.setActionCommand("lluvia");
 		radioLluvia.setFont(new Font("Monospace", Font.PLAIN, 12));
 		ventanaPideOutfit.add(radioLluvia);
 		radioLluvia.setBounds(30, 100, 100, 40);
@@ -1360,7 +1366,7 @@ public class Principal {
 		radioNo.setBounds(30, 240, 50, 30);
 
 		estilosComboBoxPideOutfit = new JComboBox<String>();
-		ventanaPideOutfit.add(estilosComboBoxPideOutfit);// aaaaaa
+		ventanaPideOutfit.add(estilosComboBoxPideOutfit);
 		estilosComboBoxPideOutfit.addItem(null); // mantener esta opcion como primero!!! se supone que es -1
 		estilosComboBoxPideOutfit.addItem("ClasicoF"); // 1
 		estilosComboBoxPideOutfit.addItem("ClasicoM"); // 2
@@ -1381,9 +1387,11 @@ public class Principal {
 		generoPregunta.setBounds(370, 200, 200, 30);
 		ventanaPideOutfit.add(generoPregunta);
 		generoOutfitM = new JRadioButton("M");
+		generoOutfitM.setActionCommand("M");
 		generoOutfitM.setFont(new Font("Monospace", Font.PLAIN, 12));
 		generoOutfitM.setBounds(370, 240, 50, 30);
 		generoOutfitF = new JRadioButton("F");
+		generoOutfitF.setActionCommand("F");
 		generoOutfitF.setFont(new Font("Monospace", Font.PLAIN, 12));
 		generoOutfitF.setBounds(420, 240, 50, 30);
 		ButtonGroup bgGenero = new ButtonGroup();
@@ -1434,7 +1442,7 @@ public class Principal {
 					}
 
 					Usuariolog.println("Pide Outfit, tiempo: " + bgPideOutfit.getSelection().getActionCommand()
-							+ ", estilo: " + l + "genero: " + bgGenero.getSelection().getActionCommand() + "color: "
+							+ ", estilo: " + l + ", genero: " + bgGenero.getSelection().getActionCommand() + ", color: "
 							+ colorMenteComboBox.getSelectedItem().toString());
 
 					CambiarPanel(ventanaPideOutfit, ventanaFeedback);
@@ -2557,7 +2565,7 @@ public class Principal {
 			}
 		});
 
-		// Añadiendo los componentes de ajustes //aaaaaaaaaaa
+		// Añadiendo los componentes de ajustes
 		cambiarContraseña = new JButton("Cambiar contraseña");
 		cambiarContraseña.setBounds(50, 20, 50, 50);
 		ajustes.add(cambiarContraseña);
@@ -2636,12 +2644,6 @@ public class Principal {
 						System.out.println("Gusto mal escrito/introducido");
 					}
 				}
-				clasicoF.setSelected(false);
-				urbanaF.setSelected(false);
-				rockF.setSelected(false);
-				bohoF.setSelected(false);
-				formalF.setSelected(false);
-				sportyChickF.setSelected(false);
 			}
 		});
 
