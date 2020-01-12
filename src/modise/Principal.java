@@ -59,6 +59,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import conexion.BDException;
@@ -199,35 +200,22 @@ public class Principal {
 
 	
 	public void recorrerArray2DRecursivo(Object[][] array, List<ImageIcon> imgIconList, int row, int col, int countID,int countfoto) {
-		
-		
-		
-		//Si las filas y columnas son distintas de su longitud maxima, se vuelve a llamar la funcion 
-		//Esto hace que se recorran todas las filas y columnas ya que hay un if que hace que salte columnas y filas hasta que no pueda más
-		//por salirse de los bounds del array, y en ese caso se para de llamar a la funcion.
+	
 		if (row != array.length-1 || col != array[row].length-1) {
-			
-			
-			//Si se llega a la ultima columna de la fila, se reinicia la columna y se incrementa la fila
+		
 			if (col == array[row].length-1) {
 				row ++;
 				countID++;
 				countfoto++;
 				col = 0;
-				//esto mete el 1,2,3,4,5
-				array[0][0] = 1;
-				array[row][col] = countID;
-				
+			
+				array[0][0] = imgIconList.get(0).toString();
+				array[row][col] = imgIconList.get(countfoto).toString();
 				
 			} else {
-				//no se ha llegado a la ultima columna de la fila
+				
 				col ++;
-				//esto mete los bytes
-				array[row][col] = imgIconList.get(countfoto);
-				
-				
 			}
-			
 			recorrerArray2DRecursivo(array, imgIconList, row, col, countID, countfoto);
 		}
 		
@@ -1535,11 +1523,40 @@ public class Principal {
 							Object[][] arrayTablaFilas = new Object[5][2]; 
 							
 							JTable tabla = new JTable(arrayTablaFilas, arrayTablaColumnas);
-							tabla.setBounds(0, 30, 400, 800);
+							tabla.setBounds(0, 30, 550, 800);
 							tabla.setRowHeight(180);
 							TableColumnModel columnmodel = tabla.getColumnModel();
-							columnmodel.getColumn(0).setPreferredWidth(20);
+							columnmodel.getColumn(0).setPreferredWidth(300);
 							columnmodel.getColumn(1).setPreferredWidth(250);
+							
+							
+							class ImageRenderer extends DefaultTableCellRenderer{
+								  /**
+								 * 
+								 */
+								private static final long serialVersionUID = 1L;
+								
+								JLabel lbl = new JLabel();
+
+								  public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+								      boolean hasFocus, int row, int column) {
+								    lbl.setText((String) value);
+								    if(row == 0) {
+								    	lbl.setIcon(listaImageIcon.get(0));
+								    } else if(row == 1) {
+								    	lbl.setIcon(listaImageIcon.get(1));
+									} else if(row == 2) {
+										lbl.setIcon(listaImageIcon.get(2));
+									} else if(row == 3) {
+										lbl.setIcon(listaImageIcon.get(3));
+									} else if(row == 4) {
+										lbl.setIcon(listaImageIcon.get(1));
+									}
+								    
+								    return lbl;
+								  }
+								}
+							tabla.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
 							
 							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
 							
