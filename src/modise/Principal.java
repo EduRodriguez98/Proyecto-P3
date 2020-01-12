@@ -65,7 +65,6 @@ import javax.swing.table.TableColumnModel;
 import conexion.BDException;
 import conexion.BaseDatosModise;
 
-
 public class Principal {
 
 	// ORDENES DE LAS VENTANAS!!!!!
@@ -201,7 +200,8 @@ public class Principal {
 	static PrintStream Feedbacklog, Usuariolog;
 	public static Logger BDLogger;
 
-<<<<<<< HEAD
+	<<<<<<<HEAD
+
 	public void recorrerArray2DRecursivo(Object[][] array, List<ImageIcon> imgIconList, int row, int col, int countID,
 			int countfoto) {
 
@@ -210,11 +210,11 @@ public class Principal {
 			if (col == array[row].length - 1) {
 				row++;
 =======
-	
+
 	public void recorrerArray2DRecursivo(Object[][] array, List<String> StringList, int row, int col, int countID,int countfoto) {
-	
+
 		if (row != array.length-1 || col != array[row].length-1) {
-		
+
 			if (col == array[row].length-1) {
 				row ++;
 >>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
@@ -227,10 +227,10 @@ public class Principal {
 				array[row][col] = imgIconList.get(countfoto).toString();
 
 =======
-			
+
 				array[0][0] = StringList.get(0);
 				array[row][col] = StringList.get(countfoto);
-				
+
 >>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 			} else {
 
@@ -1447,7 +1447,7 @@ public class Principal {
 					HashMap<Integer, byte[]> outfitSolMap = null;
 
 					if (radioSol.isSelected() && !radioNo.isSelected()) {
-						
+
 						try {
 
 							String nombreColorSeleccionadoPO = colorMenteComboBox.getSelectedItem().toString();
@@ -1473,7 +1473,7 @@ public class Principal {
 							} else if (nombreColorSeleccionadoPO == "marron") {
 								color = 10;
 							}
-							
+
 							if (generoOutfitM.isSelected()) {
 								outfitSolMap = BaseDatosModise.crearOutfitSoleado(
 										estilosComboBoxPideOutfit.getSelectedItem().toString(), 0, color);
@@ -1518,7 +1518,7 @@ public class Principal {
 							Object[][] arrayTablaFilas = new Object[5][2];
 
 =======
-							
+
 							//Lista String para metodo recursivo en jtable
 							List<String> prendas = new ArrayList<String>();
 							prendas.add("gorro");
@@ -1526,15 +1526,15 @@ public class Principal {
 							prendas.add("chaqueta");
 							prendas.add("pantalones");
 							prendas.add("zapatos");
-							
-							
+
+
 							//ventanaEmergentePideOutfit
 							//Creamos arrays para usar
 							Object[] arrayTablaColumnas = {"idprendas", "fotos"};
-							
+
 							//(Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
-							Object[][] arrayTablaFilas = new Object[5][2]; 
-							
+							Object[][] arrayTablaFilas = new Object[5][2];
+
 >>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 							JTable tabla = new JTable(arrayTablaFilas, arrayTablaColumnas);
 							tabla.setBounds(0, 30, 400, 800);
@@ -1573,14 +1573,14 @@ public class Principal {
 									}
 <<<<<<< HEAD
 =======
-								    
+
 								    return lbl;
 								  }
 								}
 							tabla.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
-							
+
 							recorrerArray2DRecursivo(arrayTablaFilas, prendas, 0, 0, 1, 0);
-							
+
 							ventanaEmergenteOutfit.add(tabla);
 >>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 
@@ -1642,7 +1642,7 @@ public class Principal {
 							Object[][] arrayTablaFilas = new Object[5][2];
 
 =======
-							
+
 							//Lista String para metodo recursivo en jtable
 							List<String> prendas = new ArrayList<String>();
 							prendas.add("gorro");
@@ -1650,14 +1650,14 @@ public class Principal {
 							prendas.add("chaqueta");
 							prendas.add("pantalones");
 							prendas.add("zapatos");
-							
+
 							//ventanaEmergentePideOutfit
 							//Creamos arrays para usar
 							Object[] arrayTablaColumnas = {"idprendas", "fotos"};
-							
+
 							//(Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
-							Object[][] arrayTablaFilas = new Object[5][2]; 
-							
+							Object[][] arrayTablaFilas = new Object[5][2];
+
 >>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 							JTable tabla = new JTable(arrayTablaFilas, arrayTablaColumnas);
 							tabla.setBounds(0, 30, 400, 800);
@@ -1670,9 +1670,9 @@ public class Principal {
 							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
 
 =======
-							
+
 							recorrerArray2DRecursivo(arrayTablaFilas, prendas, 0, 0, 1, 0);
-							
+
 >>>>>>> branch 'master' of https://github.com/EduRodriguez98/Proyecto-P3.git
 							ventanaEmergenteOutfit.add(tabla);
 
@@ -1702,7 +1702,7 @@ public class Principal {
 
 		botonAtrasPideOutfit.addActionListener(new ActionListener() {
 
-			@Override
+	@Override
 			public void actionPerformed(ActionEvent e) {
 				CambiarPanel(ventanaPideOutfit, ventanaMenuPrincipal);
 				mb.setVisible(true);
