@@ -60,6 +60,7 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 
 import conexion.BDException;
@@ -187,7 +188,9 @@ public class Principal {
 	JButton cambiarContraseña, reiniciarPerfil;
 
 	// ventanaEmergenteOutfit
-
+	JButton boton1;
+	
+	
 	// ventanaMasMenosAdmin
 	JLabel labelEmailMasMenosAdmin;
 	JTextField txtEmailMasMenosAdmin;
@@ -201,7 +204,7 @@ public class Principal {
 	public static Logger BDLogger;
 
 
-	public void recorrerArray2DRecursivo(Object[][] array, List<String> StringList, int row, int col, int countID,int countfoto) {
+	public void recorrerArray2DRecursivo(Object[][] array, List<ImageIcon> ImgIconList, int row, int col, int countID,int countfoto) {
 
 		if (row != array.length-1 || col != array[row].length-1) {
 
@@ -211,15 +214,15 @@ public class Principal {
 				countID++;
 				countfoto++;
 				col = 0;
-				array[0][0] = StringList.get(0);
-				array[row][col] = StringList.get(countfoto);
+				array[0][0] = ImgIconList.get(0);
+				array[row][col] = ImgIconList.get(countfoto);
 
 
 			} else {
 
 				col++;
 			}
-			recorrerArray2DRecursivo(array, StringList, row, col, countID, countfoto);
+			recorrerArray2DRecursivo(array, ImgIconList, row, col, countID, countfoto);
 		}
 
 	}
@@ -1499,14 +1502,6 @@ public class Principal {
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
 
-							//Lista String para metodo recursivo en jtable
-							List<String> prendas = new ArrayList<String>();
-							prendas.add("gorro");
-							prendas.add("camiseta");
-							prendas.add("chaqueta");
-							prendas.add("pantalones");
-							prendas.add("zapatos");
-
 
 							//ventanaEmergentePideOutfit
 							//Creamos arrays para usar
@@ -1520,9 +1515,33 @@ public class Principal {
 							tabla.setBounds(0, 30, 400, 800);
 							tabla.setRowHeight(180);
 							TableColumnModel columnmodel = tabla.getColumnModel();
-							columnmodel.getColumn(0).setPreferredWidth(80);
+							columnmodel.getColumn(0).setPreferredWidth(200);
 							columnmodel.getColumn(1).setPreferredWidth(250);
-
+							TableColumn idClm = tabla.getColumn("idprendas");
+							idClm.setMaxWidth(0);
+							idClm.setMinWidth(0);
+							idClm.setPreferredWidth(0);
+							
+							
+							boton1 = new JButton("foto id");
+							boton1.setBounds(10, 100, 50, 30);
+							boton1.setVisible(true);
+							ventanaEmergenteOutfit.add(boton1);
+							
+							boton1.addActionListener(new ActionListener() {
+								
+								
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									TableColumn idClm = tabla.getColumn("idprendas");
+									idClm.setMaxWidth(200);
+									idClm.setMinWidth(199);
+									idClm.setPreferredWidth(200);
+									
+								}
+							});
+							
+						
 							class ImageRenderer extends DefaultTableCellRenderer {
 								/**
 								*
@@ -1551,8 +1570,9 @@ public class Principal {
 							}
 							
 							tabla.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
+							
 
-							recorrerArray2DRecursivo(arrayTablaFilas, prendas, 0, 0, 1, 0);
+							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
 
 							ventanaEmergenteOutfit.add(tabla);
 
@@ -1597,14 +1617,6 @@ public class Principal {
 							listaImageIcon.add(f5);
 
 
-							//Lista String para metodo recursivo en jtable
-							List<String> prendas = new ArrayList<String>();
-							prendas.add("gorro");
-							prendas.add("camiseta");
-							prendas.add("chaqueta");
-							prendas.add("pantalones");
-							prendas.add("zapatos");
-
 							//ventanaEmergentePideOutfit
 							//Creamos arrays para usar
 							Object[] arrayTablaColumnas = {"idprendas", "fotos"};
@@ -1619,12 +1631,62 @@ public class Principal {
 							TableColumnModel columnmodel = tabla.getColumnModel();
 							columnmodel.getColumn(0).setPreferredWidth(80);
 							columnmodel.getColumn(1).setPreferredWidth(250);
+							TableColumn idClmn= tabla.getColumn("idprendas");
+							idClmn.setMaxWidth(0);
+							idClmn.setMinWidth(0);
+							idClmn.setPreferredWidth(0);
+							
+							boton1 = new JButton("foto id");
+							boton1.setBounds(10, 0, 50, 30);
+							boton1.setVisible(true);
+							ventanaEmergenteOutfit.add(boton1);
+							
+							boton1.addActionListener(new ActionListener() {
+								
+								@Override
+								public void actionPerformed(ActionEvent e) {
+									TableColumn idClmn= tabla.getColumn("idprendas");
+									idClmn.setMaxWidth(200);
+									idClmn.setMinWidth(199);
+									idClmn.setPreferredWidth(200);
+									
+								}
+							});
+							
+							class ImageRenderer extends DefaultTableCellRenderer {
+								/**
+								*
+								*/
+								private static final long serialVersionUID = 1L;
 
+								JLabel lbl = new JLabel();
 
-							recorrerArray2DRecursivo(arrayTablaFilas, prendas, 0, 0, 1, 0);
+								@Override
+								public Component getTableCellRendererComponent(JTable table, Object value,
+										boolean isSelected, boolean hasFocus, int row, int column) {
+									lbl.setText((String) value);
+									if (row == 0) {
+										lbl.setIcon(listaImageIcon.get(0));
+									} else if (row == 1) {
+										lbl.setIcon(listaImageIcon.get(1));
+									} else if (row == 2) {
+										lbl.setIcon(listaImageIcon.get(2));
+									} else if (row == 3) {
+										lbl.setIcon(listaImageIcon.get(3));
+									} else if (row == 4) {
+										lbl.setIcon(listaImageIcon.get(4));
+
+									} return lbl;
+								}
+							}
+							
+							tabla.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
+
+							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
 
 
 							ventanaEmergenteOutfit.add(tabla);
+							
 
 						} catch (BDException | SQLException e1) {
 
