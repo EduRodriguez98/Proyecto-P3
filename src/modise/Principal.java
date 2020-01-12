@@ -60,6 +60,7 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import conexion.BDException;
 import conexion.BaseDatosModise;
@@ -198,38 +199,39 @@ public class Principal {
 	public static Logger BDLogger;
 
 	
-	// Metodo Cargar Datos a JPanel (HAY QUE CAMBIARLO PERO NOT BAD!!! ES DEL ESTILO NO BORRAR)
-	public static void cargarJTable(Object[][] arrLleno, Object[][] arrV, int i, int j) {
-
-		Object aux;
-
-		int aux2 = (int) arrLleno[i][0];
-
-		aux = arrLleno[i][j];
-		arrV[i][j] = aux;
-
-		System.out.println(arrV[i][j]);
-
-		if (i != arrLleno.length - 1 || j != arrLleno[i].length - 1) {
-
-			if (j == arrLleno[i].length - 1) {
-				i++;
-
-				j = 0;
-
-				arrV[i][j] = aux2;
-
+	public void recorrerArray2DRecursivo(Object[][] array, List<ImageIcon> imgIconList, int row, int col, int countID,int countfoto) {
+		
+		
+		
+		//Si las filas y columnas son distintas de su longitud maxima, se vuelve a llamar la funcion 
+		//Esto hace que se recorran todas las filas y columnas ya que hay un if que hace que salte columnas y filas hasta que no pueda más
+		//por salirse de los bounds del array, y en ese caso se para de llamar a la funcion.
+		if (row != array.length-1 || col != array[row].length-1) {
+			
+			
+			//Si se llega a la ultima columna de la fila, se reinicia la columna y se incrementa la fila
+			if (col == array[row].length-1) {
+				row ++;
+				countID++;
+				countfoto++;
+				col = 0;
+				//esto mete el 1,2,3,4,5
+				array[0][0] = 1;
+				array[row][col] = countID;
+				
+				
 			} else {
-
-				j++;
-				aux = arrLleno[i][j];
-				arrV[i][j] = aux;
+				//no se ha llegado a la ultima columna de la fila
+				col ++;
+				//esto mete los bytes
+				array[row][col] = imgIconList.get(countfoto);
+				
+				
 			}
-
-			cargarJTable(arrLleno, arrV, i, j);
-
+			
+			recorrerArray2DRecursivo(array, imgIconList, row, col, countID, countfoto);
 		}
-
+		
 	}
 
 	// Metodo Cambiar Paneles
@@ -1509,8 +1511,7 @@ public class Principal {
 							}
 							
 							//mostramos por pantalla la lista de byte[] creada para comprobar
-							System.out.println("aqui esta la lista de byte[]: " + listaByteArray);
-							
+
 							
 							ImageIcon f1 = new ImageIcon(listaByteArray.get(0));
 							ImageIcon f2 = new ImageIcon(listaByteArray.get(1));
@@ -1520,32 +1521,31 @@ public class Principal {
 							
 							//Ya tenemos una lista de ImageIcon preparada para meter los valores a la tabla
 							List<ImageIcon> listaImageIcon = new ArrayList<ImageIcon>();
+							listaImageIcon.add(f3);
 							listaImageIcon.add(f1);
 							listaImageIcon.add(f2);
-							listaImageIcon.add(f3);
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
 							
 							
-							
 							//ventanaEmergentePideOutfit
-							JTable jt = new JTable();
-							jt.setPreferredSize(new Dimension(400, 850));
-							jt.setRowHeight(0, 50);
-							jt.setRowHeight(1, 150);
-							jt.setRowHeight(2, 150);
-							jt.setRowHeight(3, 150);
-							jt.setRowHeight(4, 150);
-							jt.setRowHeight(5, 150);
+							//Creamos arrays para usar
+							Object[] arrayTablaColumnas = {"idprendas", "fotos"};
+							
+							//(Este array tiene 5 filas, y 2 columnas (Como la JTable que tenemos!)
+							Object[][] arrayTablaFilas = new Object[5][2]; 
+							
+							JTable tabla = new JTable(arrayTablaFilas, arrayTablaColumnas);
+							tabla.setBounds(0, 30, 400, 800);
+							tabla.setRowHeight(180);
+							TableColumnModel columnmodel = tabla.getColumnModel();
+							columnmodel.getColumn(0).setPreferredWidth(20);
+							columnmodel.getColumn(1).setPreferredWidth(250);
+							
+							recorrerArray2DRecursivo(arrayTablaFilas, listaImageIcon, 0, 0, 1, 0);
+							
+							ventanaEmergenteOutfit.add(tabla);
 
-							String[] cols = { "idprendas", "foto" };
-							Object[][] rowsData = {};
-
-
-							DefaultTableModel dtm = (DefaultTableModel) jt.getModel();
-							dtm.setDataVector(rowsData, cols);
-
-							ventanaEmergenteOutfit.add(jt);
 
 						} catch (BDException | SQLException e1) {
 
@@ -1587,6 +1587,8 @@ public class Principal {
 							listaImageIcon.add(f3);
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
+							
+							
 							
 							
 							//ventanaEmergentePideOutfit
