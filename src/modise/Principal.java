@@ -1500,9 +1500,10 @@ public class Principal {
 							}
 							
 							//mostramos por pantalla la lista de byte[] creada para comprobar
-
 							
-							ImageIcon f1 = new ImageIcon(listaByteArray.get(0));
+							
+							
+							ImageIcon f1 = new ImageIcon(listaByteArray.get(0));							
 							ImageIcon f2 = new ImageIcon(listaByteArray.get(1));
 							ImageIcon f3 = new ImageIcon(listaByteArray.get(2));
 							ImageIcon f4 = new ImageIcon(listaByteArray.get(3));
@@ -1510,9 +1511,9 @@ public class Principal {
 							
 							//Ya tenemos una lista de ImageIcon preparada para meter los valores a la tabla
 							List<ImageIcon> listaImageIcon = new ArrayList<ImageIcon>();
-							listaImageIcon.add(f3);
 							listaImageIcon.add(f1);
 							listaImageIcon.add(f2);
+							listaImageIcon.add(f3);
 							listaImageIcon.add(f4);
 							listaImageIcon.add(f5);
 							
